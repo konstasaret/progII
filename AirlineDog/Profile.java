@@ -88,22 +88,51 @@ public class Profile {
 	}
 
 	//new user's credentials
-	public void newEntry() {
-				Scanner in = new Scanner(System.in);
+	public String newEntry() {
+				Scanner up = new Scanner(System.in);
 				
 				System.out.println("Give User name");
-				String user=in.nextLine();
+				String user=up.nextLine();
 				
 				System.out.println("Give pass");
-				String pass = in.nextLine();
+				String pass = up.nextLine();
 				
 				System.out.println("Give Address");
-				String address = in.nextLine();
+				String address = up.nextLine();
 				
 				Profile prof = new Profile(user, pass, address);
+
+				return ID.get(number_of_users);
 	}
 
-		public void authenticate(String username, String pass) {
-			
+		public String authenticate() {
+			Scanner in = new Scanner(System.in);
+			boolean flag = false;
+			int passxy = 0;
+			while (flag == false){
+				passxy = 0;
+
+				System.out.println("Give User name");
+				String userin=in.nextLine();
+
+				System.out.println("Give pass");
+				String passin = in.nextLine();
+
+				for (String name: user_name) {
+					for (String passw: password) {
+						passxy++;
+						if(name.equals(userin) && passw.equals(passin) ) {
+							flag = true;
+						}
+					}
+
+				}
+				if (flag == false){
+					System.out.println("wrong try again");
+				}else {
+					System.out.println("welcome!");
+				}
+			}
+			return ID.get(passxy);
 		}
 }
