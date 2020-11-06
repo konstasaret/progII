@@ -15,9 +15,8 @@ public class ReadWrite {
 					ObjectInputStream ois =  new ObjectInputStream(fis) ;
 					arr = (ArrayList) ois.readObject() ;
 					ois.close() ;
-					System.out.println(arr);//test
 			}catch(Exception e) {
-				System.err.println("err bye");
+				System.err.println("err read");
 			}
 		return arr;
 	}
