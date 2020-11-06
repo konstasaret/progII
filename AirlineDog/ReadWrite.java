@@ -1,61 +1,35 @@
 package AirlineDog;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class ReadWrite {
 	
-	public static void read() {
-		
+	public static ArrayList<String> read(String file) {
+		ArrayList<String> arr = new ArrayList<String>();
+		try {
+			FileInputStream fis =  new FileInputStream(file) ;
+					ObjectInputStream ois =  new ObjectInputStream(fis) ;
+					arr = (ArrayList) ois.readObject() ;
+					ois.close() ;
+					System.out.println(arr);//test
+			}catch(Exception e) {
+				System.err.println("err bye");
+			}
+		return arr;
 	}
 	
-	public static void write() {
-		try {
-			FileWriter writer = new FileWriter("Hello.txt"); 
-			for(int i = 0; i<Profile.profs.size();i++ ) {
-				writer.write(Profile.profs.get(i).getAddress() + System.lineSeparator());
-			}
-			writer.close();
-			}catch (IOException e) {
-				System.err.println("error");
-			}finally {
-				System.out.println("created");
-			}
-	}
-	private static FileOutputStream fs ;
-	private static ObjectOutputStream os;
-	public static void heloo() {
-		ArrayList<String> cars = new ArrayList<String>();
-	    cars.add("Volvo");
-	    cars.add("BMW");
-	    cars.add("Ford");
-	    cars.add("Mazda");
-	    cars.add("papap");
+	public static void write(ArrayList<String> arr, String file) {
 			try {
-				FileOutputStream fos =  new FileOutputStream("test.txt") ;
-				fs=fos;
+				FileOutputStream fos =  new FileOutputStream(file) ;
 				ObjectOutputStream oos =  new ObjectOutputStream(fos) ;
-				oos.writeObject(cars);
+				oos.writeObject(arr);
 				oos.close() ;
 			}catch(Exception e){
-				System.err.println("err cars");
+				System.err.println("err write");
 			}
-	}
-	public static void bye() {
-		try {
-		FileInputStream fis =  new FileInputStream("test.txt") ;
-				ObjectInputStream ois =  new ObjectInputStream(fis) ;
-				ArrayList<String> cars = (ArrayList) ois.readObject() ;
-				ois.close() ;
-				System.out.println(cars);
-		}catch(Exception e) {
-			System.err.println("err bye");
-		}
 	}
 }
