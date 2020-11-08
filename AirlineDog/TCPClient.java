@@ -21,8 +21,8 @@ public class TCPClient {
             String userid = "";
 
             while(!clientMessage.equals("yes")){
-                while (logg.equals("1") || logg.equals("2")) {
-                    Scanner logsc = new Scanner(System.in);
+                do{
+                	Scanner logsc = new Scanner(System.in);
                     System.out.println("1.Log in \n 2.Sing up \n");
                     logg = logsc.nextLine();
                     if (logg.equals("2")) {
@@ -33,7 +33,9 @@ public class TCPClient {
                         //edo prepei na exoyme kai ta id tous giati panta etsi 8a tous briskoume kai otan stelnoun kati ston server prepei na phgainei kai auto mazi
 
                     }
-                }
+                }while (logg.equals("1") || logg.equals("2")) ;
+                    
+                
 
                 while (!Number.equals("7")){
 

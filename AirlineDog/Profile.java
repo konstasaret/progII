@@ -102,7 +102,7 @@ public class Profile {
 				
 				Profile prof = new Profile(user, pass, address);
 
-				return ID.get(number_of_users);
+				return ID.get(number_of_users-1);
 	}
 
 		public String authenticate() {
@@ -119,20 +119,22 @@ public class Profile {
 				String passin = in.nextLine();
 
 				for (String name: user_name) {
+					passxy++;
 					for (String passw: password) {
-						passxy++;
 						if(name.equals(userin) && passw.equals(passin) ) {
 							flag = true;
+							break;
 						}
 					}
-
+					if(flag) break;
 				}
+				
 				if (flag == false){
 					System.out.println("wrong try again");
 				}else {
 					System.out.println("welcome!");
 				}
 			}
-			return ID.get(passxy);
+			return ID.get(passxy-1);
 		}
 }
