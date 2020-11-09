@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Inputs {
 
-	public static int input(int lower_boundary, int upper_boundary) {
+	public static int rangeInt(int lower_boundary, int upper_boundary) {
 		Scanner in = new Scanner(System.in);
 		int inp = -1;
 		try {
@@ -15,7 +15,7 @@ public class Inputs {
 			}
 		}catch (InputMismatchException e){
 			System.err.println("Παρακαλώ εισάγετε αριθμό απο το "+lower_boundary+" μεχρι το "+upper_boundary);
-			inp = input(lower_boundary, upper_boundary);
+			inp = rangeInt(lower_boundary, upper_boundary);
 		}
 			return inp;	
 	}

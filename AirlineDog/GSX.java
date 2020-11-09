@@ -11,7 +11,7 @@ public class GSX {
 			do {
 					System.out.println("Διαθέσιμες επιλογές:");
 					printMenu();
-					int choice = Inputs.input(1, 4);
+					int choice = Inputs.rangeInt(1, 4);
 					boolean flag2;
 					int option;
 					while(choice != 4) {
@@ -20,7 +20,7 @@ public class GSX {
 						} else if (choice == 2) {
 							do {
 								menu2();
-								option = Inputs.input(1, 11);
+								option = Inputs.rangeInt(1, 11);
 								flag2 = true;
 									while(flag2 == true) {
 										switch(option){ //beginning of switch
@@ -59,7 +59,7 @@ public class GSX {
 											continue;
 										}//end of switch
 									menu2();
-									option = Inputs.input(1, 11);
+									option = Inputs.rangeInt(1, 11);
 									contloopin = false;
 								}//end of loop
 								
@@ -72,7 +72,7 @@ public class GSX {
 							System.out.println("Λάθος εισαγωγή. Παρακαλώ προσπαθήστε ξανά");
 						}
 						printMenu();
-						choice = Inputs.input(1, 4);
+						choice = Inputs.rangeInt(1, 4);
 					}	
 			contloop = false;
 			

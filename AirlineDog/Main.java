@@ -1,7 +1,5 @@
 package AirlineDog;
 
-import java.util.UUID;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -9,9 +7,9 @@ public class Main {
 		
 		ReadWrite.load();
 		Profile prof = new Profile();
-
+		
 		logInMenu();
-		int inp = Inputs.input(1, 2);
+		int inp = Inputs.rangeInt(1, 2);
 		String id = "-1";
 		switch (inp) {
 		case 1:
@@ -22,8 +20,6 @@ public class Main {
 			id =prof.newEntry();
 			break;
 		}
-		System.out.println(id);
-		System.out.println(prof.getID());
 		
 		
 		ReadWrite.save();
@@ -39,7 +35,6 @@ public class Main {
 
 	public static void logInMenu() {
 		System.out.println("Καλώς ήλθατε");
-		
 		System.out.println("1. Σύνδεση");
 		System.out.println("2. Δημιουργία Νέου Χρήστη");
 	}

@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Profile {
 	
-	private static int number_of_users=0;
 	private static ArrayList<String> ID = new ArrayList<String>();
 	private static ArrayList<String> user_name = new ArrayList<String>();
 	private static ArrayList<String> password= new ArrayList<String>();
@@ -15,9 +14,10 @@ public class Profile {
 	public Profile() {
 		
 	}
+	
 	//new user constractor
 	public Profile(String user_name, String password, String address) {
-		Profile.ID.add(String.valueOf(number_of_users++));
+		Profile.ID.add(String.valueOf(Profile.ID.size()));
 		Profile.user_name.add(user_name);
 		Profile.password.add(password);
 		Profile.address.add(address);
@@ -87,24 +87,43 @@ public class Profile {
 		Profile.address = address;
 	}
 
-	//new user's credentials
+	//new user creation
 	public String newEntry() {
 				Scanner in = new Scanner(System.in);
 				
 				System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη");
 				String user=in.nextLine();
-				
-				System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη");
-				String pass = in.nextLine();
+				boolean duplicate;
+				do {
+					duplicate = false;
+					for(String names : user_name) {
+						if(names.contentEquals(user)) {
+							System.out.println("Το Όνομα Χρήστη χρησημοποιείται");
+							System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη");
+							duplicate = true;
+						}
+					}
+				}while(duplicate == true);
+
+				String pass, pass2;
+				do {
+					System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη");
+					pass = in.nextLine();
+					System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας");
+					pass2 = in.nextLine();
+					if(!pass.equals(pass2)) {
+						System.out.println("Οι Κωδικοί σας δεν ταιριάζουν \nΔοκιμάστε Ξανά");
+					}
+				}while(!pass.equals(pass2));
 				
 				System.out.println("Παρακαλώ εισάγετε την Διεύθυνσή σας");
 				String address = in.nextLine();
 				
 				new Profile(user, pass, address);
 
-				return ID.get(number_of_users-1);
+				return String.valueOf(Profile.ID.size());
 	}
-
+		//user authentication
 		public String authenticate() {
 			Scanner in = new Scanner(System.in);
 			
@@ -134,9 +153,5 @@ public class Profile {
 			}
 			return name_id;
 		}
-		
-		//public int Search(ArrayList<String> arr, String searchElement) 
-			
-
 		
 }

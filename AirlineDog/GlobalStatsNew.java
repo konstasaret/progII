@@ -10,59 +10,59 @@ public class GlobalStatsNew {
 		do {
 				System.out.println("Παγκόσμια στατιστικά σύμφωνα με τον Παγκόσμιο Οργανισμό Υγείας.");
 				printMenu();
-				int option = Inputs.input(1, 11);
+				int option = Inputs.rangeInt(1, 11);
 				boolean ok = true;
 				while (ok) {
 					switch (option) {
 					case 1:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 2:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-how-is-it-transmitted");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 3:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 4:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-risks-and-safety-for-older-people");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 5:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-adolescents-and-youth");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 6:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/when-and-how-to-use-masks");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 7:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/q-a-children-and-masks-related-to-covid-19");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 8:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-health-and-safety-in-the-workplace");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 9:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/global-research-on-novel-coronavirus-2019-ncov");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 10:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/covid-19-vaccines");
 						printMenu();
-						option = Inputs.input(1, 11);
+						option = Inputs.rangeInt(1, 11);
 						break;
 					case 11:
 						ok = false;
