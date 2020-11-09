@@ -1,21 +1,17 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+package AirlineDog;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.InputMismatchException;
 
 public class GSX {
 		public static void main(String[] args) {
-			Scanner sc = new Scanner(System.in);
-			Scanner scan = new Scanner(System.in);
 			boolean contloop = true;
 			boolean contloopin = true;
 			do {
-				try {
 					System.out.println("Διαθέσιμες επιλογές:");
 					printMenu();
-					int choice = sc.nextInt();
+					int choice = Inputs.input(1, 4);
 					boolean flag2;
 					int option;
 					while(choice != 4) {
@@ -23,9 +19,8 @@ public class GSX {
 							showSite("https://covid19.gov.gr/covid19-live-analytics/");
 						} else if (choice == 2) {
 							do {
-								try {
 								menu2();
-								option = scan.nextInt();
+								option = Inputs.input(1, 11);
 								flag2 = true;
 									while(flag2 == true) {
 										switch(option){ //beginning of switch
@@ -62,20 +57,12 @@ public class GSX {
 										case 11:
 											flag2 = false;
 											continue;
-										default: 
-											System.out.println(" Μη έγκυρη επιλογή (οι επιλογές είναι 1,2,3,4,5,6,7,8,9,10");
-											break;
 										}//end of switch
 									menu2();
-									option = scan.nextInt();
+									option = Inputs.input(1, 11);
 									contloopin = false;
 								}//end of loop
-								} catch (ArithmeticException e) {
-									System.err.println("ArithmeticException. Δοκιμάστε ξανά: ");
-								} catch (InputMismatchException e) {
-									System.err.println("InputMismatchException. Δοκιμάστε ξανά: ");
-									scan.nextLine();
-								} 
+								
 								} while (contloopin);
 						} else if (choice == 3) {
 							showSite("https://betmasters.gr/koronoios/50170-statistika-stin-ellada-prognostika/");
@@ -85,22 +72,16 @@ public class GSX {
 							System.out.println("Λάθος εισαγωγή. Παρακαλώ προσπαθήστε ξανά");
 						}
 						printMenu();
-						choice = sc.nextInt();
+						choice = Inputs.input(1, 4);
 					}	
 			contloop = false;
-			} catch (ArithmeticException e) {
-				System.err.println("ArithmeticException. Δοκιμάστε ξανά: ");
-			} catch (InputMismatchException e) {
-				sc.nextLine();
-				System.err.println("Παρακλώ εισάγεται αριθμό!\\n Δοκιμάστε ξανά: ");
-			} 
+			
 		} while (contloop);
 	}
 		public static void printMenu() {
 			System.out.println("1. Ημερήσια επισκόπηση.");
 			System.out.println("2. Στατιστικά στοιχεία ανά γεωγραφικό διαμέρισμα.");
-			System.out.println("3. Κρούσματα ανά ημέρα από την αρχή της"
-				+ " πανδημίας.");
+			System.out.println("3. Κρούσματα ανά ημέρα από την αρχή της πανδημίας.");
 			System.out.println("4. Έξοδος.");
 			System.out.println("Εισάγετε τον αριθμό που αντιστοιχεί στην επιθυμητή επιλογή.");
 		}
