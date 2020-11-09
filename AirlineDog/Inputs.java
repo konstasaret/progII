@@ -14,7 +14,7 @@ public class Inputs {
 				throw new InputMismatchException();
 			}
 		}catch (InputMismatchException e){
-			System.err.println("Παρακαλώ εισάγεται αριθμό απο το "+lower_boundary+" μεχρι το "+upper_boundary);
+			System.err.println("Παρακαλώ εισάγετε αριθμό απο το "+lower_boundary+" μεχρι το "+upper_boundary);
 			inp = input(lower_boundary, upper_boundary);
 		}
 			return inp;	

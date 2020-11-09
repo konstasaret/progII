@@ -91,13 +91,13 @@ public class Profile {
 	public String newEntry() {
 				Scanner in = new Scanner(System.in);
 				
-				System.out.println("Give User name");
+				System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη");
 				String user=in.nextLine();
 				
-				System.out.println("Give pass");
+				System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη");
 				String pass = in.nextLine();
 				
-				System.out.println("Give Address");
+				System.out.println("Παρακαλώ εισάγετε την Διεύθυνσή σας");
 				String address = in.nextLine();
 				
 				new Profile(user, pass, address);
@@ -109,7 +109,7 @@ public class Profile {
 			Scanner in = new Scanner(System.in);
 			
 			String name_id = "-5";
-			System.out.println("Give User name");
+			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας");
 			String name=in.nextLine();
 			for(int i = 0; i<user_name.size(); i++) {
 				if (name.equals(user_name.get(i))){
@@ -118,7 +118,7 @@ public class Profile {
 			}
 			
 			String pass_id = "-6";
-			System.out.println("Give pass");
+			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας");
 			String pass = in.nextLine();
 			for(int i = 0; i<password.size(); i++) {
 				if (pass.equals(password.get(i))){
@@ -127,11 +127,12 @@ public class Profile {
 			}
 				
 			if (name_id.equals(pass_id)) {
-				return name_id;
+				System.out.println("Επιτυχία Συνδεσης");
 			}else {
+				System.out.println("Αποτυχία Συνδεσης\nΠαρακαλώ δοκιμάστε ξανά");
 				authenticate();
 			}
-			return "-1";
+			return name_id;
 		}
 		
 		//public int Search(ArrayList<String> arr, String searchElement) 

@@ -1,18 +1,14 @@
 package AirlineDog;
 
+import java.util.UUID;
+
 public class Main {
 
 	public static void main(String[] args) {
-		Profile prof = new Profile();
+		
+		
 		ReadWrite.load();
-		prof.newEntry();
-		System.out.println(prof.getUser_name());
-		ReadWrite.save();
-
-
-
-
-
+		Profile prof = new Profile();
 
 		logInMenu();
 		int inp = Inputs.input(1, 2);
@@ -28,6 +24,16 @@ public class Main {
 		}
 		System.out.println(id);
 		System.out.println(prof.getID());
+		
+		
+		ReadWrite.save();
+
+
+
+
+
+
+		
 
 	}
 
