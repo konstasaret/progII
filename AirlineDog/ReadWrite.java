@@ -31,4 +31,20 @@ public class ReadWrite {
 				System.err.println("err write");
 			}
 	}
+	
+	public static void load() {
+		Profile prof = new Profile();
+		prof.setID(ReadWrite.read("ID.txt"));
+		prof.setUser_name(ReadWrite.read("UserNames.txt"));
+		prof.setPassword(ReadWrite.read("Passwords.txt"));
+		prof.setAddress(ReadWrite.read("Addresses.txt"));
+	}
+	
+	public static void save() {
+		Profile prof = new Profile();
+		ReadWrite.write(prof.getID(), "ID.txt");
+		ReadWrite.write(prof.getUser_name(), "UserNames.txt");
+		ReadWrite.write(prof.getPassword(), "Passwords.txt");
+		ReadWrite.write(prof.getAddress(), "Addresses.txt");
+	}
 }

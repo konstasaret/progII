@@ -3,8 +3,18 @@ package AirlineDog;
 public class Main {
 
 	public static void main(String[] args) {
+		Profile prof = new Profile();
+		ReadWrite.load();
+		prof.newEntry();
+		System.out.println(prof.getUser_name());
+		ReadWrite.save();
 
-		logInMenu();
+
+
+
+
+
+		/*logInMenu();
 		int inp = Inputs.input(1, 2);
 		Profile prof = new Profile();
 		String id = "-1";
@@ -18,25 +28,7 @@ public class Main {
 			break;
 		}
 		System.out.println(id);
-		System.out.println(prof.getID());
-
-		/*
-		prof.newEntry();
-		prof.newEntry();
-		
-		ReadWrite.write(prof.getID(),"ID.txt");
-		ReadWrite.write(prof.getUser_name(),"User.txt");
-		ReadWrite.write(prof.getPassword(),"Pass.txt");
-		ReadWrite.write(prof.getAddress(),"Address.txt");
-
-		prof.setID(ReadWrite.read("ID.txt"));
-		prof.setUser_name(ReadWrite.read("User.txt"));
-		prof.setPassword(ReadWrite.read("Pass.txt"));
-		prof.setAddress(ReadWrite.read("Address.txt"));
-		System.out.println(prof.getID());
-		System.out.println(prof.getUser_name());
-		System.out.println(prof.getPassword());
-		System.out.println(prof.getAddress());*/
+		System.out.println(prof.getID());*/
 
 	}
 
