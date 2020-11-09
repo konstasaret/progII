@@ -100,6 +100,7 @@ public class Profile {
 						if(names.contentEquals(user)) {
 							System.out.println("Το Όνομα Χρήστη χρησημοποιείται");
 							System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη");
+							user=in.nextLine();
 							duplicate = true;
 						}
 					}
@@ -119,6 +120,9 @@ public class Profile {
 				System.out.println("Παρακαλώ εισάγετε την Διεύθυνσή σας");
 				String address = in.nextLine();
 				
+				System.out.println("Ο Λογαριασμός σας δημιουργήθηκε με επιτυχία");
+				System.out.println("Συνδεθείτε για να ανακαλύψεται τις δυνατότητες");
+
 				new Profile(user, pass, address);
 
 				return String.valueOf(Profile.ID.size());
@@ -148,7 +152,7 @@ public class Profile {
 			if (name_id.equals(pass_id)) {
 				System.out.println("Επιτυχία Συνδεσης");
 			}else {
-				System.out.println("Αποτυχία Συνδεσης\nΠαρακαλώ δοκιμάστε ξανά");
+				System.out.println("Αποτυχία Συνδεσης\nΤο Όνομα Χρήστη και ο Κωδικός δεν ταιριάζουν\nΔοκιμάστε ξανά");
 				authenticate();
 			}
 			return name_id;

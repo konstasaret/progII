@@ -3,19 +3,20 @@ package AirlineDog;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		
 		ReadWrite.load();
+		
+		
 		Profile prof = new Profile();
 		
 		logInMenu();
 		int inp = Inputs.rangeInt(1, 2);
 		String id = "-1";
 		switch (inp) {
+		//Log In
 		case 1:
 			id = prof.authenticate();
 			break;
-
+		//Sing Up
 		case 2:
 			id =prof.newEntry();
 			break;
@@ -23,14 +24,6 @@ public class Main {
 		
 		
 		ReadWrite.save();
-
-
-
-
-
-
-		
-
 	}
 
 	public static void logInMenu() {
