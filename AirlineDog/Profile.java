@@ -17,10 +17,10 @@ public class Profile {
 	}
 	//new user constractor
 	public Profile(String user_name, String password, String address) {
-		this.ID.add(String.valueOf(number_of_users++));
-		this.user_name.add(user_name);
-		this.password.add(password);
-		this.address.add(address);
+		Profile.ID.add(String.valueOf(number_of_users++));
+		Profile.user_name.add(user_name);
+		Profile.password.add(password);
+		Profile.address.add(address);
 	}
 
 
@@ -52,7 +52,7 @@ public class Profile {
 	 * @param user_name the user_name to set
 	 */
 	public void setUser_name(ArrayList<String> user_name) {
-		this.user_name = user_name;
+		Profile.user_name = user_name;
 	}
 
 
@@ -68,7 +68,7 @@ public class Profile {
 	 * @param password the password to set
 	 */
 	public void setPassword(ArrayList<String> password) {
-		this.password = password;
+		Profile.password = password;
 	}
 
 
@@ -84,23 +84,23 @@ public class Profile {
 	 * @param address the address to set
 	 */
 	public void setAddress(ArrayList<String> address) {
-		this.address = address;
+		Profile.address = address;
 	}
 
 	//new user's credentials
 	public String newEntry() {
-				Scanner up = new Scanner(System.in);
+				Scanner in = new Scanner(System.in);
 				
 				System.out.println("Give User name");
-				String user=up.nextLine();
+				String user=in.nextLine();
 				
 				System.out.println("Give pass");
-				String pass = up.nextLine();
+				String pass = in.nextLine();
 				
 				System.out.println("Give Address");
-				String address = up.nextLine();
+				String address = in.nextLine();
 				
-				Profile prof = new Profile(user, pass, address);
+				new Profile(user, pass, address);
 
 				return ID.get(number_of_users-1);
 	}
