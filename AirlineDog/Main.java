@@ -1,16 +1,26 @@
 package AirlineDog;
 
-import java.util.Scanner;
-
 public class Main {
 
 	public static void main(String[] args) {
-		
+
 		logInMenu();
 		int inp = Inputs.input(1, 2);
-		System.out.println(inp);
-		
-		/*Profile prof = new Profile();
+		Profile prof = new Profile();
+		String id = "-1";
+		switch (inp) {
+		case 1:
+			id = prof.authenticate();
+			break;
+
+		case 2:
+			id =prof.newEntry();
+			break;
+		}
+		System.out.println(id);
+		System.out.println(prof.getID());
+
+		/*
 		prof.newEntry();
 		prof.newEntry();
 		

@@ -107,39 +107,35 @@ public class Profile {
 
 		public String authenticate() {
 			Scanner in = new Scanner(System.in);
-			boolean flag = false;
-			int passxy = 0;
-			while (flag == false){
-				passxy = 0;
-
-				System.out.println("Give User name");
-				String userin=in.nextLine();
-
-				System.out.println("Give pass");
-				String passin = in.nextLine();
-
-				for (String name: user_name) {
-					passxy++;
-					for (String passw: password) {
-						if(name.equals(userin) && passw.equals(passin) ) {
-							flag = true;
-							break;
-						}
-					}
-					if(flag) break;
-				}
-				
-				if (flag == false){
-					System.out.println("wrong try again");
-				}else {
-					System.out.println("welcome!");
+			
+			String name_id = "-5";
+			System.out.println("Give User name");
+			String name=in.nextLine();
+			for(int i = 0; i<user_name.size(); i++) {
+				if (name.equals(user_name.get(i))){
+					name_id = ID.get(i);
 				}
 			}
-			return ID.get(passxy-1);
+			
+			String pass_id = "-6";
+			System.out.println("Give pass");
+			String pass = in.nextLine();
+			for(int i = 0; i<password.size(); i++) {
+				if (pass.equals(password.get(i))){
+					pass_id = ID.get(i);
+				}
+			}
+				
+			if (name_id.equals(pass_id)) {
+				return name_id;
+			}else {
+				authenticate();
+			}
+			return "-1";
 		}
 		
-		public int Search(ArrayList<String> arr, String searchElement) {
+		//public int Search(ArrayList<String> arr, String searchElement) 
 			
 
-		}
+		
 }
