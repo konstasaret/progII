@@ -14,9 +14,8 @@ public class Main {
 
 
 
-		/*logInMenu();
+		logInMenu();
 		int inp = Inputs.input(1, 2);
-		Profile prof = new Profile();
 		String id = "-1";
 		switch (inp) {
 		case 1:
@@ -28,7 +27,7 @@ public class Main {
 			break;
 		}
 		System.out.println(id);
-		System.out.println(prof.getID());*/
+		System.out.println(prof.getID());
 
 	}
 
