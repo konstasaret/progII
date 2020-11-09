@@ -3,6 +3,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.IOException;
 import java.util.InputMismatchException;
+
 public class GlobalStatsNew {
 	public static void main(String [] args ) {
 		boolean contloop = true;
@@ -79,7 +80,7 @@ public class GlobalStatsNew {
 				System.err.println("ArithmeticException. Δοκιμάστε ξανά: ");
 			} catch (InputMismatchException e) {
 				sc.nextLine();
-				System.err.println("InputMismatchException. Δοκιμάστε ξανά: ");
+				System.err.println("Παρακλώ εισάγεται αριθμό!\nΔοκιμάστε ξανά: ");
 			} 
 		} while (contloop);
 	}

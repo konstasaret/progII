@@ -137,4 +137,9 @@ public class Profile {
 			}
 			return ID.get(passxy-1);
 		}
+		
+		public int Search(ArrayList<String> arr, String searchElement) {
+			
+
+		}
 }

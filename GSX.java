@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.InputMismatchException;
+
 public class GSX {
 		public static void main(String[] args) {
 			Scanner sc = new Scanner(System.in);
@@ -91,7 +92,7 @@ public class GSX {
 				System.err.println("ArithmeticException. Δοκιμάστε ξανά: ");
 			} catch (InputMismatchException e) {
 				sc.nextLine();
-				System.err.println("InputMismatchException. Δοκιμάστε ξανά: ");
+				System.err.println("Παρακλώ εισάγεται αριθμό!\\n Δοκιμάστε ξανά: ");
 			} 
 		} while (contloop);
 	}
