@@ -158,4 +158,7 @@ public class Profile {
 			return name_id;
 		}
 		
+		public void newLocation(String id) {
+			
+		}
 }
