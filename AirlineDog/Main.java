@@ -3,7 +3,17 @@ package AirlineDog;
 public class Main {
 
 	public static void main(String[] args) {
-		ReadWrite.load();
+		
+		Database.createConnection();
+		
+
+		
+		
+		Database.shutdownConnection();
+		
+		
+		
+		/*ReadWrite.load();
 		
 		
 		Profile prof = new Profile();
@@ -36,7 +46,7 @@ public class Main {
 		}
 		
 		
-		ReadWrite.save();
+		ReadWrite.save();*/
 	}
 
 	private static void firstMenu() {

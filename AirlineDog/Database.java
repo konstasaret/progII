@@ -16,34 +16,31 @@ public class Database {
 	
 	private static Connection conn = null;
     private static Statement stmt = null;
+    private static NetworkServerControl server = null;
     
-    public static void main(String[] args) {
-		
-		try{
-			NetworkServerControl server = new NetworkServerControl();
-			server.start (null);
-	    	createConnection();
-	    	//createTable();
-	    	insertIntoTable(2, "Users", "viky","Athens");
-	    	selectTable("Users");
-			server.shutdown();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 
-	 private static void createTable(String tableName) {
+
+    public static void createTable(String tableName) {
 		 try {
-			 stmt =conn.createStatement();
+			 stmt = conn.createStatement();
 			 stmt.execute("CREATE TABLE " + tableName + " (id INT NOT NULL,Name VARCHAR(255),cityName VARCHAR(255),PRIMARY KEY ( id) )");
 			 stmt.close();
 		 }catch(Exception e) {
 			 e.printStackTrace();
 		 }
 	 }
-	 private static void insertIntoTable(int id,String tableName, String Name, String cityName) {
+    
+    public static void deleteTable(String tableName) {
+    	try {
+    		stmt = conn.createStatement();
+    		stmt.execute("DROP TABLE " + tableName);
+    		stmt.close();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    public static void insertIntoTable(int id,String tableName, String Name, String cityName) {
 	        try {
 	            stmt = conn.createStatement();
 	            stmt.execute("INSERT INTO " + tableName + " values (" +
@@ -54,7 +51,7 @@ public class Database {
 	        }
 	    }
 	 
-	 private static void selectTable(String tableName) {
+    public static void printTable(String tableName) {
 	        try {
 	            stmt = conn.createStatement();
 	            ResultSet results = stmt.executeQuery("select * from " + tableName);
@@ -83,9 +80,11 @@ public class Database {
 	            sqlExcept.printStackTrace();
 	        }
 	    }
-	 
-		private static void createConnection() {
+
+    public static void createConnection() {
 			try {
+				server = new NetworkServerControl();
+				server.start (null);
 				Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
 	            //Get a connection
 	            conn = DriverManager.getConnection(dbURL); 
@@ -94,17 +93,17 @@ public class Database {
 	        }
 		}
 		
-		 private static void shutdown() {
+    public static void shutdownConnection() {
 		        try {
 		            if (stmt != null) {
 		                stmt.close();
 		            }
 		            if (conn != null) {
-		                DriverManager.getConnection(dbURL + ";shutdown=true");
 		                conn.close();
-		            }           
-		        }catch (SQLException sqlExcept) {
-		            sqlExcept.printStackTrace();
+		            }     
+		            server.shutdown();
+		        }catch (Exception e) {
+		            e.printStackTrace();
 		        }
 		    }
 }
