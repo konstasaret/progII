@@ -24,7 +24,7 @@ public class Database {
 			server.start (null);
 	    	createConnection();
 	    	//createTable();
-	    	//insertIntoTable(0, "Users", "Alex", "Athens");
+	    	insertIntoTable(2, "Users", "viky","Athens");
 	    	selectTable("Users");
 			server.shutdown();
 		}catch (Exception e) {
