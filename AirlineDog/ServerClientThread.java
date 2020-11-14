@@ -2,15 +2,18 @@ package AirlineDog;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.net.Socket;
 
 class ServerClientThread extends Thread {
     Socket serverClient;
     int clientNo;
-    ServerClientThread(Socket inSocket,int counter){
+    
+    public ServerClientThread(Socket inSocket,int counter){
         serverClient = inSocket;
         clientNo=counter;
     }
+    
     public void run(){
         try{
             DataInputStream inStream = new DataInputStream(serverClient.getInputStream());
@@ -29,8 +32,10 @@ class ServerClientThread extends Thread {
 
 
 
-        }catch(Exception ex){
-            System.out.println(ex);
+        }catch(EOFException e){
+            
+        }catch(Exception e) {
+        	e.printStackTrace();
         }finally{
             System.out.println("Client -" + clientNo + " exit!! ");
         }

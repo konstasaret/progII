@@ -24,7 +24,7 @@ public class Database {
     public static void createTable(String tableName) {
 		 try {
 			 stmt = conn.createStatement();
-			 stmt.execute("CREATE TABLE " + tableName + " (id INT NOT NULL,Name VARCHAR(255),cityName VARCHAR(255),PRIMARY KEY ( id) )");
+			 stmt.execute("CREATE TABLE USERS (id INT NOT NULL,Name VARCHAR(255),cityName VARCHAR(255),PRIMARY KEY ( id) )");
 			 stmt.close();
 		 }catch(Exception e) {
 			 e.printStackTrace();
@@ -40,6 +40,7 @@ public class Database {
     		e.printStackTrace();
     	}
     }
+    
     public static void insertIntoTable(int id,String tableName, String Name, String cityName) {
 	        try {
 	            stmt = conn.createStatement();

@@ -48,9 +48,11 @@ public class Menu {
 
 	public static void logInMenu(String id) {
 		Profile prof = new Profile();
-		System.out.println("Καλώς ήλθατε "+ prof.getUser_name().get(Integer.parseInt(id)));
+		System.out.println("Καλώς ήλθατε "+ prof.getUser_name().get(Integer.parseInt(id)));//database
 		System.out.println("1. Προσθήκη νέας τοποθεσίας");
 		System.out.println("2. Κόλλησα Κονδυλώματα!!!!");
 		
 	}
+	
+	
 }
