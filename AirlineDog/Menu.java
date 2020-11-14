@@ -1,17 +1,8 @@
 package AirlineDog;
 
-public class Main {
+public class Menu {
 
-	public static void main(String[] args) {
-		
-		Database.createConnection();
-		
-
-		
-		
-		Database.shutdownConnection();
-		
-		
+	
 		
 		/*ReadWrite.load();
 		
@@ -47,7 +38,7 @@ public class Main {
 		
 		
 		ReadWrite.save();*/
-	}
+	
 
 	private static void firstMenu() {
 		System.out.println("Καλώς ήλθατε");

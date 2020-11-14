@@ -16,15 +16,12 @@ public class TCPClient {
             String clientMessage="",serverMessage="";
             String Number ="";
             String logg ="";
-            Scanner scanner = new Scanner(System.in);
             Profile pro = new Profile();
             String userid = "";
-
+            
             while(!clientMessage.equals("yes")){
                 do{
-                	Scanner logsc = new Scanner(System.in);
-                    System.out.println("1.Log in \n 2.Sing up \n");
-                    logg = logsc.nextLine();
+                	
                     if (logg.equals("2")) {
                         userid = pro.newEntry();
                         //edo prepei na exoyme kai ta id tous giati panta etsi 8a tous briskoume kai otan stelnoun kati ston server prepei na phgainei kai auto mazi
