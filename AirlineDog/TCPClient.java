@@ -15,22 +15,19 @@ public class TCPClient {
 
             String clientMessage="",serverMessage="";
             String Number ="";
-            String logg ="";
             Profile pro = new Profile();
             String userid = "";
             
             while(!clientMessage.equals("yes")){
-                do{
                 	
-                    if (logg.equals("2")) {
-                        userid = pro.newEntry();
-                        //edo prepei na exoyme kai ta id tous giati panta etsi 8a tous briskoume kai otan stelnoun kati ston server prepei na phgainei kai auto mazi
-                    } else if (logg.equals("1")) {
-                        userid = pro.authenticate();
-                        //edo prepei na exoyme kai ta id tous giati panta etsi 8a tous briskoume kai otan stelnoun kati ston server prepei na phgainei kai auto mazi
-
-                    }
-                }while (logg.equals("1") || logg.equals("2")) ;
+            	Menu.firstMenu();
+                int logg = Inputs.rangeInt(1, 2);
+                	
+                if (logg == 2) {
+                	userid = pro.newEntry();   
+                } else if (logg == 1) {
+                    userid = pro.authenticate();
+                }
                     
                 
 

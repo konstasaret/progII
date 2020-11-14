@@ -40,13 +40,13 @@ public class Menu {
 		ReadWrite.save();*/
 	
 
-	private static void firstMenu() {
+	public static void firstMenu() {
 		System.out.println("Καλώς ήλθατε");
 		System.out.println("1. Σύνδεση");
 		System.out.println("2. Δημιουργία Νέου Χρήστη");
 	}
 
-	private static void logInMenu(String id) {
+	public static void logInMenu(String id) {
 		Profile prof = new Profile();
 		System.out.println("Καλώς ήλθατε "+ prof.getUser_name().get(Integer.parseInt(id)));
 		System.out.println("1. Προσθήκη νέας τοποθεσίας");

@@ -4,9 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Inputs {
-
+	
+	private static Scanner in = new Scanner(System.in);
+	
 	public static int rangeInt(int lower_boundary, int upper_boundary) {
-		Scanner in = new Scanner(System.in);
 		int inp = -1;
 		try {
 			inp = in.nextInt();
