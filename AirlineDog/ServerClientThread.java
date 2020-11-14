@@ -29,7 +29,7 @@ class ServerClientThread extends Thread {
             inStream.close();
             outStream.close();
             serverClient.close();
-
+System.out.println(clientMessage);
 
 
         }catch(EOFException e){

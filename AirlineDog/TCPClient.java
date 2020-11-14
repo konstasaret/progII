@@ -9,7 +9,7 @@ public class TCPClient {
         try{
             Socket socket=new Socket("127.0.0.1",8888);
 
-            /*DataInputStream inStream=new DataInputStream(socket.getInputStream());
+            DataInputStream inStream=new DataInputStream(socket.getInputStream());
             DataOutputStream outStream=new DataOutputStream(socket.getOutputStream());
             BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 
@@ -53,7 +53,7 @@ public class TCPClient {
             }
 
             outStream.close();
-            outStream.close();*/
+            outStream.close();
             socket.close();
         }catch(Exception e){
             e.printStackTrace();
