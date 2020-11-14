@@ -1,12 +1,12 @@
 package AirlineDog;
 
-import java.net.*;
-import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class MultithreadedSocketServer {
     public static void main(String[] args) throws Exception {
         try{
             ServerSocket server=new ServerSocket(8888);
-            Profile profile = new Profile();
 
             int counter=0;
             System.out.println("Server Started ....");
