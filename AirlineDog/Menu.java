@@ -4,40 +4,7 @@ public class Menu {
 
 	
 		
-		/*ReadWrite.load();
-		
-		
-		Profile prof = new Profile();
-		
-		firstMenu();
-		int input = Inputs.rangeInt(1, 2);
-		String id = "-1";
-		switch (input) {
-		//Log In
-		case 1:
-			id = prof.authenticate();
-			logInMenu(id);
-			int input2 = Inputs.rangeInt(1, 2);
-			switch (input2) {
-			//location
-			case 1:
-				prof.newLocation(id);
-				break;
-			//got the virus
-			case 2:
-				
-				break;
-			}
-			
-			break;
-		//Sing Up
-		case 2:
-			id =prof.newEntry();
-			break;
-		}
-		
-		
-		ReadWrite.save();*/
+
 	
 
 	public static void firstMenu() {
@@ -47,8 +14,7 @@ public class Menu {
 	}
 
 	public static void logInMenu(String id) {
-		Profile prof = new Profile();
-		System.out.println("Καλώς ήλθατε "+ prof.getUser_name().get(Integer.parseInt(id)));//database
+		System.out.println("Καλώς ήλθατε ");//database
 		System.out.println("1. Προσθήκη νέας τοποθεσίας");
 		System.out.println("2. Κόλλησα Κονδυλώματα!!!!");
 		

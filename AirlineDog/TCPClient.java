@@ -15,7 +15,6 @@ public class TCPClient {
 
             String clientMessage="",serverMessage="";
             String Number ="";
-            Profile pro = new Profile();
             String userid = "";
             
             while(!clientMessage.equals("yes")){
@@ -24,9 +23,9 @@ public class TCPClient {
                 int logg = Inputs.rangeInt(1, 2);
                 	
                 if (logg == 2) {
-                	userid = pro.newEntry();   
+                	Profile.newEntry();   
                 } else if (logg == 1) {
-                    userid = pro.authenticate();
+                  // Profile.authenticate();
                 }
                     
                 

@@ -13,15 +13,12 @@ public class Database {
 	
 	private static Connection conn = null;
     private static Statement stmt = null;
-
-    private static int number_of_users;
-    private static int number_of_locations;
     
     public static void main(String[] args) {
     	createConnection();
 
 
-    	createUserTable();
+    	/*createUserTable();
     	createLocationsTable();
     	insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
@@ -29,9 +26,10 @@ public class Database {
     	insertIntoLocationsTable("Paiania", 13, 1);
     	insertIntoLocationsTable("Pagrati", 14, 2);
     	insertIntoLocationsTable("Vourla", 22, 3);
+    	*/
+    	//insertIntoUserTable("Eva", "apaapa");
     	printUsersTable();
     	printLocationsTable();
-    	deleteTables();
     	shutdownConnection();    
     }
 	
@@ -69,11 +67,12 @@ public class Database {
     	}
     }
     
-    public static void insertIntoUserTable(String User_name, String Password) {
-	        number_of_users++;
-	        int id = number_of_users;
+    public static void insertIntoUserTable( String User_name, String Password) {
     		try {
 	            stmt = conn.createStatement();
+	            ResultSet results = stmt.executeQuery("SELECT MAX(USER_ID) FROM USERS");
+	            results.next();
+	            int id = results.getInt(1) + 1;
 	            stmt.execute("INSERT INTO USERS" + " VALUES ("+ id + ",'" + User_name + "','" + Password +"')");
 	            stmt.close();
 	        } catch (SQLException sqlExcept) {
@@ -82,9 +81,11 @@ public class Database {
 	    }
     
     public static void insertIntoLocationsTable(String location, int time, int user_id) {
-		number_of_locations++;
-		int id =  number_of_locations;
     	try {
+    		stmt = conn.createStatement();
+            ResultSet results = stmt.executeQuery("SELECT MAX(LOCATION_ID) FROM LOCATIONS");
+            results.next();
+            int id = results.getInt(1) + 1;
             stmt = conn.createStatement();
             stmt.execute("INSERT INTO LOCATIONS" + " VALUES ("+ id + ",'" + location + "'," + time +","+user_id+")");
             stmt.close();
@@ -95,7 +96,7 @@ public class Database {
     public static void printUsersTable() {
 	        try {
 	            stmt = conn.createStatement();
-	            ResultSet results = stmt.executeQuery("select * from USERS");
+	            ResultSet results = stmt.executeQuery("SELECT * FROM USERS");
 	            ResultSetMetaData rsmd = results.getMetaData();
 	            int numberCols = rsmd.getColumnCount();
 	            for (int i=1; i<=numberCols; i++)
@@ -125,7 +126,7 @@ public class Database {
     public static void printLocationsTable() {
         try {
             stmt = conn.createStatement();
-            ResultSet results = stmt.executeQuery("select * from LOCATIONS");
+            ResultSet results = stmt.executeQuery("SELECT * FROM LOCATIONS");
             ResultSetMetaData rsmd = results.getMetaData();
             int numberCols = rsmd.getColumnCount();
             for (int i=1; i<=numberCols; i++)
@@ -158,6 +159,7 @@ public class Database {
 				Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
 	            //Get a connection
 	            conn = DriverManager.getConnection(dbURL); 
+	            System.out.println("Database connection created");
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
@@ -177,4 +179,24 @@ public class Database {
 		            System.out.println("database shutdown");
 		        }
 		    }
+
+
+
+
+    /**returns true if username exists, false if not*/
+	public static boolean usernameCheck(String user_name) {
+		try {
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery("SELECT USER_NAME FROM USERS");
+			while(results.next()) {
+				String existingName = results.getString("USER_NAME");
+				if (existingName.equals(user_name)) {
+					return true;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
