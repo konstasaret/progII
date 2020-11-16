@@ -19,7 +19,7 @@ public class TCPClient {
             
             while(!clientMessage.equals("yes")){
                 	
-            	Menu.firstMenu();
+            	Menus.firstMenu();
                 int logg = Inputs.rangeInt(1, 2);
                 	
                 if (logg == 2) {
@@ -31,7 +31,7 @@ public class TCPClient {
                 
                 int option;
                 while (!Number.equals("7")){
-                	Menu.logInMenu("1");
+                	Menus.logInMenu("1");
                 	option = Inputs.rangeInt(1, 2);
 
                     if (option == 1) {
