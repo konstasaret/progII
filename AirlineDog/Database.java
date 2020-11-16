@@ -199,4 +199,26 @@ public class Database {
 		}
 		return false;
 	}
+
+
+
+
+	/**Searching if username exists and returns the password
+	 *  returns -1 in string format if the username does not exist*/
+	public static String findUserName(String name) {
+		try {
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery("SELECT USER_NAME, PASSWORD FROM USERS");
+			while(results.next()) {
+				String existingName = results.getString("USER_NAME");
+				if (existingName.equals(name)) {
+					return results.getString("PASSWORD");
+				}
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "-1";
+	}
 }

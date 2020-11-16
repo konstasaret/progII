@@ -1,6 +1,5 @@
 package AirlineDog;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Profile {
@@ -43,35 +42,36 @@ public class Profile {
 	
 	
 		/**Authenticates user's credentials*/
-		/*public static String authenticate() {
+		public static void authenticate() {
+			Database.createConnection();		
+
 			Scanner in = new Scanner(System.in);
 			
-			String name_id = "-5";
 			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας");
-			String name=in.nextLine();
-			for(int i = 0; i<user_name.size(); i++) {
-				if (name.equals(user_name.get(i))){
-					name_id = ID.get(i);
-				}
-			}
+			String name = in.nextLine();
 			
-			String pass_id = "-6";
+			String userPass = Database.findUserName(name);
+			while (userPass.equals("-1")) {
+				System.out.println("Αποτυχία Συνδεσης\nΤο Όνομα Χρήστη δεν υπάρχει\nΠαρακαλώ προσπαθήστε ξανά :");
+				name = in.nextLine();
+				userPass = Database.findUserName(name);
+			}
 			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας");
 			String pass = in.nextLine();
-			for(int i = 0; i<password.size(); i++) {
-				if (pass.equals(password.get(i))){
-					pass_id = ID.get(i);
-				}
-			}
+			
 				
-			if (name_id.equals(pass_id)) {
+			if (userPass.equals(pass)) {
 				System.out.println("Επιτυχία Συνδεσης");
 			}else {
+				while(!userPass.equals(pass)) {
 				System.out.println("Αποτυχία Συνδεσης\nΤο Όνομα Χρήστη και ο Κωδικός δεν ταιριάζουν\nΔοκιμάστε ξανά");
-				authenticate();
+				System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας");
+				pass = in.nextLine();
+				}
 			}
-			return name_id;
-		}*/
+			Database.shutdownConnection();
+
+		}
 		
 		public void newLocation(String id) {
 			

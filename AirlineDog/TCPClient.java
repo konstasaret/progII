@@ -25,7 +25,7 @@ public class TCPClient {
                 if (logg == 2) {
                 	Profile.newEntry();   
                 } else if (logg == 1) {
-                  // Profile.authenticate();
+                	Profile.authenticate();
                 }
                     
                 
