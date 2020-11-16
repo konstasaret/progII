@@ -1,12 +1,7 @@
 package AirlineDog;
 
-public class Menu {
-
+public class Menus {
 	
-		
-
-	
-
 	public static void firstMenu() {
 		System.out.println("Καλώς ήλθατε");
 		System.out.println("1. Σύνδεση");

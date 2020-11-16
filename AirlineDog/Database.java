@@ -36,7 +36,7 @@ public class Database {
 
     	
 	
-
+    /**Creates Table of users*/
     public static void createUserTable() {
 		 try {
 			 stmt = conn.createStatement();
@@ -46,6 +46,8 @@ public class Database {
 			 e.printStackTrace();
 		 }
 	 }
+    
+    /**Creates Table of users Locations*/
     public static void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();
@@ -56,6 +58,8 @@ public class Database {
 		 }
 	 }
     
+    
+    /**Deletes the users and locations tables*/
     public static void deleteTables() {
     	try {
     		stmt = conn.createStatement();
@@ -67,7 +71,9 @@ public class Database {
     	}
     }
     
-    public static void insertIntoUserTable( String User_name, String Password) {
+    
+    /**Inserts rows into users table*/
+    public static void insertIntoUserTable(String User_name, String Password) {
     		try {
 	            stmt = conn.createStatement();
 	            ResultSet results = stmt.executeQuery("SELECT MAX(USER_ID) FROM USERS");
@@ -80,6 +86,9 @@ public class Database {
 	        }
 	    }
     
+    
+    
+    /**Inserts rows into locations table*/
     public static void insertIntoLocationsTable(String location, int time, int user_id) {
     	try {
     		stmt = conn.createStatement();
@@ -93,6 +102,9 @@ public class Database {
             sqlExcept.printStackTrace();
         }
     }
+    
+    
+    /**Prints the users table*/
     public static void printUsersTable() {
 	        try {
 	            stmt = conn.createStatement();
@@ -123,6 +135,8 @@ public class Database {
 	        }
 	    }
     
+    
+    /**Prints the locations table*/
     public static void printLocationsTable() {
         try {
             stmt = conn.createStatement();
@@ -154,6 +168,9 @@ public class Database {
         }
     }
     
+    
+    
+    /**Initiates connection with the database*/
     public static void createConnection() {
 			try {
 				Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
@@ -165,6 +182,9 @@ public class Database {
 	        }
 		}
 		
+    
+    
+    /**Terminates connection with the database*/
     public static void shutdownConnection() {
 		        try {
 
