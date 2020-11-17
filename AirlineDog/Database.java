@@ -22,12 +22,13 @@ public class Database {
     	//createLocationsTable();
     	/*insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
-    	insertIntoUserTable("Vik", "Pastitsio");
-    	insertIntoLocationsTable("Paiania", 13, 1);
-    	insertIntoLocationsTable("Pagrati", 14, 2);
-    	insertIntoLocationsTable("Vourla", 22, 3);*/
-    	
+    	insertIntoUserTable("Vik", "Pastitsio");*/
+    	insertIntoLocationsTable("Paiania","stamoy", 13, 15, 1);
+    	insertIntoLocationsTable("Pagrati","fanti", 11, 14, 2);
+    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);
+    	//deleteTables();
     	//insertIntoUserTable("Eva", "apaapa");
+    	
     	printUsersTable();
     	printLocationsTable();
     	shutdownConnection();    
@@ -51,7 +52,7 @@ public class Database {
     public static void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();
-			 stmt.execute("CREATE TABLE LOCATIONS (LOCATION VARCHAR(255), TIME INT,USER_ID INT REFERENCES USERS(USER_ID))");
+			 stmt.execute("CREATE TABLE LOCATIONS (CITY VARCHAR(255), ADDRESS VARCHAR(255), ARRIVAL_TIME INT, DEPARTURE_TIME INT, USER_ID INT REFERENCES USERS(USER_ID))");
 			 stmt.close();
 		 }catch(Exception e) {
 			 e.printStackTrace();
@@ -64,7 +65,7 @@ public class Database {
     	try {
     		stmt = conn.createStatement();
     		stmt.execute("DROP TABLE LOCATIONS ");
-    		stmt.execute("DROP TABLE USERS");
+    		//stmt.execute("DROP TABLE USERS");
     		stmt.close();
     	}catch(Exception e) {
     		e.printStackTrace();
@@ -89,10 +90,10 @@ public class Database {
     
     
     /**Inserts rows into locations table*/
-    public static void insertIntoLocationsTable(String location, int time, int user_id) {
+    public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time, int user_id) {
     	try {
             stmt = conn.createStatement();
-            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + location + "'," + time +","+user_id+")");
+            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +","+user_id+")");
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -149,10 +150,12 @@ public class Database {
 
             while(results.next())
             {
-                String Location = results.getString(1);
-                int time = results.getInt(2);
-                int user_id = results.getInt(3);
-                System.out.println( Location + "\t\t\t" + time + "\t\t" + user_id);
+                String City = results.getString(1);
+                String Address = results.getString(2);
+                int arrival_time = results.getInt(3);
+                int departure_time = results.getInt(4);
+                int user_id = results.getInt(5);
+                System.out.println( City + "\t\t\t" + Address + "\t\t\t" + arrival_time+ "\t\t\t"+ departure_time + "\t\t" + user_id);
             }
             results.close();
             stmt.close();
