@@ -25,6 +25,9 @@ class ServerClientThread extends Thread {
                 serverMessage="From Server to Client-" + clientNo + "Ok i have the location";
                 outStream.writeUTF(serverMessage);
                 outStream.flush();
+
+                clientMessage=inStream.readUTF();
+                System.out.println("From Client-" +clientNo+ ": id ="+clientMessage);
             }
             inStream.close();
             outStream.close();

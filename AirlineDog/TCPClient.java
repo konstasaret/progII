@@ -35,12 +35,48 @@ public class TCPClient {
                 	option = Inputs.rangeInt(1, 2);
 
                     if (option == 1) {
-                        clientMessage=br.readLine();
+
+                        System.out.println("Βάλτε μας την περιοχή που επισκεφθήκατε π.χ παγκρατι");
+                        String perioxi = Inputs.stringScanner();
+
+                        System.out.println("Βάλτε την διεύθηνση π.χ αν ειναι σπίτι εκφαντιδου_7 | αν ειναι καταστημα ΑΒ_βασιλοπουλος  σε καθε κενο βαλτε \"_\"");
+                        String odos = Inputs.stringScanner();
+
+                        System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
+                        int arrtime = Inputs.rangeInt(0,24);
+
+                        System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
+                        int endtime = Inputs.rangeInt(0,24);
+
+                        clientMessage= perioxi;
                         outStream.writeUTF(clientMessage);
                         outStream.flush();
+
+                        clientMessage = odos;
+                        outStream.writeUTF(clientMessage);
+                        outStream.flush();
+
+                        clientMessage = Integer.toString(arrtime);
+                        outStream.writeUTF(clientMessage);
+                        outStream.flush();
+
+                        clientMessage = Integer.toString(endtime);
+                        outStream.writeUTF(clientMessage);
+                        outStream.flush();
+
                         serverMessage=inStream.readUTF();
                         System.out.println(serverMessage);
+
+
+                    } else if (option == 2){
+
+
+
                     }
+                    clientMessage = "to id tou user";
+                    outStream.writeUTF(clientMessage);
+                    outStream.flush();
+
                 }
 
                 System.out.println("Are you sure yes/no");

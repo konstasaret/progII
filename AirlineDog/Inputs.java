@@ -20,5 +20,10 @@ public class Inputs {
 		}
 			return inp;	
 	}
+
+	public static String stringScanner () {
+		String theString = in.nextLine();
+		return theString;
+	}
 	
 }
