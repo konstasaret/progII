@@ -23,11 +23,12 @@ public class Database {
     	/*insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
     	insertIntoUserTable("Vik", "Pastitsio");
-    	insertIntoLocationsTable("Paiania", 13, 1);
-    	insertIntoLocationsTable("Pagrati", 14, 2);
-    	insertIntoLocationsTable("Vourla", 22, 3);*/
-    	
+    	insertIntoLocationsTable("Paiania","stamoy", 13, 15, 1);
+    	insertIntoLocationsTable("Pagrati","fanti", 11, 14, 2);
+    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);*/
+    	//deleteTables();
     	//insertIntoUserTable("Eva", "apaapa");
+    	
     	printUsersTable();
     	printLocationsTable();
     	shutdownConnection();    
@@ -51,7 +52,7 @@ public class Database {
     public static void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();
-			 stmt.execute("CREATE TABLE LOCATIONS (LOCATION VARCHAR(255), TIME INT,USER_ID INT REFERENCES USERS(USER_ID))");
+			 stmt.execute("CREATE TABLE LOCATIONS (CITY VARCHAR(255), ADDRESS VARCHAR(255), ARRIVAL_TIME INT, DEPARTURE_TIME INT, USER_ID INT REFERENCES USERS(USER_ID))");
 			 stmt.close();
 		 }catch(Exception e) {
 			 e.printStackTrace();
@@ -89,10 +90,10 @@ public class Database {
     
     
     /**Inserts rows into locations table*/
-    public static void insertIntoLocationsTable(String location, int time, int user_id) {
+    public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time, int user_id) {
     	try {
             stmt = conn.createStatement();
-            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + location + "'," + time +","+user_id+")");
+            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +","+user_id+")");
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -107,20 +108,21 @@ public class Database {
 	            ResultSet results = stmt.executeQuery("SELECT * FROM USERS");
 	            ResultSetMetaData rsmd = results.getMetaData();
 	            int numberCols = rsmd.getColumnCount();
+	            
+	            System.out.println("\n--------------------------------------------");
 	            for (int i=1; i<=numberCols; i++)
 	            {
 	                //print Column Names
-	                System.out.print(rsmd.getColumnLabel(i)+"\t\t");  
+	                System.out.printf("%-18s", rsmd.getColumnLabel(i));  
 	            }
-
-	            System.out.println("\n------------------------------------------------");
+	            System.out.println("\n--------------------------------------------");
 
 	            while(results.next())
 	            {
 	                int id = results.getInt(1);
 	                String Name = results.getString(2);
 	                String pass = results.getString(3);
-	                System.out.println(id + "\t\t" + Name + "\t\t" + pass);
+	                System.out.printf("%-18s%-18s%-18s%n", id, Name, pass);
 	            }
 	            results.close();
 	            stmt.close();
@@ -139,20 +141,24 @@ public class Database {
             ResultSet results = stmt.executeQuery("SELECT * FROM LOCATIONS");
             ResultSetMetaData rsmd = results.getMetaData();
             int numberCols = rsmd.getColumnCount();
+            
+            System.out.println("\n-------------------------------------------------------------------------------");
             for (int i=1; i<=numberCols; i++)
             {
                 //print Column Names
-                System.out.print(rsmd.getColumnLabel(i)+"\t\t");  
+                System.out.printf("%-18s", rsmd.getColumnLabel(i));  
             }
 
-            System.out.println("\n-----------------------------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------------------------------");
 
             while(results.next())
             {
-                String Location = results.getString(1);
-                int time = results.getInt(2);
-                int user_id = results.getInt(3);
-                System.out.println( Location + "\t\t\t" + time + "\t\t" + user_id);
+                String City = results.getString(1);
+                String Address = results.getString(2);
+                int arrival_time = results.getInt(3);
+                int departure_time = results.getInt(4);
+                int user_id = results.getInt(5);
+                System.out.printf("%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time , user_id);
             }
             results.close();
             stmt.close();
