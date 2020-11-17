@@ -18,15 +18,15 @@ public class Database {
     	createConnection();
 
 
-    	/*createUserTable();
-    	createLocationsTable();
-    	insertIntoUserTable("AirlineDog", "Salami");
+    	//createUserTable();
+    	//createLocationsTable();
+    	/*insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
     	insertIntoUserTable("Vik", "Pastitsio");
     	insertIntoLocationsTable("Paiania", 13, 1);
     	insertIntoLocationsTable("Pagrati", 14, 2);
-    	insertIntoLocationsTable("Vourla", 22, 3);
-    	*/
+    	insertIntoLocationsTable("Vourla", 22, 3);*/
+    	
     	//insertIntoUserTable("Eva", "apaapa");
     	printUsersTable();
     	printLocationsTable();
@@ -51,7 +51,7 @@ public class Database {
     public static void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();
-			 stmt.execute("CREATE TABLE LOCATIONS (LOCATION_ID INT NOT NULL, LOCATION VARCHAR(255), TIME INT,USER_ID INT REFERENCES USERS(USER_ID),PRIMARY KEY (LOCATION_ID))");
+			 stmt.execute("CREATE TABLE LOCATIONS (LOCATION VARCHAR(255), TIME INT,USER_ID INT REFERENCES USERS(USER_ID))");
 			 stmt.close();
 		 }catch(Exception e) {
 			 e.printStackTrace();
@@ -91,12 +91,8 @@ public class Database {
     /**Inserts rows into locations table*/
     public static void insertIntoLocationsTable(String location, int time, int user_id) {
     	try {
-    		stmt = conn.createStatement();
-            ResultSet results = stmt.executeQuery("SELECT MAX(LOCATION_ID) FROM LOCATIONS");
-            results.next();
-            int id = results.getInt(1) + 1;
             stmt = conn.createStatement();
-            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ("+ id + ",'" + location + "'," + time +","+user_id+")");
+            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + location + "'," + time +","+user_id+")");
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -153,11 +149,10 @@ public class Database {
 
             while(results.next())
             {
-                int id = results.getInt(1);
-                String Location = results.getString(2);
-                int time = results.getInt(3);
-                int user_id = results.getInt(4);
-                System.out.println(id + "\t\t\t" + Location + "\t\t\t" + time + "\t\t" + user_id);
+                String Location = results.getString(1);
+                int time = results.getInt(2);
+                int user_id = results.getInt(3);
+                System.out.println( Location + "\t\t\t" + time + "\t\t" + user_id);
             }
             results.close();
             stmt.close();
