@@ -73,7 +73,4 @@ public class Profile {
 
 		}
 		
-		public void newLocation(String id) {
-			
-		}
 }

@@ -15,7 +15,6 @@ public class TCPClient {
 
             String clientMessage="",serverMessage="";
             String Number ="";
-            String userid = "";
             
             while(!clientMessage.equals("yes")){
                 	
@@ -43,10 +42,10 @@ public class TCPClient {
                         String odos = Inputs.stringScanner();
 
                         System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
-                        int arrtime = Inputs.rangeInt(0,24);
+                        int arrtime = Inputs.rangeInt(1,24);
 
                         System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
-                        int endtime = Inputs.rangeInt(0,24);
+                        int endtime = Inputs.rangeInt(1,24);
 
                         clientMessage= perioxi;
                         outStream.writeUTF(clientMessage);
