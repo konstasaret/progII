@@ -28,7 +28,7 @@ public class Database {
     	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);*/
     	//deleteTables();
     	//insertIntoUserTable("Eva", "apaapa");
-    	
+    	//deleteUsersRow();
     	printUsersTable();
     	printLocationsTable();
     	shutdownConnection();    
@@ -241,5 +241,31 @@ public class Database {
 			e.printStackTrace();
 		}
 		return "-1";
+	}
+	
+	/**Deletes row from USERS based on user_id*/
+	public static void deleteUsersRow(int user_id) {
+		try{
+			stmt = conn.createStatement();
+			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
+			stmt.close();
+			System.out.println("Row deleted");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	/**Deletes row from LOCATIONS based on user_id*/
+	public static void deleteLocationsRow(int user_id) {
+		try{
+			stmt = conn.createStatement();
+			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
+			stmt.close();
+			System.out.println("Row deleted");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
