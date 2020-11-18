@@ -15,7 +15,6 @@ public class TCPClient {
 
             String clientMessage="",serverMessage="";
             String Number ="";
-            String userid = "";
             
             while(!clientMessage.equals("yes")){
                 	
