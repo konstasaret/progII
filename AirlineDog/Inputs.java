@@ -23,6 +23,7 @@ public class Inputs {
 
 	public static String stringScanner () {
 		String theString = in.nextLine();
+
 		return theString;
 	}
 	
