@@ -21,7 +21,6 @@ public class Inputs {
 			System.err.println("Παρακαλώ εισάγετε αριθμό απο το "+lower_boundary+" μεχρι το "+upper_boundary);
 			inp = rangeInt(lower_boundary, upper_boundary);
 		}
-		System.out.println("Επιλέξατε : " + inp);
 			return inp;	
 	}
 	
