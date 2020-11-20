@@ -224,32 +224,51 @@ public class Database {
 
 
 
-	/**Searching if username exists and returns the password
-	 *  returns -1 in string format if the username does not exist*/
-	public static String findUserName(String name) {
+	/**Searching for user_id based on user_name
+	 *  Returns -1 if the user_name does not exist in the database*/
+	public static int findUsersId(String name) {
+		int id = -1;
 		try {
 			stmt = conn.createStatement();
-			ResultSet results = stmt.executeQuery("SELECT USER_NAME, PASSWORD FROM USERS");
+			ResultSet results = stmt.executeQuery("SELECT USER_ID, USER_NAME FROM USERS");
 			while(results.next()) {
-				String existingName = results.getString("USER_NAME");
-				if (existingName.equals(name)) {
-					return results.getString("PASSWORD");
+				String existingNames = results.getString("USER_NAME");
+				if (name.equals(existingNames)) {
+					id = results.getInt("USER_ID");
+					return id;
 				}
 			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "-1";
+		return id;
 	}
 	
+	/**Serching for user's password based on user_id
+	 *Returs -1 in String format if password not found*/
+	public static String findUsersPass(int user_id) {
+		String pass = "-1";
+		try {
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery("SELECT PASSWORD FROM USERS WHERE USER_ID=" + user_id);
+			results.next();
+			pass = results.getString(1);
+			return pass;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return pass;
+	}
+	
+	
 	/**Deletes row from USERS based on user_id*/
-	public static void deleteUsersRow(int user_id) {
+	public static void deleteUsersLine(int user_id) {
 		try{
 			stmt = conn.createStatement();
 			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
 			stmt.close();
-			System.out.println("Row deleted");
+			System.out.println("Users Line deleted");
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -258,14 +277,19 @@ public class Database {
 	
 	
 	/**Deletes row from LOCATIONS based on user_id*/
-	public static void deleteLocationsRow(int user_id) {
+	public static void deleteLocationsLine(int user_id) {
 		try{
 			stmt = conn.createStatement();
 			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
 			stmt.close();
-			System.out.println("Row deleted");
+			System.out.println("Users Line deleted");
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
+
+
+
+
 }

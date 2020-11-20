@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class TCPClient {
+	
     public static void main(String[] args) throws Exception {
         try{
             Socket socket=new Socket("127.0.0.1",8888);
@@ -21,10 +22,12 @@ public class TCPClient {
             	Menus.firstMenu();
                 int logg = Inputs.rangeInt(1, 2);
                 	
-                if (logg == 2) {
-                	Profile.newEntry();   
-                } else if (logg == 1) {
-                	Profile.authenticate();
+                int user_id;
+                if (logg == 1) {
+                	user_id = Profile.authenticate();
+                } else if (logg == 2) {
+                	Profile.newEntry();
+                	
                 }
                     
                 

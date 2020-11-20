@@ -1,7 +1,7 @@
 package AirlineDog;
 
 public class Profile {
-	
+
 
 	/**Creates new user */
 	public static void newEntry() {
@@ -38,34 +38,39 @@ public class Profile {
 	}
 	
 	
-		/**Authenticates user's credentials*/
-		public static void authenticate() {
+		/** Authenticates user's credentials and returns the user_id 
+		 * for later use in the program */
+		public static int authenticate() {
 			Database.createConnection();		
+			int user_id;
 			
 			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας");
 			String name = Inputs.stringScanner();
 			
-			String userPass = Database.findUserName(name);
-			while (userPass.equals("-1")) {
+			user_id = Database.findUsersId(name);
+			while (user_id == -1) {
 				System.out.println("Αποτυχία Συνδεσης\nΤο Όνομα Χρήστη δεν υπάρχει\nΠαρακαλώ προσπαθήστε ξανά :");
 				name = Inputs.stringScanner();
-				userPass = Database.findUserName(name);
+				user_id = Database.findUsersId(name);
 			}
+			
+			
 			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας");
 			String pass = Inputs.stringScanner();
 			
-				
-			if (userPass.equals(pass)) {
-				System.out.println("Επιτυχία Συνδεσης");
-			}else {
-				while(!userPass.equals(pass)) {
+			String existingPass = Database.findUsersPass(user_id);
+			
+			while(!existingPass.equals(pass)) {
 				System.out.println("Αποτυχία Συνδεσης\nΤο Όνομα Χρήστη και ο Κωδικός δεν ταιριάζουν\nΔοκιμάστε ξανά");
 				System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας");
 				pass = Inputs.stringScanner();
-				}
 			}
-			Database.shutdownConnection();
 
+			
+			System.out.println("Επιτυχία Συνδεσης");
+
+			Database.shutdownConnection();
+			return user_id;
 		}
 		
 }
