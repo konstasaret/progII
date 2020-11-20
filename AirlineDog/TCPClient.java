@@ -18,17 +18,20 @@ public class TCPClient {
             String Number ="";
             
             while(!clientMessage.equals("yes")){
+            	int user_id = 0;
+            	while(user_id == 0) {
+            		Menus.firstMenu();
+                    int logg = Inputs.rangeInt(1, 2);
+                    if (logg == 1) {
+                    	user_id = Profile.authenticate();
+                    } else if (logg == 2) {
+                    	Profile.newEntry();
+                    }
+            	}
+            	
                 	
-            	Menus.firstMenu();
-                int logg = Inputs.rangeInt(1, 2);
-                	
-                int user_id;
-                if (logg == 1) {
-                	user_id = Profile.authenticate();
-                } else if (logg == 2) {
-                	Profile.newEntry();
-                	
-                }
+                
+               
                     
                 
                 int option;
