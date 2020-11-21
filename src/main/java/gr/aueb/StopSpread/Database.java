@@ -25,14 +25,14 @@ public class Database {
     	createConnection();
 
 
-    	createUserTable();
+    	/*createUserTable();
     	createLocationsTable();
     	insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
     	insertIntoUserTable("Vik", "Pastitsio");
     	insertIntoLocationsTable("Paiania","stamoy", 13, 15, 1);
     	insertIntoLocationsTable("Pagrati","fanti", 11, 14, 2);
-    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);
+    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);*/
     	//deleteTables();
     	//insertIntoUserTable("Eva", "apaapa");
     	//deleteUsersRow();
