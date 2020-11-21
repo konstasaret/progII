@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * write and send his own story*/
 public class Stories {
 	/** The main method of the class*/
-	public static void main(String[] args) {
+	public static void stories() {
 
 		ArrayList<String> list  = new ArrayList<String>(100); 
 
