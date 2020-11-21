@@ -3,6 +3,10 @@ package AirlineDog;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * @author kostasaret
+ *
+ */
 public class MultithreadedSocketServer {
     public static void main(String[] args) throws Exception {
         try{
