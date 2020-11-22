@@ -10,9 +10,9 @@ public class Menus {
 	 * App first menu 
 	 */
 	public static void firstMenu() {
-		System.out.println("Καλώς ήλθατε!");
-		System.out.println("1. Σύνδεση.");
-		System.out.println("2. Δημιουργία Νέου Χρήστη.");
+		System.out.println("ΞΞ±Ξ»ΟΟ‚ Ξ®Ξ»ΞΈΞ±Ο„Ξµ!");
+		System.out.println("1. Ξ£ΟΞ½Ξ΄ΞµΟƒΞ·.");
+		System.out.println("2. Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… Ξ§ΟΞ®ΟƒΟ„Ξ·.");
 	}
 
 	/**
@@ -20,12 +20,10 @@ public class Menus {
 	 * @param id
 	 */
 	public static void logInMenu(String id) {
-		System.out.println("Καλώς ήλθατε!");//database
-		System.out.println("1. Προσθήκη νέας τοποθεσίας.");
-		System.out.println("2. Διαγνώσθηκα Θετικός.");
+		System.out.println("ΞΞ±Ξ»ΟΟ‚ Ξ®Ξ»ΞΈΞ±Ο„Ξµ!");//database
+		System.out.println("1. Ξ ΟΞΏΟƒΞΈΞ®ΞΊΞ· Ξ½Ξ­Ξ±Ο‚ Ο„ΞΏΟ€ΞΏΞΈΞµΟƒΞ―Ξ±Ο‚.");
+		System.out.println("2. Ξ”ΞΉΞ±Ξ³Ξ½ΟΟƒΞΈΞ·ΞΊΞ± ΞΞµΟ„ΞΉΞΊΟΟ‚.");
 		
 	}
-	
-	
 
 }

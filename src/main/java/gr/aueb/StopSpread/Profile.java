@@ -7,23 +7,23 @@ public class Profile {
 	public static void newEntry() {
 		Database.createConnection();		
 				
-				System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη:");
+				System.out.println("Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ ΞΞ½ΞΏΞΌΞ± Ξ§ΟΞ®ΟƒΟ„Ξ·:");
 				String user_name = Inputs.stringScanner();
 				while (Database.usernameCheck(user_name)) {
-					System.out.println("Το Όνομα Χρήστη χρησιμοποιείται ήδη.");
-					System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη:");
+					System.out.println("Ξ¤ΞΏ ΞΞ½ΞΏΞΌΞ± Ξ§ΟΞ®ΟƒΟ„Ξ· Ο‡ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞΉΞµΞ―Ο„Ξ±ΞΉ Ξ®Ξ΄Ξ·.");
+					System.out.println("Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο Ξ΄ΞΉΞ±Ξ»Ξ­ΞΎΟ„Ξµ Ξ΄ΞΉΞ±Ο†ΞΏΟΞµΟ„ΞΉΞΊΟ ΞΞ½ΞΏΞΌΞ± Ξ§ΟΞ®ΟƒΟ„Ξ·:");
 					user_name = Inputs.stringScanner();
 				}
 				
 
 				String pass, pass2;
 				do {
-					System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
+					System.out.println("Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ ΞΟ‰Ξ΄ΞΉΞΊΟ Ξ§ΟΞ®ΟƒΟ„Ξ·:");
 					pass = Inputs.stringScanner();
-					System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
+					System.out.println("Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΟ€ΞΉΞ²ΞµΞ²Ξ±ΞΉΟΟƒΟ„Ξµ Ο„ΞΏΞ½ ΞΟ‰Ξ΄ΞΉΞΊΟ Ξ§ΟΞ®ΟƒΟ„Ξ· ΟƒΞ±Ο‚:");
 					pass2 = Inputs.stringScanner();
 					if(!pass.equals(pass2)) {
-						System.out.println("Οι Κωδικοί σας δεν ταιριάζουν. \nΔοκιμάστε Ξανά");
+						System.out.println("ΞΞΉ ΞΟ‰Ξ΄ΞΉΞΊΞΏΞ― Ξ§ΟΞ®ΟƒΟ„Ξ· ΟƒΞ±Ο‚ Ξ΄ΞµΞ½ Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞΏΟ…Ξ½.\nΞ”ΞΏΞΊΞΉΞΌΞ¬ΟƒΟ„Ξµ ΞΞ±Ξ½Ξ¬.");
 					}
 				}while(!pass.equals(pass2));
 				
@@ -31,8 +31,8 @@ public class Profile {
 				Database.insertIntoUserTable(user_name, pass);
 				
 				
-				System.out.println("Ο Λογαριασμός σας δημιουργήθηκε με επιτυχία!");
-				System.out.println("Συνδεθείτε για να ανακαλύψετε τις δυνατότητες!");
+				System.out.println("Ξ Ξ›ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟΟ‚ ΟƒΞ±Ο‚ Ξ΄Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ®ΞΈΞ·ΞΊΞµ ΞΌΞµ ΞµΟ€ΞΉΟ„Ο…Ο‡Ξ―Ξ±!");
+				System.out.println("Ξ£Ο…Ξ½Ξ΄ΞµΞΈΞµΞ―Ο„Ξµ Ξ³ΞΉΞ± Ξ½Ξ± Ξ±Ξ½Ξ±ΞΊΞ±Ξ»ΟΟΞµΟ„Ξµ Ο„ΞΉΟ‚ Ξ΄Ο…Ξ½Ξ±Ο„ΟΟ„Ξ·Ο„ΞµΟ‚!");
 
 				Database.shutdownConnection();
 	}
@@ -44,30 +44,30 @@ public class Profile {
 			Database.createConnection();		
 			int user_id;
 			
-			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
+			System.out.println("Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ Ο„ΞΏ ΞΞ½ΞΏΞΌΞ± Ξ§ΟΞ®ΟƒΟ„Ξ· ΟƒΞ±Ο‚:");
 			String name = Inputs.stringScanner();
 			
 			user_id = Database.findUsersId(name);
 			while (user_id == -1) {
-				System.out.println("Αποτυχία Συνδεσης.\nΤο Όνομα Χρήστη δεν υπάρχει.\nΠαρακαλώ προσπαθήστε ξανά: ");
+				System.out.println("Ξ‘Ο€ΞΏΟ„Ο…Ο‡Ξ―Ξ± Ξ£ΟΞ½Ξ΄ΞµΟƒΞ·Ο‚.\nΞ¤ΞΏ ΞΞ½ΞΏΞΌΞ± Ξ§ΟΞ®ΟƒΟ„Ξ· Ξ΄ΞµΞ½ Ο…Ο€Ξ¬ΟΟ‡ΞµΞΉ.\nΞ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο Ο€ΟΞΏΟƒΟ€Ξ±ΞΈΞ®ΟƒΟ„Ξµ ΞΎΞ±Ξ½Ξ¬ : ");
 				name = Inputs.stringScanner();
 				user_id = Database.findUsersId(name);
 			}
 			
 			
-			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας:");
+			System.out.println("Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ Ο„ΞΏΞ½ ΞΟ‰Ξ΄ΞΉΞΊΟ ΟƒΞ±Ο‚:");
 			String pass = Inputs.stringScanner();
 			
 			String existingPass = Database.findUsersPass(user_id);
 			
 			while(!existingPass.equals(pass)) {
-				System.out.println("Αποτυχία Σύνδεσης.\nΤο Όνομα Χρήστη και ο Κωδικός δεν ταιριάζουν.\nΔοκιμάστε ξανά.");
-				System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας:");
+				System.out.println("Ξ‘Ο€ΞΏΟ„Ο…Ο‡Ξ―Ξ± Ξ£Ο…Ξ½Ξ΄ΞµΟƒΞ·Ο‚.\nΞ¤ΞΏ ΞΞ½ΞΏΞΌΞ± Ξ§ΟΞ®ΟƒΟ„Ξ· ΞΊΞ±ΞΉ ΞΏ ΞΟ‰Ξ΄ΞΉΞΊΟΟ‚ Ξ΄ΞµΞ½ Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞΏΟ…Ξ½.\nΞ”ΞΏΞΊΞΉΞΌΞ¬ΟƒΟ„Ξµ ΞΎΞ±Ξ½Ξ¬.");
+				System.out.println("Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ Ο„ΞΏΞ½ ΞΟ‰Ξ΄ΞΉΞΊΟ ΟƒΞ±Ο‚:");
 				pass = Inputs.stringScanner();
 			}
 
 			
-			System.out.println("Επιτυχία Συνδεσης!");
+			System.out.println("Ξ•Ο€ΞΉΟ„Ο…Ο‡Ξ―Ξ± Ξ£Ο…Ξ½Ξ΄ΞµΟƒΞ·Ο‚! ");
 
 			Database.shutdownConnection();
 			return user_id;
