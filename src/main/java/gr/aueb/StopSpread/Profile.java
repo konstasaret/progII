@@ -38,8 +38,9 @@ public class Profile {
 	}
 	
 	
-		/** Authenticates user's credentials and returns the user_id 
-		 * for later use in the program */
+		/** Authenticates user's credentials  
+		 * @return user_id 
+		 * for later use in the program*/
 		public static int authenticate() {
 			Database.createConnection();		
 			int user_id;

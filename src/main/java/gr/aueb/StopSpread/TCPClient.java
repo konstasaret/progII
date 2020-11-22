@@ -40,7 +40,7 @@ public class TCPClient {
                 
                 int option;
                 while (!Number.equals("7")){
-                	Menus.logInMenu("1");
+                	Menus.logInMenu(user_id);
                 	option = Inputs.rangeInt(1, 2);
 
                     if (option == 1) {
