@@ -42,7 +42,51 @@ public class Database {
     }
 	
 
-    	
+    
+    /**Initiates connection with the database*/
+    public static void createConnection() {
+			try {
+				Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
+	            //Get a connection
+	            conn = DriverManager.getConnection(dbURL); 
+	            //System.out.println("Database connection created");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		}
+		
+    
+    
+	/**Terminates connection with the database*/
+	public static void shutdownConnection() {
+		try {
+            // the shutdown=true attribute shuts down Derby
+			DriverManager.getConnection("jdbc:derby:;shutdown=true");
+
+			if (stmt != null) {
+			    stmt.close();
+			}
+			if (conn != null) {
+			    conn.close();
+			}     
+		}catch (SQLException e) {
+			if (( (e.getErrorCode() == 50000) && ("XJ015".equals(e.getSQLState()) ))) {
+                // we got the expected exception
+                //System.out.println("Derby shut down normally");
+                // Note that for single database shutdown, the expected
+                // SQL state is "08006", and the error code is 45000.
+            } else {
+                // if the error code or SQLState is different, we have
+                // an unexpected exception (shutdown failed)
+                System.err.println("Derby did not shut down normally");
+                e.printStackTrace();
+            }
+			//System.out.println("database shutdown");
+	    }
+	}
+	
+	
+	
 	
     /**Creates Table of users*/
     public static void createUserTable() {
@@ -185,35 +229,7 @@ public class Database {
     
     
     
-    /**Initiates connection with the database*/
-    public static void createConnection() {
-			try {
-				Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
-	            //Get a connection
-	            conn = DriverManager.getConnection(dbURL); 
-	            System.out.println("Database connection created");
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-		}
-		
-    
-    
-    /**Terminates connection with the database*/
-    public static void shutdownConnection() {
-		        try {
 
-		            if (stmt != null) {
-		                stmt.close();
-		            }
-		            if (conn != null) {
-		                conn.close();
-		            }     
-		        	DriverManager.getConnection("jdbc:derby:;shutdown=true");
-		        }catch (Exception e) {
-		            System.out.println("database shutdown");
-		        }
-		    }
 
 
 
@@ -244,7 +260,7 @@ public class Database {
 	/**Searching for user_id based on user_name
 	 *  
 	 * @param name 
-	 * @return Returns -1 if the user_name does not exist in the database
+	 * @return Returns users id or -1 if the user_name does not exist in the database
 	 */
 	public static int findUsersId(String name) {
 		int id = -1;
@@ -265,10 +281,10 @@ public class Database {
 		return id;
 	}
 	
-	/**Serching for user's password based on user_id
+	/**Searching for user's password based on user_id
 	 *
 	 * @param user_id 
-	 * @return Returs -1 in String format if password not found
+	 * @return Returns user's password or returns -1 in String format if password not found
 	 */
 	public static String findUsersPass(int user_id) {
 		String pass = "-1";
@@ -277,13 +293,30 @@ public class Database {
 			ResultSet results = stmt.executeQuery("SELECT PASSWORD FROM USERS WHERE USER_ID=" + user_id);
 			results.next();
 			pass = results.getString(1);
-			return pass;
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return pass;
 	}
 	
+	
+	/**
+	 * Searching for user's name based on user_id
+	 * @param user_id
+	 * @return Returns user's name or returns -1 in String format if password not found
+	 */
+	public static String findUserName(int user_id) {
+		String user_name = "-1";
+		try {
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery("SELECT USER_NAME FROM USERS WHERE USER_ID=" + user_id);
+			results.next();
+			user_name = results.getString(1);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user_name;
+	}
 	
 	/**Deletes row from USERS based on user_id
 	 * @param user_id */
@@ -312,6 +345,7 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+
 
 
 
