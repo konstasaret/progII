@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.InputMismatchException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
@@ -73,8 +74,6 @@ public class Database {
 			if (( (e.getErrorCode() == 50000) && ("XJ015".equals(e.getSQLState()) ))) {
                 // we got the expected exception
                 //System.out.println("Derby shut down normally");
-                // Note that for single database shutdown, the expected
-                // SQL state is "08006", and the error code is 45000.
             } else {
                 // if the error code or SQLState is different, we have
                 // an unexpected exception (shutdown failed)
@@ -88,24 +87,25 @@ public class Database {
 	
 	
 	
-    /**Creates Table of users*/
+    /**Creates Table of users with columns USER_ID, USER_NAME, PASSWORD*/
     public static void createUserTable() {
 		 try {
 			 stmt = conn.createStatement();
 			 stmt.execute("CREATE TABLE USERS (USER_ID INT NOT NULL, USER_NAME VARCHAR(30), PASSWORD VARCHAR(30),PRIMARY KEY (USER_ID) )");
 			 stmt.close();
-		 }catch(Exception e) {
+		 }catch(SQLException e ) {
 			 e.printStackTrace();
 		 }
 	 }
     
-    /**Creates Table of users Locations*/
+    /**Creates Table of user's Locations with columns CITY, ADDRESS, ARRIVAL_TIME,
+     * DEPARTURE_TIME, USER_ID*/
     public static void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();
 			 stmt.execute("CREATE TABLE LOCATIONS (CITY VARCHAR(30), ADDRESS VARCHAR(50), ARRIVAL_TIME INT, DEPARTURE_TIME INT, USER_ID INT REFERENCES USERS(USER_ID))");
 			 stmt.close();
-		 }catch(Exception e) {
+		 }catch(SQLException e) {
 			 e.printStackTrace();
 		 }
 	 }
@@ -118,10 +118,39 @@ public class Database {
     		stmt.execute("DROP TABLE LOCATIONS ");
     		stmt.execute("DROP TABLE USERS");
     		stmt.close();
-    	}catch(Exception e) {
+    	}catch(SQLException e) {
     		e.printStackTrace();
     	}
     }
+    
+    
+	/**Deletes row from USERS based on user_id
+	 * @param user_id */
+	public static void deleteUsersLine(int user_id) {
+		try{
+			stmt = conn.createStatement();
+			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
+			stmt.close();
+			System.out.println("Users Line deleted");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	/**Deletes row from LOCATIONS based on user_id
+	 * @param user_id */
+	public static void deleteLocationsLine(int user_id) {
+		try{
+			stmt = conn.createStatement();
+			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
+			stmt.close();
+			System.out.println("Users Line deleted");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
     
     
     /**Inserts rows into users table
@@ -135,8 +164,8 @@ public class Database {
 	            int id = results.getInt(1) + 1;
 	            stmt.execute("INSERT INTO USERS" + " VALUES ("+ id + ",'" + User_name + "','" + Password +"')");
 	            stmt.close();
-	        } catch (SQLException sqlExcept) {
-	            sqlExcept.printStackTrace();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
 	        }
 	    }
     
@@ -153,8 +182,8 @@ public class Database {
             stmt = conn.createStatement();
             stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +","+user_id+")");
             stmt.close();
-        } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     
@@ -185,9 +214,9 @@ public class Database {
 	            results.close();
 	            stmt.close();
 	        }
-	        catch (SQLException sqlExcept)
+	        catch (SQLException e)
 	        {
-	            sqlExcept.printStackTrace();
+	            e.printStackTrace();
 	        }
 	    }
     
@@ -221,9 +250,9 @@ public class Database {
             results.close();
             stmt.close();
         }
-        catch (SQLException sqlExcept)
+        catch (SQLException e)
         {
-            sqlExcept.printStackTrace();
+            e.printStackTrace();
         }
     }
     
@@ -235,6 +264,7 @@ public class Database {
 
 
     /**
+     * Checks if the given user name exists
      * @param user_name 
      * @return returns true if user name exists, false if not
      */
@@ -248,7 +278,7 @@ public class Database {
 					return true;
 				}
 			}
-		}catch(Exception e){
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return false;
@@ -257,7 +287,8 @@ public class Database {
 
 
 
-	/**Searching for user_id based on user_name
+	/**
+	 * Searching for user_id based on user_name
 	 *  
 	 * @param name 
 	 * @return Returns users id or -1 if the user_name does not exist in the database
@@ -275,13 +306,14 @@ public class Database {
 				}
 			}
 			
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return id;
 	}
 	
-	/**Searching for user's password based on user_id
+	/**
+	 * Searching for user's password based on user_id
 	 *
 	 * @param user_id 
 	 * @return Returns user's password or returns -1 in String format if password not found
@@ -302,6 +334,7 @@ public class Database {
 	
 	/**
 	 * Searching for user's name based on user_id
+	 * 
 	 * @param user_id
 	 * @return Returns user's name or returns -1 in String format if password not found
 	 */
@@ -318,37 +351,6 @@ public class Database {
 		return user_name;
 	}
 	
-	/**Deletes row from USERS based on user_id
-	 * @param user_id */
-	public static void deleteUsersLine(int user_id) {
-		try{
-			stmt = conn.createStatement();
-			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
-			stmt.close();
-			System.out.println("Users Line deleted");
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	
-	/**Deletes row from LOCATIONS based on user_id
-	 * @param user_id */
-	public static void deleteLocationsLine(int user_id) {
-		try{
-			stmt = conn.createStatement();
-			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
-			stmt.close();
-			System.out.println("Users Line deleted");
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-
-
 
 
 }
