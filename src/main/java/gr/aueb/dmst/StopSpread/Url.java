@@ -1,4 +1,4 @@
-package gr.aueb.StopSpread;
+package gr.aueb.dmst.StopSpread;
 
 import java.io.IOException;
 import java.util.logging.Level;

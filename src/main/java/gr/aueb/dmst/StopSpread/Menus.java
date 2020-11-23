@@ -1,4 +1,4 @@
-package gr.aueb.StopSpread;
+package gr.aueb.dmst.StopSpread;
 
 /**
  * @author alexd
@@ -7,7 +7,7 @@ package gr.aueb.StopSpread;
 public class Menus {
 	
 	/**
-	 * App first menu 
+	 * App's first menu 
 	 */
 	public static void firstMenu() {
 		System.out.println("Καλώς ήλθατε στο StopSpread!");
@@ -16,7 +16,7 @@ public class Menus {
 	}
 
 	/**
-	 * App log in menu
+	 * App's log in menu
 	 * @param id
 	 */
 	public static void logInMenu(int id) {

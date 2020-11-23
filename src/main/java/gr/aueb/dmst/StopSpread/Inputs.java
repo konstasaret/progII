@@ -1,4 +1,4 @@
-package gr.aueb.StopSpread;
+package gr.aueb.dmst.StopSpread;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

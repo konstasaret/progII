@@ -1,5 +1,9 @@
-package gr.aueb.StopSpread;
+package gr.aueb.dmst.StopSpread;
 
+/**
+ * @author alexd
+ *	
+ */
 public class Profile {
 
 
