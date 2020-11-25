@@ -41,10 +41,10 @@ public class TCPClient {
                 int option;
                 while (!Number.equals("7")){
                 	Menus.logInMenu(user_id);
-                	option = Inputs.rangeInt(1, 2);
+                	option = Inputs.rangeInt(1, 3);
 
                     if (option == 1) {
-
+                    	//kane methodo sthn profile mh  ta exeis ola xyma
                         System.out.println("Βάλτε μας την περιοχή που επισκεφθήκατε π.χ παγκρατι");
                         String perioxi = Inputs.stringScanner();
 
@@ -81,6 +81,9 @@ public class TCPClient {
 
 
 
+                    }else if (option == 3) {
+                    	Profile.deleteUser(user_id);
+                    	System.exit(0);
                     }
                     clientMessage = "to id tou user";
                     outStream.writeUTF(clientMessage);

@@ -77,5 +77,27 @@ public class Profile {
 			Database.shutdownConnection();
 			return user_id;
 		}
+
+
+		/**
+		 * Double checks user's credentials and deletes users data
+		 * @param user_id
+		 */
+		public static void deleteUser(int user_id) {
+			//double check user's credentials
+			System.out.println("Παρακαλώ εισάγεται ξανά τον κωδικό σας :");
+			String given_pass = Inputs.stringScanner();
+			String exist_pass = Database.findUsersPass(user_id);
+			while (!given_pass.equals(exist_pass)) {
+				System.out.println("Ο κωδικός σας δεν ταιριάζει \nΠαρακαλώ δωκιμάστε ξανά :");
+				given_pass = Inputs.stringScanner();
+				exist_pass = Database.findUsersPass(user_id);
+			}
+			
+			//deletion
+			Database.deleteUsersRow(user_id);
+			System.out.println("Επιτυχία διαχραφής στοιχείων");
+			
+		}
 		
 }

@@ -25,6 +25,7 @@ public class Menus {
 		Database.shutdownConnection();
 		System.out.println("1. Προσθήκη νέας τοποθεσίας.");
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
+		System.out.println("3. Διαγραφή Χρήστη και δεδομένων");
 		
 	}
 
