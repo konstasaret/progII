@@ -10,7 +10,7 @@ public class GSX {
 			boolean contloopin = true;
 			do {
 					System.out.println("Διαθέσιμες επιλογές:");
-					printMenu();
+					Menus.GreekStatsMenu();
 					int choice = Inputs.rangeInt(1, 4);
 					boolean flag2;
 					int option;
@@ -19,7 +19,7 @@ public class GSX {
 							showSite("https://covid19.gov.gr/covid19-live-analytics/");
 						} else if (choice == 2) {
 							do {
-								menu2();
+								Menus.GreekStatsMenu2();
 								option = Inputs.rangeInt(1, 11);
 								flag2 = true;
 									while(flag2 == true) {
@@ -58,7 +58,7 @@ public class GSX {
 											flag2 = false;
 											continue;
 										}//end of switch
-									menu2();
+									Menus.GreekStatsMenu2();
 									option = Inputs.rangeInt(1, 11);
 									contloopin = false;
 								}//end of loop
@@ -71,35 +71,14 @@ public class GSX {
 						} else {
 							System.out.println("Λάθος εισαγωγή. Παρακαλώ προσπαθήστε ξανά");
 						}
-						printMenu();
+						Menus.GreekStatsMenu();
 						choice = Inputs.rangeInt(1, 4);
 					}	
 			contloop = false;
 			
 		} while (contloop);
 	}
-		public static void printMenu() {
-			System.out.println("1. Ημερήσια επισκόπηση.");
-			System.out.println("2. Στατιστικά στοιχεία ανά γεωγραφικό διαμέρισμα.");
-			System.out.println("3. Κρούσματα ανά ημέρα από την αρχή της πανδημίας.");
-			System.out.println("4. Έξοδος.");
-			System.out.println("Εισάγετε τον αριθμό που αντιστοιχεί στην επιθυμητή επιλογή.");
-		}
 		
-		public static void menu2() {
-			System.out.println("1.Γεωγραφικό Διαμέρισμα Αττική ");
-			System.out.println("2.Γεωγραφικό Διαμέρισμα Ήπειρος ");
-			System.out.println("3.Γεωγραφικό Διαμέρισμα Θεσσαλία ");
-			System.out.println("4.Γεωγραφικό Διαμέρισμα Θράκη ");
-			System.out.println("5.Γεωγραφικό Διαμέρισμα Κρήτη ");
-			System.out.println("6.Γεωγραφικό Διαμέρισμα Μακεδονία ");
-			System.out.println("7.Γεωγραφικό Διαμέρισμα Νησιά Αιγαίου Πελάγους");
-			System.out.println("8.Γεωγραφικό Διαμέρισμα Νησιά Ιονίου Πελάγους");
-			System.out.println("9.Γεωγραφικό Διαμέρισμα Πελοπόννησος ");
-			System.out.println("10.Γεωγραφικό Διαμέρισμα Στερεά Ελλάδα");
-			System.out.println("11. Έξοδος");
-		    System.out.println("Εισάγετε τον αριθμό που αντιστοιχεί στην επιθυμητή επιλογή.");
-		}
 		public static void showSite(String url) {
 			try {
 				java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
