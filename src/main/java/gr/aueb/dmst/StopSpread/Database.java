@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.InputMismatchException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
@@ -25,16 +24,15 @@ public class Database {
     public static void main(String[] args) {
     	createConnection();
 
-
-    	/*createUserTable();
+    	/*deleteTables();
+    	createUsersTable();
     	createLocationsTable();
     	insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
     	insertIntoUserTable("Vik", "Pastitsio");
     	insertIntoLocationsTable("Paiania","stamoy", 13, 15, 1);
     	insertIntoLocationsTable("Pagrati","fanti", 11, 14, 2);
-    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);*/
-    	//deleteTables();
+    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);*/3
     	//insertIntoUserTable("Eva", "apaapa");
     	//deleteUsersRow();
     	printUsersTable();
@@ -88,10 +86,14 @@ public class Database {
 	
 	
     /**Creates Table of users with columns USER_ID, USER_NAME, PASSWORD*/
-    public static void createUserTable() {
+    public static void createUsersTable() {
 		 try {
 			 stmt = conn.createStatement();
-			 stmt.execute("CREATE TABLE USERS (USER_ID INT NOT NULL, USER_NAME VARCHAR(30), PASSWORD VARCHAR(30),PRIMARY KEY (USER_ID) )");
+			 stmt.execute("CREATE TABLE USERS("
+			 		+ "USER_ID INT NOT NULL,"
+			 		+ "USER_NAME VARCHAR(255),"
+			 		+ "PASSWORD VARCHAR(30),"
+			 		+ "PRIMARY KEY (USER_ID) )");
 			 stmt.close();
 		 }catch(SQLException e ) {
 			 e.printStackTrace();
@@ -103,7 +105,13 @@ public class Database {
     public static void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();
-			 stmt.execute("CREATE TABLE LOCATIONS (CITY VARCHAR(30), ADDRESS VARCHAR(50), ARRIVAL_TIME INT, DEPARTURE_TIME INT, USER_ID INT REFERENCES USERS(USER_ID))");
+			 stmt.execute("CREATE TABLE LOCATIONS("
+			 		+ "CITY VARCHAR(255),"
+			 		+ "ADDRESS VARCHAR(255),"
+			 		+ "ARRIVAL_TIME INT,"
+			 		+ "DEPARTURE_TIME INT,"
+			 		+ "USER_ID INT,"
+			 		+ "FOREIGN KEY (USER_ID) REFERENCES USERS ON DELETE CASCADE)");
 			 stmt.close();
 		 }catch(SQLException e) {
 			 e.printStackTrace();
@@ -126,7 +134,7 @@ public class Database {
     
 	/**Deletes row from USERS based on user_id
 	 * @param user_id */
-	public static void deleteUsersLine(int user_id) {
+	public static void deleteUsersRow(int user_id) {
 		try{
 			stmt = conn.createStatement();
 			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
@@ -141,7 +149,7 @@ public class Database {
 	
 	/**Deletes row from LOCATIONS based on user_id
 	 * @param user_id */
-	public static void deleteLocationsLine(int user_id) {
+	public static void deleteLocationsRow(int user_id) {
 		try{
 			stmt = conn.createStatement();
 			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
