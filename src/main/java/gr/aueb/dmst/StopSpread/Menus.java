@@ -57,5 +57,25 @@ public class Menus {
 		System.out.println("11. Έξοδος");
 	    System.out.println("Εισάγετε τον αριθμό που αντιστοιχεί στην επιθυμητή επιλογή.");
 	}
+	
+	/** Prints the user's option 
+	 * about global statistics
+	 */
+	public static void GlobalStatsMenu() {
+		System.out.println("1. Γενικά για τον Covid-19.");
+		System.out.println("2. Μετάδοση.");	
+		System.out.println("3. Συμβουλές για το κοινό.");
+		System.out.println("4. Κίνδυνοι και ασφάλεια των ηλικιωμένων.");		
+		System.out.println("5. Νέοι και έφηβοι.");
+		System.out.println("Χρήση μάσκας:");
+		System.out.println("     6. Γενικά.");		
+		System.out.println("     7. Χρήση μάσκας και παιδιά.");	
+		System.out.println("8. Υγεία και ασφάλεια στον εργασιακό χώρο.");		
+		System.out.println("9. Έρευνα και ανάπτυξη.");		
+		System.out.println("10. Σχετικά με το εμβόλιο.");
+		System.out.println("11. Έξοδος.");
+		System.out.println("Παρακαλώ εισάγετε τον αριθμό που αντιστοιχεί στην"
+				+ " επιθυμητή επιλογή!");
+		}
 
 }
