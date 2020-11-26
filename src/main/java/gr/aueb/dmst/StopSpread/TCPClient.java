@@ -4,6 +4,8 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
+import jdk.nashorn.internal.runtime.regexp.joni.constants.OPSize;
+
 /**
  * @author kostasaret
  *
@@ -41,7 +43,7 @@ public class TCPClient {
                 int option;
                 while (!Number.equals("7")){
                 	Menus.logInMenu(user_id);
-                	option = Inputs.rangeInt(1, 3);
+                	option = Inputs.rangeInt(1, 4);
 
                     if (option == 1) {
                     	//kane methodo sthn profile mh  ta exeis ola xyma
@@ -84,6 +86,9 @@ public class TCPClient {
                     }else if (option == 3) {
                     	Profile.deleteUser(user_id);
                     	System.exit(0);
+                    }else if (option == 4) {
+                    	Profile.seeLocations(user_id);
+                    	
                     }
                     clientMessage = "to id tou user";
                     outStream.writeUTF(clientMessage);

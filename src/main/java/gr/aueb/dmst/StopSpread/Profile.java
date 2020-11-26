@@ -84,6 +84,7 @@ public class Profile {
 		 * @param user_id
 		 */
 		public static void deleteUser(int user_id) {
+			Database.createConnection();
 			//double check user's credentials
 			System.out.println("Παρακαλώ εισάγεται ξανά τον κωδικό σας :");
 			String given_pass = Inputs.stringScanner();
@@ -97,7 +98,16 @@ public class Profile {
 			//deletion
 			Database.deleteUsersRow(user_id);
 			System.out.println("Επιτυχία διαχραφής στοιχείων");
+			Database.shutdownConnection();
+		}
+
+
+		public static void seeLocations(int user_id) {
+			Database.createConnection();
 			
+			Database.printUserLocations(user_id);
+			
+			Database.shutdownConnection();
 		}
 		
 }

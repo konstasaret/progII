@@ -13,7 +13,7 @@ import java.sql.ResultSetMetaData;
  */
 public class Database {
 
-	private static String dbURL = "jdbc:derby:derbyDB;create=true";
+	private static final String dbURL = "jdbc:derby:derbyDB;create=true";
 	
 	private static Connection conn = null;
     private static Statement stmt = null;
@@ -212,8 +212,7 @@ public class Database {
 	            }
 	            System.out.println("\n--------------------------------------------");
 
-	            while(results.next())
-	            {
+	            while(results.next()) {
 	                int id = results.getInt(1);
 	                String Name = results.getString(2);
 	                String pass = results.getString(3);
@@ -221,9 +220,7 @@ public class Database {
 	            }
 	            results.close();
 	            stmt.close();
-	        }
-	        catch (SQLException e)
-	        {
+	        }catch (SQLException e) {
 	            e.printStackTrace();
 	        }
 	    }
@@ -246,8 +243,7 @@ public class Database {
 
             System.out.println("\n-------------------------------------------------------------------------------");
 
-            while(results.next())
-            {
+            while(results.next()){
                 String City = results.getString(1);
                 String Address = results.getString(2);
                 int arrival_time = results.getInt(3);
@@ -257,15 +253,46 @@ public class Database {
             }
             results.close();
             stmt.close();
-        }
-        catch (SQLException e)
-        {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
     }
     
     
-    
+	/**
+	 * Prints user's locations
+	 * @param id
+	 */
+	public static void printUserLocations(int id) {
+		try {
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID=" + id);
+			ResultSetMetaData rsmd = results.getMetaData();
+            int numberCols = rsmd.getColumnCount();
+            
+            System.out.println("\n-------------------------------------------------------------------------------");
+            for (int i=1; i<=numberCols; i++)
+            {
+                //print Column Names
+                System.out.printf("%-18s", rsmd.getColumnLabel(i));  
+            }
+
+            System.out.println("\n-------------------------------------------------------------------------------");
+
+            while(results.next()){
+                String City = results.getString(1);
+                String Address = results.getString(2);
+                int arrival_time = results.getInt(3);
+                int departure_time = results.getInt(4);
+                int user_id = results.getInt(5);
+                System.out.printf("%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time , user_id);
+            }
+            results.close();
+            stmt.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -357,6 +384,10 @@ public class Database {
 		}
 		return user_name;
 	}
+
+
+
+
 
 
 
