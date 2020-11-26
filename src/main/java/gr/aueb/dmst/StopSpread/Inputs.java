@@ -16,8 +16,8 @@ public class Inputs {
 	 * @return An Integer as : lower_boundary <= Integer <= upper_boundary*/
 	public static int rangeInt(int lower_boundary, int upper_boundary) {
 		Scanner in = new Scanner(System.in);
-		
 		int inp = -1;
+		in.close();
 		try {
 			inp = in.nextInt();
 			in.nextLine();
@@ -35,7 +35,7 @@ public class Inputs {
 	/** @return user String input*/
 	public static String stringScanner () {
 		Scanner in = new Scanner(System.in);
+		in.close();
 		return in.nextLine();
 	}
-	
 }

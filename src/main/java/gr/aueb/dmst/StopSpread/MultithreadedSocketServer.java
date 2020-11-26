@@ -20,6 +20,7 @@ public class MultithreadedSocketServer {
                 System.out.println(">> " + "Client No:" + counter + " started!");
                 ServerClientThread sct = new ServerClientThread(serverClient,counter); //send  the request to a separate thread
                 sct.start();
+                server.close();
             }
         }catch(Exception e){
             e.printStackTrace();
