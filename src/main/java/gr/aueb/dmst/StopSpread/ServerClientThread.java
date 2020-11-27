@@ -3,7 +3,9 @@ package gr.aueb.dmst.StopSpread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
+import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 
 class ServerClientThread extends Thread {
     Socket serverClient;
@@ -32,15 +34,11 @@ class ServerClientThread extends Thread {
             inStream.close();
             outStream.close();
             serverClient.close();
-System.out.println(clientMessage);
-
-
-        }catch(EOFException e){
-            
-        }catch(Exception e) {
-        	e.printStackTrace();
+            System.out.println(clientMessage);
+        }catch(IOException e) {
+        	System.out.println("Connection reset waiting for new Client");
         }finally{
-            System.out.println("Client -" + clientNo + " exit!! ");
+            System.out.println("Client :" + clientNo + " exit!! ");
         }
     }
 }

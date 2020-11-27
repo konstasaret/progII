@@ -4,8 +4,6 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-import jdk.nashorn.internal.runtime.regexp.joni.constants.OPSize;
-
 /**
  * @author kostasaret
  *
@@ -57,7 +55,7 @@ public class TCPClient {
                         int arrtime = Inputs.rangeInt(1,24);
 
                         System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
-                        int endtime = Inputs.rangeInt(1,24);
+                        int endtime = Inputs.rangeInt(1,24);//h deyterh na einai megalyterh apo thn proth
 
                         clientMessage= perioxi;
                         outStream.writeUTF(clientMessage);
