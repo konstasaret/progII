@@ -36,9 +36,9 @@ class ServerClientThread extends Thread {
             serverClient.close();
             System.out.println(clientMessage);
         }catch(IOException e) {
-        	System.out.println("Connection reset waiting for new Client");
+        	System.out.println("Client No:" + clientNo + " exit!! ");
         }finally{
-            System.out.println("Client :" + clientNo + " exit!! ");
+        	System.out.println("Connection reset waiting for new Client");
         }
     }
 }
