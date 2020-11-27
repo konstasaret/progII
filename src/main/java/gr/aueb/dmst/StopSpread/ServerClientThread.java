@@ -18,7 +18,8 @@ class ServerClientThread extends Thread {
         try{
             DataInputStream inStream = new DataInputStream(serverClient.getInputStream());
             DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream());
-            String clientMessage="", serverMessage="";
+            String clientMessage="", serverMessage="", perioxi = null, meros = null, startTime = null, endTime = null, id = null;
+            int count = 0;
             while(!clientMessage.equals("bye")){
                 clientMessage=inStream.readUTF();
                 System.out.println("From Client-" +clientNo+ ": Location is :"+clientMessage);
@@ -26,8 +27,6 @@ class ServerClientThread extends Thread {
                 outStream.writeUTF(serverMessage);
                 outStream.flush();
 
-                clientMessage=inStream.readUTF();
-                System.out.println("From Client-" +clientNo+ ": id ="+clientMessage);
             }
             inStream.close();
             outStream.close();

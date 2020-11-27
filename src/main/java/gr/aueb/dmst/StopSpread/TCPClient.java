@@ -4,7 +4,6 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-import jdk.nashorn.internal.runtime.regexp.joni.constants.OPSize;
 
 /**
  * @author kostasaret
