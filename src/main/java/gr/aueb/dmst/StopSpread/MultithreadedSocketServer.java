@@ -28,7 +28,7 @@ public class MultithreadedSocketServer {
                 sct.start();
             }
         }catch(SocketException e){
-            
+            e.printStackTrace();
         }
     }
 }
