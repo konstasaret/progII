@@ -26,22 +26,48 @@ class ServerClientThread extends Thread {
                 clientMessage=inStream.readUTF();
 
                 // h epilogi orizei to count kai me auto sinexizoyme meta
-                if (clientMessage == "a epilogi") {
+                if (clientMessage.equals("a epilogi")) {
 
                     count = 1;
 
-                }else if (clientMessage == "b epilogi"){
+                }else if (clientMessage.equals("b epilogi")) {
 
                     count = 2;
+
+                }else if (clientMessage.equals("c epilogi")){
+
+                    count = 3;
 
                 }
                 // xekiname me to count tora kai thn epilogi a
 
-                if (count == 1 && clientMessage != "a epilogi"){
+                if (count == 1 && !clientMessage.equals("a epilogi")) {
 
                     locationData.add(clientMessage);
 
                 }
+                if (count == 2 && !clientMessage.equals("b epilogi")) {
+
+                    System.out.println("Πήγενε σε κάποιο νοσοκομείο");
+
+                }
+                if (count == 3 && !clientMessage.equals("c epilogi")) {
+
+                    Database.deleteUsersRow(Integer.parseInt(clientMessage));//problhma
+                    serverMessage="From Server to Client-" + clientNo + "Ok you are deleted";// den mporoume na ton sbhnoume
+                    outStream.writeUTF(serverMessage);//prepei na aposindeete kateu8eian
+                    outStream.flush();
+
+                }
+                if (count == 4 && !clientMessage.equals("d epilogi")) {
+
+                    Database.printUserLocations(Integer.parseInt(clientMessage)); //problhma kai edo
+                    serverMessage="From Server to Client-" + clientNo + "Ok you are deleted";// database ston tcp
+                    outStream.writeUTF(serverMessage);
+                    outStream.flush();
+
+                }
+
 
 
                 System.out.println("From Client-" +clientNo+ ": Location is :"+clientMessage + count);
