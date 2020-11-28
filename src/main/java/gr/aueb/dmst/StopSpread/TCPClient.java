@@ -58,6 +58,10 @@ public class TCPClient {
                         System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
                         int endtime = Inputs.rangeInt(1,24);
 
+                        clientMessage= "a epilogi";
+                        outStream.writeUTF(clientMessage);
+                        outStream.flush();
+
                         clientMessage= perioxi;
                         outStream.writeUTF(clientMessage);
                         outStream.flush();
