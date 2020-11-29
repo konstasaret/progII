@@ -24,15 +24,15 @@ public class Database {
     public static void main(String[] args) {
     	createConnection();
 
-    	/*deleteTables();
+    	deleteTables();
     	createUsersTable();
     	createLocationsTable();
     	insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
     	insertIntoUserTable("Vik", "Pastitsio");
-    	insertIntoLocationsTable("Paiania","stamoy", 13, 15, 1);
-    	insertIntoLocationsTable("Pagrati","fanti", 11, 14, 2);
-    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);*/
+    	insertIntoLocationsTable("Paiania","stamoy", 13, 15,"2020-10-15", 1);
+    	insertIntoLocationsTable("Pagrati","fanti", 11, 14,"2020-10-30", 2);
+    	insertIntoLocationsTable("Vourla","shame", 17, 22,"2020-11-22", 3);
     	//insertIntoUserTable("Eva", "apaapa");
     	//deleteUsersRow();
     	printUsersTable();
@@ -110,6 +110,7 @@ public class Database {
 			 		+ "ADDRESS VARCHAR(255),"
 			 		+ "ARRIVAL_TIME INT,"
 			 		+ "DEPARTURE_TIME INT,"
+			 		+ "DAY DATE,"
 			 		+ "USER_ID INT,"
 			 		+ "FOREIGN KEY (USER_ID) REFERENCES USERS ON DELETE CASCADE)");
 			 stmt.close();
@@ -184,11 +185,12 @@ public class Database {
      * @param Address 
      * @param arrival_time 
      * @param departure_time 
+     * @param date 
      * @param user_id */
-    public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time, int user_id) {
+    public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time,String date, int user_id) {
     	try {
             stmt = conn.createStatement();
-            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +","+user_id+")");
+            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +",'"+ date +"',"+user_id+")");
             stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -234,22 +236,23 @@ public class Database {
             ResultSetMetaData rsmd = results.getMetaData();
             int numberCols = rsmd.getColumnCount();
             
-            System.out.println("\n-------------------------------------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
             for (int i=1; i<=numberCols; i++)
             {
                 //print Column Names
                 System.out.printf("%-18s", rsmd.getColumnLabel(i));  
             }
 
-            System.out.println("\n-------------------------------------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
 
             while(results.next()){
                 String City = results.getString(1);
                 String Address = results.getString(2);
                 int arrival_time = results.getInt(3);
                 int departure_time = results.getInt(4);
-                int user_id = results.getInt(5);
-                System.out.printf("%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time , user_id);
+                String date = results.getString(5);
+                int user_id = results.getInt(6);
+                System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
             }
             results.close();
             stmt.close();
@@ -270,22 +273,23 @@ public class Database {
 			ResultSetMetaData rsmd = results.getMetaData();
             int numberCols = rsmd.getColumnCount();
             
-            System.out.println("\n-------------------------------------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
             for (int i=1; i<=numberCols; i++)
             {
                 //print Column Names
                 System.out.printf("%-18s", rsmd.getColumnLabel(i));  
             }
 
-            System.out.println("\n-------------------------------------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
 
             while(results.next()){
                 String City = results.getString(1);
                 String Address = results.getString(2);
                 int arrival_time = results.getInt(3);
                 int departure_time = results.getInt(4);
-                int user_id = results.getInt(5);
-                System.out.printf("%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time , user_id);
+                String date = results.getString(5);
+                int user_id = results.getInt(6);
+                System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
             }
             results.close();
             stmt.close();
