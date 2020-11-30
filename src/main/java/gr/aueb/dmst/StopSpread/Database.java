@@ -24,7 +24,7 @@ public class Database {
     public static void main(String[] args) {
     	createConnection();
 
-    	deleteTables();
+    	/*deleteTables();
     	createUsersTable();
     	createLocationsTable();
     	insertIntoUserTable("AirlineDog", "Salami");
@@ -32,7 +32,7 @@ public class Database {
     	insertIntoUserTable("Vik", "Pastitsio");
     	insertIntoLocationsTable("Paiania","stamoy", 13, 15,"2020-10-15", 1);
     	insertIntoLocationsTable("Pagrati","fanti", 11, 14,"2020-10-30", 2);
-    	insertIntoLocationsTable("Vourla","shame", 17, 22,"2020-11-22", 3);
+    	insertIntoLocationsTable("Vourla","shame", 17, 22,"2020-11-22", 3);*/
     	//insertIntoUserTable("Eva", "apaapa");
     	//deleteUsersRow();
     	printUsersTable();
