@@ -45,8 +45,10 @@ public class Profile {
 		/** Authenticates user's credentials  
 		 * @return user_id 
 		 * for later use in the program*/
-		public static int authenticate() {
-			Database.createConnection();		
+		public static int authenticate() {		
+			
+			Database.createConnection();
+			
 			int user_id;
 			
 			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
@@ -73,8 +75,9 @@ public class Profile {
 
 			
 			System.out.println("Επιτυχία Συνδεσης! ");
-
+			
 			Database.shutdownConnection();
+			
 			return user_id;
 		}
 
@@ -108,6 +111,12 @@ public class Profile {
 			Database.printUserLocations(user_id);
 			
 			Database.shutdownConnection();
+		}
+
+
+		public static void newLocation() {
+			
+			
 		}
 		
 }

@@ -16,7 +16,7 @@ public class Menus {
 	}
 
 	/**
-	 * App's log in menu
+	 * App's after log in menu
 	 * @param id
 	 */
 	public static void logInMenu(int id) {
