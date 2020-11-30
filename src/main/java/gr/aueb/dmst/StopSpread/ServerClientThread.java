@@ -10,12 +10,16 @@ class ServerClientThread extends Thread {
 	Socket serverClient;
     int clientNo;
     
+
     public ServerClientThread(Socket inSocket,int counter){
     	serverClient = inSocket;
+
+
+
         clientNo=counter;
     }
     
-    public void run(){
+    public void run() {
         try{
         	
         	
@@ -23,6 +27,7 @@ class ServerClientThread extends Thread {
             DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream());
             
             String clientMessage="", serverMessage="";
+
             int count = -1;
             
             while(count != 0) {
@@ -75,17 +80,22 @@ class ServerClientThread extends Thread {
 
                 }
 
+
+
+
             }
             
             inStream.close();
             outStream.close();
             serverClient.close();
 
+
             
         }catch(IOException e) {
         	System.err.println("Client -" + clientNo + " exit!! ");
         }finally{
             System.out.println("Connection reset waiting for new Client");
+
         }
     }
 }
