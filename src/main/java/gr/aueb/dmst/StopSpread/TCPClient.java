@@ -52,19 +52,24 @@ public class TCPClient {
 
                     if (option == 1) {
                     	//Προσθήκη τοποθεσίας
-                        System.out.println("Βάλτε μας την περιοχή που επισκεφθήκατε π.χ παγκρατι");
+                    	System.out.println("Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε :");
+                        System.out.println("Εισάγετε την περιοχή :");
                         String perioxi = Inputs.stringScanner();
 
-                        System.out.println("Βάλτε την διεύθηνση π.χ αν ειναι σπίτι εκφαντιδου_7 | αν ειναι καταστημα ΑΒ_βασιλοπουλος  σε καθε κενο βαλτε \"_\"");
+                        System.out.println("Εισάγετε την διεύθηνση :");
                         String odos = Inputs.stringScanner();
 
-                        System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
+                        System.out.println("Εισάγετε την ώρα άφιξης, στρογγυλοποιημένη στον προηγούμενο ακαίρεο :");
                         int arrtime = Inputs.rangeInt(1,24);
 
-                        System.out.println("Βάλτε την ώρα που φτάσατε, με το 24ωρο συστημα και στρογγυλοποιηστε την ωρα σας π.χ 17 = 17:00,17:05....17:30...17:59");
-                        int endtime = Inputs.rangeInt(1,24);//h deyterh na einai megalyterh apo thn proth
+                        System.out.println("Εισάγετε την ώρα αναχώρησης, στρογγυλοποιημένη στον επόμενο ακαίρεο :");
+                        int endtime = Inputs.rangeInt(1,24);
+                        while (endtime <= arrtime) {
+                        	System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη απο την ώρα άφιξης :");
+                            endtime = Inputs.rangeInt(1,24);
+                        }
 
-                        System.out.println("Bale xronia-mhna-mera");
+                        System.out.println("Εισάγετε την ημερομηνία της επίσεψής σας (ΥΥΥΥ-MM-DD) :");
                         String date = Inputs.stringScanner();
                         
                         clientMessage= "a epilogi";
