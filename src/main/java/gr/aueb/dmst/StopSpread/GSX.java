@@ -14,6 +14,8 @@ public class GSX {
 			boolean contloopin = true;
 			do {
 					System.out.println("Διαθέσιμες επιλογές:");
+					/**the static method GreekStatusMenu appears the choices 
+					 * that user can choose per area*/
 					Menus.GreekStatsMenu();
 					int choice = Inputs.rangeInt(1, 4);
 					boolean flag2;
