@@ -3,11 +3,7 @@ package gr.aueb.dmst.StopSpread;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-/**This class is relates to the statistics of covid per Area 
- * Specifically class GSX shows both statistics and graphs
- * of Attiki,Ipeiros,Thessalloniki,Thraki,
- * Kriti,MakedoniamNisia Aigeou,Nisia Ioniou,
- * Peloponissos,Sterea Ellada  */
+
 
 public class GSX {
 		public static void main(String[] args) {
@@ -15,10 +11,6 @@ public class GSX {
 			boolean contloopin = true;
 			do {
 					System.out.println("Διαθέσιμες επιλογές:");
-					/**In this point I call the static method GreekStatsMenu()
-					 *which shows the alternatives about what Area 
-					 *you want to see both the Statistics and graphs    */
-					
 					Menus.GreekStatsMenu();
 					int choice = Inputs.rangeInt(1, 4);
 					boolean flag2;
