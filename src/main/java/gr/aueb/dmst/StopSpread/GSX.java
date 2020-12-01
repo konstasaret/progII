@@ -3,7 +3,10 @@ package gr.aueb.dmst.StopSpread;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**This class shows the statistics and graphs 
+ * per area(Attiki,Ipiros,Thesalsaloniki
+ * ,Thraki,Kriti,Makedonia,Nisia Ioniou,
+ * Nisia Aigeou,Sterea Ellada,Peloponnisos*/
 
 public class GSX {
 		public static void main(String[] args) {
