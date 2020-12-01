@@ -79,5 +79,13 @@ public class Menus {
 		System.out.println("Παρακαλώ εισάγετε τον αριθμό που αντιστοιχεί στην"
 				+ " επιθυμητή επιλογή!");
 		}
-
+	
+	/**this method will be used as menu for the evaluation of our app
+	 * it prints the choices of Evaluation menu*/
+	public void printMenu(){//beggining of printMenu
+		System.out.println("***********Μενού Αξιολόγησης***********");
+		System.out.println("1.Ήδη Υπάρχουσα Αξιολόγηση");
+		System.out.println("2.Εισαγωγή Αξιολόγησης");
+		System.out.println("3.Έξοδος από το Μενού Αξιολόγησης");
+	}//ending of printMenu
 }
