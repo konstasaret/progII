@@ -68,6 +68,7 @@ package gr.aueb.dmst.StopSpread;
 		}
 		}*/
 
+		//na to olokliroso
 		public void reasonOfEvaluation(){ //αποθικευση σε αρχειο με λογια τι του αρεσε τι δεν του αρεσε
 			System.out.println("Αν θέλετε προσθέστε σχόλια για την εφαρμογή Covidapp");
 
