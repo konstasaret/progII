@@ -50,9 +50,11 @@ class ServerClientThread extends Thread {
                     int departure_time = Integer.parseInt(inStream.readUTF());                   
                     String date = inStream.readUTF();                    
                     int user_id = Integer.parseInt(inStream.readUTF());
-                                     
+                    
+                    Database.createConnection();                 
                     Database.insertIntoLocationsTable(City, Address, arrival_time, departure_time, date, user_id);
                     Database.printUserLocations(user_id);
+                    Database.shutdownConnection();
                     
                     serverMessage="From Server to Client-" + clientNo + "Ok i have the location";// den mporoume na ton sbhnoume
                     outStream.writeUTF(serverMessage);//prepei na aposindeete kateu8eian
