@@ -3,16 +3,28 @@ package gr.aueb.dmst.StopSpread;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.IOException;
-
+/*
+ * authors: Evangelia, Viki, Chrysoula
+ */
 public class GlobalStatsNew {
+	/*
+	 * Class about General Information for Covid-19
+	 */
 	public static void main(String [] args ) {
 		boolean contloop = true;
 		do {
+			/*
+			 * Menu is printed till the user chooses option 11 and prints 
+			 * a message if the user puts an invalid option
+			 */
 				System.out.println("Παγκόσμια στατιστικά σύμφωνα με τον Παγκόσμιο Οργανισμό Υγείας.");
 				Menus.GlobalStatsMenu();
 				int option = Inputs.rangeInt(1, 11);
 				boolean ok = true;
 				while (ok) {
+					/*
+					 * Variable ok checks if choice is 11 and exits the global info in this case
+					 */
 					switch (option) {
 					case 1:
 						opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19");
@@ -70,10 +82,14 @@ public class GlobalStatsNew {
 					}
 				contloop = false;
 				}
-			
 		} while (contloop);
+		/*
+		 * Breaks the loop
+		 */
 	}
-	
+	/*
+	 * URL method which opens website
+	 */
 	public static void opt(String url) {
 		try {
 			java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
