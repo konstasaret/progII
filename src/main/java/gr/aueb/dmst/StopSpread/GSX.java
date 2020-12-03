@@ -4,17 +4,24 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**This class shows the statistics and graphs 
+ * per area(Attiki,Ipiros,Thesalsaloniki
+ * ,Thraki,Kriti,Makedonia,Nisia Ioniou,
+ * Nisia Aigeou,Sterea Ellada,Peloponnisos*/
+
 public class GSX {
 		public static void main(String[] args) {
 			boolean contloop = true;
 			boolean contloopin = true;
 			do {
 					System.out.println("Διαθέσιμες επιλογές:");
+					/**the static method GreekStatusMenu appears the choices 
+					 * that user can choose per area*/
 					Menus.GreekStatsMenu();
 					int choice = Inputs.rangeInt(1, 4);
 					boolean flag2;
 					int option;
-					while(choice != 4) {
+					while(choice != 4) { //beggining of loop
 						if (choice == 1) {
 							showSite("https://covid19.gov.gr/covid19-live-analytics/");
 						} else if (choice == 2) {
@@ -71,7 +78,10 @@ public class GSX {
 						} else {
 							System.out.println("Λάθος εισαγωγή. Παρακαλώ προσπαθήστε ξανά");
 						}
-						Menus.GreekStatsMenu();
+						/**The static method GreekStatsMenu() shows again the Menu 
+						 * with the alternatives the user can call */
+						
+						Menus.GreekStatsMenu();  
 						choice = Inputs.rangeInt(1, 4);
 					}	
 			contloop = false;

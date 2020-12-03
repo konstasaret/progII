@@ -45,8 +45,10 @@ public class Profile {
 		/** Authenticates user's credentials  
 		 * @return user_id 
 		 * for later use in the program*/
-		public static int authenticate() {
-			Database.createConnection();		
+		public static int authenticate() {		
+			
+			Database.createConnection();
+			
 			int user_id;
 			
 			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
@@ -73,8 +75,9 @@ public class Profile {
 
 			
 			System.out.println("Επιτυχία Συνδεσης! ");
-
+			
 			Database.shutdownConnection();
+			
 			return user_id;
 		}
 
@@ -84,6 +87,7 @@ public class Profile {
 		 * @param user_id
 		 */
 		public static void deleteUser(int user_id) {
+			Database.createConnection();
 			//double check user's credentials
 			System.out.println("Παρακαλώ εισάγεται ξανά τον κωδικό σας :");
 			String given_pass = Inputs.stringScanner();
@@ -97,6 +101,21 @@ public class Profile {
 			//deletion
 			Database.deleteUsersRow(user_id);
 			System.out.println("Επιτυχία διαχραφής στοιχείων");
+			Database.shutdownConnection();
+		}
+
+
+		public static void seeLocations(int user_id) {
+			Database.createConnection();
+			
+			Database.printUserLocations(user_id);
+			
+			Database.shutdownConnection();
+		}
+
+
+		public static void newLocation() {
+			
 			
 		}
 		

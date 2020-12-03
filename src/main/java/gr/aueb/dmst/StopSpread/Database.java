@@ -1,9 +1,12 @@
 package gr.aueb.dmst.StopSpread;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
@@ -13,7 +16,7 @@ import java.sql.ResultSetMetaData;
  */
 public class Database {
 
-	private static String dbURL = "jdbc:derby:derbyDB;create=true";
+	private static final String dbURL = "jdbc:derby:derbyDB;create=true";
 	
 	private static Connection conn = null;
     private static Statement stmt = null;
@@ -30,13 +33,30 @@ public class Database {
     	insertIntoUserTable("AirlineDog", "Salami");
     	insertIntoUserTable("Kostakis", "Makaronia");
     	insertIntoUserTable("Vik", "Pastitsio");
-    	insertIntoLocationsTable("Paiania","stamoy", 13, 15, 1);
-    	insertIntoLocationsTable("Pagrati","fanti", 11, 14, 2);
-    	insertIntoLocationsTable("Vourla","shame", 17, 22, 3);*/
-    	//insertIntoUserTable("Eva", "apaapa");
+    	insertIntoUserTable("Vagelio", "Password");
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 1);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-11-25", 1);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 20, 22,"2020-11-30", 1);
+    	
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 2);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-11-26", 2);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 19, 21,"2020-11-30", 2);
+    	
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 3);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 14, 15,"2020-11-25", 3);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 15, 17,"2020-11-25", 3);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-11-29", 3);
+    	
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 4);
+    	insertIntoLocationsTable("PAIANIA","THEOTOKOY", 13, 15,"2020-11-25", 4);
+    	insertIntoLocationsTable("PAIANIA","STAMOY", 19, 20,"2020-11-30", 4);*/
+    	
     	//deleteUsersRow();
-    	printUsersTable();
-    	printLocationsTable();
+
+    	//printUsersTable();
+    	//printLocationsTable();
+    	//System.out.println(findConnections(1));
+    	
     	shutdownConnection();    
     }
 	
@@ -110,6 +130,7 @@ public class Database {
 			 		+ "ADDRESS VARCHAR(255),"
 			 		+ "ARRIVAL_TIME INT,"
 			 		+ "DEPARTURE_TIME INT,"
+			 		+ "DAY DATE,"
 			 		+ "USER_ID INT,"
 			 		+ "FOREIGN KEY (USER_ID) REFERENCES USERS ON DELETE CASCADE)");
 			 stmt.close();
@@ -184,11 +205,12 @@ public class Database {
      * @param Address 
      * @param arrival_time 
      * @param departure_time 
+     * @param date 
      * @param user_id */
-    public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time, int user_id) {
+    public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time,String date, int user_id) {
     	try {
             stmt = conn.createStatement();
-            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +","+user_id+")");
+            stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +",'"+ date +"',"+user_id+")");
             stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -212,8 +234,7 @@ public class Database {
 	            }
 	            System.out.println("\n--------------------------------------------");
 
-	            while(results.next())
-	            {
+	            while(results.next()) {
 	                int id = results.getInt(1);
 	                String Name = results.getString(2);
 	                String pass = results.getString(3);
@@ -221,9 +242,7 @@ public class Database {
 	            }
 	            results.close();
 	            stmt.close();
-	        }
-	        catch (SQLException e)
-	        {
+	        }catch (SQLException e) {
 	            e.printStackTrace();
 	        }
 	    }
@@ -237,35 +256,67 @@ public class Database {
             ResultSetMetaData rsmd = results.getMetaData();
             int numberCols = rsmd.getColumnCount();
             
-            System.out.println("\n-------------------------------------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
             for (int i=1; i<=numberCols; i++)
             {
                 //print Column Names
                 System.out.printf("%-18s", rsmd.getColumnLabel(i));  
             }
 
-            System.out.println("\n-------------------------------------------------------------------------------");
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
 
-            while(results.next())
-            {
+            while(results.next()){
                 String City = results.getString(1);
                 String Address = results.getString(2);
                 int arrival_time = results.getInt(3);
                 int departure_time = results.getInt(4);
-                int user_id = results.getInt(5);
-                System.out.printf("%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time , user_id);
+                String date = results.getString(5);
+                int user_id = results.getInt(6);
+                System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
             }
             results.close();
             stmt.close();
-        }
-        catch (SQLException e)
-        {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
     }
     
     
-    
+	/**
+	 * Prints user's locations
+	 * @param id
+	 */
+	public static void printUserLocations(int id) {
+		try {
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID=" + id);
+			ResultSetMetaData rsmd = results.getMetaData();
+            int numberCols = rsmd.getColumnCount();
+            
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
+            for (int i=1; i<=numberCols; i++)
+            {
+                //print Column Names
+                System.out.printf("%-18s", rsmd.getColumnLabel(i));  
+            }
+
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
+
+            while(results.next()){
+                String City = results.getString(1);
+                String Address = results.getString(2);
+                int arrival_time = results.getInt(3);
+                int departure_time = results.getInt(4);
+                String date = results.getString(5);
+                int user_id = results.getInt(6);
+                System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
+            }
+            results.close();
+            stmt.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -357,6 +408,80 @@ public class Database {
 		}
 		return user_name;
 	}
+
+	/**
+	 * Gets user's ID and finds all his locations in the past 14 days,
+	 * then finds all other users who where in the same location at the same time
+	 * @param user_id
+	 * @return arrayList of all possibly infected users
+	 */
+	public static ArrayList<Integer> findConnections(int user_id) {
+		
+		//used to store possibly infected users
+		ArrayList<Integer> infected = new ArrayList<Integer>();
+		
+		try {
+		
+			//14 days before the method is called
+			Date currentDate = new Date(System.currentTimeMillis()-14*24*60*60*1000);
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String infectionDate = formatter.format(currentDate);
+			
+			//user's 14 day locations
+			stmt = conn.createStatement();
+			ResultSet results;
+			results = stmt.executeQuery("SELECT * "
+					+ "FROM LOCATIONS "
+					+ "WHERE USER_ID="+user_id + " AND DAY>'" + infectionDate + "'");
+			
+			//data storage
+			ArrayList<String> City = new ArrayList<String>();
+			ArrayList<String> Address = new ArrayList<String>();
+			ArrayList<Integer> arrival_time = new ArrayList<Integer>();
+			ArrayList<Integer> departure_time = new ArrayList<Integer>();
+			ArrayList<String> date = new ArrayList<String>();
+			
+			//every location data gets into arraylists
+            while(results.next()){
+            	City.add(results.getString(1));
+                Address.add(results.getString(2));
+                arrival_time.add(results.getInt(3));
+                departure_time.add(results.getInt(4));
+                date.add(results.getString(5));
+            }
+            
+            
+            int locations_number = City.size();//number of locations the user visited
+            
+            //every user that had been in the same locations
+            for (int x = 0; x<locations_number; x++) {
+            	
+            	results = stmt.executeQuery("SELECT USER_ID " //Getting user's ID
+                		+ "FROM LOCATIONS "
+                		+ "WHERE CITY='"+ City.get(x) +"' "//Exclude different city
+                		+ "AND ADDRESS='"+ Address.get(x)+"' "//Exclude different address 
+                		+ "AND DAY='" + date.get(x) + "' " //Exclude different date
+                		+ "AND ((ARRIVAL_TIME<="+ departure_time.get(x) + " AND ARRIVAL_TIME>=" +arrival_time.get(x) + ")"
+                				+ " OR "
+                				+ "(DEPARTURE_TIME<=" + departure_time.get(x) +"AND DEPARTURE_TIME>=" + arrival_time.get(x)+ ")) "//Exclude different time
+                		+ "AND USER_ID!=" + user_id);//Exclude same user
+            	
+            	//store data in the arraylist
+            	while(results.next()){
+                    infected.add(results.getInt(1));
+                }
+            }
+            
+            results.close();
+            stmt.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return infected;
+	}
+
+
 
 
 

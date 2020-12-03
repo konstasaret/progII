@@ -16,7 +16,7 @@ public class Menus {
 	}
 
 	/**
-	 * App's log in menu
+	 * App's after log in menu
 	 * @param id
 	 */
 	public static void logInMenu(int id) {
@@ -26,6 +26,7 @@ public class Menus {
 		System.out.println("1. Προσθήκη νέας τοποθεσίας.");
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
 		System.out.println("3. Διαγραφή Χρήστη και δεδομένων");
+		System.out.println("4. Δες τις τοποθεσίες σου");
 		
 	}
 	
@@ -78,5 +79,13 @@ public class Menus {
 		System.out.println("Παρακαλώ εισάγετε τον αριθμό που αντιστοιχεί στην"
 				+ " επιθυμητή επιλογή!");
 		}
-
+	
+	/**this method will be used as menu for the evaluation of our app
+	 * it prints the choices of Evaluation menu*/
+	public void printMenu(){//beggining of printMenu
+		System.out.println("***********Μενού Αξιολόγησης***********");
+		System.out.println("1.Ήδη Υπάρχουσα Αξιολόγηση");
+		System.out.println("2.Εισαγωγή Αξιολόγησης");
+		System.out.println("3.Έξοδος από το Μενού Αξιολόγησης");
+	}//ending of printMenu
 }
