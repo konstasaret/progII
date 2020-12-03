@@ -16,9 +16,9 @@ package gr.aueb.dmst.StopSpread;
 		/**private memembers of the class*/
 
 		private int mark1; //counts the users who vote 1 = κακή εφαρμογή
-		private int mark2; //counts the users who vote 2 = κακή εφαρμογή
-		private int mark3; //counts the users who vote 3 = κακή εφαρμογή
-		private int mark4; //counts the users who vote 4 = κακή εφαρμογή
+		private int mark2; //counts the users who vote 2 = μέτρια εφαρμογή
+		private int mark3; //counts the users who vote 3 = καλή εφαρμογή
+		private int mark4; //counts the users who vote 4 = πολύ καλή εφαρμογή
 		private int totalusers; //counts the total users who evaluate our Covidapp
 		private int storeMax1; //holds the maximum between mark3 and mark4
 		private int storeMax2; //holds the maximum between mark3 and mark4
@@ -27,8 +27,9 @@ package gr.aueb.dmst.StopSpread;
 
 		Scanner sc4 = new Scanner(System.in);
 		int choice4 = 0;
-		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας");
-		System.out.println("κλίμακα βαθμολογίας 1=κακή εφαρμογή,2=μέτρια εφαρμογή 3=καλή εφαρμογή 4=πολύ καλή εφαρμογή");
+		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας:");
+		System.out.println("Κλίμακα βαθμολογίας: 1 = κακή εφαρμογή, 2 = μέτρια"
+				+ "εφαρμογή, 3 = καλή εφαρμογή, 4 = πολύ καλή εφαρμογή");
 		System.out.println("Η βαθμολογία μου είναι:");
 		choice4 = sc4.nextInt();
 		//if that counts how many vote each choice(1,2,3,4)
@@ -55,21 +56,21 @@ package gr.aueb.dmst.StopSpread;
 
 		/**public void printDomination(){
 		if(Math.max(mark1,mark2)){
-			System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι κακή");
+			System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι κακή.");
 		}
 		if(){
-		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι μέτρια");
+		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι μέτρια.");
 		}
 		if(){
-		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι καλή");
+		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι καλή.");
 		}
 		if(){
-		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι πολύ καλή");
+		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι πολύ καλή.");
 		}
 		}*/
 
 		//na to olokliroso
-		public void reasonOfEvaluation(){ //αποθικευση σε αρχειο με λογια τι του αρεσε τι δεν του αρεσε
+		public void reasonOfEvaluation(){ //αποθήκευση σε αρχειο με λογια τι του αρεσε τι δεν του αρεσε
 			System.out.println("Αν θέλετε προσθέστε σχόλια για την εφαρμογή Covidapp");
 
 
