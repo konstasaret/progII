@@ -1,12 +1,16 @@
+package gr.aueb.dmst.StopSpread;
+import java.util.Scanner;
 //na prosueso ejereseis
 //na bgei i main
 
-package gr.aueb.dmst.StopSpread;
+//Βίκυ: έκανα import το Scanner αλλά δεν αλλάζω κάτι άλλο
+//μην χαλάσω τον κώδικα σου! <3
+
 /**author
  * Evaggelia
  * this class appears our app evaluation
  * and offers the user the choices of both 
- * evaluate out up and write sxolia
+ * evaluate out up and write comments
  */
 
 public class MainEvaluation {
