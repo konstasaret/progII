@@ -86,6 +86,7 @@ public class Menus {
 		System.out.println("***********Μενού Αξιολόγησης***********");
 		System.out.println("1.Ήδη Υπάρχουσα Αξιολόγηση");
 		System.out.println("2.Εισαγωγή Αξιολόγησης");
-		System.out.println("3.Έξοδος από το Μενού Αξιολόγησης");
+		System.out.println("3.Εισαγωγή σχολίου σχετικά με την εφαρμογή");
+		System.out.println("4.Έξοδος από το Μενού Αξιολόγησης");
 	}//ending of printMenu
 }
