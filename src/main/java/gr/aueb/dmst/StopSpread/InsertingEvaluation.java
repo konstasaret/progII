@@ -74,7 +74,10 @@ package gr.aueb.dmst.StopSpread;
 			Scanner sc5 = new Scanner(System.in);
 			System.out.println("Αν θέλετε προσθέστε σχόλια για την εφαρμογή Covidapp");
 			//interaction with the user
+			System.out.print("Μπορείτε να πληκτρολογήσετε το σχόλιο σας: ");
 			sc3.next(); // prosoxi na to akouikeysoume
+			System.out.print("Σας Ευχαριστούμε, η κρητική σας μόλις αποθηκεύτηκε");
+			System.out.println();
 
 		}
 
