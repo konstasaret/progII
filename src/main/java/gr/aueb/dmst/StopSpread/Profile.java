@@ -8,27 +8,31 @@ import java.io.IOException;
  * @author alexd
  *	
  */
-public class Profile {
+public class Profile extends TCPClient {
 
 	private static DataInputStream inStream;
 	private static DataOutputStream outStream;
 	
+	
 	/**Creates new user */
 	public static void newEntry() {
-		Database.createConnection();		
+		//Database.createConnection();		
 				
-		System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
-		String user_name = Inputs.stringScanner();
+		//System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
+		//String user_name = Inputs.stringScanner();
+		
 
-		String clientMessage= "a epilogi";
 		try {
+	        outStream = new DataOutputStream(socket.getOutputStream());
+
+		String clientMessage = "newuser";
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		while (Database.usernameCheck(user_name)) {
+		/*while (Database.usernameCheck(user_name)) {
 			System.out.println("Το Όνομα Χρήστη χρησιμοποιείται ήδη.");
 			System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη:");
 			user_name = Inputs.stringScanner();
@@ -49,7 +53,7 @@ public class Profile {
 		System.out.println("Ο Λογαριασμός σας δημιουργήθηκε με επιτυχία!");
 		System.out.println("Συνδεθείτε για να ανακαλύψετε τις δυνατότητες!");
 
-		Database.shutdownConnection();
+		Database.shutdownConnection();*/
 	}
 	
 	/** Authenticates user's credentials  

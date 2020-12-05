@@ -10,8 +10,12 @@ import java.util.Scanner;
  */
 public class TCPClient {
 
-    private static Socket socket;
-    private static BufferedReader br;
+    protected static Socket socket;
+
+
+
+
+	private static BufferedReader br;
     private static DataInputStream inStream;
     private static DataOutputStream outStream;
 
@@ -47,7 +51,7 @@ public class TCPClient {
                     }
             	}
             	
-                	
+                	Profile.newEntry();
                 
                //arxi menu paradeigma gianni
                     
