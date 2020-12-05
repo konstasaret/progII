@@ -25,10 +25,9 @@ public class Menus {
 		Database.shutdownConnection();
 		System.out.println("1. Προσθήκη νέας τοποθεσίας.");
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
-		System.out.println("3. Διαγραφή Χρήστη και δεδομένων.");
-		System.out.println("4. Δες τις τοποθεσίες σου.");
-		System.out.println("5. Στατιστικά και περιστατικά για τον Covid-19.");
-
+		System.out.println("3. Διαγραφή Χρήστη και δεδομένων");
+		System.out.println("4. Δες τις τοποθεσίες σου");
+		
 	}
 	
 	/** Prints the first menu 
@@ -80,5 +79,14 @@ public class Menus {
 		System.out.println("Παρακαλώ εισάγετε τον αριθμό που αντιστοιχεί στην"
 				+ " επιθυμητή επιλογή!");
 		}
-
+	
+	/**this method will be used as menu for the evaluation of our app
+	 * it prints the choices of Evaluation menu*/
+	public void printMenu(){//beggining of printMenu
+		System.out.println("***********Μενού Αξιολόγησης***********");
+		System.out.println("1.Ήδη Υπάρχουσα Αξιολόγηση");
+		System.out.println("2.Εισαγωγή Αξιολόγησης");
+		System.out.println("3.Εισαγωγή σχολίου σχετικά με την εφαρμογή");
+		System.out.println("4.Έξοδος από το Μενού Αξιολόγησης");
+	}//ending of printMenu
 }

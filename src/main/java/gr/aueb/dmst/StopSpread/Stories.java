@@ -7,7 +7,11 @@ import java.util.ArrayList;
 /** A class where the user can read stories of patients and/or 
  * write and send his own story*/
 public class Stories {
-	/** The main method of the class*/
+	/** The main method of the class
+	 * Prints user's menu
+	 * User reads or/and creates his own story
+	 * Exits when user types "3"
+	 * */
 	public static void stories() {
 
 		ArrayList<String> list  = new ArrayList<String>(100); 
@@ -19,7 +23,6 @@ public class Stories {
 					/** The try block contains the code that it is likely
 					 * to lead to mistakes*/
 					try {
-
 						System.out.println("Μενού επιλογών:");
 						System.out.println("1. Ανάγνωση ιστορίας.");
 						System.out.println("2. Αποστολή της δικής μου ιστορίας!");
@@ -39,6 +42,7 @@ public class Stories {
 							System.out.println("Ποια ιστορία επιθυμείτε να διαβάσετε;");
 							int ans = sc.nextInt();
 							while (true) {
+
 								if (ans == 1) {
 									System.out.println(" Νότια Αμερική, Λος ’ντζελες, Παρίσι, Κολωνία,"
 										+ " Λίβερπουλ, ’μπου Ντάμπι και η ζωή από τον πρώτο "
