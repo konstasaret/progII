@@ -9,7 +9,13 @@ import java.util.Scanner;
  *
  */
 public class TCPClient {
-	
+
+    private static Socket socket;
+    private static BufferedReader br;
+    private static DataInputStream inStream;
+    private static DataOutputStream outStream;
+
+
     /**
      * Begins User's Interface
      * @param args
@@ -17,11 +23,12 @@ public class TCPClient {
      */
     public static void main(String[] args) throws IOException {
         try{
-            Socket socket=new Socket("127.0.0.1",8888);
 
-            DataInputStream inStream = new DataInputStream(socket.getInputStream());
-            DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            socket=new Socket("127.0.0.1",8888);
+
+            inStream = new DataInputStream(socket.getInputStream());
+            outStream = new DataOutputStream(socket.getOutputStream());
+            br = new BufferedReader(new InputStreamReader(System.in));
 
             String clientMessage = "",serverMessage = "";
             String Number = "";

@@ -1,44 +1,61 @@
 package gr.aueb.dmst.StopSpread;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 /**
  * @author alexd
  *	
  */
 public class Profile {
 
+	private static DataInputStream inStream;
+	private static DataOutputStream outStream;
+
 
 	/**Creates new user */
 	public static void newEntry() {
-		Database.createConnection();		
+		Database.createConnection();
+
 				
-				System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
-				String user_name = Inputs.stringScanner();
-				while (Database.usernameCheck(user_name)) {
-					System.out.println("Το Όνομα Χρήστη χρησιμοποιείται ήδη.");
-					System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη:");
-					user_name = Inputs.stringScanner();
-				}
+		System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
+		String user_name = Inputs.stringScanner();
+
+		String clientMessage= "a epilogi";
+		try {
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+		while (Database.usernameCheck(user_name)) {
+			System.out.println("Το Όνομα Χρήστη χρησιμοποιείται ήδη.");
+			System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη:");
+			user_name = Inputs.stringScanner();
+		}
 				
 
-				String pass, pass2;
-				do {
-					System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
-					pass = Inputs.stringScanner();
-					System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
-					pass2 = Inputs.stringScanner();
-					if(!pass.equals(pass2)) {
-						System.out.println("Οι Κωδικοί Χρήστη σας δεν ταιριάζουν.\nΔοκιμάστε Ξανά.");
-					}
-				}while(!pass.equals(pass2));
-				
-				
-				Database.insertIntoUserTable(user_name, pass);
-				
-				
-				System.out.println("Ο Λογαριασμός σας δημιουργήθηκε με επιτυχία!");
-				System.out.println("Συνδεθείτε για να ανακαλύψετε τις δυνατότητες!");
+		String pass, pass2;
+		do {
+			System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
+			pass = Inputs.stringScanner();
+			System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
+			pass2 = Inputs.stringScanner();
+			if(!pass.equals(pass2)) {
+				System.out.println("Οι Κωδικοί Χρήστη σας δεν ταιριάζουν.\nΔοκιμάστε Ξανά.");
+			}
+		}while(!pass.equals(pass2));
 
-				Database.shutdownConnection();
+
+		Database.insertIntoUserTable(user_name, pass);
+
+				
+		System.out.println("Ο Λογαριασμός σας δημιουργήθηκε με επιτυχία!");
+		System.out.println("Συνδεθείτε για να ανακαλύψετε τις δυνατότητες!");
+		Database.shutdownConnection();
 	}
 	
 	

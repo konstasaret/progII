@@ -40,9 +40,19 @@ class ServerClientThread extends Thread {
 	                count = 2;
 	            }else if (clientMessage.equals("c epilogi")){
 	                count = 3;
-	            }
+	            }else if (clientMessage.equals("login")) {
+	                count = -1;
+                }else if (clientMessage.equals("newuser")) {
+	                count = -2;
+                }
                   
-                if (count == 1) {
+                if (count == -2) {
+
+                    String userName = inStream.readUTF();
+
+                }
+
+	            if (count == 1) {
                 	
                 	String City = inStream.readUTF();            
                     String Address = inStream.readUTF();                  
@@ -81,18 +91,12 @@ class ServerClientThread extends Thread {
                     outStream.flush();
 
                 }
-
-
-
-
             }
             
             inStream.close();
             outStream.close();
             serverClient.close();
 
-
-            
         }catch(IOException e) {
         	System.err.println("Client -" + clientNo + " exit!! ");
         }finally{
