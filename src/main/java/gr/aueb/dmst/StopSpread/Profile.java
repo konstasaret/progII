@@ -1,10 +1,17 @@
 package gr.aueb.dmst.StopSpread;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 /**
  * @author alexd
  *	
  */
 public class Profile {
+
+	private static DataInputStream inStream;
+	private static DataOutputStream outStream;
 	
 	/**Creates new user */
 	public static void newEntry() {
@@ -12,6 +19,15 @@ public class Profile {
 				
 		System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
 		String user_name = Inputs.stringScanner();
+
+		String clientMessage= "a epilogi";
+		try {
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		while (Database.usernameCheck(user_name)) {
 			System.out.println("Το Όνομα Χρήστη χρησιμοποιείται ήδη.");
 			System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη:");
