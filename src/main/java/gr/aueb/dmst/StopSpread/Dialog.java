@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Dialog
 {
-	public static void main(String [] args)
+	public void DialogBox()
 	{
 		/**dispaly a dialog with the message*/
 		JOptionPane.showMessageDialog(null,"Error");
