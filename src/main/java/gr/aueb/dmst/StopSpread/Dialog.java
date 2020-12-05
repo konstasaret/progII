@@ -13,5 +13,5 @@ public class Dialog
 	{
 		/**dispaly a dialog with the message*/
 		JOptionPane.showMessageDialog(null,"Error");
-	} //ending of main
+	} //ending of Dialog
 } //ending of the class Dialog
