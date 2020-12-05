@@ -48,7 +48,21 @@ class ServerClientThread extends Thread {
                   
                 if (count == -2) {
 
-                    String userName = inStream.readUTF();
+                    String userName;
+                    do {
+                        userName = inStream.readUTF();
+                        serverMessage="Το Όνομα Χρήστη χρησιμοποιείται ήδη. \n Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη: ";// database ston tcp
+                        outStream.writeUTF(serverMessage);
+                        outStream.flush();
+                    } while (Database.usernameCheck(userName));
+                    serverMessage="Σαξεσ σαιν ιν";// database ston tcp
+                    outStream.writeUTF(serverMessage);
+                    outStream.flush();
+
+                    String pass = inStream.readUTF();
+
+                    Database.insertIntoUserTable(userName, pass);
+
 
                 }
 

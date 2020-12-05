@@ -18,16 +18,50 @@ public class Profile extends TCPClient {
 	public static void newEntry() {
 		//Database.createConnection();		
 				
-		//System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
-		//String user_name = Inputs.stringScanner();
+
 		
 
 		try {
 	        outStream = new DataOutputStream(socket.getOutputStream());
+	        inStream = new DataInputStream(socket.getInputStream());
 
-		String clientMessage = "newuser";
+			String clientMessage = "newuser";
+			String serverMessage;
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
+
+			System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
+			String user_name;
+
+			do {
+				user_name = Inputs.stringScanner();//test if works
+				clientMessage = user_name;
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
+
+				serverMessage=inStream.readUTF();
+				System.out.println(serverMessage);
+			}while(serverMessage.equals("Σαξεσ σαιν ιν"));// if yes i am your daddy
+
+			String pass, pass2;
+			do {
+				System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
+				pass = Inputs.stringScanner();
+				System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
+				pass2 = Inputs.stringScanner();
+				if(!pass.equals(pass2)) {
+					System.out.println("Οι Κωδικοί Χρήστη σας δεν ταιριάζουν.\nΔοκιμάστε Ξανά."); // FIX THE DATA BASE TO WORK WHEN YOU TEST IT
+				}
+			}while(!pass.equals(pass2));
+
+			clientMessage = pass;
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+
+			System.out.println("Ο Λογαριασμός σας δημιουργήθηκε με επιτυχία!");
+			System.out.println("Συνδεθείτε για να ανακαλύψετε τις δυνατότητες!"); // SON
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -37,23 +71,9 @@ public class Profile extends TCPClient {
 			System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη:");
 			user_name = Inputs.stringScanner();
 		}
-		String pass, pass2;
-		do {
-			System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
-			pass = Inputs.stringScanner();
-			System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
-			pass2 = Inputs.stringScanner();
-			if(!pass.equals(pass2)) {
-				System.out.println("Οι Κωδικοί Χρήστη σας δεν ταιριάζουν.\nΔοκιμάστε Ξανά.");
-			}
-		}while(!pass.equals(pass2));
-						
-		Database.insertIntoUserTable(user_name, pass);
-				
-		System.out.println("Ο Λογαριασμός σας δημιουργήθηκε με επιτυχία!");
-		System.out.println("Συνδεθείτε για να ανακαλύψετε τις δυνατότητες!");
+		*/
 
-		Database.shutdownConnection();*/
+		//Database.shutdownConnection();
 	}
 	
 	/** Authenticates user's credentials  
