@@ -72,16 +72,13 @@ package gr.aueb.dmst.StopSpread;
 		//na to olokliroso
 		public void reasonOfEvaluation(){ //αποθήκευση σε αρχειο με λογια τι του αρεσε τι δεν του αρεσε
 			Scanner sc5 = new Scanner(System.in);
-			System.out.println("Αν θέλετε προσθέστε σχόλια για την εφαρμογή Covidapp");
+			System.out.println("Αν θέλετε προσθέστε σχόλια για την εφαρμογή StopSpread!");
 			//interaction with the user
 			System.out.print("Μπορείτε να πληκτρολογήσετε το σχόλιο σας: ");
-			sc3.next(); // prosoxi na to akouikeysoume
-			System.out.print("Σας Ευχαριστούμε, η κρητική σας μόλις αποθηκεύτηκε");
+			sc5.next(); // prosoxi na to akouikeysoume
+			System.out.print("Σας Ευχαριστούμε, η κριτική σας μόλις καταχωρήθηκε!");
 			System.out.println();
-
 		}
-
-
 	}
 
 
