@@ -10,7 +10,7 @@ public class Dialog2
 	{
 		/**promt user to enter the name*/
 		String name =
-			JOptionPane.showInputDialog("Insert your password:");
+			JOptionPane.showInputDialog("Enter your password:");
 
 			/**create the message*/
 			String message =
