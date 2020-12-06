@@ -10,12 +10,26 @@ import java.util.Scanner;
  */
 public class TCPClient {
 
-    protected static Socket socket;
+	private static Socket socket;
 	private static BufferedReader br;
     private static DataInputStream inStream;
     private static DataOutputStream outStream;
 
+	/**
+	 * @return the inStream
+	 */
+	public static DataInputStream getInStream() {
+		return inStream;
+	}
 
+
+	/**
+	 * @return the outStream
+	 */
+	public static DataOutputStream getOutStream() {
+		return outStream;
+	}
+	
     /**
      * Begins User's Interface
      * @param args

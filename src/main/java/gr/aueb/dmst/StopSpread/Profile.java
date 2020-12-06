@@ -8,18 +8,15 @@ import java.io.IOException;
  * @author alexd
  *	
  */
-public class Profile extends TCPClient {
+public class Profile {
 
-	private static DataInputStream inStream;
-	private static DataOutputStream outStream;
-	
 	
 	/**Creates new user */
 	public static void newEntry() {
 		try {
 			//server-client messages
-	        outStream = new DataOutputStream(socket.getOutputStream());
-	        inStream = new DataInputStream(socket.getInputStream());
+	        DataOutputStream outStream = TCPClient.getOutStream();
+	        DataInputStream inStream = TCPClient.getInStream();
 	        String clientMessage;
 			String serverMessage;
 			
@@ -40,7 +37,7 @@ public class Profile extends TCPClient {
 				//server check message
 				serverMessage=inStream.readUTF();
 				System.out.println(serverMessage);
-			}while(!serverMessage.equals("success"));
+			}while(!serverMessage.equals("Αποδεκτό Ονομα Χρήστη"));
 
 			
 			String pass, pass2;
@@ -75,37 +72,59 @@ public class Profile extends TCPClient {
 	 * @return user_id 
 	* for later use in the program*/
 	public static int authenticate() {		
+		int user_id = 0;
+		try {
+			//server-client messages
+	        DataOutputStream outStream = TCPClient.getOutStream();
+	        DataInputStream inStream = TCPClient.getInStream();
+	        String clientMessage;
+			String serverMessage;
 			
-		Database.createConnection();
+			//for option identification 
+			clientMessage = "login";
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
 			
-		int user_id;
+			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
 			
-		System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
-		String name = Inputs.stringScanner();
+			do {
+			String name = Inputs.stringScanner();
 			
-		user_id = Database.findUsersId(name);
-		while (user_id == -1) {
-			System.out.println("Αποτυχία Σύνδεσης.\nΤο Όνομα Χρήστη δεν υπάρχει.\nΠαρακαλώ προσπαθήστε ξανά : ");
-			name = Inputs.stringScanner();
-			user_id = Database.findUsersId(name);
-		}
+			//sent user name to server
+			clientMessage = name;
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+			
+			serverMessage = inStream.readUTF();
+			System.out.println(serverMessage);
+			}while (!serverMessage.equals("Αποδεκτό Ονομα Χρήστη"));
 			
 			
-		System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας:");
-		String pass = Inputs.stringScanner();
-			
-		String existingPass = Database.findUsersPass(user_id);
-			
-		while(!existingPass.equals(pass)) {
-			System.out.println("Αποτυχία Συνδεσης.\nΤο Όνομα Χρήστη και ο Κωδικός δεν ταιριάζουν.\nΔοκιμάστε ξανά.");
 			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας:");
-			pass = Inputs.stringScanner();
-		}
+			
+			do {
+				String pass = Inputs.stringScanner();
 
-		System.out.println("Επιτυχία Συνδεσης! ");
+				clientMessage = pass;
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
+				
+				serverMessage = inStream.readUTF();
+				System.out.println(serverMessage);
+			}while (!serverMessage.equals("Αποδεκτός Κωδικός Χρήστη"));
 			
-		Database.shutdownConnection();
 			
+			System.out.println("Επιτυχία Συνδεσης! ");
+
+			
+			
+			user_id = inStream.readInt();
+			
+		}catch (IOException e) {
+			System.err.println("Αποτυχία κατα την σύνδεση");
+			e.printStackTrace();
+		}
+							
 		return user_id;
 	}
 

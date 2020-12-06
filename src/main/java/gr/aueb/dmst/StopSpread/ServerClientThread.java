@@ -48,19 +48,20 @@ class ServerClientThread extends Thread {
                   
                 if (count == -2) {
                 	Database.createConnection();//connection with database
-
                    
                     String userName = inStream.readUTF();//user name from client
  
                     //check for duplicate user name 
                     while (Database.usernameCheck(userName)){
-                        serverMessage="Το Όνομα Χρήστη χρησιμοποιείται ήδη. \n Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη: ";// database ston tcp
+                        serverMessage="Το Όνομα Χρήστη χρησιμοποιείται ήδη. \nΠαρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη: ";
                         outStream.writeUTF(serverMessage);
                         outStream.flush();
+                        
+                        userName = inStream.readUTF();//new user name 
                     } 
                     
                     //check done
-                    serverMessage="success";
+                    serverMessage="Αποδεκτό Ονομα Χρήστη";
                     outStream.writeUTF(serverMessage);
                     outStream.flush();
                     
@@ -71,6 +72,50 @@ class ServerClientThread extends Thread {
                     Database.insertIntoUserTable(userName, pass);
 
                     Database.shutdownConnection();//shutdown connection with database
+                }
+                
+                if (count == -1) {
+                	Database.createConnection();//connection with database
+
+                	String userName = inStream.readUTF();//user name from client
+                	
+                	//user name exists check
+            		int user_id = Database.findUsersId(userName);
+            		while (user_id == -1) {
+            			serverMessage="Αποτυχία Σύνδεσης.\nΤο Όνομα Χρήστη δεν υπάρχει.\nΠαρακαλώ προσπαθήστε ξανά : ";
+                        outStream.writeUTF(serverMessage);
+                        outStream.flush();
+                        
+            			userName = inStream.readUTF();
+            			user_id = Database.findUsersId(userName);
+            		}
+            		//check done
+                    serverMessage="Αποδεκτό Ονομα Χρήστη";
+                    outStream.writeUTF(serverMessage);
+                    outStream.flush();
+                    
+                    
+                    String pass = inStream.readUTF();//password from client
+            		String existingPass = Database.findUsersPass(user_id);//password from database
+
+            		//password check
+            		while(!existingPass.equals(pass)) {
+            			serverMessage = "Αποτυχία Συνδεσης.\nΤο Όνομα Χρήστη και ο Κωδικός δεν ταιριάζουν.\nΔοκιμάστε ξανά.\nΠαρακαλώ εισάγετε ξανά τον Κωδικό σας:";
+            			outStream.writeUTF(serverMessage);
+            			outStream.flush();
+            			
+            			pass = inStream.readUTF();// new password
+            		}
+            		//check done
+                    serverMessage="Αποδεκτός Κωδικός Χρήστη";
+                    outStream.writeUTF(serverMessage);
+                    outStream.flush();
+            		
+            		outStream.writeInt(user_id);//returning user id
+            		outStream.flush();
+            		
+            		Database.shutdownConnection();
+
                 }
 
 	            if (count == 1) {
