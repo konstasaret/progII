@@ -16,37 +16,39 @@ public class Profile extends TCPClient {
 	
 	/**Creates new user */
 	public static void newEntry() {
-		//Database.createConnection();		
-				
-
-		
-
 		try {
+			//server-client messages
 	        outStream = new DataOutputStream(socket.getOutputStream());
 	        inStream = new DataInputStream(socket.getInputStream());
-
-			String clientMessage = "newuser";
+	        String clientMessage;
 			String serverMessage;
+			
+			//for option identification 
+			clientMessage = "newuser";
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
 
 			System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
-			String user_name;
-
 			do {
-				user_name = Inputs.stringScanner();//test if works
+				String user_name = Inputs.stringScanner();//Desired user name
+				
+				//sent to server
 				clientMessage = user_name;
 				outStream.writeUTF(clientMessage);
 				outStream.flush();
 
+				//server check message
 				serverMessage=inStream.readUTF();
 				System.out.println(serverMessage);
-			}while(serverMessage.equals("Σαξεσ σαιν ιν"));// if yes i am your daddy
+			}while(!serverMessage.equals("success"));
 
+			
 			String pass, pass2;
 			do {
+				//users desired password
 				System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
 				pass = Inputs.stringScanner();
+				//double check password
 				System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
 				pass2 = Inputs.stringScanner();
 				if(!pass.equals(pass2)) {
@@ -54,6 +56,7 @@ public class Profile extends TCPClient {
 				}
 			}while(!pass.equals(pass2));
 
+			//sent password to server
 			clientMessage = pass;
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
@@ -63,17 +66,9 @@ public class Profile extends TCPClient {
 
 
 		} catch (IOException e) {
+			System.err.println("Αποτυχία δημιουργίας νέου χρήστη");
 			e.printStackTrace();
 		}
-
-		/*while (Database.usernameCheck(user_name)) {
-			System.out.println("Το Όνομα Χρήστη χρησιμοποιείται ήδη.");
-			System.out.println("Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη:");
-			user_name = Inputs.stringScanner();
-		}
-		*/
-
-		//Database.shutdownConnection();
 	}
 	
 	/** Authenticates user's credentials  

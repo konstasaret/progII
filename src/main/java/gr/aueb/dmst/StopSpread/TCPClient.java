@@ -11,10 +11,6 @@ import java.util.Scanner;
 public class TCPClient {
 
     protected static Socket socket;
-
-
-
-
 	private static BufferedReader br;
     private static DataInputStream inStream;
     private static DataOutputStream outStream;
@@ -51,10 +47,7 @@ public class TCPClient {
                     }
             	}
             	
-                	Profile.newEntry();
-                
-               //arxi menu paradeigma gianni
-                    
+                   
                 
                 int option;
                 while (!Number.equals("7")){

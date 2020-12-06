@@ -47,23 +47,30 @@ class ServerClientThread extends Thread {
                 }
                   
                 if (count == -2) {
+                	Database.createConnection();//connection with database
 
-                    String userName;
-                    do {
-                        userName = inStream.readUTF();
+                   
+                    String userName = inStream.readUTF();//user name from client
+ 
+                    //check for duplicate user name 
+                    while (Database.usernameCheck(userName)){
                         serverMessage="Το Όνομα Χρήστη χρησιμοποιείται ήδη. \n Παρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη: ";// database ston tcp
                         outStream.writeUTF(serverMessage);
                         outStream.flush();
-                    } while (Database.usernameCheck(userName));
-                    serverMessage="Σαξεσ σαιν ιν";// database ston tcp
+                    } 
+                    
+                    //check done
+                    serverMessage="success";
                     outStream.writeUTF(serverMessage);
                     outStream.flush();
-
+                    
+                    //password from client
                     String pass = inStream.readUTF();
-
+                    
+                    //Insertion in table 
                     Database.insertIntoUserTable(userName, pass);
 
-
+                    Database.shutdownConnection();//shutdown connection with database
                 }
 
 	            if (count == 1) {
