@@ -72,9 +72,7 @@ class ServerClientThread extends Thread {
                     Database.insertIntoUserTable(userName, pass);
 
                     Database.shutdownConnection();//shutdown connection with database
-                }
-                
-                if (count == -1) {
+                }else if (count == -1) {
                 	Database.createConnection();//connection with database
 
                 	String userName = inStream.readUTF();//user name from client
@@ -116,40 +114,39 @@ class ServerClientThread extends Thread {
             		
             		Database.shutdownConnection();
 
-                }
-
-	            if (count == 1) {
+                }else if (count == 1) {
                 	
-                	String City = inStream.readUTF();            
-                    String Address = inStream.readUTF();                  
-                    int arrival_time = Integer.parseInt(inStream.readUTF());                    
-                    int departure_time = Integer.parseInt(inStream.readUTF());                   
+                	String city = inStream.readUTF();            
+                    String address = inStream.readUTF();                  
+                    int arrival_time = inStream.readInt();                   
+                    int departure_time = inStream.readInt();                     
                     String date = inStream.readUTF();                    
-                    int user_id = Integer.parseInt(inStream.readUTF());
+                    int user_id = inStream.readInt();   
                     
                     Database.createConnection();                 
-                    Database.insertIntoLocationsTable(City, Address, arrival_time, departure_time, date, user_id);
-                    Database.printUserLocations(user_id);
+                    Database.insertIntoLocationsTable(city, address, arrival_time, departure_time, date, user_id);
                     Database.shutdownConnection();
                     
-                    serverMessage="From Server to Client-" + clientNo + "Ok i have the location";// den mporoume na ton sbhnoume
-                    outStream.writeUTF(serverMessage);//prepei na aposindeete kateu8eian
+                    serverMessage = "Η τοποθεσία σας καταγράφηκε :"
+                    		+ "\n	Πόλη : " + city 
+                    		+ "\n	Διεύθυνση : " + address
+                    		+ "\n	Άφιξη : " + arrival_time + ":00"
+                    		+ "\n	Αναχώριση : " + departure_time + ":00"
+                    		+ "\n	Ημερομηνία : " + date;
+                    outStream.writeUTF(serverMessage);
                     outStream.flush();
-                }
-                if (count == 2) {
+                }else if (count == 2) {
 
                     System.out.println("Πήγενε σε κάποιο νοσοκομείο");
 
-                }
-                if (count == 3) {
+                }else if (count == 3) {
 
                     Database.deleteUsersRow(Integer.parseInt(clientMessage));//problhma
                     serverMessage="From Server to Client-" + clientNo + "Ok you are deleted";// den mporoume na ton sbhnoume
                     outStream.writeUTF(serverMessage);//prepei na aposindeete kateu8eian
                     outStream.flush();
 
-                }
-                if (count == 4) {
+                }else if (count == 4) {
 
                     Database.printUserLocations(Integer.parseInt(clientMessage)); //problhma kai edo
                     serverMessage="From Server to Client-" + clientNo + "Ok you are deleted";// database ston tcp

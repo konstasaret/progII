@@ -11,6 +11,66 @@ import java.io.IOException;
 public class Profile {
 
 	
+	/** Authenticates user's credentials  
+	 * @return user_id 
+	* for later use in the program*/
+	public static int authenticate() {		
+		int user_id = 0;
+		try {
+			//server-client messages
+	        DataOutputStream outStream = TCPClient.getOutStream();
+	        DataInputStream inStream = TCPClient.getInStream();
+	        String clientMessage;
+			String serverMessage;
+			
+			//for option identification 
+			clientMessage = "login";
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+			
+			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
+			
+			do {
+			String name = Inputs.stringScanner();
+			
+			//sent user name to server
+			clientMessage = name;
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+			
+			serverMessage = inStream.readUTF();
+			System.out.println(serverMessage);
+			}while (!serverMessage.equals("Αποδεκτό Ονομα Χρήστη"));
+			
+			
+			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας:");
+			
+			do {
+				String pass = Inputs.stringScanner();
+	
+				clientMessage = pass;
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
+				
+				serverMessage = inStream.readUTF();
+				System.out.println(serverMessage);
+			}while (!serverMessage.equals("Αποδεκτός Κωδικός Χρήστη"));
+			
+			
+			System.out.println("Επιτυχία Συνδεσης! ");
+	
+			
+			
+			user_id = inStream.readInt();
+			
+		}catch (IOException e) {
+			System.err.println("Αποτυχία κατα την σύνδεση");
+			e.printStackTrace();
+		}
+							
+		return user_id;
+	}
+
 	/**Creates new user */
 	public static void newEntry() {
 		try {
@@ -68,64 +128,82 @@ public class Profile {
 		}
 	}
 	
-	/** Authenticates user's credentials  
-	 * @return user_id 
-	* for later use in the program*/
-	public static int authenticate() {		
-		int user_id = 0;
-		try {
-			//server-client messages
+	/**
+	 * Inserts new user location in the database 
+	 * 
+	 * @param user_id 
+	 */
+	public static void newLocation(int user_id) {
+		
+		System.out.println("Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε :");
+        System.out.println("Εισάγετε την πόλη :");
+        String city = Inputs.stringScanner();
+        
+        System.out.println("Εισάγετε την διεύθηνση :");
+        String address = Inputs.stringScanner();
+        
+        System.out.println("Εισάγετε την ώρα άφιξης, στρογγυλοποιημένη στον προηγούμενο ακέραιο :");
+        int arr_time = Inputs.rangeInt(1,24);
+        
+        System.out.println("Εισάγετε την ώρα αναχώρησης, στρογγυλοποιημένη στον επόμενο ακέραιο :");
+        int dep_time = Inputs.rangeInt(1,24);
+        
+        while (dep_time <= arr_time) {
+        	System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη απο την ώρα άφιξης :");
+            dep_time = Inputs.rangeInt(1,24);
+        }
+        
+        System.out.println("Εισάγετε την ημερομηνία της επίσεψής σας (ΥΥΥΥ-MM-DD) :");
+        String date = Inputs.stringScanner();
+        
+        
+        try {
+	        //server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
 	        DataInputStream inStream = TCPClient.getInStream();
 	        String clientMessage;
 			String serverMessage;
 			
 			//for option identification 
-			clientMessage = "login";
+			clientMessage = "a epilogi";
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
 			
-			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
-			
-			do {
-			String name = Inputs.stringScanner();
-			
-			//sent user name to server
-			clientMessage = name;
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
-			
-			serverMessage = inStream.readUTF();
-			System.out.println(serverMessage);
-			}while (!serverMessage.equals("Αποδεκτό Ονομα Χρήστη"));
-			
-			
-			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας:");
-			
-			do {
-				String pass = Inputs.stringScanner();
-
-				clientMessage = pass;
-				outStream.writeUTF(clientMessage);
-				outStream.flush();
-				
-				serverMessage = inStream.readUTF();
-				System.out.println(serverMessage);
-			}while (!serverMessage.equals("Αποδεκτός Κωδικός Χρήστη"));
-			
-			
-			System.out.println("Επιτυχία Συνδεσης! ");
-
-			
-			
-			user_id = inStream.readInt();
-			
-		}catch (IOException e) {
-			System.err.println("Αποτυχία κατα την σύνδεση");
-			e.printStackTrace();
-		}
-							
-		return user_id;
+			//pass city to server 
+			clientMessage= city;
+            outStream.writeUTF(clientMessage);
+            outStream.flush();
+            
+			//pass address to server 
+            clientMessage= address;
+            outStream.writeUTF(clientMessage);
+            outStream.flush();
+            
+			//pass arr_time to server
+            outStream.writeInt(arr_time);
+            outStream.flush();
+      
+			//pass dep_time to server
+            outStream.writeInt(dep_time);
+            outStream.flush();
+            
+			//pass date to server
+            clientMessage= date;
+            outStream.writeUTF(clientMessage);
+            outStream.flush();
+   
+			//pass user_id to server
+            outStream.writeInt(user_id);
+            outStream.flush();
+            
+            //message from server
+            serverMessage = inStream.readUTF();
+            System.out.println(serverMessage);
+            
+        }catch (IOException e) {
+        	System.err.println("Πρόβλημα κατα την προσθήκη νέας τοποθεσίας");
+        	e.printStackTrace();
+        }
 	}
 
 	/**
@@ -156,10 +234,6 @@ public class Profile {
 		Database.printUserLocations(user_id);
 			
 		Database.shutdownConnection();
-	}
-
-	public static void newLocation() {
-					
 	}
 		
 }

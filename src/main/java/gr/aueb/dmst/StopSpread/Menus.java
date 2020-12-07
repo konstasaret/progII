@@ -7,19 +7,19 @@ package gr.aueb.dmst.StopSpread;
 public class Menus {
 	
 	/**
-	 * App's first menu 
+	 * App's log in menu 
 	 */
-	public static void firstMenu() {
+	public static void logInMenu() {
 		System.out.println("Καλώς ήλθατε στο StopSpread!");
 		System.out.println("1. Σύνδεση.");
 		System.out.println("2. Δημιουργία Νέου Χρήστη.");
 	}
 
 	/**
-	 * App's after log in menu
+	 * App's functions menu
 	 * @param id
 	 */
-	public static void logInMenu(int id) {
+	public static void firstMenu(int id) {
 		Database.createConnection();
 		System.out.println("Καλώς ήλθατε " + Database.findUserName(id) + "!");
 		Database.shutdownConnection();

@@ -38,7 +38,7 @@ public class TCPClient {
     public static void main(String[] args) throws IOException {
         try{
 
-            socket=new Socket("127.0.0.1",8888);
+            socket = new Socket("127.0.0.1",8888);
 
             inStream = new DataInputStream(socket.getInputStream());
             outStream = new DataOutputStream(socket.getOutputStream());
@@ -50,7 +50,7 @@ public class TCPClient {
             while(!clientMessage.equals("yes")){
             	int user_id = 0;
             	while(user_id == 0) {
-            		Menus.firstMenu();
+            		Menus.logInMenu();
                     int logg = Inputs.rangeInt(1, 2);
                     if (logg == 1) {
                     	//Σύνδεση 
@@ -65,61 +65,26 @@ public class TCPClient {
                 
                 int option;
                 while (!Number.equals("7")){
-                	Menus.logInMenu(user_id);
+                	Menus.firstMenu(user_id);
                 	option = Inputs.rangeInt(1, 4);
 
                     if (option == 1) {
                     	//Προσθήκη τοποθεσίας
-                    	System.out.println("Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε :");
-                        System.out.println("Εισάγετε την περιοχή :");
-                        String perioxi = Inputs.stringScanner();
+                    	Profile.newLocation(user_id);
+                    	
 
-                        System.out.println("Εισάγετε την διεύθηνση :");
-                        String odos = Inputs.stringScanner();
-
-                        System.out.println("Εισάγετε την ώρα άφιξης, στρογγυλοποιημένη στον προηγούμενο ακαίρεο :");
-                        int arrtime = Inputs.rangeInt(1,24);
-
-                        System.out.println("Εισάγετε την ώρα αναχώρησης, στρογγυλοποιημένη στον επόμενο ακαίρεο :");
-                        int endtime = Inputs.rangeInt(1,24);
-                        while (endtime <= arrtime) {
-                        	System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη απο την ώρα άφιξης :");
-                            endtime = Inputs.rangeInt(1,24);
-                        }
-
-                        System.out.println("Εισάγετε την ημερομηνία της επίσεψής σας (ΥΥΥΥ-MM-DD) :");
-                        String date = Inputs.stringScanner();
                         
-                        clientMessage= "a epilogi";
-                        outStream.writeUTF(clientMessage);
-                        outStream.flush();
 
-                        clientMessage= perioxi;
-                        outStream.writeUTF(clientMessage);
-                        outStream.flush();
-
-                        clientMessage = odos;
-                        outStream.writeUTF(clientMessage);
-                        outStream.flush();
-
-                        clientMessage = Integer.toString(arrtime);
-                        outStream.writeUTF(clientMessage);
-                        outStream.flush();
-
-                        clientMessage = Integer.toString(endtime);
-                        outStream.writeUTF(clientMessage);
-                        outStream.flush();
                         
-                        clientMessage = date;
-                        outStream.writeUTF(clientMessage);
-                        outStream.flush();
+
                         
-                        clientMessage = Integer.toString(user_id);
-                        outStream.writeUTF(clientMessage);
-                        outStream.flush();
                         
-                        serverMessage=inStream.readUTF();
-                        System.out.println(serverMessage);
+
+                        
+                        
+                       
+                        
+                        
 
 
                     } else if (option == 2){
