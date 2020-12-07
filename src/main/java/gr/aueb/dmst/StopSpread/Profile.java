@@ -3,7 +3,6 @@ package gr.aueb.dmst.StopSpread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Locale;
 
 /**
  * @author alexd
@@ -106,6 +105,17 @@ public class Profile {
 				//users desired password
 				System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
 				pass = Inputs.stringScanner();
+				//strong password check
+				while (pass.equals(pass.toLowerCase()) //one upper case
+						|| pass.equals(pass.toUpperCase()) //one lower case
+						|| pass.length() < 8 //at least 8 chars
+						|| !pass.matches(".*\\d.*")) { // at least one number
+					System.err.println("Ο κωδικός θα πρέπει να αποτελείται απο τουλάχιστον 8 χαρακτήρες και να περιέχει απο τουλάχιστον έναν αριθμό, ένα κεφαλαίο και ένα πεζό γράμμα");
+					System.out.println("Παρακαλώ εισάγετε διαφορετικό κωδικό");
+					pass = Inputs.stringScanner();
+				}
+				
+				
 				//double check password
 				System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
 				pass2 = Inputs.stringScanner();
@@ -128,9 +138,7 @@ public class Profile {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
-		newLocation(7);
-	}
+	
 	/**
 	 * Inserts new user location in the database 
 	 * 
