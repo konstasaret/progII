@@ -3,6 +3,7 @@ package gr.aueb.dmst.StopSpread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.Locale;
 
 /**
  * @author alexd
@@ -127,7 +128,9 @@ public class Profile {
 			e.printStackTrace();
 		}
 	}
-	
+	public static void main(String[] args) {
+		newLocation(7);
+	}
 	/**
 	 * Inserts new user location in the database 
 	 * 
@@ -135,19 +138,27 @@ public class Profile {
 	 */
 	public static void newLocation(int user_id) {
 		
-		System.out.println("Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε :");
+		System.out.println("Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε με κεφαλάια γράμματα και χωρίς τόνους:");
+		
         System.out.println("Εισάγετε την πόλη :");
         String city = Inputs.stringScanner();
+        while (!city.equals(city.toUpperCase())) {
+        	System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
+            city = Inputs.stringScanner();
+        }
         
-        System.out.println("Εισάγετε την διεύθηνση :");
+        System.out.println("Εισάγετε την διεύθυνση :");
         String address = Inputs.stringScanner();
+        while (!address.equals(address.toUpperCase())) {
+        	System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
+            address = Inputs.stringScanner();
+        }
         
         System.out.println("Εισάγετε την ώρα άφιξης, στρογγυλοποιημένη στον προηγούμενο ακέραιο :");
         int arr_time = Inputs.rangeInt(1,24);
         
         System.out.println("Εισάγετε την ώρα αναχώρησης, στρογγυλοποιημένη στον επόμενο ακέραιο :");
         int dep_time = Inputs.rangeInt(1,24);
-        
         while (dep_time <= arr_time) {
         	System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη απο την ώρα άφιξης :");
             dep_time = Inputs.rangeInt(1,24);
