@@ -337,6 +337,8 @@ public class Database {
 					return true;
 				}
 			}
+			results.close();
+			stmt.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -363,7 +365,8 @@ public class Database {
 					return id;
 				}
 			}
-			
+			results.close();
+			stmt.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -383,6 +386,9 @@ public class Database {
 			ResultSet results = stmt.executeQuery("SELECT PASSWORD FROM USERS WHERE USER_ID=" + user_id);
 			results.next();
 			pass = results.getString(1);
+			
+			results.close();
+			stmt.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -403,6 +409,9 @@ public class Database {
 			ResultSet results = stmt.executeQuery("SELECT USER_NAME FROM USERS WHERE USER_ID=" + user_id);
 			results.next();
 			user_name = results.getString(1);
+			
+			results.close();
+			stmt.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -461,9 +470,12 @@ public class Database {
                 		+ "WHERE CITY='"+ City.get(x) +"' "//Exclude different city
                 		+ "AND ADDRESS='"+ Address.get(x)+"' "//Exclude different address 
                 		+ "AND DAY='" + date.get(x) + "' " //Exclude different date
-                		+ "AND ((ARRIVAL_TIME<="+ departure_time.get(x) + " AND ARRIVAL_TIME>=" +arrival_time.get(x) + ")"
+                		//Exclude different time
+                		+ "AND (((ARRIVAL_TIME<="+ departure_time.get(x) + " AND ARRIVAL_TIME>=" +arrival_time.get(x) 
+                				+ ") OR (" 
+                				+ "DEPARTURE_TIME<=" + departure_time.get(x) +"AND DEPARTURE_TIME>=" + arrival_time.get(x)+ "))"
                 				+ " OR "
-                				+ "(DEPARTURE_TIME<=" + departure_time.get(x) +"AND DEPARTURE_TIME>=" + arrival_time.get(x)+ ")) "//Exclude different time
+                				+ "(ARRIVAL_TIME<"+ arrival_time.get(x) + "AND DEPARTURE_TIME>" + departure_time.get(x) + ")) "
                 		+ "AND USER_ID!=" + user_id);//Exclude same user
             	
             	//store data in the arraylist
