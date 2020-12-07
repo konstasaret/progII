@@ -30,6 +30,8 @@ class ServerClientThread extends Thread {
 
             int count = -1;
             
+        	Database.createConnection();//connection with database
+
             while(count != 0) {
             	
 	            clientMessage = inStream.readUTF();
@@ -45,9 +47,9 @@ class ServerClientThread extends Thread {
                 }else if (clientMessage.equals("newuser")) {
 	                count = -2;
                 }
-                  
+	            
+
                 if (count == -2) {
-                	Database.createConnection();//connection with database
                    
                     String userName = inStream.readUTF();//user name from client
  
@@ -71,9 +73,7 @@ class ServerClientThread extends Thread {
                     //Insertion in table 
                     Database.insertIntoUserTable(userName, pass);
 
-                    Database.shutdownConnection();//shutdown connection with database
                 }else if (count == -1) {
-                	Database.createConnection();//connection with database
 
                 	String userName = inStream.readUTF();//user name from client
                 	
@@ -112,7 +112,6 @@ class ServerClientThread extends Thread {
             		outStream.writeInt(user_id);//returning user id
             		outStream.flush();
             		
-            		Database.shutdownConnection();
 
                 }else if (count == 1) {
                 	
@@ -140,12 +139,29 @@ class ServerClientThread extends Thread {
                     System.out.println("Πήγενε σε κάποιο νοσοκομείο");
 
                 }else if (count == 3) {
+                	int user_id = inStream.readInt();//get user id from client
 
-                    Database.deleteUsersRow(Integer.parseInt(clientMessage));//problhma
-                    serverMessage="From Server to Client-" + clientNo + "Ok you are deleted";// den mporoume na ton sbhnoume
-                    outStream.writeUTF(serverMessage);//prepei na aposindeete kateu8eian
-                    outStream.flush();
-
+                	String given_pass = inStream.readUTF();//get user input password from client
+                	Database.createConnection();
+            		String exist_pass = Database.findUsersPass(user_id);//user's password
+                	
+            		//password check
+            		while (!given_pass.equals(exist_pass)) {
+            			serverMessage = "Ο κωδικός σας δεν ταιριάζει \nΠαρακαλώ δωκιμάστε ξανά :";
+            			outStream.writeUTF(serverMessage);
+            			outStream.flush();
+            			
+            			given_pass = inStream.readUTF();
+            			
+            		}
+            		
+            		//check done
+                	serverMessage = "Αποδεκτός Κωδικός Χρήστη";
+                	outStream.writeUTF(serverMessage);
+                	outStream.flush();
+                	
+                    Database.deleteUsersRow(user_id);
+                   
                 }else if (count == 4) {
 
                     Database.printUserLocations(Integer.parseInt(clientMessage)); //problhma kai edo
@@ -154,8 +170,12 @@ class ServerClientThread extends Thread {
                     outStream.flush();
 
                 }
+
+
             }
             
+            Database.shutdownConnection();
+
             inStream.close();
             outStream.close();
             serverClient.close();

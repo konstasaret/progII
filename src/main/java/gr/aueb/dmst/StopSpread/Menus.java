@@ -20,9 +20,7 @@ public class Menus {
 	 * @param id
 	 */
 	public static void firstMenu(int id) {
-		Database.createConnection();
-		System.out.println("Καλώς ήλθατε " + Database.findUserName(id) + "!");
-		Database.shutdownConnection();
+		System.out.println("Καλώς ήλθατε!");
 		System.out.println("1. Προσθήκη νέας τοποθεσίας.");
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
 		System.out.println("3. Διαγραφή Χρήστη και δεδομένων");

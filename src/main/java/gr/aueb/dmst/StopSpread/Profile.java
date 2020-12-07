@@ -224,35 +224,59 @@ public class Profile {
         	e.printStackTrace();
         }
 	}
+	
+	public static void infected(int user_id) {
+		
+	}
 
 	/**
 	 * Double checks user's credentials and deletes users data
 	 * @param user_id
 	 */
 	public static void deleteUser(int user_id) {
-		Database.createConnection();
-		//double check user's credentials
-		System.out.println("Παρακαλώ εισάγεται ξανά τον κωδικό σας :");
-		String given_pass = Inputs.stringScanner();
-		String exist_pass = Database.findUsersPass(user_id);
-		while (!given_pass.equals(exist_pass)) {
-			System.out.println("Ο κωδικός σας δεν ταιριάζει \nΠαρακαλώ δωκιμάστε ξανά :");
-			given_pass = Inputs.stringScanner();
-			exist_pass = Database.findUsersPass(user_id);
+		try {
+			//server-client messages
+	        DataOutputStream outStream = TCPClient.getOutStream();
+	        DataInputStream inStream = TCPClient.getInStream();
+	        String clientMessage;
+			String serverMessage;
+			
+			//for option identification 
+			clientMessage = "c epilogi";
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+			
+			//pass user id to server
+			outStream.writeInt(user_id);
+			outStream.flush();
+			
+			//double check user's credentials
+			System.out.println("Παρακαλώ εισάγεται ξανά τον κωδικό σας :");
+			do {
+			String given_pass = Inputs.stringScanner();
+			
+			clientMessage = given_pass;
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+			
+			serverMessage = inStream.readUTF();
+			System.out.println(serverMessage);
+			}while (!serverMessage.equals("Αποδεκτός Κωδικός Χρήστη"));
+			
+			System.out.println("Επιτυχία διαγραφής στοιχείων");
+
+		}catch (IOException e) {
+			System.err.println("Προβλημα κατα την διαγραφή χρήστη");
+			e.printStackTrace();
 		}
-		
-		//deletion
-		Database.deleteUsersRow(user_id);
-		System.out.println("Επιτυχία διαχραφής στοιχείων");
-		Database.shutdownConnection();
 	}
 	
 	public static void seeLocations(int user_id) {
-		Database.createConnection();
+		
 			
 		Database.printUserLocations(user_id);
 			
-		Database.shutdownConnection();
+		
 	}
 		
 }

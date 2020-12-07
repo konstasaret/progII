@@ -71,22 +71,6 @@ public class TCPClient {
                     if (option == 1) {
                     	//Προσθήκη τοποθεσίας
                     	Profile.newLocation(user_id);
-                    	
-
-                        
-
-                        
-
-                        
-                        
-
-                        
-                        
-                       
-                        
-                        
-
-
                     } else if (option == 2){
                     	//θετικός
 
@@ -94,7 +78,7 @@ public class TCPClient {
                     }else if (option == 3) {
                     	//διαγραφή
                     	Profile.deleteUser(user_id);
-                    	System.exit(0);
+                    	Number = "7";
                     }else if (option == 4) {
                     	//τοποθεσίες
                     	Profile.seeLocations(user_id);
@@ -107,11 +91,9 @@ public class TCPClient {
                 }
 
                 System.out.println("Are you sure yes/no");
-                Scanner quitsc = new Scanner(System.in);
                 clientMessage=br.readLine();
                 outStream.writeUTF(clientMessage);
                 outStream.flush();
-                quitsc.close();
             }
 
             outStream.close();
