@@ -33,6 +33,7 @@ public class MainEvaluation { //begginig of class
 		while(flag3){//beggining of loop
 		/**Appears the Evaluation Menu*/
 		objectMenouEvaluation.printMenu();
+		System.out.printf(" %s \n", "Παρακαλώ εισάγετε την επιλογή σας : ");
 
 		userchoice = sc.nextInt();
 
