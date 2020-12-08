@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**authors 
+ * Vicky
+ * Chrysoula
+ * Giannis
+ * Evaggelia*/
+
 /**This class shows the statistics and graphs 
  * per area(Attiki,Ipiros,Thesalsaloniki
  * ,Thraki,Kriti,Makedonia,Nisia Ioniou,
