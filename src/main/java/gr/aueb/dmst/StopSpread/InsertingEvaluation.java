@@ -11,7 +11,9 @@ package gr.aueb.dmst.StopSpread;
 	/**class InsertingEvaluation asks from
 	the user to evaluate the app*/
 	import java.util.Scanner;
-
+	/**in order to use the static method of sort in the array*/
+	import java.util.Arrays; 
+	
 	public class InsertingEvaluation{
 		/**private memembers of the class*/
 		/**counts the users who vote 1 = κακή εφαρμογή*/
