@@ -13,7 +13,7 @@ package gr.aueb.dmst.StopSpread;
 	the user to evaluate the app*/
 	import java.util.Scanner;
 	/**in order to use the static method of sort in the array*/
-	import java.util.Arrays; 
+	import java.util.ArrayList; 
 	
 	public class InsertingEvaluation{
 		/**private memembers of the class*/
@@ -29,14 +29,17 @@ package gr.aueb.dmst.StopSpread;
 		private static int totalusers;
 		/**holds the maximum among mark1,mark2,mark3,mark4*/
 		private static int storeMax1; 
+		/**create table that stores the number of each mark */
+		static int[] markarray = new int[4];
 		
-		public static void insertEvaluation() { //beggining of insertEvaluation method
-
+		public static void insertEvaluation() { //beginning of insertEvaluation method
 		Scanner sc4 = new Scanner(System.in);
 		int choice4 = 0;
 		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας:");
-		System.out.println("Κλίμακα βαθμολογίας: 1 = κακή εφαρμογή, 2 = μέτρια"
-				+ "εφαρμογή, 3 = καλή εφαρμογή, 4 = πολύ καλή εφαρμογή");
+		System.out.println("Κλίμακα βαθμολογίας: 1 = κακή εφαρμογή");
+		System.out.println("					 2 = μέτρια εφαρμογή");
+		System.out.println("					 3 = καλή εφαρμογή"); 
+		System.out.println("					 4 = πολύ καλή εφαρμογή");
 		System.out.println("Η βαθμολογία μου είναι:");
 		choice4 = sc4.nextInt();
 		//if that counts how many vote each choice(1,2,3,4)
@@ -61,7 +64,7 @@ package gr.aueb.dmst.StopSpread;
 		System.out.printf("%d : συνολικά ψήφισαν\n",totalusers);
 		}
 
-		public void printDomination(){
+		public void printDomination() {
 			arraymarks[0] = this.mark1;
 			arraymarks[1] = this.mark2;
 			arraymarks[2] = this.mark3;
