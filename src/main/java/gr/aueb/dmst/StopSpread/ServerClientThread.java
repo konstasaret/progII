@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import javax.print.attribute.standard.Severity;
+
 class ServerClientThread extends Thread {
     
 	Socket serverClient;
@@ -37,8 +39,10 @@ class ServerClientThread extends Thread {
             while(count != 0) {
             	
 	            clientMessage = inStream.readUTF();
-	            
-	            if (clientMessage.equals("newuser")) {
+	            if (clientMessage.equals("check")) {
+	            	//ελεγχος επαφών
+	            	count = -3;
+	            }else if (clientMessage.equals("newuser")) {
 	            	//Νέος Χρήστης
 	                count = -2;
 	            }else if (clientMessage.equals("login")) {
@@ -58,8 +62,17 @@ class ServerClientThread extends Thread {
 	            	count = 4;
 	            }
 	            
+	            if (count == -3) {
+	            	//ελεγχος επαφών
 
-                if (count == -2) {
+	            	int user_id = inStream.readInt();
+	            	
+	            	boolean infected = Database.checkInfected(user_id);
+	            	
+	            	outStream.writeBoolean(infected);
+	            	outStream.flush();
+	            
+	            }else if (count == -2) {
 	            	//Νέος Χρήστης
 
                     String userName = inStream.readUTF();//user name from client

@@ -140,6 +140,41 @@ public class Profile {
 	}
 
 	/**
+	 * Called every time a user is logged in the app
+	 * Warns him if someone infected has been in the same locations as him the past 14 days
+	 * @param user_id
+	 */
+	public static void checkConnections(int user_id) {
+		try{
+		//server-client messages
+        DataOutputStream outStream = TCPClient.getOutStream();
+        DataInputStream inStream = TCPClient.getInStream();
+        String clientMessage;
+		String serverMessage;
+		
+		//for option identification 
+		clientMessage = "check";
+		outStream.writeUTF(clientMessage);
+		outStream.flush();
+		
+		//pass user id to server
+		outStream.writeInt(user_id);
+		outStream.flush();
+		
+		boolean infected = inStream.readBoolean();
+		if (infected == true) {
+			System.out.println("***********************************");
+			System.out.println("Εχετε έρθει σε επαφή με κρούσμα \n"
+				+ "Πηγένετε στο πλησιέστερο νοσοκομείο");
+			System.out.println("***********************************");
+		}
+		}catch(IOException e) {
+			System.out.println("Πρόβλημα κατά τον έλεγχο των επαφών");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Inserts new user location in the database 
 	 * 
 	 * @param user_id 
@@ -307,5 +342,7 @@ public class Profile {
 			
 		
 	}
+
+
 		
 }

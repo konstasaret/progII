@@ -25,7 +25,7 @@ public class Menus {
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
 		System.out.println("3. Διαγραφή Χρήστη και δεδομένων");
 		System.out.println("4. Δες τις τοποθεσίες σου");
-		
+		System.out.println("5. Αποσύνδεση");
 	}
 	
 	/** Prints the first menu 

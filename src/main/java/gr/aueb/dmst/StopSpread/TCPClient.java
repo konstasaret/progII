@@ -61,12 +61,13 @@ public class TCPClient {
                     }
             	}
             	
-                   
+            	//ελεγχος επαφών
+            	Profile.checkConnections(user_id);
                 
                 int option;
                 while (!Number.equals("7")){
                 	Menus.firstMenu(user_id);
-                	option = Inputs.rangeInt(1, 4);
+                	option = Inputs.rangeInt(1, 5);
 
                     if (option == 1) {
                     	//Προσθήκη τοποθεσίας
@@ -83,10 +84,11 @@ public class TCPClient {
                     	//τοποθεσίες
                     	Profile.seeLocations(user_id);
                     	
+                    }else if (option == 5) {
+                    	System.out.println("Λυπούμαστε που φεύγετε");
+                    	Number = "7";
                     }
-                    clientMessage = "to id tou user";
-                    outStream.writeUTF(clientMessage);
-                    outStream.flush();
+                    
 
                 }
 
