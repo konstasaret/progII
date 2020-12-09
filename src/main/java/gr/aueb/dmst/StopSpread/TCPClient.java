@@ -73,7 +73,7 @@ public class TCPClient {
                     	Profile.newLocation(user_id);
                     } else if (option == 2){
                     	//θετικός
-
+                    	Profile.infected(user_id);
 
                     }else if (option == 3) {
                     	//διαγραφή

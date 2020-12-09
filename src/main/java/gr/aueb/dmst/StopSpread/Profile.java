@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
- * @author alexd
+ * @author AirlineDog
  *	
  */
 public class Profile {
@@ -162,10 +162,10 @@ public class Profile {
             address = Inputs.stringScanner();
         }
         
-        System.out.println("Εισάγετε την ώρα άφιξης, στρογγυλοποιημένη στον προηγούμενο ακέραιο :");
+        System.out.println("Εισάγετε την ώρα άφιξης, σε εικοσιτετράωρη βάση, στρογγυλοποιημένη στον προηγούμενο ακέραιο :");
         int arr_time = Inputs.rangeInt(1,24);
         
-        System.out.println("Εισάγετε την ώρα αναχώρησης, στρογγυλοποιημένη στον επόμενο ακέραιο :");
+        System.out.println("Εισάγετε την ώρα αναχώρησης, σε εικοσιτετράωρη βάση, στρογγυλοποιημένη στον επόμενο ακέραιο :");
         int dep_time = Inputs.rangeInt(1,24);
         while (dep_time <= arr_time) {
         	System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη απο την ώρα άφιξης :");
@@ -228,8 +228,34 @@ public class Profile {
         }
 	}
 	
+	/**
+	 * Called when user is infected
+	 * Warns other users that have been in the same location the past 14 days
+	 * @param user_id
+	 */
 	public static void infected(int user_id) {
-		
+		try {
+			//server-client messages
+	        DataOutputStream outStream = TCPClient.getOutStream();
+	        DataInputStream inStream = TCPClient.getInStream();
+	        String clientMessage;
+			String serverMessage;
+			
+			//for option identification 
+			clientMessage = "b epilogi";
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+			
+			//pass user id to server
+			outStream.writeInt(user_id);
+			outStream.flush();
+			
+			serverMessage = inStream.readUTF();
+			System.out.println(serverMessage);
+		}catch (IOException e) {
+			System.out.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -20,7 +20,10 @@ class ServerClientThread extends Thread {
     }
     
     public void run() {
-        try{
+    	
+    	Database.createConnection();//connection with database
+
+    	try{
         	
         	
             DataInputStream inStream = new DataInputStream(serverClient.getInputStream());
@@ -30,27 +33,35 @@ class ServerClientThread extends Thread {
 
             int count = -1;
             
-        	Database.createConnection();//connection with database
 
             while(count != 0) {
             	
 	            clientMessage = inStream.readUTF();
 	            
-	            if (clientMessage.equals("a epilogi")) {
+	            if (clientMessage.equals("newuser")) {
+	            	//Νέος Χρήστης
+	                count = -2;
+	            }else if (clientMessage.equals("login")) {
+	            	//Σύνδεση 
+	                count = -1;
+                }else if (clientMessage.equals("a epilogi")) {
+                	//Προσθήκη τοποθεσίας
 	                count = 1;
 	            }else if (clientMessage.equals("b epilogi")) {
-	                count = 2;
+	            	//θετικός
+	            	count = 2;
 	            }else if (clientMessage.equals("c epilogi")){
-	                count = 3;
-	            }else if (clientMessage.equals("login")) {
-	                count = -1;
-                }else if (clientMessage.equals("newuser")) {
-	                count = -2;
-                }
+	            	//διαγραφή
+	            	count = 3;
+	            }else if (clientMessage.equals("d epilogi")) {
+	            	//τοποθεσίες
+	            	count = 4;
+	            }
 	            
 
                 if (count == -2) {
-                   
+	            	//Νέος Χρήστης
+
                     String userName = inStream.readUTF();//user name from client
  
                     //check for duplicate user name 
@@ -74,6 +85,7 @@ class ServerClientThread extends Thread {
                     Database.insertIntoUserTable(userName, pass);
 
                 }else if (count == -1) {
+	            	//Σύνδεση 
 
                 	String userName = inStream.readUTF();//user name from client
                 	
@@ -114,7 +126,8 @@ class ServerClientThread extends Thread {
             		
 
                 }else if (count == 1) {
-                	
+                	//Προσθήκη τοποθεσίας
+
                 	String city = inStream.readUTF();            
                     String address = inStream.readUTF();                  
                     int arrival_time = inStream.readInt();                   
@@ -135,10 +148,21 @@ class ServerClientThread extends Thread {
                     outStream.writeUTF(serverMessage);
                     outStream.flush();
                 }else if (count == 2) {
-
-                    System.out.println("Πήγενε σε κάποιο νοσοκομείο");
-
+	            	//θετικός
+                	
+                	int user_id = inStream.readInt();
+                	
+                	Database.findConnections(user_id);
+                    
+                	serverMessage = "Ευχαριστούμε για την ενημέρωση\n"
+                    		+ "Θα ειδοποιήσουμε τις πιθανές επαφές σας\n"
+                    		+ "Πηγένετε σε κάποιο νοσοκομείο";
+                    outStream.writeUTF(serverMessage);
+                    outStream.flush();
+                    
                 }else if (count == 3) {
+	            	//διαγραφή
+
                 	int user_id = inStream.readInt();//get user id from client
 
                 	String given_pass = inStream.readUTF();//get user input password from client
@@ -163,6 +187,7 @@ class ServerClientThread extends Thread {
                     Database.deleteUsersRow(user_id);
                    
                 }else if (count == 4) {
+	            	//τοποθεσίες
 
                     Database.printUserLocations(Integer.parseInt(clientMessage)); //problhma kai edo
                     serverMessage="From Server to Client-" + clientNo + "Ok you are deleted";// database ston tcp
@@ -174,7 +199,6 @@ class ServerClientThread extends Thread {
 
             }
             
-            Database.shutdownConnection();
 
             inStream.close();
             outStream.close();
@@ -184,7 +208,8 @@ class ServerClientThread extends Thread {
         	System.err.println("Client -" + clientNo + " exit!! ");
         }finally{
             System.out.println("Connection reset waiting for new Client");
-
         }
+        Database.shutdownConnection();
+
     }
 }
