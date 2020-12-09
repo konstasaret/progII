@@ -1,3 +1,4 @@
+//na appuikeytoun oi metablites tis ajiologiseis mai to max gia na sinexizei i roi 
 package gr.aueb.dmst.StopSpread;
 
 /**
@@ -11,19 +12,25 @@ package gr.aueb.dmst.StopSpread;
 	/**class InsertingEvaluation asks from
 	the user to evaluate the app*/
 	import java.util.Scanner;
-
+	/**in order to use the static method of sort in the array*/
+	import java.util.Arrays; 
+	
 	public class InsertingEvaluation{
 		/**private memembers of the class*/
-
-		private int mark1; //counts the users who vote 1 = κακή εφαρμογή
-		private int mark2; //counts the users who vote 2 = μέτρια εφαρμογή
-		private int mark3; //counts the users who vote 3 = καλή εφαρμογή
-		private int mark4; //counts the users who vote 4 = πολύ καλή εφαρμογή
-		private int totalusers; //counts the total users who evaluate our Covidapp
-		private int storeMax1; //holds the maximum between mark3 and mark4
-		private int storeMax2; //holds the maximum between mark3 and mark4
-		public void insertEvaluation(){
-
+		/**counts the users who vote 1 = κακή εφαρμογή*/
+		private static int mark1; 
+		/**counts the users who vote 2 = μέτρια εφαρμογή*/
+		private static int mark2; 
+		/**counts the users who vote 3 = καλή εφαρμογή*/
+		private static int mark3; 
+		/**counts the users who vote 4 = πολύ καλή εφαρμογή*/
+		private static int mark4; 
+		/**counts the total users who evaluate our StopCovidSpread app*/
+		private static int totalusers;
+		/**holds the maximum among mark1,mark2,mark3,mark4*/
+		private static int storeMax1; 
+		
+		public static void insertEvaluation() { //beggining of insertEvaluation method
 
 		Scanner sc4 = new Scanner(System.in);
 		int choice4 = 0;
@@ -54,20 +61,31 @@ package gr.aueb.dmst.StopSpread;
 		System.out.printf("%d : συνολικά ψήφισαν\n",totalusers);
 		}
 
-		/**public void printDomination(){
-		if(Math.max(mark1,mark2)){
-			System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι κακή.");
-		}
-		if(){
-		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι μέτρια.");
-		}
-		if(){
-		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι καλή.");
-		}
-		if(){
-		System.out.println("Οι περισσότεροι ψήφισαν ότι η εφαρμογή είναι πολύ καλή.");
-		}
-		}*/
+		public void printDomination(){
+			arraymarks[0] = this.mark1;
+			arraymarks[1] = this.mark2;
+			arraymarks[2] = this.mark3;
+			arraymarks[3] = this.mark4;
+			/**sort thw elements of the array in auousa*/
+			Arrays.sort(arraymarks);
+			System.out.println();
+			//max of elements is the arraymarks[3] element
+			storeMax1 = arraymarks[3];
+			//sigkrino kaue stoixio me to teleytaio kai Συστεμ
+			System.out.println("Η Γενική Κριτική για την εφαρμογή  είναι: ");
+			if( mark1 == storeMax1){
+				System.out.println("Η εφαρμογή είναι κακή");
+			}
+			if( mark2 == storeMax1){
+						System.out.println("Η εφαρμογή είναι μέτρια");
+			}
+			if( mark3 == storeMax1){
+						System.out.println("Η εφαρμογή είναι καλή");
+			}
+			if( mark4 == storeMax1){
+						System.out.println("Η εφαρμογή είναι πολύ καλή");
+			}
+		}//ENDING OF printDomination
 
 		//na to olokliroso
 		public void reasonOfEvaluation(){ //αποθήκευση σε αρχειο με λογια τι του αρεσε τι δεν του αρεσε
