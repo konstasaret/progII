@@ -6,19 +6,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.text.SimpleDateFormat;
 
 /**
- * @author alexd
- *Database handing class
+ * @author AirlineDog
+ *Database handling class
  */
 public class Database {
 
+	/** Database URL */
 	private static final String dbURL = "jdbc:derby:derbyDB;create=true";
-	
+	/** A connection with the database */
 	private static Connection conn = null;
+	/** The object used for executing a static SQL statement 
+	 * and returning the results it produces */
     private static Statement stmt = null;
     
     /**
@@ -53,10 +56,9 @@ public class Database {
     	
     	//deleteUsersRow();
 
-    	//printUsersTable();
-    	//printLocationsTable();
-    	System.out.println(findConnections(1));
-    	
+    	printUsersTable();
+    	printLocationsTable();
+    	findConnections(1);
     	shutdownConnection();    
     }
 	
@@ -71,8 +73,8 @@ public class Database {
 	            //System.out.println("Database connection created");
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	        }
-		}
+	        }//end of try-catch
+		}//end of method
 		
     
     
@@ -99,32 +101,36 @@ public class Database {
                 e.printStackTrace();
             }
 			//System.out.println("database shutdown");
-	    }
-	}
+	    }//end of try-catch
+	}//end of method
 	
 	
 	
 	
-    /**Creates Table of users with columns USER_ID, USER_NAME, PASSWORD*/
+    /**Creates Table of users with columns USER_ID, USER_NAME, PASSWORD, POSSIBLY_INFECTED*/
     public static void createUsersTable() {
 		 try {
-			 stmt = conn.createStatement();
+			 stmt = conn.createStatement();//create a Statement
 			 stmt.execute("CREATE TABLE USERS("
 			 		+ "USER_ID INT NOT NULL,"
 			 		+ "USER_NAME VARCHAR(255),"
 			 		+ "PASSWORD VARCHAR(30),"
+			 		+ "POSSIBLY_INFECTED BOOLEAN,"
 			 		+ "PRIMARY KEY (USER_ID) )");
 			 stmt.close();
 		 }catch(SQLException e ) {
 			 e.printStackTrace();
-		 }
-	 }
+		 }//end of try-catch
+	 }//end of method
+    
+    
+    
     
     /**Creates Table of user's Locations with columns CITY, ADDRESS, ARRIVAL_TIME,
      * DEPARTURE_TIME, USER_ID*/
     public static void createLocationsTable() {
 		 try {
-			 stmt = conn.createStatement();
+			 stmt = conn.createStatement();//create a Statement
 			 stmt.execute("CREATE TABLE LOCATIONS("
 			 		+ "CITY VARCHAR(255),"
 			 		+ "ADDRESS VARCHAR(255),"
@@ -136,35 +142,37 @@ public class Database {
 			 stmt.close();
 		 }catch(SQLException e) {
 			 e.printStackTrace();
-		 }
-	 }
+		 }//end of try-catch
+	 }//end of method
+    
+    
     
     
     /**Deletes the users and locations tables*/
     public static void deleteTables() {
     	try {
-    		stmt = conn.createStatement();
+    		stmt = conn.createStatement();//create a Statement
     		stmt.execute("DROP TABLE LOCATIONS ");
     		stmt.execute("DROP TABLE USERS");
     		stmt.close();
     	}catch(SQLException e) {
     		e.printStackTrace();
-    	}
-    }
+    	}//end of try-catch
+    }//end of method
     
     
 	/**Deletes row from USERS based on user_id
+	 * and consequently LOCATIONS rows with the same foreign key are deleted 
 	 * @param user_id */
 	public static void deleteUsersRow(int user_id) {
 		try{
-			stmt = conn.createStatement();
+			stmt = conn.createStatement();//create a Statement
 			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
 			stmt.close();
-			System.out.println("Users Line deleted");
 		}catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
+		}//end of try-catch
+	}//end of method
 	
 	
 	
@@ -172,31 +180,37 @@ public class Database {
 	 * @param user_id */
 	public static void deleteLocationsRow(int user_id) {
 		try{
-			stmt = conn.createStatement();
+			stmt = conn.createStatement();//create a Statement
 			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
 			stmt.close();
-			System.out.println("Users Line deleted");
 		}catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
+		}//end of try-catch
+	}//end of method
     
     
     /**Inserts rows into users table
+     * POSSIBLY_INFECTED column pre set as FALSE
      * @param User_name 
      * @param Password */
     public static void insertIntoUserTable(String User_name, String Password) {
-    		try {
-	            stmt = conn.createStatement();
-	            ResultSet results = stmt.executeQuery("SELECT MAX(USER_ID) FROM USERS");
-	            results.next();
-	            int id = results.getInt(1) + 1;
-	            stmt.execute("INSERT INTO USERS" + " VALUES ("+ id + ",'" + User_name + "','" + Password +"')");
-	            stmt.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+		try {
+            stmt = conn.createStatement();//create a Statement
+            
+            //find the next available user id
+            ResultSet results; //A table of data representing a database result 
+            results = stmt.executeQuery("SELECT MAX(USER_ID) FROM USERS");
+            results.next();//set the cursor to the next data
+            int id = results.getInt(1) + 1; // get the data and add 1 to be the user id
+            
+            stmt.execute("INSERT INTO USERS" + " VALUES ("+ id + ",'" + User_name + "','" + Password +"', FALSE)");
+            
+            results.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }//end of try-catch
+    }//end of method
     
     
     
@@ -209,59 +223,62 @@ public class Database {
      * @param user_id */
     public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time,String date, int user_id) {
     	try {
-            stmt = conn.createStatement();
+            stmt = conn.createStatement();//create a Statement
             stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +",'"+ date +"',"+user_id+")");
             stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        }//end of try-catch
+    }//end of method
     
     
     /**Prints the users table*/
     public static void printUsersTable() {
 	        try {
-	            stmt = conn.createStatement();
-	            ResultSet results = stmt.executeQuery("SELECT * FROM USERS");
-	            ResultSetMetaData rsmd = results.getMetaData();
-	            int numberCols = rsmd.getColumnCount();
+	            stmt = conn.createStatement();//create a Statement
+	            ResultSet results;//A table of data representing a database result 
+	            results = stmt.executeQuery("SELECT * FROM USERS");
+	            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the typesand properties of the columns in a ResultSet object
+	            int numberCols = rsmd.getColumnCount();//get number of columns
 	            
-	            System.out.println("\n--------------------------------------------");
-	            for (int i=1; i<=numberCols; i++)
-	            {
+	            //output format
+	            System.out.println("\n-----------------------------------------------------------------------");
+	            for (int i=1; i<=numberCols; i++) {
 	                //print Column Names
 	                System.out.printf("%-18s", rsmd.getColumnLabel(i));  
-	            }
-	            System.out.println("\n--------------------------------------------");
+	            }//end of for
+	            System.out.println("\n-----------------------------------------------------------------------");
 
 	            while(results.next()) {
 	                int id = results.getInt(1);
 	                String Name = results.getString(2);
 	                String pass = results.getString(3);
-	                System.out.printf("%-18s%-18s%-18s%n", id, Name, pass);
-	            }
+	                boolean poss_inf = results.getBoolean(4);
+	                System.out.printf("%-18s%-18s%-18s%-18s%n", id, Name, pass, poss_inf);
+	            }//end of while
 	            results.close();
 	            stmt.close();
 	        }catch (SQLException e) {
 	            e.printStackTrace();
-	        }
-	    }
+	        }//end of try-catch
+	    }//end of method
     
     
     /**Prints the locations table*/
     public static void printLocationsTable() {
         try {
-            stmt = conn.createStatement();
-            ResultSet results = stmt.executeQuery("SELECT * FROM LOCATIONS");
-            ResultSetMetaData rsmd = results.getMetaData();
-            int numberCols = rsmd.getColumnCount();
+        	stmt = conn.createStatement();//create a Statement
+            ResultSet results;//A table of data representing a database result 
+            results = stmt.executeQuery("SELECT * FROM LOCATIONS");
+            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the typesand properties of the columns in a ResultSet object
+            int numberCols = rsmd.getColumnCount();//get number of columns
             
+            //output format
             System.out.println("\n-------------------------------------------------------------------------------------------------");
-            for (int i=1; i<=numberCols; i++)
-            {
+            for (int i=1; i<=numberCols; i++) {
                 //print Column Names
                 System.out.printf("%-18s", rsmd.getColumnLabel(i));  
-            }
+            }//end of for
 
             System.out.println("\n-------------------------------------------------------------------------------------------------");
 
@@ -273,13 +290,13 @@ public class Database {
                 String date = results.getString(5);
                 int user_id = results.getInt(6);
                 System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
-            }
+            }//end of while
             results.close();
             stmt.close();
         }catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        }//end of try-catch
+    }//end of method
     
     
 	/**
@@ -288,17 +305,18 @@ public class Database {
 	 */
 	public static void printUserLocations(int id) {
 		try {
-			stmt = conn.createStatement();
-			ResultSet results = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID=" + id);
-			ResultSetMetaData rsmd = results.getMetaData();
-            int numberCols = rsmd.getColumnCount();
+            stmt = conn.createStatement();//create a Statement
+            ResultSet results;//A table of data representing a database result 
+            results = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID=" + id);
+            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the typesand properties of the columns in a ResultSet object
+            int numberCols = rsmd.getColumnCount();//get number of columns
             
+            //output format
             System.out.println("\n-------------------------------------------------------------------------------------------------");
-            for (int i=1; i<=numberCols; i++)
-            {
+            for (int i=1; i<=numberCols; i++) {
                 //print Column Names
                 System.out.printf("%-18s", rsmd.getColumnLabel(i));  
-            }
+            }//end of for
 
             System.out.println("\n-------------------------------------------------------------------------------------------------");
 
@@ -310,13 +328,13 @@ public class Database {
                 String date = results.getString(5);
                 int user_id = results.getInt(6);
                 System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
-            }
+            }//end of while
             results.close();
             stmt.close();
         }catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
+        }//end of try-catch
+    }//end of method
 
 
 
@@ -329,21 +347,23 @@ public class Database {
      */
 	public static boolean usernameCheck(String user_name) {
 		try {
-			stmt = conn.createStatement();
-			ResultSet results = stmt.executeQuery("SELECT USER_NAME FROM USERS");
+			stmt = conn.createStatement();//create a Statement
+			ResultSet results ;//A table of data representing a database result 
+			results = stmt.executeQuery("SELECT USER_NAME FROM USERS");
+			
 			while(results.next()) {
 				String existingName = results.getString("USER_NAME");
 				if (existingName.equals(user_name)) {
 					return true;
-				}
-			}
+				}//end of if
+			}//end of while
 			results.close();
 			stmt.close();
 		}catch(SQLException e){
 			e.printStackTrace();
-		}
+		}//end of try-catch
 		return false;
-	}
+	}//end of method
 
 
 
@@ -354,24 +374,25 @@ public class Database {
 	 * @return Returns users id or -1 if the user_name does not exist in the database
 	 */
 	public static int findUsersId(String name) {
-		int id = -1;
+		int id = -1; // initialize id
 		try {
-			stmt = conn.createStatement();
-			ResultSet results = stmt.executeQuery("SELECT USER_ID, USER_NAME FROM USERS");
+			stmt = conn.createStatement();//create a Statement
+			ResultSet results; //A table of data representing a database result 
+			results = stmt.executeQuery("SELECT USER_ID, USER_NAME FROM USERS");
 			while(results.next()) {
 				String existingNames = results.getString("USER_NAME");
 				if (name.equals(existingNames)) {
 					id = results.getInt("USER_ID");
 					return id;
-				}
-			}
+				}//end of if
+			}//end of while
 			results.close();
 			stmt.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
-		}
+		}//end of try-catch
 		return id;
-	}
+	}//end of method
 	
 	/**
 	 * Searching for user's password based on user_id
@@ -380,10 +401,11 @@ public class Database {
 	 * @return Returns user's password or returns -1 in String format if password not found
 	 */
 	public static String findUsersPass(int user_id) {
-		String pass = "-1";
+		String pass = "-1";//initialize password
 		try {
-			stmt = conn.createStatement();
-			ResultSet results = stmt.executeQuery("SELECT PASSWORD FROM USERS WHERE USER_ID=" + user_id);
+			stmt = conn.createStatement();//create a Statement
+			ResultSet results ;//A table of data representing a database result  
+			results = stmt.executeQuery("SELECT PASSWORD FROM USERS WHERE USER_ID=" + user_id);
 			results.next();
 			pass = results.getString(1);
 			
@@ -391,9 +413,9 @@ public class Database {
 			stmt.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
-		}
+		}//end of try-catch
 		return pass;
-	}
+	}//end of method
 	
 	
 	/**
@@ -403,10 +425,12 @@ public class Database {
 	 * @return Returns user's name or returns -1 in String format if password not found
 	 */
 	public static String findUserName(int user_id) {
-		String user_name = "-1";
+		
+		String user_name = "-1";//Initialize user_name
 		try {
-			stmt = conn.createStatement();
-			ResultSet results = stmt.executeQuery("SELECT USER_NAME FROM USERS WHERE USER_ID=" + user_id);
+			stmt = conn.createStatement();//create a Statement
+			ResultSet results;//A table of data representing a database result 
+			results = stmt.executeQuery("SELECT USER_NAME FROM USERS WHERE USER_ID=" + user_id);
 			results.next();
 			user_name = results.getString(1);
 			
@@ -414,21 +438,17 @@ public class Database {
 			stmt.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}//end of try-catch
 		return user_name;
-	}
+	}//end of method
 
 	/**
 	 * Gets user's ID and finds all his locations in the past 14 days,
 	 * then finds all other users who where in the same location at the same time
+	 * and updates USERS table column POSSIBLY_INFECTED
 	 * @param user_id
-	 * @return arrayList of all possibly infected users
 	 */
-	public static ArrayList<Integer> findConnections(int user_id) {
-		
-		//used to store possibly infected users
-		ArrayList<Integer> infected = new ArrayList<Integer>();
-		
+	public static void findConnections(int user_id) {
 		try {
 		
 			//14 days before the method is called
@@ -437,11 +457,12 @@ public class Database {
 			String infectionDate = formatter.format(currentDate);
 			
 			//user's 14 day locations
-			stmt = conn.createStatement();
-			ResultSet results;
+			stmt = conn.createStatement();//create a Statement
+			ResultSet results;//A table of data representing a database result 
 			results = stmt.executeQuery("SELECT * "
 					+ "FROM LOCATIONS "
-					+ "WHERE USER_ID="+user_id + " AND DAY>'" + infectionDate + "'");
+					+ "WHERE USER_ID=" + user_id 
+					+ " AND DAY>'" + infectionDate + "'");
 			
 			//data storage
 			ArrayList<String> City = new ArrayList<String>();
@@ -450,48 +471,49 @@ public class Database {
 			ArrayList<Integer> departure_time = new ArrayList<Integer>();
 			ArrayList<String> date = new ArrayList<String>();
 			
-			//every location data gets into arraylists
+			//every location data gets into the above arraylists
             while(results.next()){
             	City.add(results.getString(1));
                 Address.add(results.getString(2));
                 arrival_time.add(results.getInt(3));
                 departure_time.add(results.getInt(4));
                 date.add(results.getString(5));
-            }
+            }//end of while
             
-            
-            int locations_number = City.size();//number of locations the user visited
-            
+                       
             //every user that had been in the same locations
-            for (int x = 0; x<locations_number; x++) {
+            for (int x = 0; x < City.size(); x++) {
             	
             	results = stmt.executeQuery("SELECT DISTINCT USER_ID " //Getting unique user's ID
                 		+ "FROM LOCATIONS "
-                		+ "WHERE CITY='"+ City.get(x) +"' "//Exclude different city
-                		+ "AND ADDRESS='"+ Address.get(x)+"' "//Exclude different address 
-                		+ "AND DAY='" + date.get(x) + "' " //Exclude different date
-                		//Exclude different time
-                		+ "AND (((ARRIVAL_TIME<="+ departure_time.get(x) + " AND ARRIVAL_TIME>=" +arrival_time.get(x) 
+                		+ "WHERE CITY='"+ City.get(x) +"' "//Same City
+                		+ "AND ADDRESS='"+ Address.get(x)+"' "//Same address 
+                		+ "AND DAY='" + date.get(x) + "' " //Same date
+                		//Same time
+                		+ "AND (((ARRIVAL_TIME<="+ departure_time.get(x) + " AND ARRIVAL_TIME>=" +arrival_time.get(x)
                 				+ ") OR (" 
                 				+ "DEPARTURE_TIME<=" + departure_time.get(x) +"AND DEPARTURE_TIME>=" + arrival_time.get(x)+ "))"
                 				+ " OR "
                 				+ "(ARRIVAL_TIME<"+ arrival_time.get(x) + "AND DEPARTURE_TIME>" + departure_time.get(x) + ")) "
                 		+ "AND USER_ID!=" + user_id);//Exclude same user
-            	
-            	//store data in the arraylist
-            	while(results.next()){
-                    infected.add(results.getInt(1));
-                }
-            }
+            
+            }//end of for
+            
+            Statement stmt2 = conn.createStatement();//can't update table in the same Statement
+            
+            while(results.next()){
+            	stmt2.execute("UPDATE USERS "
+                		+ "SET POSSIBLY_INFECTED = TRUE "
+                		+ "WHERE USER_ID = " + results.getInt(1));
+            }//end of while
             
             results.close();
             stmt.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		return infected;
-	}
+		}//end of try-catch
+	
+	}//end of method
 
 
 
@@ -501,4 +523,4 @@ public class Database {
 	
 
 
-}
+}//end of class
