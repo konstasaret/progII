@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class MainEvaluation { //begginig of class
 	
-//	public static void main(String [] args){
+	public static void main(String [] args){
 		/**declaration of Scanner*/
 		Scanner sc = new Scanner(System.in);
 		/**declaration of the variable stores user's choice*/
@@ -22,7 +22,7 @@ public class MainEvaluation { //begginig of class
 		boolean flag3 = true;
 		
 		/**calling of MenouEvaluation*/
-		Menous objectMenouEvaluation = new Menous();
+		Menus objectMenouEvaluation = new Menus();
 		/*creation of Objects*/
 		InsertingEvaluation objectAlreadyEvaluation = new InsertingEvaluation();
 		InsertingEvaluation objectInsertingEvaluation = new InsertingEvaluation();
@@ -61,5 +61,5 @@ public class MainEvaluation { //begginig of class
 
 		} //ending of switch
 		} //ending of loop
-//	 } //ending of main
+	 } //ending of main
 	} //ending of class MainEvaluation
