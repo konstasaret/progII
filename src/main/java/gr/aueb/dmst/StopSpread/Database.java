@@ -55,7 +55,7 @@ public class Database {
 
     	//printUsersTable();
     	//printLocationsTable();
-    	//System.out.println(findConnections(1));
+    	System.out.println(findConnections(1));
     	
     	shutdownConnection();    
     }
@@ -465,7 +465,7 @@ public class Database {
             //every user that had been in the same locations
             for (int x = 0; x<locations_number; x++) {
             	
-            	results = stmt.executeQuery("SELECT USER_ID " //Getting user's ID
+            	results = stmt.executeQuery("SELECT DISTINCT USER_ID " //Getting unique user's ID
                 		+ "FROM LOCATIONS "
                 		+ "WHERE CITY='"+ City.get(x) +"' "//Exclude different city
                 		+ "AND ADDRESS='"+ Address.get(x)+"' "//Exclude different address 
