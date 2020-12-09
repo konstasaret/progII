@@ -25,17 +25,14 @@ public class Inputs {
 				throw new InputMismatchException();
 			}
 		}catch (InputMismatchException e){
-			System.err.println("Παρακαλώ εισάγετε αριθμό απο το "+lower_boundary+" μεχρι το "+upper_boundary);
+			System.err.println("Παρακαλώ εισάγετε αριθμό απο το " + lower_boundary + " μεχρι το " + upper_boundary);
 			inp = rangeInt(lower_boundary, upper_boundary);
 		}
 			return inp;	
 	}
-	
-	
 	/** @return user String input*/
 	public static String stringScanner () {
 		Scanner in = new Scanner(System.in);
 		return in.nextLine();
 	}
-	
 }

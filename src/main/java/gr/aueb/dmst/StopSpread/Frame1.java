@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 public class Frame1{
 
-//	public static void main(String [] args) {
+	public static void frame() {
 
 		//JFrame = a GUI window to add components to
 
@@ -26,6 +26,6 @@ public class Frame1{
 		frame.getContentPane().setBackground(Color.blue); //change color of background
 
 		
-//	}
+	}
 } 
 
