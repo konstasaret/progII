@@ -34,5 +34,5 @@ public class Inputs {
 	public static String stringScanner () {
 		Scanner in = new Scanner(System.in);
 		return in.nextLine();
-	}	
+	} 	
 }
