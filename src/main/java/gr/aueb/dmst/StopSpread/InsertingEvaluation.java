@@ -35,10 +35,11 @@ public class InsertingEvaluation {
 		Scanner sc4 = new Scanner(System.in);
 		int choice4 = 0;
 		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας:");
-		System.out.println("Κλίμακα βαθμολογίας: 1 = κακή εφαρμογή");
-		System.out.println("					 2 = μέτρια εφαρμογή");
-		System.out.println("					 3 = καλή εφαρμογή"); 
-		System.out.println("					 4 = πολύ καλή εφαρμογή");
+		System.out.println("Κλίμακα βαθμολογίας: ");
+		System.out.println("1 = κακή εφαρμογή");
+		System.out.println("2 = μέτρια εφαρμογή");
+		System.out.println("3 = καλή εφαρμογή"); 
+		System.out.println("4 = πολύ καλή εφαρμογή");
 		System.out.println("Η βαθμολογία μου είναι:");
 		choice4 = Inputs.rangeInt(1, 4);
 		//if that counts how many vote each choice(1,2,3,4)
