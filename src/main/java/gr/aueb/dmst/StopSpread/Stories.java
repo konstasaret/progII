@@ -2,6 +2,9 @@ package gr.aueb.dmst.StopSpread;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import java.util.ArrayList;
 
 /** A class where the user can read stories of patients and/or 
@@ -647,9 +650,9 @@ public class Stories {
 					 * during the import and gives a second chance */
 					catch (InputMismatchException e) {
 						sc1.nextLine();
-						System.err.println("InputMismatchException. Δοκιμάστε ξανά: ");
+						JOptionPane.showMessageDialog(null,"InputMismatchException. Δοκιμάστε ξανά: ");
 					} catch (ArithmeticException e) {
-						System.err.println("ArithmeticException. Δοκιμάστε ξανά: ");
+						JOptionPane.showMessageDialog(null,"ArithmeticException. Δοκιμάστε ξανά: ");
 					}
 				} while (contloop);
 				break;
