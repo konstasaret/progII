@@ -23,23 +23,11 @@ public class Stories {
 					/** The try block contains the code that it is likely
 					 * to lead to mistakes*/
 					try {
-						System.out.println("Μενού επιλογών:");
-						System.out.println("1. Ανάγνωση ιστορίας.");
-						System.out.println("2. Αποστολή της δικής μου ιστορίας!");
-						System.out.println("3. Έξοδος");
+						Menus.storiesMenu();
 						int ch = sc1.nextInt();
 						if (ch == 1) {
-							System.out.println("Πραγματικές ιστορίες ανθρώπων που νόσησαν με"
-									+ " Κορονοϊό.");
-							System.out.println("1. 6+1 μαρτυρίες για την καθημερινότητα του ιού "
-									+ "από διάφορες γωνιές του πλανήτη, με ελληνική \"ματιά\" ");
-							System.out.println("2. Μαρτυρίες πρώην ασθενών: Η ζωή μετά τον"
-									+ " κορονοϊό");
-							System.out.println("3. Νιώθω σαν να έχω άνοια»: Ιστορίες ασθενών που"
-									+ " ανάρρωσαν από κορονοϊό αλλά άρχισαν να ξεχνούν.");
-							System.out.println("4. Έξοδος.");
+							Menus.readStories();
 							Scanner sc = new Scanner(System.in);
-							System.out.println("Ποια ιστορία επιθυμείτε να διαβάσετε;");
 							int ans = sc.nextInt();
 							while (true) {
 
@@ -629,15 +617,7 @@ public class Stories {
 									System.out.println("Παρακαλώ εισάγετε μια από τις δυνατές επιλογές");
 								}
 
-								System.out.println("Πραγματικές ιστορίες Ελλήνων που νόσησαν με"
-										+ " Κορονοϊό.");
-								System.out.println("1. 6+1 μαρτυρίες για την καθημερινότητα του ιού "
-										+ "από διάφορες γωνιές του πλανήτη, με ελληνική \"ματιά\" ");
-								System.out.println("2. Μαρτυρίες πρώην ασθενών: Η ζωή μετά τον"
-										+ " κορονοϊό");
-								System.out.println("3. Νιώθω σαν να έχω άνοια»: Ιστορίες ασθενών που"
-										+ " ανάρρωσαν από κορονοϊό αλλά άρχισαν να ξεχνούν.");
-								System.out.println("4. Έξοδος.");
+								Menus.readStories();
 								ans = sc.nextInt();
 							}
 							System.out.println("Βοηθήστε μας να εμπλουτίσουμε τη συλλογή μας "
