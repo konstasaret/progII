@@ -14,10 +14,10 @@ public class MainEvaluation { //beginning of class
 		Menus objectMenouEvaluation = new Menus();
 		/*creation of Objects*/
 		InsertingEvaluation objectAlreadyEvaluation = new InsertingEvaluation(); //Ευαγγελία δε χρησιμοποιείται
-		InsertingEvaluation objectInsertingEvaluation = new InsertingEvaluation();
+		//InsertingEvaluation objectInsertingEvaluation = new InsertingEvaluation();
 		InsertingEvaluation objectMax = new InsertingEvaluation();
 		InsertingEvaluation objectReason = new InsertingEvaluation();
-		InsertingEvaluation objectSxolia = new InsertingEvaluation();
+		//InsertingEvaluation objectSxolia = new InsertingEvaluation();
 		while(flag3) {//beginning of loop
 			/**Appears the Evaluation Menu*/
 			objectMenouEvaluation.printMenu();
@@ -25,12 +25,12 @@ public class MainEvaluation { //beginning of class
 			userchoice = Inputs.rangeInt(1, 4);
 			switch (userchoice) { //beginning of switch
 			case 1:
-				objectInsertingEvaluation.printEvaluation();
+				objectAlreadyEvaluation.printEvaluation();
 				/**the user calling this class via the objectMax it shows which critic dominates-kaki,metria
 				 * ,kali,poli kali app or  combinations of them */
 				objectMax.printDomination(); 
 				/**the user calling this class via the objectReason inerts their sxolia about our app*/
-				objectReason.reasonOfEvaluation(); 
+				//objectReason.reasonOfEvaluation(); 
 				break;
 			case 2:
 				/**the user choosing this alternative can evaluate our app
@@ -40,7 +40,7 @@ public class MainEvaluation { //beginning of class
 			case 3:
 				/**the user choosing this alternative can write their critics in order to have 
 				 * feedbach and can improve our app*/
-				objectSxolia.reasonOfEvaluation();
+				objectReason.reasonOfEvaluation();
 				break;
 			case 4 :
 				flag3 = false;
