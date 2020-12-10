@@ -14,7 +14,7 @@ public class Stories {
 	 * */
 	public static void stories() {
 
-		ArrayList<String> list  = new ArrayList<String>(100); 
+		ArrayList<String> list  = new ArrayList<String>();
 
 		boolean contloop = true;
 		Scanner sc1 = new Scanner(System.in);
