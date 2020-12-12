@@ -16,4 +16,8 @@ public class TestStories {
 	public void testStories() {
 		Assert.assertEquals("failure - wrong size", list.size(), 0);
 	}
+	@Test
+	public void testConditionOne() {
+		
+	}
 }
