@@ -34,13 +34,9 @@ public class InsertingEvaluation {
 	public static void insertEvaluation() { //beginning of insertEvaluation method
 		Scanner sc4 = new Scanner(System.in);
 		int choice4 = 0;
-		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας:");
-		System.out.println("Κλίμακα βαθμολογίας: ");
-		System.out.println("1 = κακή εφαρμογή");
-		System.out.println("2 = μέτρια εφαρμογή");
-		System.out.println("3 = καλή εφαρμογή"); 
-		System.out.println("4 = πολύ καλή εφαρμογή");
-		System.out.println("Η βαθμολογία μου είναι:");
+		Menus mn = new Menus();
+		/**calling the menu of class Menus via the Object mn*/
+		mn.insertMenu(); 
 		choice4 = Inputs.rangeInt(1, 4);
 		//if that counts how many vote each choice(1,2,3,4)
 		if( choice4 == 1) {
