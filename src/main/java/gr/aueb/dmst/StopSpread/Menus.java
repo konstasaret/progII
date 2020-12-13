@@ -110,4 +110,16 @@ public class Menus {
 		System.out.println("4. Έξοδος.");
 		System.out.println("Ποια ιστορία επιθυμείτε να διαβάσετε;");
 	} //ending of readStories
+	/**This method prints the user's options about
+	 * evaluate our app*/
+	public void insertMenu( ) { //beggining of insertMenu
+		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας:");
+		System.out.println("Κλίμακα βαθμολογίας: ");
+		System.out.println("1 = κακή εφαρμογή");
+		System.out.println("2 = μέτρια εφαρμογή");
+		System.out.println("3 = καλή εφαρμογή"); 
+		System.out.println("4 = πολύ καλή εφαρμογή");
+		System.out.println("Η βαθμολογία μου είναι:");
+	} //ending of insertMenu
 }
+
