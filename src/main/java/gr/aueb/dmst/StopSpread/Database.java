@@ -56,9 +56,9 @@ public class Database {
     	
     	//deleteUsersRow();
 
-    	printUsersTable();
-    	printLocationsTable();
-    	findConnections(1);
+    	//printUsersTable();
+    	//printLocationsTable();
+    	//findConnections(1);
     	shutdownConnection();    
     }
 	
@@ -107,7 +107,9 @@ public class Database {
 	
 	
 	
-    /**Creates Table of users with columns USER_ID, USER_NAME, PASSWORD, POSSIBLY_INFECTED*/
+    /**Creates Table of users with columns
+     * <P>
+     *  USER_ID, USER_NAME, PASSWORD, POSSIBLY_INFECTED*/
     public static void createUsersTable() {
 		 try {
 			 stmt = conn.createStatement();//create a Statement
@@ -126,8 +128,9 @@ public class Database {
     
     
     
-    /**Creates Table of user's Locations with columns CITY, ADDRESS, ARRIVAL_TIME,
-     * DEPARTURE_TIME, USER_ID*/
+    /**Creates Table of user's Locations with columns :
+     * <P>
+     *  CITY, ADDRESS, ARRIVAL_TIME, DEPARTURE_TIME, USER_ID*/
     public static void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();//create a Statement
@@ -190,7 +193,8 @@ public class Database {
     
     
     /**Inserts rows into users table
-     * POSSIBLY_INFECTED column pre set as FALSE
+     * <P>
+     * POSSIBLY_INFECTED column gets pre-set as FALSE
      * @param User_name 
      * @param Password */
     public static void insertIntoUserTable(String User_name, String Password) {
@@ -343,7 +347,9 @@ public class Database {
     /**
      * Checks if the given user name exists
      * @param user_name 
-     * @return returns true if user name exists, false if not
+     * @return true if user name exists
+     * <P>
+     *  false if not
      */
 	public static boolean usernameCheck(String user_name) {
 		try {
@@ -371,7 +377,9 @@ public class Database {
 	 * Searching for user_id based on user_name
 	 *  
 	 * @param name 
-	 * @return Returns users id or -1 if the user_name does not exist in the database
+	 * @return users id 
+	 * <P>
+	 * or -1 if the user_name does not exist in the database
 	 */
 	public static int findUsersId(String name) {
 		int id = -1; // initialize id
@@ -394,11 +402,15 @@ public class Database {
 		return id;
 	}//end of method
 	
+	
+	
 	/**
 	 * Searching for user's password based on user_id
 	 *
 	 * @param user_id 
-	 * @return Returns user's password or returns -1 in String format if password not found
+	 * @return user's password
+	 * <P>
+	 * or -1 in String format if password not found
 	 */
 	public static String findUsersPass(int user_id) {
 		String pass = "-1";//initialize password
@@ -418,11 +430,14 @@ public class Database {
 	}//end of method
 	
 	
+	
 	/**
 	 * Searching for user's name based on user_id
 	 * 
 	 * @param user_id
-	 * @return Returns user's name or returns -1 in String format if password not found
+	 * @return user's name 
+	 * <P>
+	 * or -1 in String format if password not found
 	 */
 	public static String findUserName(int user_id) {
 		
@@ -442,6 +457,8 @@ public class Database {
 		return user_name;
 	}//end of method
 
+	
+	
 	/**
 	 * Gets user's ID and finds all his locations in the past 14 days,
 	 * then finds all other users who where in the same location at the same time
@@ -513,6 +530,34 @@ public class Database {
 			e.printStackTrace();
 		}//end of try-catch
 	
+	}//end of method
+
+
+
+	/**
+	 * Checks if user has been connected with another infected user
+	 * @param user_id
+	 * @return true if user is possibly infected 
+	 * <P>
+	 * false if no connections with infected users
+	 */
+	public static boolean checkInfected(int user_id) {
+		
+		boolean check = false; //initialize check
+		
+		try {
+			stmt = conn.createStatement();//create a Statement
+			ResultSet result;//A table of data representing a database result 
+			result = stmt.executeQuery("SELECT POSSIBLY_INFECTED "
+					+ "FROM USERS "
+					+ "WHERE USER_ID = " + user_id);
+			result.next();//set the cursor to the next data
+			check = result.getBoolean(1);// get the data from table
+			stmt.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}//end of try-catch
+		return check;
 	}//end of method
 
 
