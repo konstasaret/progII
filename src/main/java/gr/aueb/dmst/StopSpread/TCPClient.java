@@ -65,26 +65,28 @@ public class TCPClient {
             	Profile.checkConnections(user_id);
                 
                 int option;
-                while (!Number.equals("7")){
-                	Menus.firstMenu(user_id);
-                	option = Inputs.rangeInt(1, 5);
+                while (!Number.equals("7")) {
+                    Menus.firstMenu(user_id);
+                    option = Inputs.rangeInt(1, 5);
 
                     if (option == 1) {
-                    	//Προσθήκη τοποθεσίας
-                    	Profile.newLocation(user_id);
-                    } else if (option == 2){
-                    	//θετικός
-                    	Profile.infected(user_id);
+                        //Προσθήκη τοποθεσίας
+                        Profile.newLocation(user_id);
+                    } else if (option == 2) {
+                        //θετικός
+                        Profile.infected(user_id);
 
-                    }else if (option == 3) {
-                    	//διαγραφή
-                    	Profile.deleteUser(user_id);
-                    	Number = "7";
-                    }else if (option == 4) {
-                    	//τοποθεσίες
-                    	Profile.seeLocations(user_id);
-                    	
-                    }else if (option == 5) {
+                    } else if (option == 3) {
+                        //διαγραφή
+                        Profile.deleteUser(user_id);
+                        Number = "7";
+                    } else if (option == 4) {
+                        //τοποθεσίες
+                        Profile.seeLocations(user_id);
+                    }else if (option == 5){
+                        //στατιστικα
+                        GSX.gsxToTCP();
+                    }else if (option == 6) {
                     	System.out.println("Λυπούμαστε που φεύγετε");
                     	Number = "7";
                     }
