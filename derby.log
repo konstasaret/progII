@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Dec 09 20:35:02 EET 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0176-48c9-03fb-000006fdea30 
+Tue Dec 15 19:36:44 EET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0176-6779-ce06-000006f44ad8 
 on database directory C:\Users\alexd\git\progII\derbyDB with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
 Loaded from file:/C:/Users/alexd/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation
@@ -11,9 +11,3 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Wed Dec 09 20:35:11 EET 2020: Shutting down Derby engine
-----------------------------------------------------------------
-Wed Dec 09 20:35:11 EET 2020:
-Shutting down instance a816c00e-0176-48c9-03fb-000006fdea30 on database directory C:\Users\alexd\git\progII\derbyDB with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
-----------------------------------------------------------------

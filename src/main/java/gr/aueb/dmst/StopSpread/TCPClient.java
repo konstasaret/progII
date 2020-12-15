@@ -67,7 +67,7 @@ public class TCPClient {
                 int option;
                 while (!Number.equals("7")) {
                     Menus.firstMenu(user_id);
-                    option = Inputs.rangeInt(1, 5);
+                    option = Inputs.rangeInt(1, 6);
 
                     if (option == 1) {
                         //Προσθήκη τοποθεσίας

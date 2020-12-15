@@ -150,7 +150,6 @@ public class Profile {
         DataOutputStream outStream = TCPClient.getOutStream();
         DataInputStream inStream = TCPClient.getInStream();
         String clientMessage;
-		String serverMessage;
 		
 		//for option identification 
 		clientMessage = "check";
@@ -162,6 +161,7 @@ public class Profile {
 		outStream.flush();
 		
 		boolean infected = inStream.readBoolean();
+		
 		if (infected == true) {
 			System.out.println("***********************************");
 			System.out.println("Εχετε έρθει σε επαφή με κρούσμα \n"
@@ -337,9 +337,47 @@ public class Profile {
 	
 	public static void seeLocations(int user_id) {
 		
+		try {
+			//server-client messages
+	        DataOutputStream outStream = TCPClient.getOutStream();
+	        DataInputStream inStream = TCPClient.getInStream();
+	        String clientMessage;
+			String serverMessage;
 			
-		Database.printUserLocations(user_id);
+			//for option identification 
+			clientMessage = "d epilogi";
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
 			
+			outStream.writeInt(user_id);
+			outStream.flush();
+			
+			int numCols = inStream.readInt();//get number of columns
+			
+			//output format
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
+            
+            for (int i=1; i<=numCols; i++) {
+             //print Column Names
+                System.out.printf("%-18s", inStream.readUTF());  
+            }//end of for
+
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
+
+            //print rows
+            while(!inStream.readUTF().equals("ok")) {
+            	  String City = inStream.readUTF();
+                  String Address = inStream.readUTF();
+                  int arrival_time = inStream.readInt();
+                  int departure_time = inStream.readInt();
+                  String date = inStream.readUTF();
+                  
+                  System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
+            }
+		} catch (IOException e) {
+			System.err.println("Προβλημα κατά την εμφάνιση τοποθεσιών");
+			e.printStackTrace();
+		}
 		
 	}
 

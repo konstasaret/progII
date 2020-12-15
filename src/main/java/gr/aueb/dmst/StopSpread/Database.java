@@ -203,7 +203,7 @@ public class Database {
 	            stmt = conn.createStatement();//create a Statement
 	            ResultSet results;//A table of data representing a database result 
 	            results = stmt.executeQuery("SELECT * FROM USERS");
-	            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the typesand properties of the columns in a ResultSet object
+	            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the types and properties of the columns in a ResultSet object
 	            int numberCols = rsmd.getColumnCount();//get number of columns
 	            
 	            //output format
@@ -235,7 +235,7 @@ public class Database {
         	stmt = conn.createStatement();//create a Statement
             ResultSet results;//A table of data representing a database result 
             results = stmt.executeQuery("SELECT * FROM LOCATIONS");
-            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the typesand properties of the columns in a ResultSet object
+            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the types and properties of the columns in a ResultSet object
             int numberCols = rsmd.getColumnCount();//get number of columns
             
             //output format
@@ -265,40 +265,19 @@ public class Database {
     
     
 	/**
-	 * Prints user's locations
+	 * Passes data for server usage
 	 * @param id
+	 * @return ResultSet for user_id matching rows
 	 */
-	public static void printUserLocations(int id) {
+	public static ResultSet userLocationsResult(int id) {
+        ResultSet results = null;//A table of data representing a database result 
 		try {
             stmt = conn.createStatement();//create a Statement
-            ResultSet results;//A table of data representing a database result 
             results = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID=" + id);
-            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the typesand properties of the columns in a ResultSet object
-            int numberCols = rsmd.getColumnCount();//get number of columns
-            
-            //output format
-            System.out.println("\n-------------------------------------------------------------------------------------------------");
-            for (int i=1; i<=numberCols; i++) {
-                //print Column Names
-                System.out.printf("%-18s", rsmd.getColumnLabel(i));  
-            }//end of for
-
-            System.out.println("\n-------------------------------------------------------------------------------------------------");
-
-            while(results.next()){
-                String City = results.getString(1);
-                String Address = results.getString(2);
-                int arrival_time = results.getInt(3);
-                int departure_time = results.getInt(4);
-                String date = results.getString(5);
-                int user_id = results.getInt(6);
-                System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
-            }//end of while
-            results.close();
-            stmt.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }//end of try-catch
+		return results;
     }//end of method
 
 

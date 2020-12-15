@@ -4,6 +4,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 import javax.print.attribute.standard.Severity;
 
@@ -200,11 +203,46 @@ class ServerClientThread extends Thread {
                    
                 }else if (count == 4) {
 	            	//τοποθεσίες
+                	
+                	int user_id = inStream.readInt();//get user id from client
 
-                    Database.printUserLocations(Integer.parseInt(clientMessage)); //problhma kai edo
-                    serverMessage="From Server to Client-" + clientNo + "Ok you are deleted";// database ston tcp
-                    outStream.writeUTF(serverMessage);
+                	ResultSet results = Database.userLocationsResult(user_id); //get data
+                	try {
+                	ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the types and properties of the columns in a ResultSet object
+
+                	int numberCols = rsmd.getColumnCount();//get number of columns
+                	outStream.writeInt(numberCols);//sent to client
                     outStream.flush();
+                        
+                        //sent column names
+                        for (int i=1; i<=numberCols; i++) {
+                        	outStream.writeUTF(rsmd.getColumnLabel(i));
+                        }//end of for
+
+
+                        while(results.next()){
+                            outStream.writeUTF("more");//check message
+                            outStream.flush();
+
+                            outStream.writeUTF(results.getString(1));//city
+                            outStream.flush();
+                            outStream.writeUTF(results.getString(2));//address
+                            outStream.flush();
+                            outStream.writeInt(results.getInt(3));//arrival time
+                            outStream.flush();
+                            outStream.writeInt(results.getInt(4));//departure time
+                            outStream.flush();
+                            outStream.writeUTF(results.getString(5));//date
+                            outStream.flush();
+                        }
+                        outStream.writeUTF("ok");//check message
+                        outStream.flush();
+                        
+                        results.close();
+                        
+                	} catch (SQLException e) {
+						e.printStackTrace();
+					}
 
                 }
 
