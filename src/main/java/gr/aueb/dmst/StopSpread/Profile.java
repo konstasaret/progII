@@ -14,7 +14,7 @@ public class Profile {
 	/** Authenticates user's credentials  
 	 * @return user_id 
 	* for later use in the program*/
-	public static int authenticate() {		
+	public int authenticate() {		
 		int user_id = 0;
 		try {
 			//server-client messages
@@ -72,7 +72,7 @@ public class Profile {
 	}
 
 	/**Creates new user */
-	public static void newEntry() {
+	public void newEntry() {
 		try {
 			//server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
@@ -144,7 +144,7 @@ public class Profile {
 	 * Warns him if someone infected has been in the same locations as him the past 14 days
 	 * @param user_id
 	 */
-	public static void checkConnections(int user_id) {
+	public void checkConnections(int user_id) {
 		try{
 		//server-client messages
         DataOutputStream outStream = TCPClient.getOutStream();
@@ -179,7 +179,7 @@ public class Profile {
 	 * 
 	 * @param user_id 
 	 */
-	public static void newLocation(int user_id) {
+	public void newLocation(int user_id) {
 		
 		System.out.println("Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε με κεφαλάια γράμματα και χωρίς τόνους:");
 		
@@ -268,7 +268,7 @@ public class Profile {
 	 * Warns other users that have been in the same location the past 14 days
 	 * @param user_id
 	 */
-	public static void infected(int user_id) {
+	public void infected(int user_id) {
 		try {
 			//server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
@@ -297,7 +297,7 @@ public class Profile {
 	 * Double checks user's credentials and deletes users data
 	 * @param user_id
 	 */
-	public static void deleteUser(int user_id) {
+	public void deleteUser(int user_id) {
 		try {
 			//server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
@@ -335,14 +335,17 @@ public class Profile {
 		}
 	}
 	
-	public static void seeLocations(int user_id) {
+	/**
+	 * Prints user locations based in user id
+	 * @param user_id
+	 */
+	public void seeLocations(int user_id) {
 		
 		try {
 			//server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
 	        DataInputStream inStream = TCPClient.getInStream();
 	        String clientMessage;
-			String serverMessage;
 			
 			//for option identification 
 			clientMessage = "d epilogi";

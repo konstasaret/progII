@@ -2,7 +2,6 @@ package gr.aueb.dmst.StopSpread;
 
 import java.net.*;
 import java.io.*;
-import java.util.Scanner;
 
 /**
  * @author kostasaret
@@ -36,6 +35,9 @@ public class TCPClient {
      * @throws IOException 
      */
     public static void main(String[] args) throws IOException {
+    	
+    	Profile prof = new Profile();
+    	
         try{
 
             socket = new Socket("127.0.0.1",8888);
@@ -44,7 +46,7 @@ public class TCPClient {
             outStream = new DataOutputStream(socket.getOutputStream());
             br = new BufferedReader(new InputStreamReader(System.in));
 
-            String clientMessage = "",serverMessage = "";
+            String clientMessage = "";
             String Number = "";
             
             while(!clientMessage.equals("yes")){
@@ -54,15 +56,15 @@ public class TCPClient {
                     int logg = Inputs.rangeInt(1, 2);
                     if (logg == 1) {
                     	//Σύνδεση 
-                    	user_id = Profile.authenticate();
+                    	user_id = prof.authenticate();
                     } else if (logg == 2) {
                     	//Νέος Χρήστης
-                    	Profile.newEntry();
+                    	prof.newEntry();
                     }
             	}
             	
             	//ελεγχος επαφών
-            	Profile.checkConnections(user_id);
+            	prof.checkConnections(user_id);
                 
                 int option;
                 while (!Number.equals("7")) {
@@ -71,18 +73,18 @@ public class TCPClient {
 
                     if (option == 1) {
                         //Προσθήκη τοποθεσίας
-                        Profile.newLocation(user_id);
+                        prof.newLocation(user_id);
                     } else if (option == 2) {
                         //θετικός
-                        Profile.infected(user_id);
+                        prof.infected(user_id);
 
                     } else if (option == 3) {
                         //διαγραφή
-                        Profile.deleteUser(user_id);
+                        prof.deleteUser(user_id);
                         Number = "7";
                     } else if (option == 4) {
                         //τοποθεσίες
-                        Profile.seeLocations(user_id);
+                        prof.seeLocations(user_id);
                     }else if (option == 5){
                         //στατιστικα
                         GSX.gsxToTCP();
