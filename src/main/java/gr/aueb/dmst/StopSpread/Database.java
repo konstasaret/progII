@@ -472,12 +472,6 @@ public class Database {
 	
 	}//end of method
 
-public static void main(String[] args) {
-	Database db = new Database();
-	db.createConnection();
-	db.printUsersTable();
-	db.shutdownConnection();
-}
 
 	/**
 	 * Checks if user has been connected with another infected user
