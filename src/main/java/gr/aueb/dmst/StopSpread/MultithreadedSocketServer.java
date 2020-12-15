@@ -18,7 +18,7 @@ public class MultithreadedSocketServer {
      */
     public static void main(String[] args) throws IOException {
     	
-        ServerSocket server=new ServerSocket(8888);
+        ServerSocket server = new ServerSocket(8888);
 
 		int counter=0;
 		System.out.println("Server Started ....");

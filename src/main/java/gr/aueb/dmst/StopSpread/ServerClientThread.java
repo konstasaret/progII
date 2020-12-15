@@ -66,13 +66,17 @@ class ServerClientThread extends Thread {
 	            if (count == -3) {
 	            	//ελεγχος επαφών
 
-	            	int user_id = inStream.readInt();
+	            	int user_id = inStream.readInt();//get user id
 	            	
 	            	boolean infected = db.checkInfected(user_id);
 	            	
-	            	outStream.writeBoolean(infected);
+	            	
+	            	outStream.writeBoolean(infected);//pass infected
 	            	outStream.flush();
 	            
+	            	if (infected == true) {
+	            		db.restoreInfected(user_id);//restore table
+	            	}
 	            }else if (count == -2) {
 	            	//Νέος Χρήστης
 

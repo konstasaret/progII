@@ -472,7 +472,12 @@ public class Database {
 	
 	}//end of method
 
-
+public static void main(String[] args) {
+	Database db = new Database();
+	db.createConnection();
+	db.printUsersTable();
+	db.shutdownConnection();
+}
 
 	/**
 	 * Checks if user has been connected with another infected user
@@ -502,10 +507,21 @@ public class Database {
 
 
 
-
-
-
-	
-
+	/**
+	 * Restores column POSSIBLY_INFECTED to false 
+	 * when user logs in and see the infected message
+	 * @param user_id
+	 */
+	public void restoreInfected(int user_id) {
+		try {
+			stmt = conn.createStatement();//create a Statement
+			stmt.execute("UPDATE USERS "
+					+ "SET POSSIBLY_INFECTED = FALSE "
+					+ "WHERE USER_ID = " + user_id);
+			stmt.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}//end of try-catch
+	}//end of method
 
 }//end of class

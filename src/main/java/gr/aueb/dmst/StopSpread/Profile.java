@@ -375,7 +375,7 @@ public class Profile {
                   int departure_time = inStream.readInt();
                   String date = inStream.readUTF();
                   
-                  System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
+                  System.out.printf("%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date);
             }
 		} catch (IOException e) {
 			System.err.println("Προβλημα κατά την εμφάνιση τοποθεσιών");
