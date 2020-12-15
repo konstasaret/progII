@@ -23,8 +23,8 @@ public class Database {
 	/** The object used for executing a static SQL statement 
 	 * and returning the results it produces */
     private static Statement stmt = null;
-
-
+    
+    
     /**Initiates connection with the database*/
     public static void createConnection() {
 			try {

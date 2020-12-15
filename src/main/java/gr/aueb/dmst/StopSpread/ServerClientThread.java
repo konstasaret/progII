@@ -148,9 +148,9 @@ class ServerClientThread extends Thread {
                     String date = inStream.readUTF();                    
                     int user_id = inStream.readInt();   
                     
-                    Database.createConnection();                 
+                                   
                     Database.insertIntoLocationsTable(city, address, arrival_time, departure_time, date, user_id);
-                    Database.shutdownConnection();
+                   
                     
                     serverMessage = "Η τοποθεσία σας καταγράφηκε :"
                     		+ "\n	Πόλη : " + city 
@@ -179,7 +179,6 @@ class ServerClientThread extends Thread {
                 	int user_id = inStream.readInt();//get user id from client
 
                 	String given_pass = inStream.readUTF();//get user input password from client
-                	Database.createConnection();
             		String exist_pass = Database.findUsersPass(user_id);//user's password
                 	
             		//password check
