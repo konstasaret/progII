@@ -17,53 +17,14 @@ import java.text.SimpleDateFormat;
 public class Database {
 
 	/** Database URL */
-	private static final String dbURL = "jdbc:derby:derbyDB;create=true";
+	private static final String dbURL = "jdbc:derby:derbyDB";
 	/** A connection with the database */
 	private static Connection conn = null;
 	/** The object used for executing a static SQL statement 
 	 * and returning the results it produces */
     private static Statement stmt = null;
-    
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-    	createConnection();
 
-    	/*deleteTables();
-    	createUsersTable();
-    	createLocationsTable();
-    	insertIntoUserTable("AirlineDog", "Salami");
-    	insertIntoUserTable("Kostakis", "Makaronia");
-    	insertIntoUserTable("Vik", "Pastitsio");
-    	insertIntoUserTable("Vagelio", "Password");
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 1);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-11-25", 1);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 20, 22,"2020-11-30", 1);
-    	
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 2);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-11-26", 2);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 19, 21,"2020-11-30", 2);
-    	
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 3);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 14, 15,"2020-11-25", 3);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 15, 17,"2020-11-25", 3);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-11-29", 3);
-    	
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 13, 15,"2020-9-15", 4);
-    	insertIntoLocationsTable("PAIANIA","THEOTOKOY", 13, 15,"2020-11-25", 4);
-    	insertIntoLocationsTable("PAIANIA","STAMOY", 19, 20,"2020-11-30", 4);*/
-    	
-    	//deleteUsersRow();
 
-    	//printUsersTable();
-    	//printLocationsTable();
-    	//findConnections(1);
-    	shutdownConnection();    
-    }
-	
-
-    
     /**Initiates connection with the database*/
     public static void createConnection() {
 			try {
