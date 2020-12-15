@@ -26,7 +26,7 @@ public class Database {
     
     
     /**Initiates connection with the database*/
-    public static void createConnection() {
+    public void createConnection() {
 			try {
 				Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
 	            //Get a connection
@@ -40,7 +40,7 @@ public class Database {
     
     
 	/**Terminates connection with the database*/
-	public static void shutdownConnection() {
+	public void shutdownConnection() {
 		try {
             // the shutdown=true attribute shuts down Derby
 			DriverManager.getConnection("jdbc:derby:;shutdown=true");
@@ -71,7 +71,7 @@ public class Database {
     /**Creates Table of users with columns
      * <P>
      *  USER_ID, USER_NAME, PASSWORD, POSSIBLY_INFECTED*/
-    public static void createUsersTable() {
+    public void createUsersTable() {
 		 try {
 			 stmt = conn.createStatement();//create a Statement
 			 stmt.execute("CREATE TABLE USERS("
@@ -92,7 +92,7 @@ public class Database {
     /**Creates Table of user's Locations with columns :
      * <P>
      *  CITY, ADDRESS, ARRIVAL_TIME, DEPARTURE_TIME, USER_ID*/
-    public static void createLocationsTable() {
+    public void createLocationsTable() {
 		 try {
 			 stmt = conn.createStatement();//create a Statement
 			 stmt.execute("CREATE TABLE LOCATIONS("
@@ -113,7 +113,7 @@ public class Database {
     
     
     /**Deletes the users and locations tables*/
-    public static void deleteTables() {
+    public void deleteTables() {
     	try {
     		stmt = conn.createStatement();//create a Statement
     		stmt.execute("DROP TABLE LOCATIONS ");
@@ -128,7 +128,7 @@ public class Database {
 	/**Deletes row from USERS based on user_id
 	 * and consequently LOCATIONS rows with the same foreign key are deleted 
 	 * @param user_id */
-	public static void deleteUsersRow(int user_id) {
+	public void deleteUsersRow(int user_id) {
 		try{
 			stmt = conn.createStatement();//create a Statement
 			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
@@ -142,7 +142,7 @@ public class Database {
 	
 	/**Deletes row from LOCATIONS based on user_id
 	 * @param user_id */
-	public static void deleteLocationsRow(int user_id) {
+	public void deleteLocationsRow(int user_id) {
 		try{
 			stmt = conn.createStatement();//create a Statement
 			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
@@ -158,7 +158,7 @@ public class Database {
      * POSSIBLY_INFECTED column gets pre-set as FALSE
      * @param User_name 
      * @param Password */
-    public static void insertIntoUserTable(String User_name, String Password) {
+    public void insertIntoUserTable(String User_name, String Password) {
 		try {
             stmt = conn.createStatement();//create a Statement
             
@@ -186,7 +186,7 @@ public class Database {
      * @param departure_time 
      * @param date 
      * @param user_id */
-    public static void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time,String date, int user_id) {
+    public void insertIntoLocationsTable(String City, String Address, int arrival_time,int departure_time,String date, int user_id) {
     	try {
             stmt = conn.createStatement();//create a Statement
             stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','"+Address+"',"+arrival_time+"," + departure_time +",'"+ date +"',"+user_id+")");
@@ -198,7 +198,7 @@ public class Database {
     
     
     /**Prints the users table*/
-    public static void printUsersTable() {
+    public void printUsersTable() {
 	        try {
 	            stmt = conn.createStatement();//create a Statement
 	            ResultSet results;//A table of data representing a database result 
@@ -230,7 +230,7 @@ public class Database {
     
     
     /**Prints the locations table*/
-    public static void printLocationsTable() {
+    public void printLocationsTable() {
         try {
         	stmt = conn.createStatement();//create a Statement
             ResultSet results;//A table of data representing a database result 
@@ -269,7 +269,7 @@ public class Database {
 	 * @param id
 	 * @return ResultSet for user_id matching rows
 	 */
-	public static ResultSet userLocationsResult(int id) {
+	public ResultSet userLocationsResult(int id) {
         ResultSet results = null;//A table of data representing a database result 
 		try {
             stmt = conn.createStatement();//create a Statement
@@ -291,7 +291,7 @@ public class Database {
      * <P>
      *  false if not
      */
-	public static boolean usernameCheck(String user_name) {
+	public boolean usernameCheck(String user_name) {
 		try {
 			stmt = conn.createStatement();//create a Statement
 			ResultSet results ;//A table of data representing a database result 
@@ -321,7 +321,7 @@ public class Database {
 	 * <P>
 	 * or -1 if the user_name does not exist in the database
 	 */
-	public static int findUsersId(String name) {
+	public int findUsersId(String name) {
 		int id = -1; // initialize id
 		try {
 			stmt = conn.createStatement();//create a Statement
@@ -352,7 +352,7 @@ public class Database {
 	 * <P>
 	 * or -1 in String format if password not found
 	 */
-	public static String findUsersPass(int user_id) {
+	public String findUsersPass(int user_id) {
 		String pass = "-1";//initialize password
 		try {
 			stmt = conn.createStatement();//create a Statement
@@ -379,7 +379,7 @@ public class Database {
 	 * <P>
 	 * or -1 in String format if password not found
 	 */
-	public static String findUserName(int user_id) {
+	public String findUserName(int user_id) {
 		
 		String user_name = "-1";//Initialize user_name
 		try {
@@ -405,7 +405,7 @@ public class Database {
 	 * and updates USERS table column POSSIBLY_INFECTED
 	 * @param user_id
 	 */
-	public static void findConnections(int user_id) {
+	public void findConnections(int user_id) {
 		try {
 		
 			//14 days before the method is called
@@ -481,7 +481,7 @@ public class Database {
 	 * <P>
 	 * false if no connections with infected users
 	 */
-	public static boolean checkInfected(int user_id) {
+	public boolean checkInfected(int user_id) {
 		
 		boolean check = false; //initialize check
 		

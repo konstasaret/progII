@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import javax.print.attribute.standard.Severity;
-
 class ServerClientThread extends Thread {
     
 	Socket serverClient;
@@ -25,8 +23,8 @@ class ServerClientThread extends Thread {
     }
     
     public void run() {
-    	
-    	Database.createConnection();//connection with database
+    	Database db = new Database();
+    	db.createConnection();//connection with database
 
     	try{
         	
@@ -70,7 +68,7 @@ class ServerClientThread extends Thread {
 
 	            	int user_id = inStream.readInt();
 	            	
-	            	boolean infected = Database.checkInfected(user_id);
+	            	boolean infected = db.checkInfected(user_id);
 	            	
 	            	outStream.writeBoolean(infected);
 	            	outStream.flush();
@@ -81,7 +79,7 @@ class ServerClientThread extends Thread {
                     String userName = inStream.readUTF();//user name from client
  
                     //check for duplicate user name 
-                    while (Database.usernameCheck(userName)){
+                    while (db.usernameCheck(userName)){
                         serverMessage="Το Όνομα Χρήστη χρησιμοποιείται ήδη. \nΠαρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη: ";
                         outStream.writeUTF(serverMessage);
                         outStream.flush();
@@ -98,7 +96,7 @@ class ServerClientThread extends Thread {
                     String pass = inStream.readUTF();
                     
                     //Insertion in table 
-                    Database.insertIntoUserTable(userName, pass);
+                    db.insertIntoUserTable(userName, pass);
 
                 }else if (count == -1) {
 	            	//Σύνδεση 
@@ -106,14 +104,14 @@ class ServerClientThread extends Thread {
                 	String userName = inStream.readUTF();//user name from client
                 	
                 	//user name exists check
-            		int user_id = Database.findUsersId(userName);
+            		int user_id = db.findUsersId(userName);
             		while (user_id == -1) {
             			serverMessage="Αποτυχία Σύνδεσης.\nΤο Όνομα Χρήστη δεν υπάρχει.\nΠαρακαλώ προσπαθήστε ξανά : ";
                         outStream.writeUTF(serverMessage);
                         outStream.flush();
                         
             			userName = inStream.readUTF();
-            			user_id = Database.findUsersId(userName);
+            			user_id = db.findUsersId(userName);
             		}
             		//check done
                     serverMessage="Αποδεκτό Ονομα Χρήστη";
@@ -122,7 +120,7 @@ class ServerClientThread extends Thread {
                     
                     
                     String pass = inStream.readUTF();//password from client
-            		String existingPass = Database.findUsersPass(user_id);//password from database
+            		String existingPass = db.findUsersPass(user_id);//password from database
 
             		//password check
             		while(!existingPass.equals(pass)) {
@@ -152,7 +150,7 @@ class ServerClientThread extends Thread {
                     int user_id = inStream.readInt();   
                     
                                    
-                    Database.insertIntoLocationsTable(city, address, arrival_time, departure_time, date, user_id);
+                    db.insertIntoLocationsTable(city, address, arrival_time, departure_time, date, user_id);
                    
                     
                     serverMessage = "Η τοποθεσία σας καταγράφηκε :"
@@ -168,7 +166,7 @@ class ServerClientThread extends Thread {
                 	
                 	int user_id = inStream.readInt();
                 	
-                	Database.findConnections(user_id);
+                	db.findConnections(user_id);
                     
                 	serverMessage = "Ευχαριστούμε για την ενημέρωση\n"
                     		+ "Θα ειδοποιήσουμε τις πιθανές επαφές σας\n"
@@ -182,7 +180,7 @@ class ServerClientThread extends Thread {
                 	int user_id = inStream.readInt();//get user id from client
 
                 	String given_pass = inStream.readUTF();//get user input password from client
-            		String exist_pass = Database.findUsersPass(user_id);//user's password
+            		String exist_pass = db.findUsersPass(user_id);//user's password
                 	
             		//password check
             		while (!given_pass.equals(exist_pass)) {
@@ -199,14 +197,14 @@ class ServerClientThread extends Thread {
                 	outStream.writeUTF(serverMessage);
                 	outStream.flush();
                 	
-                    Database.deleteUsersRow(user_id);
+                    db.deleteUsersRow(user_id);
                    
                 }else if (count == 4) {
 	            	//τοποθεσίες
                 	
                 	int user_id = inStream.readInt();//get user id from client
 
-                	ResultSet results = Database.userLocationsResult(user_id); //get data
+                	ResultSet results = db.userLocationsResult(user_id); //get data
                 	try {
                 	ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the types and properties of the columns in a ResultSet object
 
@@ -259,7 +257,7 @@ class ServerClientThread extends Thread {
         }finally{
             System.out.println("Connection reset waiting for new Client");
         }
-        Database.shutdownConnection();
+        db.shutdownConnection();
 
     }
 }
