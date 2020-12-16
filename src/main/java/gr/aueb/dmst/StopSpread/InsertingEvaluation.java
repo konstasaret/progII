@@ -1,20 +1,19 @@
-//na appuikeytoun oi metablites tis ajiologiseis mai to max gia na sinexizei i roi 
 package gr.aueb.dmst.StopSpread;
 
 /**
- * author Evaggelia, Charot1, Charot2
+ * authors Evaggelia Panourgia, 
+ * Vicky Violingi, 
+ * Chrysoula Alysia Petronella Athitaki
  */
-	
-/**ua prepei na filame tiw metrikes vste na menoyn sro programma kai otan termatzi prosoxi*/
-/**epipleo stistiki*/
-/**exception */
 
+import java.util.ArrayList;
 import java.util.Scanner;
-	/**in order to use the static method of sort in the array*/
+import java.util.Arrays;
 
 /**class InsertingEvaluation asks from
-the user to evaluate the app*/
-public class InsertingEvaluation {
+the user to evaluate the app and user can see 
+the already evaluation*/
+public class InsertingEvaluation { 
 	/**private memembers of the class*/
 	/**counts the users who vote 1 = κακή εφαρμογή*/
 	private static int mark1; 
@@ -30,7 +29,9 @@ public class InsertingEvaluation {
 	private static int storeMax1; 
 	/**create table that stores the number of each mark */
 	static int[] markarray = new int[4];
-		
+	/**create a list that stores the critic of user's app*/
+	ArrayList<String> list  = new ArrayList<String>();
+	/**user enter their evaluation*/
 	public static void insertEvaluation() { //beginning of insertEvaluation method
 		Scanner sc4 = new Scanner(System.in);
 		int choice4 = 0;
@@ -38,7 +39,7 @@ public class InsertingEvaluation {
 		/**calling the menu of class Menus via the Object mn*/
 		mn.insertMenu(); 
 		choice4 = Inputs.rangeInt(1, 4);
-		//if that counts how many vote each choice(1,2,3,4)
+		//each variable of mark1,..3,2..,4 counts how many vote have  each choice(1,2,3,4)
 		if( choice4 == 1) {
 			++mark1;
 		}if( choice4 == 2) {
@@ -50,6 +51,7 @@ public class InsertingEvaluation {
 		}
 			++totalusers;
 	}
+	/**prints the already evaluation*/
 	public void printEvaluation() {
 		System.out.printf("%d : άτομα ψήφισαν κακή εφαρμογή\n",mark1);
 		System.out.printf("%d : άτομα ψήφισαν μέτρια εφαρμογή\n",mark2);
@@ -57,17 +59,17 @@ public class InsertingEvaluation {
 		System.out.printf("%d : άτομα ψήφισαν πολύ καλή εφαρμογή\n",mark4);
 		System.out.printf("%d : συνολικά ψήφισαν\n",totalusers);
 	}
+	/**print the evaluation which dominates */
 	public void printDomination() {
 		markarray[0] = InsertingEvaluation.mark1;
 		markarray[1] = InsertingEvaluation.mark2;
 		markarray[2] = InsertingEvaluation.mark3;
 		markarray[3] = InsertingEvaluation.mark4;
-		/**sort thw elements of the array in auousa*/
-		//Arrays.sort(markarray);
+		/**sort the elements of the array asc*/
+		Arrays.sort(markarray);
 		System.out.println();
-		//max of elements is the arraymarks[3] element
+		//stores in markarray[3] the maximum element 
 		storeMax1 = markarray[3];
-		//sigkrino kaue stoixio me to teleytaio kai Συστεμ
 		System.out.println("Η Γενική Κριτική για την εφαρμογή  είναι: ");
 		if( mark1 == storeMax1){
 			System.out.println("Η εφαρμογή είναι κακή");
@@ -81,10 +83,10 @@ public class InsertingEvaluation {
 		if( mark4 == storeMax1){
 			System.out.println("Η εφαρμογή είναι πολύ καλή");
 		}
-		}//ENDING OF printDomination
+	}//ending printDomination
 
-		//na to olokliroso
-	public void reasonOfEvaluation(){ //αποθήκευση σε αρχειο με λογια τι του αρεσε τι δεν του αρεσε
+	/**the user can write their critic about our app*/
+	public void reasonOfEvaluation() { 
 		Scanner sc5 = new Scanner(System.in);
 		System.out.println("Επιθυμείτε να προσθέσετε σχόλια για την εφαρμογή StopSpread;");
 		//interaction with the user
@@ -93,7 +95,8 @@ public class InsertingEvaluation {
 		int check = Inputs.rangeInt(1, 2);
 		if (check == 1) {
 			System.out.print("Μπορείτε να πληκτρολογήσετε το σχόλιο σας: ");
-			sc5.next(); // prosoxi na to akouikeysoume
+			String sxolia = sc5.next();
+			list.add(sxolia);
 			System.out.print("Σας Ευχαριστούμε, η κριτική σας μόλις καταχωρήθηκε!");
 		} else {
 			System.out.println("Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή μας!");
