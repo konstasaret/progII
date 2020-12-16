@@ -1,7 +1,11 @@
 package gr.aueb.dmst.StopSpread;
 
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
 
 /**
  * @author kostasaret
@@ -21,23 +25,22 @@ public class TCPClient {
 		return inStream;
 	}
 
-
 	/**
 	 * @return the outStream
 	 */
 	public static DataOutputStream getOutStream() {
 		return outStream;
 	}
-	
+
     /**
      * Begins User's Interface
      * @param args
-     * @throws IOException 
+     * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-    	
+
     	Profile prof = new Profile();
-    	
+
         try{
 
             socket = new Socket("127.0.0.1",8888);
@@ -48,24 +51,24 @@ public class TCPClient {
 
             String clientMessage = "";
             String Number = "";
-            
+
             while(!clientMessage.equals("yes")){
             	int user_id = 0;
             	while(user_id == 0) {
             		Menus.logInMenu();
                     int logg = Inputs.rangeInt(1, 2);
                     if (logg == 1) {
-                    	//Σύνδεση 
+                    	//Σύνδεση
                     	user_id = prof.authenticate();
                     } else if (logg == 2) {
                     	//Νέος Χρήστης
                     	prof.newEntry();
                     }
             	}
-            	
+
             	//ελεγχος επαφών
             	prof.checkConnections(user_id);
-                
+
                 int option;
                 while (!Number.equals("7")) {
                     Menus.firstMenu(user_id);
@@ -92,7 +95,7 @@ public class TCPClient {
                     	System.out.println("Λυπούμαστε που φεύγετε");
                     	Number = "7";
                     }
-                    
+
 
                 }
 

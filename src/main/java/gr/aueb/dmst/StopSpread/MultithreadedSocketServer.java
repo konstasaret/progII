@@ -10,14 +10,14 @@ import java.net.Socket;
  *
  */
 public class MultithreadedSocketServer {
-    /**
 
+    /**
      * Starts Server
      * @param args
-     * @throws IOException 
+     * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-    	
+
         ServerSocket server = new ServerSocket(8888);
 
 		int counter=0;
@@ -30,7 +30,7 @@ public class MultithreadedSocketServer {
 		    sct.start();
 		}
 
-		
+
 
 
     }
