@@ -40,7 +40,7 @@ public class TCPClient {
     public static void main(String[] args) throws IOException {
 
     	Profile prof = new Profile();
-
+    	Menus menu = new Menus();
         try{
 
             socket = new Socket("127.0.0.1",8888);
@@ -55,7 +55,7 @@ public class TCPClient {
             while(!clientMessage.equals("yes")){
             	int user_id = 0;
             	while(user_id == 0) {
-            		Menus.logInMenu();
+            		menu.logInMenu();
                     int logg = Inputs.rangeInt(1, 2);
                     if (logg == 1) {
                     	//Σύνδεση
@@ -71,7 +71,7 @@ public class TCPClient {
 
                 int option;
                 while (!Number.equals("7")) {
-                    Menus.firstMenu(user_id);
+                    menu.firstMenu(user_id);
                     option = Inputs.rangeInt(1, 6);
 
                     if (option == 1) {

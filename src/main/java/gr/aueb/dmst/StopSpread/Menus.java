@@ -1,7 +1,7 @@
 package gr.aueb.dmst.StopSpread;
 
 /**
- * @author alexd
+ *
  *	Printing menus class
  */
 public class Menus {
@@ -9,7 +9,7 @@ public class Menus {
 	/**
 	 * App's log in menu
 	 */
-	public static void logInMenu() { //beggining of logInMenu
+	public void logInMenu() { //beggining of logInMenu
 		System.out.println("Καλώς ήλθατε στο StopSpread!");
 		System.out.println("1. Σύνδεση.");
 		System.out.println("2. Δημιουργία Νέου Χρήστη.");
@@ -19,7 +19,7 @@ public class Menus {
 	 * App's functions menu
 	 * @param id
 	 */
-	public static void firstMenu(int id) { //begginig of firstMenu
+	public void firstMenu(int id) { //begginig of firstMenu
 		System.out.println("Καλώς ήλθατε!");
 		System.out.println("1. Προσθήκη νέας τοποθεσίας.");
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
@@ -32,7 +32,7 @@ public class Menus {
 	/** Prints the first menu
 	 * of class with greek statistics
 	 */
-	public static void GreekStatsMenu() { //begginig of GreekStatsMenu
+	public void GreekStatsMenu() { //begginig of GreekStatsMenu
 		System.out.println("1. Ημερήσια επισκόπηση.");
 		System.out.println("2. Στατιστικά στοιχεία ανά γεωγραφικό διαμέρισμα.");
 		System.out.println("3. Κρούσματα ανά ημέρα από την αρχή της πανδημίας.");
@@ -44,7 +44,7 @@ public class Menus {
 	 * contains information about
 	 * each geo area
 	 */
-	public static void GreekStatsMenu2() { //begginig of GreekStatsMenu
+	public void GreekStatsMenu2() { //Begging of GreekStatsMenu
 		System.out.println("1.Γεωγραφικό Διαμέρισμα Αττική");
 		System.out.println("2.Γεωγραφικό Διαμέρισμα Ήπειρος");
 		System.out.println("3.Γεωγραφικό Διαμέρισμα Θεσσαλία");
@@ -57,12 +57,12 @@ public class Menus {
 		System.out.println("10.Γεωγραφικό Διαμέρισμα Στερεά Ελλάδα");
 		System.out.println("11. Έξοδος");
 	    System.out.println("Εισάγετε τον αριθμό που αντιστοιχεί στην επιθυμητή επιλογή.");
-	} ////ending of GreekStatsMenu
+	} //ending of GreekStatsMenu
 
 	/** Prints the user's option
 	 * about global statistics
 	 */
-	public static void GlobalStatsMenu() { //begginig of GlobalStatsMenu
+	public void GlobalStatsMenu() { //Begging of GlobalStatsMenu
 		System.out.println("1. Γενικά για τον Covid-19.");
 		System.out.println("2. Μετάδοση.");
 		System.out.println("3. Συμβουλές για το κοινό.");
@@ -91,7 +91,7 @@ public class Menus {
 
 	/** This method prints the user's options about what
 	 *  Stories class can implements */
-	public static void storiesMenu() { //beggining of storiesMenu
+	public void storiesMenu() { //beggining of storiesMenu
 		System.out.println("Μενού επιλογών:");
 		System.out.println("1. Ανάγνωση ιστορίας.");
 		System.out.println("2. Αποστολή της δικής μου ιστορίας!");
@@ -99,7 +99,7 @@ public class Menus {
 	} //ending of storiesMenu
 	/** This method prints the stories that are available
 	 * to user if he selects to read a story*/
-	public static void readStories() { //beggining of readStories
+	public void readStories() { //beggining of readStories
 		System.out.println("Πραγματικές ιστορίες ανθρώπων που νόσησαν με"
 				+ " Κορονοϊό.");
 		System.out.println("1. 6+1 μαρτυρίες για την καθημερινότητα του ιού "

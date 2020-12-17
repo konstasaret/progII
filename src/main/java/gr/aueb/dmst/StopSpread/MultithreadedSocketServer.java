@@ -6,7 +6,7 @@ import java.net.Socket;
 
 
 /**
- * @author kostasaret
+ * Starting server Class
  *
  */
 public class MultithreadedSocketServer {
