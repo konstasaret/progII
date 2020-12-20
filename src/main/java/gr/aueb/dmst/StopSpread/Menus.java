@@ -144,6 +144,9 @@ public class Menus {
 	System.out.println("Ερώτηση 14 : Τι πρέπει να κάνω εάν νομίζω ότι έχω λοίμωξη από τον νέο κορωνοϊό??");
 	System.out.println("Ερώτηση 15 : Μπορεί κάποιος που έχει αναρρώσει να συνεχίσει να είναι φορέας και να μεταδίδει τον ιό??");
 	System.out.println("Ερώτηση 16 : Η έλευση της άνοιξης και του καλοκαιριού θα βοηθήσουν στην εξάλειψη του ιού??");
+	System.out.println("Τις παραπάνω πληροφορίες σχετικά με τις συχνές ερωτήσεις τις αντλήσαμε ");
+	System.out.println("από το site : https://www.uoa.gr/anakoinoseis_kai_ekdiloseis/proboli_anakoinosis/sychnes_erotiseis" +
+	"_schetika_me_to_neo_koronoio_covid_19/ ");
 	} //ending of menu88
 }
 
