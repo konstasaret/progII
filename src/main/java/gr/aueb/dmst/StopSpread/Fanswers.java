@@ -3,7 +3,7 @@ package gr.aueb.dmst.StopSpread;
 import java.util.Scanner;
 
 public class Fanswers {
-	public static void main(String [] args) {
+	//public static void main(String [] args) {
 
 	int choice = 100;
 	Scanner sc = new Scanner(System.in);
@@ -78,5 +78,5 @@ public class Fanswers {
 	//-
 
 	}//ending of loop
-	}
+	//}
 }
