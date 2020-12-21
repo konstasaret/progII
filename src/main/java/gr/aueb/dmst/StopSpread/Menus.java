@@ -26,7 +26,8 @@ public class Menus {
 		System.out.println("3. Διαγραφή Χρήστη και δεδομένων");
 		System.out.println("4. Δες τις τοποθεσίες σου");
 		System.out.println("5. Δες στατιστικά για όλες τις περιοχές");
-		System.out.println("6. Αποσύνδεση");
+		System.out.println("6. Δες περιστατικά του ιού");
+		System.out.println("7. Αποσύνδεση");
 	} //ending of firstMenu
 
 	/** Prints the first menu

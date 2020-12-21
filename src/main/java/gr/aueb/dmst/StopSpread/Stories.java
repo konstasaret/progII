@@ -19,8 +19,9 @@ public class Stories {
 		ArrayList<String> list  = new ArrayList<String>();
 		Menus menu = new Menus();
 		boolean contloop = true;
+		boolean contloop1 = true;
 		Scanner sc1 = new Scanner(System.in);
-			while (true) {
+			while (contloop1) {
 				do {
 					/** The try block contains the code that it is likely
 					 * to lead to mistakes*/
@@ -638,7 +639,7 @@ public class Stories {
 							}
 						}
 						else if (ch == 3) {
-							break;
+							contloop = false;
 						}
 						else {
 							System.out.println("Παρακαλώ εισάγετε μια από τις "
@@ -654,7 +655,7 @@ public class Stories {
 						JOptionPane.showMessageDialog(null,"ArithmeticException. Δοκιμάστε ξανά: ");
 					}
 				} while (contloop);
-				break;
+				contloop1 = false;
 			}
 			sc1.close();
 	}

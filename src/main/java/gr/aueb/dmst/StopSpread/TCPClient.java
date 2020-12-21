@@ -91,7 +91,10 @@ public class TCPClient {
                     }else if (option == 5){
                         //στατιστικα
                         GSX.gsxToTCP();
-                    }else if (option == 6) {
+                    }else if (option == 6){
+                        //στατιστικα
+                        Stories.stories();
+                    }else if (option == 7) {
                     	System.out.println("Λυπούμαστε που φεύγετε");
                     	Number = "7";
                     }
