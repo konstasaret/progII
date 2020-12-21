@@ -1,10 +1,11 @@
 package gr.aueb.dmst.StopSpread;
 
-import gr.aueb.dmst.StopSpread.Stories;
-import org.junit.Test;
-import java.util.ArrayList;
-import org.junit.Before;
+
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class TestStories {
 	private ArrayList<Integer> list;
