@@ -6,6 +6,8 @@ package gr.aueb.dmst.StopSpread;
  *
  *@author Alexios Doganis, Vicky Violingi, 
  *@author Chrysoula Anysia Petronella, Evangelia Panourgia
+ *@author Alexios Doganis, Vicky Violingi, 
+ *@author Chrysoula Anysia Petronella, Evangelia Panourgia
  *@depend - - -gr.aueb.dmst.StopSpread //addClass
  *@depend - - -gr.aueb.dmst.StopSpread.InsertingEvaluation
  *@depend - - -gr.aueb.dmst.StopSpread.GlobalStatsNew
