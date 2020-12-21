@@ -1,10 +1,9 @@
 package gr.aueb.dmst.StopSpread;
 
 /**
- *
- *	Printing menus class
- *
-/
+ * printing menu class
+ * 
+*/
 public class Menus {
 
 	/**
