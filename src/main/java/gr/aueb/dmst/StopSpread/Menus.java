@@ -3,6 +3,15 @@ package gr.aueb.dmst.StopSpread;
 /**
  *
  *	Printing menus class
+ *@author Alexios Doganis, Vicky Violingi, 
+ *@author Chrysoula Anysia Petronella, Evangelia Panourgia
+ *@depend - - -gr.aueb.dmst.StopSpread //addClass
+ *@depend - - -gr.aueb.dmst.StopSpread.InsertingEvaluation
+ *@depend - - -gr.aueb.dmst.StopSpread.GlobalStatsNew
+ *@depend - - -gr.aueb.dmst.StopSpread.GSX
+ *@depend - - -gr.aueb.dmst.StopSpread.Stroies
+ *@depend - - -gr.aueb.dmst.StopSpread.MainEvaluation
+ *
  */
 public class Menus {
 
