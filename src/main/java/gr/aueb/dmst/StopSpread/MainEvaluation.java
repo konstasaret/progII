@@ -16,6 +16,8 @@ public class MainEvaluation { //beginning of class
 		InsertingEvaluation objectAlreadyEvaluation = new InsertingEvaluation(); 
 		InsertingEvaluation objectMax = new InsertingEvaluation();
 		InsertingEvaluation objectReason = new InsertingEvaluation();
+		InsertingEvaluation rb = new InsertingEvaluation();
+		InsertingEvaluation insertEvaluation = new InsertingEvaluation();
 		
 		while(flag3) { //beginning of loop
 			/**Appears the Evaluation Menu*/
@@ -26,14 +28,15 @@ public class MainEvaluation { //beginning of class
 			case 1:
 				/**print the already evaluation*/
 				objectAlreadyEvaluation.printEvaluation();
+				rb.printRabdogramma();
 				/** it shows which critic dominates-bad,metria
 				 * ,kali,poli kali app or  combinations of them */
 				objectMax.printDomination(); 
 				break;
 			case 2:
 				/**the user choosing this alternative can evaluate our app
-				 * from 1(0ne) to 4(four) 1 = bad , 2 = moderate ,3 = good , 4 = very good */
-				InsertingEvaluation.insertEvaluation();
+				 * from 1(0ne) to 4(four) 1 = very bad , 2 = bad ,3 = metria , 4 = good, 5 = very good*/
+				insertEvaluation.insertEvaluation();
 				break;
 			case 3:
 				/**the user choosing this alternative can write
