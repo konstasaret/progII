@@ -16,6 +16,8 @@ public class Profile {
 	* for later use in the program*/
 	public int authenticate() {
 		int user_id = 0;
+		Inputs inp = new Inputs();
+
 		try {
 			//server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
@@ -31,7 +33,7 @@ public class Profile {
 			System.out.println("Παρακαλώ εισάγετε το Όνομα Χρήστη σας:");
 
 			do {
-			String name = Inputs.stringScanner();
+			String name = inp.stringScanner();
 
 			//sent user name to server
 			clientMessage = name;
@@ -46,7 +48,7 @@ public class Profile {
 			System.out.println("Παρακαλώ εισάγετε τον Κωδικό σας:");
 
 			do {
-				String pass = Inputs.stringScanner();
+				String pass = inp.stringScanner();
 
 				clientMessage = pass;
 				outStream.writeUTF(clientMessage);
@@ -73,6 +75,8 @@ public class Profile {
 
 	/**Creates new user */
 	public void newEntry() {
+		Inputs inp = new Inputs();
+
 		try {
 			//server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
@@ -87,7 +91,7 @@ public class Profile {
 
 			System.out.println("Παρακαλώ εισάγετε Όνομα Χρήστη:");
 			do {
-				String user_name = Inputs.stringScanner();//Desired user name
+				String user_name = inp.stringScanner();//Desired user name
 
 				//sent to server
 				clientMessage = user_name;
@@ -104,7 +108,7 @@ public class Profile {
 			do {
 				//users desired password
 				System.out.println("Παρακαλώ εισάγετε Κωδικό Χρήστη:");
-				pass = Inputs.stringScanner();
+				pass = inp.stringScanner();
 				//strong password check
 				while (pass.equals(pass.toLowerCase()) //one upper case
 						|| pass.equals(pass.toUpperCase()) //one lower case
@@ -112,13 +116,13 @@ public class Profile {
 						|| !pass.matches(".*\\d.*")) { // at least one number
 					System.err.println("Ο κωδικός θα πρέπει να αποτελείται απο τουλάχιστον 8 χαρακτήρες και να περιέχει απο τουλάχιστον έναν αριθμό, ένα κεφαλαίο και ένα πεζό γράμμα");
 					System.out.println("Παρακαλώ εισάγετε διαφορετικό κωδικό");
-					pass = Inputs.stringScanner();
+					pass = inp.stringScanner();
 				}
 
 
 				//double check password
 				System.out.println("Παρακαλώ επιβεβαιώστε τον Κωδικό Χρήστη σας:");
-				pass2 = Inputs.stringScanner();
+				pass2 = inp.stringScanner();
 				if(!pass.equals(pass2)) {
 					System.out.println("Οι Κωδικοί Χρήστη σας δεν ταιριάζουν.\nΔοκιμάστε Ξανά."); // FIX THE DATA BASE TO WORK WHEN YOU TEST IT
 				}
@@ -180,38 +184,39 @@ public class Profile {
 	 * @param user_id
 	 */
 	public void newLocation(int user_id) {
+		Inputs inp = new Inputs();
 
 		System.out.println("Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε με κεφαλάια γράμματα και χωρίς τόνους:");
 
         System.out.println("Εισάγετε την πόλη :");
-        String city = Inputs.stringScanner();
+        String city = inp.stringScanner();
         while (!city.equals(city.toUpperCase())) {
         	System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
-            city = Inputs.stringScanner();
+            city = inp.stringScanner();
         }
 
         System.out.println("Εισάγετε την διεύθυνση :");
-        String address = Inputs.stringScanner();
+        String address = inp.stringScanner();
         while (!address.equals(address.toUpperCase())) {
         	System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
-            address = Inputs.stringScanner();
+            address = inp.stringScanner();
         }
 
         System.out.println("Εισάγετε την ώρα άφιξης, σε εικοσιτετράωρη βάση, στρογγυλοποιημένη στον προηγούμενο ακέραιο :");
-        int arr_time = Inputs.rangeInt(1,24);
+        int arr_time = inp.rangeInt(1,24);
 
         System.out.println("Εισάγετε την ώρα αναχώρησης, σε εικοσιτετράωρη βάση, στρογγυλοποιημένη στον επόμενο ακέραιο :");
-        int dep_time = Inputs.rangeInt(1,24);
+        int dep_time = inp.rangeInt(1,24);
         while (dep_time <= arr_time) {
         	System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη απο την ώρα άφιξης :");
-            dep_time = Inputs.rangeInt(1,24);
+            dep_time = inp.rangeInt(1,24);
         }
 
         System.out.println("Εισάγετε την ημερομηνία της επίσεψής σας (ΕΕΕΕ-ΜΜ-ΗΗ) :");
-        String date = Inputs.stringScanner();
+        String date = inp.stringScanner();
         while (!date.matches("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$")) {
         	System.err.println("Παρακαλώ εισάγεται την ημερομηνία στην εξής μορφή (ΕΕΕΕ-ΜΜ-ΗΗ) :");
-        	date = Inputs.stringScanner();
+        	date = inp.stringScanner();
         }
 
         try {
@@ -298,6 +303,8 @@ public class Profile {
 	 * @param user_id
 	 */
 	public void deleteUser(int user_id) {
+		Inputs inp = new Inputs();
+
 		try {
 			//server-client messages
 	        DataOutputStream outStream = TCPClient.getOutStream();
@@ -317,7 +324,7 @@ public class Profile {
 			//double check user's credentials
 			System.out.println("Παρακαλώ εισάγεται ξανά τον κωδικό σας :");
 			do {
-			String given_pass = Inputs.stringScanner();
+			String given_pass = inp.stringScanner();
 
 			clientMessage = given_pass;
 			outStream.writeUTF(clientMessage);

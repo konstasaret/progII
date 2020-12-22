@@ -6,7 +6,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
- * @author alexd
+ * Class for getting user's input
  *
  */
 public class Inputs {
@@ -16,7 +16,7 @@ public class Inputs {
 	 * @param lower_boundary
 	 * @param upper_boundary
 	 * @return An Integer as : lower_boundary <= Integer <= upper_boundary*/
-	public static int rangeInt(int lower_boundary, int upper_boundary) {
+	public int rangeInt(int lower_boundary, int upper_boundary) {
 		Scanner in = new Scanner(System.in);
 		int inp = -1;
 		try {
@@ -33,8 +33,11 @@ public class Inputs {
 		}
 			return inp;
 	}
-	/** @return user String input*/
-	public static String stringScanner () {
+
+	/**
+	 * Gets users String input
+	 * @return user String input*/
+	public String stringScanner () {
 		Scanner in = new Scanner(System.in);
 		return in.nextLine();
 	}
