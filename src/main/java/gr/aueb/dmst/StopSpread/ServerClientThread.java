@@ -59,6 +59,9 @@ class ServerClientThread extends Thread {
 	            }else if (clientMessage.equals("d epilogi")) {
 	            	//τοποθεσίες
 	            	count = 4;
+	            }else if (clientMessage.equals("eval")) {
+	            	//Βαθμολογία
+	            	count = 5;
 	            }
 
 	            if (count == -3) {
@@ -244,6 +247,9 @@ class ServerClientThread extends Thread {
 						e.printStackTrace();
 					}
 
+                }else if (count == 5) {
+                	int choice = inStream.readInt();
+                	db.insertIntoEvaluationTable(choice);
                 }
 
 

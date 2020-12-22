@@ -9,10 +9,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 /**
- * @author AirlineDog
- *Database handling class
+ * Database handling class
  */
 public class Database {
 
@@ -28,6 +26,7 @@ public class Database {
     /**Initiates connection with the database*/
     public void createConnection() {
 			try {
+				//Apache derby driver
 				Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
 	            //Get a connection
 	            conn = DriverManager.getConnection(dbURL);
@@ -110,14 +109,34 @@ public class Database {
 	 }//end of method
 
 
+    public void createEvaluationTable() {
+		 try {
+			 stmt = conn.createStatement();//create a Statement
+			 stmt.execute("CREATE TABLE EVALUATION("
+			 		+ "VERY_BAD INT,"
+			 		+ "BAD INT,"
+			 		+ "MID INT,"
+			 		+ "GOOD INT,"
+			 		+ "VERY_GOOD INT )");
+			 stmt.close();
+		 }catch(SQLException e ) {
+			 e.printStackTrace();
+		 }//end of try-catch
+	 }//end of method
 
+public static void main(String[] args) {
 
+	Database db = new Database();
+	db.createConnection();
+
+}
     /**Deletes the users and locations tables*/
     public void deleteTables() {
     	try {
     		stmt = conn.createStatement();//create a Statement
     		stmt.execute("DROP TABLE LOCATIONS ");
     		stmt.execute("DROP TABLE USERS");
+    		stmt.execute("DROP TABLE EVALUATION");
     		stmt.close();
     	}catch(SQLException e) {
     		e.printStackTrace();
@@ -126,6 +145,7 @@ public class Database {
 
 
 	/**Deletes row from USERS based on user_id
+	 * <P>
 	 * and consequently LOCATIONS rows with the same foreign key are deleted
 	 * @param user_id */
 	public void deleteUsersRow(int user_id) {
@@ -195,6 +215,29 @@ public class Database {
             e.printStackTrace();
         }//end of try-catch
     }//end of method
+
+
+
+    public void insertIntoEvaluationTable(int choice) {
+    	try {
+    		stmt = conn.createStatement();
+    		if (choice == 1) {
+    			stmt.execute("UPDATE EVALUATION "
+    					+ "SET VERY_BAD = VERY_BAD + 1 ");
+    		}else if (choice == 2) {
+    			stmt.execute("");
+    		}else if (choice == 3) {
+    			stmt.execute("");
+    		}else if (choice == 4) {
+    			stmt.execute("");
+    		}else if (choice == 5) {
+    			stmt.execute("");
+    		}
+
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    	}
+    }
 
 
     /**Prints the users table*/

@@ -122,10 +122,11 @@ public class Menus {
 	public void insertMenu() { // beggining of insertMenu
 		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας:");
 		System.out.println("Κλίμακα βαθμολογίας: ");
-		System.out.println("1 = κακή εφαρμογή");
-		System.out.println("2 = μέτρια εφαρμογή");
-		System.out.println("3 = καλή εφαρμογή");
-		System.out.println("4 = πολύ καλή εφαρμογή");
+		System.out.println("1 = Πολύ Κακή Εφαρμογή");
+		System.out.println("2 = Κακή Εφαρμογή");
+		System.out.println("3 = Μέτρια εφαρμογή");
+		System.out.println("4 = Καλή εφαρμογή");
+		System.out.println("5 = Πολύ Καλή εφαρμογή");
 		System.out.println("Η βαθμολογία μου είναι:");
 	} // ending of insertMenu
 

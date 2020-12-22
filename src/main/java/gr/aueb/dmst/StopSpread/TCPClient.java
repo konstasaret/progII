@@ -77,7 +77,7 @@ public class TCPClient {
                 int option;
                 while (!Number.equals("7")) {
                     menu.firstMenu(user_id);
-                    option = inp.rangeInt(1, 6);
+                    option = inp.rangeInt(1, 8);
 
                     if (option == 1) {
                         //Προσθήκη τοποθεσίας
@@ -97,11 +97,15 @@ public class TCPClient {
                         //στατιστικα
                         GSX.gsxToTCP();
                     }else if (option == 6){
-                        //στατιστικα
+                        //ιστορίες
                         Stories.stories();
                     }else if (option == 7) {
                     	System.out.println("Λυπούμαστε που φεύγετε");
                     	Number = "7";
+                    }else if (option == 8) {
+                    	//Βαθμολογία
+                    	InsertingEvaluation ev = new InsertingEvaluation();
+                    	ev.insertEvaluation();
                     }
 
 
