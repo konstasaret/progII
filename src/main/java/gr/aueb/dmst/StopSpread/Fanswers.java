@@ -107,5 +107,8 @@ public class Fanswers {
 				loop = false;
 			} // ending of loop
 		} while (loop);
+		System.out.println("Οι παραπάνω πληροφορίες αντλήθηκαν από τον ιστότοπο ");
+		System.out.println(": https://www.uoa.gr/anakoinoseis_kai_ekdiloseis/proboli_anakoinosis/sychnes_erotiseis"
+				+ "_schetika_me_to_neo_koronoio_covid_19/ ");
 	}
 }
