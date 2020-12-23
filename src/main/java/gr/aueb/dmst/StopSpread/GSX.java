@@ -28,12 +28,12 @@ public class GSX {
       int choice = Inputs.rangeInt(1, 4);
       boolean flag2;
       int option;
-      while (choice != 4) { //beggining of loop
+      while (choice != 4) { //beginning of loop
         if (choice == 1) {
           showSite("https://covid19.gov.gr/covid19-live-analytics/");
         } else if (choice == 2) {
           do {
-            menu.GreekStatsMenu2();
+            menu.greekStatsMenu2();
             option = Inputs.rangeInt(1, 11);
             flag2 = true;
             while (flag2 == true) {
@@ -72,7 +72,7 @@ public class GSX {
                   flag2 = false;
                   continue;
               } //end of switch
-              menu.GreekStatsMenu2();
+              menu.greekStatsMenu2();
               option = Inputs.rangeInt(1, 11);
               contloopin = false;
             } //end of loop
@@ -85,7 +85,7 @@ public class GSX {
         } else {
           System.out.println("Λάθος εισαγωγή. Παρακαλώ προσπαθήστε ξανά");
         }
-        menu.GreekStatsMenu();
+        menu.greekStatsMenu();
         choice = Inputs.rangeInt(1, 4);
       }
       contloop = false;
