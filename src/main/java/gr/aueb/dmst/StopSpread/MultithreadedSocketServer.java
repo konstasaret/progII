@@ -6,7 +6,7 @@ import java.net.Socket;
 
 
 /**
- * Starting server Class
+ * Starting server Class.
  *
  */
 public class MultithreadedSocketServer {
@@ -16,23 +16,23 @@ public class MultithreadedSocketServer {
      * @param args
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException {
 
-        ServerSocket server = new ServerSocket(8888);
+    ServerSocket server = new ServerSocket(8888);
 
-		int counter=0;
-		System.out.println("Server Started ....");
-		while(true){
-		    counter++;
-		    Socket serverClient = server.accept();  //server accept the client connection request
-		    System.out.println(">> " + "Client No:" + counter + " started!");
-		    ServerClientThread sct = new ServerClientThread(serverClient,counter); //send  the request to a separate thread
-		    sct.start();
-		}
-
-
-
-
+    int counter = 0;
+    System.out.println("Server Started ....");
+    while (true) {
+      counter++;
+      Socket serverClient = server.accept();  //server accept the client connection request
+      System.out.println(">> " + "Client No:" + counter + " started!");
+      ServerClientThread sct = new ServerClientThread(serverClient, counter); //send  the request to a separate thread
+      sct.start();
     }
+
+
+
+
+  }
 }
 

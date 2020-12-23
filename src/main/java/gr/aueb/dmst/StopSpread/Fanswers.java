@@ -4,79 +4,77 @@ import java.util.Scanner;
 
 public class Fanswers {
 	//public static void main(String [] args) {
-
+	
 	int choice = 100;
 	Scanner sc = new Scanner(System.in);
 	Menus menouQ = new Menus();
 	Answers eisagwgi = new Answers();
 	menouQ.menu88();
+   
 	System.out.println("Πατήστε 0 αν θέλετε να διαβάσετε γενικές πληροφορίες της έρευνας");
 	System.out.println("Διαφορετικά πατήστε τον αριθμό της ερώτησης που θέλετε από 1 έως και 15");
 	System.out.println("Παρακαλώ εισάγετε την επιλογή σας:");
 	choice = sc.nextInt();
 	boolean flag = true;
 
-	while(flag) {//begging of loop
-	switch(choice) {//beggining of switch
+	while(flag) { //beginning of loop
+	switch(choice) {//beginning of switch
 	case 0:
-		eisagwgi.Eisagwgi();
+		eisagwgi.eisagwgi();
 		break;
 	case 1:
-		eisagwgi. Answer1();
+		eisagwgi. answer1();
 		break;
 	case 2:
-		eisagwgi. Answer2();
+		eisagwgi. answer2();
 		break;
 	case 3:
-		eisagwgi. Answer3();
+		eisagwgi. answer3();
 		break;
 	case 4:
-		eisagwgi. Answer4();
+		eisagwgi. answer4();
 		break;
 	case 5:
-		eisagwgi. Answer5();
+		eisagwgi. answer5();
 		break;
 	case 6:
-		eisagwgi. Answer6();
+		eisagwgi. answer6();
 		break;
 	case 7:
-		eisagwgi. Answer7();
+		eisagwgi. answer7();
 		break;
 	case 8:
-		eisagwgi. Answer8();
+		eisagwgi. answer8();
 		break;
 	case 9:
-		eisagwgi. Answer9();
+		eisagwgi. answer9();
 		break;
 	case 10:
-		eisagwgi. Answer10();
+		eisagwgi. answer10();
 		break;
 	case 11:
-		eisagwgi. Answer11();
+		eisagwgi. answer11();
 		break;
 	case 12:
-		eisagwgi. Answer12();
+		eisagwgi. answer12();
 		break;
 	case 13:
-		eisagwgi. Answer13();
+		eisagwgi. answer13();
 		break;
 	case 14:
-		eisagwgi. Answer14();
+		eisagwgi. answer14();
 		break;
 	case 15:
-		eisagwgi. Answer15();
+		eisagwgi. answer15();
 		break;
 	case 16:
 		flag = false;
 		continue;
-
-
-
-	}//ending of switch
+	}//end of switch
 	//na ftiajo ti sinexeia stop sinexizo
 	//ejereseis
 	//-
 
-	}//ending of loop
-	//}
+	}//end of loop
+  }
 }
