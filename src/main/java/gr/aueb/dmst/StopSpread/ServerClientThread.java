@@ -10,29 +10,30 @@ import java.sql.SQLException;
 
 class ServerClientThread extends Thread {
 
-	Socket serverClient;
-    int clientNo;
+	private Socket socket;
+    private int clientNo;
 
 
     public ServerClientThread(Socket inSocket,int counter){
-    	serverClient = inSocket;
-        clientNo=counter;
+    	socket = inSocket;
+        clientNo = counter;
     }
 
     @Override
 	public void run() {
+
     	Database db = new Database();
     	db.createConnection();//connection with database
 
     	try{
 
 
-            DataInputStream inStream = new DataInputStream(serverClient.getInputStream());
-            DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream());
+            DataInputStream inStream = new DataInputStream(socket.getInputStream());
+            DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
 
-            String clientMessage="", serverMessage="";
+            String clientMessage, serverMessage;
 
-            int count = -1;
+            int count = -5;
 
 
             while(count != 0) {
@@ -208,7 +209,8 @@ class ServerClientThread extends Thread {
 
                 	ResultSet results = db.userLocationsResult(user_id); //get data
                 	try {
-                	ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the types and properties of the columns in a ResultSet object
+                	//An object that can be used to get information about the types and properties of the columns in a ResultSet object
+                	ResultSetMetaData rsmd = results.getMetaData();
 
                 	int numberCols = rsmd.getColumnCount();//get number of columns
                 	outStream.writeInt(numberCols);//sent to client
@@ -252,7 +254,7 @@ class ServerClientThread extends Thread {
 
             inStream.close();
             outStream.close();
-            serverClient.close();
+            socket.close();
 
         }catch(IOException e) {
         	System.err.println("Client -" + clientNo + " exit!! ");
@@ -262,4 +264,5 @@ class ServerClientThread extends Thread {
         db.shutdownConnection();
 
     }
+
 }
