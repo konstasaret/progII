@@ -35,10 +35,10 @@ public class TestInputs {
 
 	/*
 	 * public String mes = "yes";
-	 * 
+	 *
 	 * @Test(expected = ArithmeticException.class) public void testExceptions() {
 	 * System.out.println("JUnit message prints:" + mes);
-	 * 
+	 *
 	 * }
 	 */
 }
