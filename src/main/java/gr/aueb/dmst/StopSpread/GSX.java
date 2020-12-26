@@ -91,7 +91,7 @@ public class GSX {
       contloop = false;
     } while (contloop);
   }
-  
+  //small change to see if it's working
   /**method that opens the websites.
    */
   public static void showSite(String url) {
