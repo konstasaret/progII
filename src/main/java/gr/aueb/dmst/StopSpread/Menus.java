@@ -98,20 +98,6 @@ public class Menus {
     System.out.println("3. Έξοδος");
   } //end of storiesMenu
 
-  /**
-   * This method prints the stories that are available to users if they
-   * select to read a story
-   */
-  public void readStories() { // beginning of readStories
-    System.out.println("Πραγματικές ιστορίες ανθρώπων που νόσησαν με" + " Κορονοϊό.");
-    System.out.println("1. 6+1 μαρτυρίες για την καθημερινότητα του ιού "
-        + "από διάφορες γωνιές του πλανήτη, με ελληνική \"ματιά\" ");
-    System.out.println("2. Μαρτυρίες πρώην ασθενών: Η ζωή μετά τον" + " κορονοϊό");
-    System.out.println("3. Νιώθω σαν να έχω άνοια»: Ιστορίες ασθενών που"
-        + " ανάρρωσαν από κορονοϊό αλλά άρχισαν να ξεχνούν.");
-    System.out.println("4. Έξοδος.");
-    System.out.println("Ποια ιστορία επιθυμείτε να διαβάσετε;");
-  } // end of readStories
 
   /**
    * This method prints the user's options about the evaluation of our app.

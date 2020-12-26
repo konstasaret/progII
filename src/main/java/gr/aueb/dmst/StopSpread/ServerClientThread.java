@@ -60,6 +60,9 @@ class ServerClientThread extends Thread {
 	            }else if (clientMessage.equals("d epilogi")) {
 	            	//τοποθεσίες
 	            	count = 4;
+	            }else if (clientMessage.equals("story")) {
+	            	//Νστορυ
+	            	count = 5;
 	            }
 
 	            if (count == -3) {
@@ -245,6 +248,37 @@ class ServerClientThread extends Thread {
                 	} catch (SQLException e) {
 						e.printStackTrace();
 					}
+
+                }else if (count == 5) {
+                	clientMessage = inStream.readUTF();
+                	int option = 0;
+                	if (clientMessage.equals("read story")) {
+                		option = 1;
+                	} else if (clientMessage.equals("new story")) {
+                		option = 2;
+                	}
+
+                	if (option == 1) {
+                		ResultSet results = db.getRandomStory();
+                		try{
+                		results.next();
+
+                		outStream.writeUTF(results.getString(2));
+                		outStream.flush();
+
+                		outStream.writeUTF(results.getString(3));
+                		outStream.flush();
+
+                		results.close();
+
+                		}catch (SQLException e) {
+							e.printStackTrace();
+						}
+                	}else if(option == 2) {
+                		String storyTitle = inStream.readUTF();
+                		String storyBody = inStream.readUTF();
+                    	db.insertIntoStoriesTable(storyTitle, storyBody);
+                	}
 
                 }
 

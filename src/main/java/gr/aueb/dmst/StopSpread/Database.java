@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * @author AirlineDog
@@ -109,6 +110,18 @@ public class Database {
 		 }//end of try-catch
 	 }//end of method
 
+    public void createStoriesTable() {
+		 try {
+			 stmt = conn.createStatement();//create a Statement
+			 stmt.execute("CREATE TABLE STORIES("
+					+ "STORY_ID INT, "
+					+ "STORY_TITLE VARCHAR(255),"
+			 		+ "STORY LONG VARCHAR)");
+			 stmt.close();
+		 }catch(SQLException e) {
+			 e.printStackTrace();
+		 }//end of try-catch
+	 }//end of method
 
 
 
@@ -116,8 +129,9 @@ public class Database {
     public void deleteTables() {
     	try {
     		stmt = conn.createStatement();//create a Statement
-    		stmt.execute("DROP TABLE LOCATIONS ");
-    		stmt.execute("DROP TABLE USERS");
+    		//stmt.execute("DROP TABLE LOCATIONS ");
+    		//stmt.execute("DROP TABLE USERS");
+    		stmt.execute("DROP TABLE STORIES");
     		stmt.close();
     	}catch(SQLException e) {
     		e.printStackTrace();
@@ -196,6 +210,23 @@ public class Database {
         }//end of try-catch
     }//end of method
 
+    public void insertIntoStoriesTable(String storyTitle, String storyBody) {
+		try {
+            stmt = conn.createStatement();//create a Statement
+
+            //find the next available user id
+            ResultSet results; //A table of data representing a database result
+            results = stmt.executeQuery("SELECT MAX(STORY_ID) FROM STORIES");
+            results.next();//set the cursor to the next data
+            int id = results.getInt(1) + 1; // get the data and add 1 to be the user id
+
+            stmt.execute("INSERT INTO STORIES" + " VALUES (" + id + ",'" + storyTitle + "','" + storyBody + "')");
+
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }//end of try-catch
+    }//end of method
 
     /**Prints the users table*/
     public void printUsersTable() {
@@ -255,6 +286,37 @@ public class Database {
                 String date = results.getString(5);
                 int user_id = results.getInt(6);
                 System.out.printf("%-18s%-18s%-18s%-18s%-18s%-18s%n",City , Address , arrival_time, departure_time ,date, user_id);
+            }//end of while
+            results.close();
+            stmt.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }//end of try-catch
+    }//end of method
+
+    public void printStoriesTable(int storyID) {
+        try {
+        	stmt = conn.createStatement();//create a Statement
+            ResultSet results;//A table of data representing a database result
+            results = stmt.executeQuery("SELECT * FROM STORIES");
+            ResultSetMetaData rsmd = results.getMetaData(); //An object that can be used to get information about the types and properties of the columns in a ResultSet object
+            int numberCols = rsmd.getColumnCount();//get number of columns
+
+          //output format
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
+            for (int i=1; i<=numberCols; i++) {
+                //print Column Names
+                System.out.printf("%-18s", rsmd.getColumnLabel(i));
+            }//end of for
+
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
+
+            while(results.next()){
+            	int id = results.getInt(1);
+                String storyTitle = results.getString(2);
+                String storyBody = results.getString(3);
+
+                System.out.printf("%-18s%-18s%-18s\n" , id, storyTitle, storyBody );
             }//end of while
             results.close();
             stmt.close();
@@ -517,5 +579,36 @@ public class Database {
 			e.printStackTrace();
 		}//end of try-catch
 	}//end of method
+
+
+
+	public ResultSet getRandomStory() {
+		ResultSet result = null;//A table of data representing a database result
+        Random rand = new Random();
+        int maxID = 0;
+        try {
+			stmt = conn.createStatement();//create a Statement
+			result = stmt.executeQuery("SELECT MAX(STORY_ID) " +
+				    "FROM STORIES ");
+			result.next();
+			maxID = result.getInt(1);
+
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}//end of try-catch
+
+        int randomID = rand.nextInt(maxID) + 1;
+
+        try {
+			stmt = conn.createStatement();//create a Statement
+			result = stmt.executeQuery("SELECT * " +
+				    "FROM STORIES " +
+				    "WHERE STORY_ID = "+randomID);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}//end of try-catch
+		return result;
+	}
 
 }//end of class

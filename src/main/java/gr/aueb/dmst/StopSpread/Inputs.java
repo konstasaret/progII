@@ -2,7 +2,6 @@ package gr.aueb.dmst.StopSpread;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
  * @author alexd
@@ -13,7 +12,7 @@ public class Inputs {
   * @param lower_boundary
   * @param upper_boundary
   * @return An Integer as : lower_boundary <= Integer <= upper_boundary*/
-  public static int rangeInt(int lower_boundary, int upper_boundary) {
+  public int rangeInt(int lower_boundary, int upper_boundary) {
     Scanner in = new Scanner(System.in);
     int inp = -1;
     try {
@@ -23,16 +22,14 @@ public class Inputs {
         throw new InputMismatchException();
       }
     } catch (InputMismatchException e) {
-      JOptionPane.showMessageDialog(null, "Παρακαλώ εισάγετε αριθμό απο το "
-          + lower_boundary + " μεχρι το " + upper_boundary);
-      //System.err.println("Παρακαλώ εισάγετε αριθμό απο το " + lower_boundary + " μεχρι το " + upper_boundary);
+      System.err.println("Παρακαλώ εισάγετε αριθμό απο το " + lower_boundary + " μεχρι το " + upper_boundary);
       inp = rangeInt(lower_boundary, upper_boundary);
     }
     return inp;
   }
   /** @return user String input*/
-  
-  public static String stringScanner() {
+
+  public String stringScanner() {
     Scanner in = new Scanner(System.in);
     return in.nextLine();
   }
