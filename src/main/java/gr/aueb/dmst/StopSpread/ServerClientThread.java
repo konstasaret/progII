@@ -63,6 +63,9 @@ class ServerClientThread extends Thread {
 	            }else if (clientMessage.equals("story")) {
 	            	//Νστορυ
 	            	count = 5;
+	            }else if (clientMessage.equals("eval")) {
+	            	//Βαθμολογία
+	            	count = 5;
 	            }
 
 	            if (count == -3) {
@@ -274,6 +277,15 @@ class ServerClientThread extends Thread {
                 		}catch (SQLException e) {
 							e.printStackTrace();
 						}
+                		
+                	
+                	}else if (count == 5) {
+                		int choice = inStream.readInt();
+                		db.insertIntoEvaluationTable(choice);
+                	}
+                	
+                	
+                	
                 	}else if(option == 2) {
                 		String storyTitle = inStream.readUTF();
                 		String storyBody = inStream.readUTF();

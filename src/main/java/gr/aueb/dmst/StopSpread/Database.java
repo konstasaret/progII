@@ -96,6 +96,28 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
+	
+	/** Creates Table of user's Evaluation with columns :
+	 * <P>
+	 * VERY_BAD, BAD, METRIA , GOOD, VERY_GOOD
+	 */
+	public void createEvaluationTable() {
+		try {
+			stmt = conn.createStatement();// create a Statement
+			stmt.execute("CREATE TABLE EVALUATION ("
+					+ "VERY_BAD INT,"
+					+ "BAD INT,"
+					+ "METRIA INT,"
+					+ "GOOD INT,"
+					+ "VERY_GOOD INT"
+					+")");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+	}// end of method
+	
+	
 
 	public void createStoriesTable() {
 		try {
@@ -115,6 +137,7 @@ public class Database {
 			// stmt.execute("DROP TABLE LOCATIONS ");
 			// stmt.execute("DROP TABLE USERS");
 			stmt.execute("DROP TABLE STORIES");
+			stmt.execute("DROP TABLE EVALUATION");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -200,6 +223,35 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
+	
+	/**
+	 * Inserts rows into EvaluationTable
+	 */
+	public static void insertIntoEvaluationTable(int choice) {
+		try {
+			stmt = conn.createStatement();// create a Statement
+			if(choice == 1) {
+				stmt.execute("UPDATE EVALUATION "
+						+"SET VERY_BAD = VERY_BAD + 1");
+			} else if(choice == 2) {
+				stmt.execute("UPDATE EVALUATION "
+						+"SET BAD = BAD + 1");
+			} else if(choice ==3) {
+				stmt.execute("UPDATE EVALUATION "
+						+"SET METRIA = METRIA + 1");
+			} else if(choice ==4) {
+				stmt.execute("UPDATE EVALUATION "
+						+"SET GOOD = GOOD + 1");
+			} else if(choice == 5) {
+				stmt.execute("UPDATE EVALUATION "
+						+"SET VERY_GOOD = VERY_GOOD + 1");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} //ending of catch
+		
+	}
 
 	public void insertIntoStoriesTable(String storyTitle, String storyBody) {
 		try {

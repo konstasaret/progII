@@ -12,7 +12,7 @@ public class Inputs {
   * @param lower_boundary
   * @param upper_boundary
   * @return An Integer as : lower_boundary <= Integer <= upper_boundary*/
-  public int rangeInt(int lower_boundary, int upper_boundary) {
+  public static int rangeInt(int lower_boundary, int upper_boundary) {
     Scanner in = new Scanner(System.in);
     int inp = -1;
     try {

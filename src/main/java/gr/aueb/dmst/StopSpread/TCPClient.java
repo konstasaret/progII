@@ -71,9 +71,9 @@ public class TCPClient {
             	prof.checkConnections(user_id);
 
                 int option;
-                while (!Number.equals("7")) {
+                while (!Number.equals("8")) {
                     menu.firstMenu(user_id);
-                    option =  inp.rangeInt(1, 6);
+                    option =  inp.rangeInt(1, 8);
 
                     if (option == 1) {
                         //Προσθήκη τοποθεσίας
@@ -95,13 +95,17 @@ public class TCPClient {
                     }else if (option == 6){
                         //στορυ
                         Stories.stories();
-                    }else if (option == 7) {
+                    }else if (option == 7) { //afora olo to class evaluation
+                    	//Firstly appears menu
+                    	
+                    	//evaluation of app
+                    	InsertingEvaluation ev = new InsertingEvaluation();
+                    	ev.insertEvaluation();
+                    	
+                    } else if (option == 8) {
                     	System.out.println("Λυπούμαστε που φεύγετε");
-                    	Number = "7";
+                    	Number = "8";
                     }
-
-
-                }
 
                 System.out.println("Are you sure yes/no");
                 clientMessage=br.readLine();

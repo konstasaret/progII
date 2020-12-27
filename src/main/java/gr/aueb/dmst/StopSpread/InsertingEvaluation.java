@@ -1,5 +1,6 @@
 package gr.aueb.dmst.StopSpread;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,9 @@ the user to evaluate the app and user can see
 the existing evaluation*/
 
 public class InsertingEvaluation {
+  
+	Menus mn = new Menus();
+	
   //private memembers of the class
   /**counts the users who vote 1 = πολύ κακή εφαρμογή.*/
   private static int mark1;
@@ -39,10 +43,29 @@ public class InsertingEvaluation {
   /**create a list that stores the critic of user's app.*/
   ArrayList<String> list  = new ArrayList<String>();
   
+  public void printMenuEval( ) throws IOException {
+	  while(true) {
+	  mn. printMenu();
+	  int option = Inputs.rangeInt(1,4);
+	  if(option == 1) {
+		  printEvaluation();
+		  printRabdogramma();
+	  } else if(option == 2) {
+		  insertEvaluation();
+	  }else if(option ==3 ) {
+		  
+	  }else if(option ==4) {
+		  break;
+	  }
+	  }//ending loop
+  }
+  
+  
   /**users enter their evaluation.*/
   public void insertEvaluation() { //beginning of insertEvaluation method
     try{
-      //server-client messages
+     
+     //server-client messages
       DataOutputStream outStream = TCPClient.getOutStream();
       String clientMessage;
 
@@ -50,7 +73,7 @@ public class InsertingEvaluation {
       clientMessage = "eval";
       outStream.writeUTF(clientMessage);
       outStream.flush();
-      Menus mn = new Menus();
+      //Menus mn = new Menus();
       int choice;
 
       //calling the menu of class Menus via the Object mn
@@ -64,15 +87,24 @@ public class InsertingEvaluation {
     }
   }
 
-  /**Prints the existing evaluation.*/
-  public void printEvaluation() {
+  /**Prints the existing evaluation.
+ * @throws IOException */
+  public void printEvaluation() throws IOException {
+	DataInputStream inStream = TCPClient.getInStream();
+	mark1 = inStream.readInt();
+	mark2 = inStream.readInt();
+	mark3 = inStream.readInt();
+	mark4 = inStream.readInt();
+	mark5 = inStream.readInt();
     System.out.printf("%d : άτομα ψήφισαν πολύ κακή εφαρμογή\n", mark1);
     System.out.printf("%d : άτομα ψήφισαν κακή εφαρμογή\n", mark2);
     System.out.printf("%d : άτομα ψήφισαν μέτρια εφαρμογή\n", mark3);
     System.out.printf("%d : άτομα ψήφισαν καλή εφαρμογή\n", mark4);
-    System.out.printf("%d : άτομα ψήφισαν πολύ καλή εφαρμογή\n", mark4);
+    System.out.printf("%d : άτομα ψήφισαν πολύ καλή εφαρμογή\n", mark5);
+    totalusers = mark1 + mark2 + mark3 + mark4 + mark5;
     System.out.printf("%d : συνολικά ψήφισαν\n", totalusers);
   }
+  
   /**Prints the evaluation which dominates. */
   /**Prints graph - rabdogramma of evaluation. */
   
