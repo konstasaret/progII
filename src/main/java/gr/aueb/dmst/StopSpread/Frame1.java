@@ -1,5 +1,5 @@
 /**Shows blue background with an icon and the name of our app up -left.*/
-
+//
 package gr.aueb.dmst.StopSpread;
 
 import java.awt.Color;
