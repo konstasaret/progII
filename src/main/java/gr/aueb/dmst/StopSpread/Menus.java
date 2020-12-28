@@ -15,18 +15,18 @@ public class Menus {
 
   /**
    * App's functions menu
-   * @param id
    */
-  public void firstMenu(int id) { // beginning of firstMenu
+  public void firstMenu() { // beginning of firstMenu
     System.out.println("Καλώς ήλθατε!");
     System.out.println("1. Προσθήκη νέας τοποθεσίας.");
     System.out.println("2. Διαγνώσθηκα Θετικός.");
-    System.out.println("3. Διαγραφή Χρήστη και δεδομένων");
-    System.out.println("4. Δες τις τοποθεσίες σου");
-    System.out.println("5. Δες στατιστικά για όλες τις περιοχές");
+    System.out.println("3. Δες τις τοποθεσίες σου");
+    System.out.println("4. Δες στατιστικά για την Ελλάδα");
+    System.out.println("5. Δες στατιστικά για το Κόσμο");
     System.out.println("6. Δες περιστατικά του ιού");
-    System.out.println("7. Αξιολόγηση εφαρμογής");
-    System.out.println("8. Αποσύνδεση");
+    System.out.println("7. Αξιολογηση της εφαρμογής");
+    System.out.println("8. Διαγραφή Χρήστη και δεδομένων");
+    System.out.println("9. Αποσύνδεση");
   } //end of firstMenu
 
   /**
@@ -55,7 +55,6 @@ public class Menus {
     System.out.println("9.Γεωγραφικό Διαμέρισμα Πελοπόννησος");
     System.out.println("10.Γεωγραφικό Διαμέρισμα Στερεά Ελλάδα");
     System.out.println("11. Έξοδος");
-    System.out.println("Εισάγετε τον αριθμό που αντιστοιχεί στην επιθυμητή επιλογή.");
   } //end of GreekStatsMenu
 
   /**

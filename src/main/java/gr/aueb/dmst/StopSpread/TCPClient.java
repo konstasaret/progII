@@ -1,124 +1,120 @@
 package gr.aueb.dmst.StopSpread;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 
 /**
- * @author kostasaret
+ * Client Class
  *
  */
 public class TCPClient {
 
+	/** Socket to be used */
 	private static Socket socket;
-	private static BufferedReader br;
-    private static DataInputStream inStream;
-    private static DataOutputStream outStream;
+	/** Takes data from Server */
+	private static DataInputStream inStream;
+	/** Receives data from Server */
+	private static DataOutputStream outStream;
 
 	/**
 	 * @return the inStream
 	 */
-	public static DataInputStream getInStream() {
+	public DataInputStream getInStream() {
 		return inStream;
 	}
 
 	/**
 	 * @return the outStream
 	 */
-	public static DataOutputStream getOutStream() {
+	public DataOutputStream getOutStream() {
 		return outStream;
 	}
 
-    /**
-     * Begins User's Interface
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
+	/**
+	 * Begins User's Interface
+	 *
+	 * @param args
+	 *
+	 */
+	public static void main(String[] args) {
 
-    	Profile prof = new Profile();
-    	Menus menu = new Menus();
-    	Inputs inp = new Inputs();
-        try{
+		// Objects from always used classes
+		Profile prof = new Profile();
+		Menus menu = new Menus();
+		Inputs inp = new Inputs();
 
-            socket = new Socket("127.0.0.1",8888);
+		try {
 
-            inStream = new DataInputStream(socket.getInputStream());
-            outStream = new DataOutputStream(socket.getOutputStream());
-            br = new BufferedReader(new InputStreamReader(System.in));
+			socket = new Socket("127.0.0.1", 8888);// Initialize socket
 
-            String clientMessage = "";
-            String Number = "";
+			inStream = new DataInputStream(socket.getInputStream());// Initialize DataInputStream
+			outStream = new DataOutputStream(socket.getOutputStream());// Initialize DataOutputStream
 
-            while(!clientMessage.equals("yes")){
-            	int user_id = 0;
-            	while(user_id == 0) {
-            		menu.logInMenu();
-                    int logg = inp.rangeInt(1, 2);
-                    if (logg == 1) {
-                    	//Σύνδεση
-                    	user_id = prof.authenticate();
-                    } else if (logg == 2) {
-                    	//Νέος Χρήστης
-                    	prof.newEntry();
-                    }
-            	}
+			int user_id = 0;// Initialize user_id
 
-            	//ελεγχος επαφών
-            	prof.checkConnections(user_id);
+			while (user_id == 0) {// Login while
+				menu.logInMenu();
+				int logg = inp.rangeInt(1, 2);
+				if (logg == 1) {
+					// log in
+					user_id = prof.authenticate();
+				} else if (logg == 2) {
+					// new user
+					prof.newEntry();
+				} // end of if
+			} // end of while
 
-                int option;
-                while (!Number.equals("8")) {
-                    menu.firstMenu(user_id);
-                    option =  inp.rangeInt(1, 8);
+			// Check for infected connections
+			prof.checkConnections(user_id);
 
-                    if (option == 1) {
-                        //Προσθήκη τοποθεσίας
-                        prof.newLocation(user_id);
-                    } else if (option == 2) {
-                        //θετικός
-                        prof.infected(user_id);
+			while (true) {// endless loop that breaks when user sign out or delete account
 
-                    } else if (option == 3) {
-                        //διαγραφή
-                        prof.deleteUser(user_id);
-                        Number = "7";
-                    } else if (option == 4) {
-                        //τοποθεσίες
-                        prof.seeLocations(user_id);
-                    }else if (option == 5){
-                        //στατιστικα
-                        GSX.gsxToTCP();
-                    }else if (option == 6){
-                        //στορυ
-                        Stories.stories();
-                    }else if (option == 7) { //afora olo to class evaluation
-                    	//Firstly appears menu
-                    	
-                    	//evaluation of app
-                    	InsertingEvaluation ev = new InsertingEvaluation();
-                    	ev.insertEvaluation();
-                    	
-                    } else if (option == 8) {
-                    	System.out.println("Λυπούμαστε που φεύγετε");
-                    	Number = "8";
-                    }
+				menu.firstMenu();
+				int option = inp.rangeInt(1, 8);
 
-                System.out.println("Are you sure yes/no");
-                clientMessage=br.readLine();
-                outStream.writeUTF(clientMessage);
-                outStream.flush();
-            }
+				if (option == 1) {
+					// New location
+					prof.newLocation(user_id);
+				} else if (option == 2) {
+					// positive
+					prof.infected(user_id);
+				} else if (option == 3) {
+					// see locations
+					prof.seeLocations(user_id);
+				} else if (option == 4) {
+					// greek stats
+					GSX g = new GSX();
+					g.gsxToTCP();
+				} else if (option == 5) {
+					// global stats
+					// TODO enter the stats
+				} else if (option == 6) {
+					// stories
+					Stories st = new Stories();
+					st.stories();
+				} else if (option == 7) {
+					// evaluation
+					// TODO enter evaluation
+				} else if (option == 8) {
+					// delete user
+					prof.deleteUser(user_id);
+					break;
+				} else if (option == 9) {
+					// sing out
+					break;
+				} // end of if
 
-            outStream.close();
-            outStream.close();
-            socket.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
+			} // end of while
+
+			System.out.println("Λυπούμαστε που φεύγετε");
+
+			outStream.close();
+			outStream.close();
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
-

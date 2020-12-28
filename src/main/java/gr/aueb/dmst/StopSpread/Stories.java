@@ -11,31 +11,29 @@ import java.io.IOException;
 
 public class Stories {
 
-
+	private TCPClient cl = new TCPClient();
 
 	/**
 	 * The main method of the class Prints user's menu User reads or/and creates his
 	 * own story Exits when user types "3"
 	 */
-	public static void stories() {
+	public void stories() {
 		Menus menu = new Menus();
 		Inputs inp = new Inputs();
 
-
 		// server-client messages
-		DataOutputStream outStream = TCPClient.getOutStream();
-		DataInputStream inStream = TCPClient.getInStream();
+		DataOutputStream outStream = cl.getOutStream();
+		DataInputStream inStream = cl.getInStream();
 		String clientMessage;
-		while(true) {
-		try {
-			// for option identification
-			clientMessage = "story";
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		while (true) {
+			try {
+				// for option identification
+				clientMessage = "story";
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 			menu.storiesMenu();
 			int ch = inp.rangeInt(1, 3);
@@ -83,8 +81,7 @@ public class Stories {
 				break;
 			}
 
-	}
-
+		}
 
 		// sc1.close();
 	}

@@ -4,26 +4,25 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**This class shows the statistics and graphs per area.
- * (Attiki,Ipiros,Thesalsaloniki,
- * Thraki,Kriti,Makedonia,Nisia Ioniou,
- * Nisia Aigeou,Sterea Ellada,Peloponnisos)*/
-
-/**the static method GreekStatusMenu appears the choices
-menu.GreekStatsMenu(); * that user can choose per area*/
-
 /**
- * {@authors Vicky Chrysoyla Giannis Evaggelia}
+ * This class shows the statistics and graphs per area.
+ * (Attiki,Ipiros,Thesalsaloniki, Thraki,Kriti,Makedonia,Nisia Ioniou, Nisia
+ * Aigeou,Sterea Ellada,Peloponnisos)
  */
-
 public class GSX {
-	public static void gsxToTCP() {
+
+	// TODO add your javadoc
+	/**
+	 *
+	 */
+	public void gsxToTCP() {
 		Inputs inp = new Inputs();
 		boolean contloop = true;
 		boolean contloopin = true;
 		Menus menu = new Menus();
 		do {
 			System.out.println("Διαθέσιμες επιλογές:");
+			menu.greekStatsMenu();
 			int choice = inp.rangeInt(1, 4);
 			boolean flag2;
 			int option;
@@ -79,11 +78,8 @@ public class GSX {
 					} while (contloopin);
 				} else if (choice == 3) {
 					showSite("https://betmasters.gr/koronoios/50170-statistika-stin-ellada-prognostika/");
-				} else if (choice == 4) {
-					break;
-				} else {
-					System.out.println("Λάθος εισαγωγή. Παρακαλώ προσπαθήστε ξανά");
 				}
+
 				menu.greekStatsMenu();
 				choice = inp.rangeInt(1, 4);
 			}
@@ -94,6 +90,8 @@ public class GSX {
 	// small change to see if it's working
 	/**
 	 * method that opens the websites.
+	 *
+	 * @param url : the url to show
 	 */
 	public static void showSite(String url) {
 		try {
