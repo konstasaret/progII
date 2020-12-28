@@ -206,7 +206,7 @@ class ServerClientThread extends Thread {
 						// of the columns in a ResultSet object
 						ResultSetMetaData rsmd = results.getMetaData();
 
-						int numberCols = rsmd.getColumnCount();// get number of columns
+						int numberCols = rsmd.getColumnCount() - 1;// get number of columns -1 to exclude user_id
 						outStream.writeInt(numberCols);// sent to client
 						outStream.flush();
 
@@ -247,6 +247,8 @@ class ServerClientThread extends Thread {
 						option = 1;
 					} else if (clientMessage.equals("new story")) {
 						option = 2;
+					} else if (clientMessage.equals("exit")) {
+						//will do nothing
 					}
 
 					if (option == 1) {

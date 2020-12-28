@@ -25,6 +25,7 @@ public class Stories {
 		DataOutputStream outStream = cl.getOutStream();
 		DataInputStream inStream = cl.getInStream();
 		String clientMessage;
+
 		while (true) {
 			try {
 				// for option identification
@@ -33,7 +34,7 @@ public class Stories {
 				outStream.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}//end of try-catch
 
 			menu.storiesMenu();
 			int ch = inp.rangeInt(1, 3);
@@ -49,10 +50,11 @@ public class Stories {
 					String body = inStream.readUTF();
 
 					System.out.println(title);
+					System.out.println();
 					System.out.println(body);
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
+				}//end of try-catch
 			} else if (ch == 2) {
 				try {
 
@@ -75,14 +77,20 @@ public class Stories {
 					outStream.flush();
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
+				}//end of try-catch
 
 			} else if (ch == 3) {
+				try {
+					// for option identification
+					clientMessage = "exit";
+					outStream.writeUTF(clientMessage);
+					outStream.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}//end of try-catch
 				break;
-			}
+			}//end of if
 
-		}
-
-		// sc1.close();
-	}
-}
+		}//end of while
+	}//end of method
+}//end of class

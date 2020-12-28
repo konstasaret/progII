@@ -205,7 +205,7 @@ public class Profile {
 
 		System.out.println(
 				"Εισάγετε την ώρα άφιξης, σε εικοσιτετράωρη βάση, στρογγυλοποιημένη στον προηγούμενο ακέραιο :");
-		int arr_time = inp.rangeInt(1, 24);
+		int arr_time = inp.rangeInt(0, 23);
 
 		System.out.println(
 				"Εισάγετε την ώρα αναχώρησης, σε εικοσιτετράωρη βάση, στρογγυλοποιημένη στον επόμενο ακέραιο :");
@@ -369,14 +369,14 @@ public class Profile {
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
 
-			outStream.writeInt(user_id);
+			outStream.writeInt(user_id);//send id to server
 			outStream.flush();
 
 			int numCols = inStream.readInt();// get number of columns
 
 			// output format
 			System.out.println(
-					"\n-------------------------------------------------------------------------------------------------");
+					"\n---------------------------------------------------------------------------");
 
 			for (int i = 1; i <= numCols; i++) {
 				// print Column Names
@@ -384,7 +384,7 @@ public class Profile {
 			} // end of for
 
 			System.out.println(
-					"\n-------------------------------------------------------------------------------------------------");
+					"\n---------------------------------------------------------------------------");
 
 			// print rows
 			while (!inStream.readUTF().equals("ok")) {

@@ -72,7 +72,7 @@ public class TCPClient {
 			while (true) {// endless loop that breaks when user sign out or delete account
 
 				menu.firstMenu();
-				int option = inp.rangeInt(1, 8);
+				int option = inp.rangeInt(1, 9);
 
 				if (option == 1) {
 					// New location
