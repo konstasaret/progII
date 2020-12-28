@@ -96,7 +96,8 @@ public class TCPClient {
 					st.stories();
 				} else if (option == 7) {
 					// evaluation
-					// TODO enter evaluation
+					InsertingEvaluation eval = new InsertingEvaluation();
+					eval.printMenuEval();
 				} else if (option == 8) {
 					// delete user
 					prof.deleteUser(user_id);

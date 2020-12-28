@@ -3,9 +3,7 @@ package gr.aueb.dmst.StopSpread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * Class InsertingEvaluation asks from the user to evaluate the app and user can
@@ -14,73 +12,84 @@ import java.util.Scanner;
 
 public class InsertingEvaluation {
 
-	Menus mn = new Menus();
+	private TCPClient cl = new TCPClient();
 
-	// private memembers of the class
-	/** counts the users who vote 1 = πολύ κακή εφαρμογή. */
-	private static int mark1;
-
-	/** counts the users who vote 2 = κακή εφαρμογή. */
-	private static int mark2;
-
-	/** counts the users who vote 3 = μέτρια εφαρμογή. */
-	private static int mark3;
-
-	/** counts the users who vote 4 = καλή εφαρμογή. */
-	private static int mark4;
-
-	/** counts the users who vote 5 = πολύ καλή εφαρμογή. */
-	private static int mark5;
-
-	/** counts the total users who evaluate our StopCovidSpread app. */
-	private static int totalusers;
-
-	/** holds the maximum among mark1, mark2, mark3, mark4. */
-	private static int storeMax1;
-
-	/** create table that stores the number of each mark. */
-	static int[] markarray = new int[5];
-
-	/** create a list that stores the critic of user's app. */
-	ArrayList<String> list = new ArrayList<String>();
-
-	/*
-	 * Object which is needed to call the non static method rangeInt of Inputs
-	 * class.
+	// TODO add javadoc
+	/**
+	 *
 	 */
-	Inputs inp = new Inputs();
+	public void printMenuEval() {
+		Menus mn = new Menus();
+		Inputs inp = new Inputs();
 
-	public void printMenuEval() throws IOException {
+		// server-client messages
+		DataOutputStream outStream = cl.getOutStream();
+		String clientMessage;
+
+
 
 		while (true) {
+
+			try {
+				// for option identification
+				clientMessage = "eval";
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} // end of try-catch
+
 			mn.printMenu();
 			int option = inp.rangeInt(1, 4);
-			if (option == 1) {
-				printEvaluation();
-				printRabdogramma();
-			} else if (option == 2) {
-				insertEvaluation();
-			} else if (option == 3) {
+			try {
+				if (option == 1) {
+					// for option identification
+					clientMessage = "eval01";
+					outStream.writeUTF(clientMessage);
+					outStream.flush();
 
-			} else if (option == 4) {
-				break;
-			}
+					printEvaluation();
+
+				} else if (option == 2) {
+					// for option identification
+					clientMessage = "eval02";
+					outStream.writeUTF(clientMessage);
+					outStream.flush();
+
+					insertEvaluation();
+				} else if (option == 3) {
+					// for option identification
+					clientMessage = "eval03";
+					outStream.writeUTF(clientMessage);
+					outStream.flush();
+
+				} else if (option == 4) {
+					// for option identification
+					clientMessage = "eval04";
+					outStream.writeUTF(clientMessage);
+					outStream.flush();
+
+					break;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} // end of try-catch
 		} // ending loop
 	}
 
 	/** users enter their evaluation. */
 	public void insertEvaluation() { // beginning of insertEvaluation method
+
+		Menus mn = new Menus();
+		Inputs inp = new Inputs();
+
 		try {
 
 			// server-client messages
-			DataOutputStream outStream = TCPClient.getOutStream();
-			String clientMessage;
+			DataOutputStream outStream = cl.getOutStream();
 
-			// for option identification
-			clientMessage = "eval";
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
-			// Menus mn = new Menus();
+
+
 			int choice;
 
 			// calling the menu of class Menus via the Object mn
@@ -88,8 +97,11 @@ public class InsertingEvaluation {
 			choice = inp.rangeInt(1, 5);
 			// each variable of mark1,..3,2..,5 counts how many vote have each
 			// choice(1,2,3,4,5)
+
 			outStream.writeInt(choice);
 			outStream.flush();
+			
+			System.out.println("Καταγράψαμε την απάντησή σας \nΣας ευχαριστούμε πολύ");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -97,88 +109,64 @@ public class InsertingEvaluation {
 
 	/**
 	 * Prints the existing evaluation.
-	 * 
+	 *
 	 * @throws IOException
 	 */
-	public void printEvaluation() throws IOException {
-		DataInputStream inStream = TCPClient.getInStream();
-		mark1 = inStream.readInt();
-		mark2 = inStream.readInt();
-		mark3 = inStream.readInt();
-		mark4 = inStream.readInt();
-		mark5 = inStream.readInt();
-		System.out.printf("%d : άτομα ψήφισαν πολύ κακή εφαρμογή\n", mark1);
-		System.out.printf("%d : άτομα ψήφισαν κακή εφαρμογή\n", mark2);
-		System.out.printf("%d : άτομα ψήφισαν μέτρια εφαρμογή\n", mark3);
-		System.out.printf("%d : άτομα ψήφισαν καλή εφαρμογή\n", mark4);
-		System.out.printf("%d : άτομα ψήφισαν πολύ καλή εφαρμογή\n", mark5);
-		totalusers = mark1 + mark2 + mark3 + mark4 + mark5;
-		System.out.printf("%d : συνολικά ψήφισαν\n", totalusers);
+	public void printEvaluation() {
+		DataInputStream inStream = cl.getInStream();
+
+		try {
+			int very_bad = inStream.readInt();
+			int bad = inStream.readInt();
+			int metria = inStream.readInt();
+			int good = inStream.readInt();
+			int very_good = inStream.readInt();
+
+			System.out.printf("%d : άτομα ψήφισαν πολύ κακή εφαρμογή\n", very_bad);
+			System.out.printf("%d : άτομα ψήφισαν κακή εφαρμογή\n", bad);
+			System.out.printf("%d : άτομα ψήφισαν μέτρια εφαρμογή\n", metria);
+			System.out.printf("%d : άτομα ψήφισαν καλή εφαρμογή\n", good);
+			System.out.printf("%d : άτομα ψήφισαν πολύ καλή εφαρμογή\n", very_good);
+			int totalusers = very_bad + bad + metria + good + very_good;
+			System.out.printf("%d : συνολικά ψήφισαν\n", totalusers);
+
+
+
+			System.out.printf("%-20s : ","Πολύ κακή εφαρμογή ");
+			for (int stars = 0; stars < (double) very_bad/totalusers*100; stars++) { // beginning of loop
+				System.out.print("*"); // prints stars
+			} // end of loop0
+			System.out.println();
+			System.out.printf("%-20s : ","Kακή εφαρμογή ");
+			for (int stars = 0; stars < (double) bad/totalusers*100; stars++) { // beginning of loop
+				System.out.print("*"); // prints stars
+			} // end of loop1
+			System.out.println();
+			System.out.printf("%-20s : ","Μέτρια εφαρμογή ");
+			for (int stars = 0; stars < (double) metria/totalusers*100; stars++) { // beginning of loop
+				System.out.print("*"); // prints stars
+			} // end of loop2
+			System.out.println();
+			System.out.printf("%-20s : ","Καλή εφαρμογή ");
+			for (int stars = 0; stars < (double) good/totalusers*100; stars++) { // beggining of loop
+				System.out.print("*"); // prints stars
+			} // end of loop3
+			System.out.println();
+			System.out.printf("%-20s : ","Πολύ καλή εφαρμογή ");
+			for (int stars = 0; stars < (double) very_good/totalusers*100; stars++) { // beginning of loop
+				System.out.print("*"); // prints stars
+			} // end of loop4
+			System.out.println();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
-	/** Prints the evaluation which dominates. */
-	/** Prints graph - rabdogramma of evaluation. */
-
-	public void printRabdogramma() { // beginning of Rabdogramma
-		System.out.printf("Πολύ κακή εφαρμογή : ");
-		for (int stars = 0; stars < markarray[0]; stars++) { // beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop0
-		System.out.println();
-		System.out.printf("Kακή εφαρμογή : ");
-		for (int stars = 0; stars < markarray[1]; stars++) { // beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop1
-		System.out.println();
-		System.out.printf("Μέτρια εφαρμογή : ");
-		for (int stars = 0; stars < markarray[2]; stars++) { // beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop2
-		System.out.println();
-		System.out.printf("Καλή εφαρμογή : ");
-		for (int stars = 0; stars < markarray[3]; stars++) { // beggining of loop
-			System.out.print("*"); // prints stars
-		} // end of loop3
-		System.out.println();
-		System.out.printf("Πολύ καλή εφαρμογή : ");
-		for (int stars = 0; stars < markarray[4]; stars++) { // beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop4
-		System.out.println();
-	} // ending of method printRabdogramma
-
-	public void printDomination() {
-		markarray[0] = InsertingEvaluation.mark1;
-		markarray[1] = InsertingEvaluation.mark2;
-		markarray[2] = InsertingEvaluation.mark3;
-		markarray[3] = InsertingEvaluation.mark4;
-		markarray[4] = InsertingEvaluation.mark5;
-		/** sort the elements of the array asc */
-		Arrays.sort(markarray);
-		System.out.println();
-		// stores in markarray[3] the maximum element
-		storeMax1 = markarray[3];
-		System.out.println("Η Γενική Κριτική για την εφαρμογή  είναι: ");
-		if (mark1 == storeMax1) {
-			System.out.println("Η εφαρμογή είναι πολύ κακή");
-		}
-		if (mark2 == storeMax1) {
-			System.out.println("Η εφαρμογή είναι κακή");
-		}
-		if (mark3 == storeMax1) {
-			System.out.println("Η εφαρμογή είναι μέτρια");
-		}
-		if (mark4 == storeMax1) {
-			System.out.println("Η εφαρμογή είναι καλή");
-		}
-		if (mark5 == storeMax1) {
-			System.out.println("Η εφαρμογή είναι πολύ καλή");
-		}
-	} // end printDomination
 
 	/** Users write their evaluation about our app. */
 	public void reasonOfEvaluation() {
-		Scanner sc5 = new Scanner(System.in);
+		Inputs inp = new Inputs();
 		System.out.println("Επιθυμείτε να προσθέσετε σχόλια για την εφαρμογή StopSpread;");
 		// interaction with the user
 		System.out.println("1. ΝΑΙ");
@@ -186,12 +174,12 @@ public class InsertingEvaluation {
 		int check = inp.rangeInt(1, 2);
 		if (check == 1) {
 			System.out.print("Μπορείτε να πληκτρολογήσετε το σχόλιο σας: ");
-			String sxolia = sc5.next();
+			String sxolia = inp.stringScanner();
 			list.add(sxolia);
 			System.out.print("Σας Ευχαριστούμε, η κριτική σας μόλις καταχωρήθηκε!");
 		} else {
 			System.out.println("Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή μας!");
 		}
-		sc5.close();
+
 	}
 }

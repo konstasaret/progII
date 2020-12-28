@@ -111,6 +111,8 @@ public class Database {
 					+ "GOOD INT,"
 					+ "VERY_GOOD INT"
 					+")");
+			stmt.execute("INSERT INTO EVALUATION "
+					+ "VALUES (0,0,0,0,0)");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -142,7 +144,7 @@ public class Database {
 			stmt = conn.createStatement();// create a Statement
 			// stmt.execute("DROP TABLE LOCATIONS ");
 			// stmt.execute("DROP TABLE USERS");
-			stmt.execute("DROP TABLE STORIES");
+			//stmt.execute("DROP TABLE STORIES");
 			stmt.execute("DROP TABLE EVALUATION");
 			stmt.close();
 		} catch (SQLException e) {
@@ -652,4 +654,30 @@ public class Database {
 		} // end of try-catch
 		return result;
 	}
+
+	/**
+	 * @return Number of votes for every choice
+	 */
+	public int[] getEvaluations() {
+		int[] X = new int[5];
+		try {
+			stmt = conn.createStatement();// create a Statement
+			ResultSet result;
+			result = stmt.executeQuery("SELECT * FROM EVALUATION");
+
+			result.next();
+				X[0] = result.getInt(1);
+				X[1] = result.getInt(2);
+				X[2] = result.getInt(3);
+				X[3] = result.getInt(4);
+				X[4] = result.getInt(5);
+
+			result.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+		return X;
+	}
+
 }// end of class

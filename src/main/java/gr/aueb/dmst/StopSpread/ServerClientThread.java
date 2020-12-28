@@ -249,7 +249,7 @@ class ServerClientThread extends Thread {
 						option = 2;
 					} else if (clientMessage.equals("exit")) {
 						//will do nothing
-					}
+					}//end of if
 
 					if (option == 1) {
 						ResultSet results = db.getRandomStory();
@@ -275,8 +275,39 @@ class ServerClientThread extends Thread {
 					}
 
 				} else if (count == 6) {
-					int choice = inStream.readInt();
-					db.insertIntoEvaluationTable(choice);
+					clientMessage = inStream.readUTF();
+
+					int option = 0;
+					if (clientMessage.equals("eval01")) {
+						option = 1;
+					} else if (clientMessage.equals("eval02")) {
+						option = 2;
+					} else if (clientMessage.equals("eval03")) {
+						option = 3;
+					} else if (clientMessage.equals("eval04")) {
+						//will do nothing
+					}//end of if
+
+					if (option == 1) {
+						int[] Ev = db.getEvaluations();
+
+						outStream.writeInt(Ev[0]);
+						outStream.flush();
+						outStream.writeInt(Ev[1]);
+						outStream.flush();
+						outStream.writeInt(Ev[2]);
+						outStream.flush();
+						outStream.writeInt(Ev[3]);
+						outStream.flush();
+						outStream.writeInt(Ev[4]);
+						outStream.flush();
+					} else if (option == 2) {
+						int choice = inStream.readInt();
+						db.insertIntoEvaluationTable(choice);
+					}else if (option == 3) {
+
+					}
+
 				} // end of if
 
 			} // end of while
