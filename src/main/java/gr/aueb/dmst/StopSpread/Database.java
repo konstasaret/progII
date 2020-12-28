@@ -96,7 +96,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
-	
+
 	/** Creates Table of user's Evaluation with columns :
 	 * <P>
 	 * VERY_BAD, BAD, METRIA , GOOD, VERY_GOOD
@@ -116,14 +116,20 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
-	
-	
 
+
+	/** Creates Table of users Stories with columns :
+	 * <P>
+	 * STORY_ID, STORY_TITLE, STORY
+	 */
 	public void createStoriesTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute(
-					"CREATE TABLE STORIES(" + "STORY_ID INT, " + "STORY_TITLE VARCHAR(255)," + "STORY LONG VARCHAR)");
+					"CREATE TABLE STORIES("
+						+ "STORY_ID INT, "
+						+ "STORY_TITLE VARCHAR(255),"
+						+ "STORY LONG VARCHAR)");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -223,11 +229,12 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
-	
+
 	/**
 	 * Inserts rows into EvaluationTable
+	 * @param choice
 	 */
-	public static void insertIntoEvaluationTable(int choice) {
+	public void insertIntoEvaluationTable(int choice) {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			if(choice == 1) {
@@ -246,13 +253,19 @@ public class Database {
 				stmt.execute("UPDATE EVALUATION "
 						+"SET VERY_GOOD = VERY_GOOD + 1");
 			}
-			
+
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} //ending of catch
-		
+
 	}
 
+	/**
+	 * Inserts rows into Stories table
+	 * @param storyTitle
+	 * @param storyBody
+	 *
+	 */
 	public void insertIntoStoriesTable(String storyTitle, String storyBody) {
 		try {
 			stmt = conn.createStatement();// create a Statement
@@ -341,7 +354,10 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-	public void printStoriesTable(int storyID) {
+	/**
+	 * Prints the locations table
+	 */
+	public void printStoriesTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet results;// A table of data representing a database result
@@ -610,6 +626,8 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
+	/**
+	 * @return ResultSet from a random Story*/
 	public ResultSet getRandomStory() {
 		ResultSet result = null;// A table of data representing a database result
 		Random rand = new Random();
