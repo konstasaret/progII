@@ -16,6 +16,7 @@ public class MainEvaluation { // beginning of class
 		boolean flag3 = true;
 		// calling of MenouEvaluation
 		Menus objectMenouEvaluation = new Menus();
+		Inputs inp = new Inputs();
 
 		// creation of Objects
 		InsertingEvaluation objectAlreadyEvaluation = new InsertingEvaluation();
@@ -28,7 +29,7 @@ public class MainEvaluation { // beginning of class
 			// Shows the Evaluation Menu
 			objectMenouEvaluation.printMenu();
 			System.out.printf(" %s \n", "Παρακαλώ εισάγετε την επιλογή σας: ");
-			userchoice = Inputs.rangeInt(1, 4);
+			userchoice = inp.rangeInt(1, 4);
 			switch (userchoice) { // beginning of switch
 			case 1:
 				// print the existing evaluation
