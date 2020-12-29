@@ -16,20 +16,27 @@ public class Inputs {
 	 * @param upper_boundary
 	 * @return An Integer as : lower_boundary <= Integer <= upper_boundary
 	 */
+	
 	public int rangeInt(int lower_boundary, int upper_boundary) {
 		Scanner in = new Scanner(System.in);
 		int inp = -1;
-		try {
-			inp = in.nextInt();
-			in.nextLine();
-			if (inp < lower_boundary || inp > upper_boundary) {
-				throw new InputMismatchException();
-			}
-		} catch (InputMismatchException e) {
+		inp = in.nextInt();
+		in.nextLine();
+		if (!isNumberAllowed(lower_boundary, upper_boundary, inp)) {
 			System.err.println("Παρακαλώ εισάγετε αριθμό απο το " + lower_boundary + " μεχρι το " + upper_boundary);
 			inp = rangeInt(lower_boundary, upper_boundary);
 		}
 		return inp;
+	}
+	
+	public boolean isNumberAllowed(int lower_boundary, int upper_boundary, int givenInput) {
+		return (givenInput >= lower_boundary && givenInput <= upper_boundary);
+		
+		
+	
+		
+		
+		
 	}
 
 	/** @return user String input */
