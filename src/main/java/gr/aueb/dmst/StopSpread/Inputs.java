@@ -4,13 +4,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * @author alexd
+ * This is a class that helps getting a number from user, instead of using class
+ * Scanner, and checking if this number is within lower and upper boundary.
  */
 public class Inputs {
 	/**
 	 * Handles user input errors and returns an integer in the range of
 	 * lower_boundary and upper_boundary including the limits
-	 * 
+	 *
 	 * @param lower_boundary
 	 * @param upper_boundary
 	 * @return An Integer as : lower_boundary <= Integer <= upper_boundary
