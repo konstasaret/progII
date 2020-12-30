@@ -3,7 +3,6 @@ package gr.aueb.dmst.StopSpread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Class InsertingEvaluation asks from the user to evaluate the app and user can
@@ -79,7 +78,7 @@ public class InsertingEvaluation {
 
 	/** users enter their evaluation. */
 	public void insertEvaluation() { // beginning of insertEvaluation method
-
+		//TODO o kathenas na mpori na psifisei mia fora
 		Menus mn = new Menus();
 		Inputs inp = new Inputs();
 
@@ -100,7 +99,7 @@ public class InsertingEvaluation {
 
 			outStream.writeInt(choice);
 			outStream.flush();
-			
+
 			System.out.println("Καταγράψαμε την απάντησή σας \nΣας ευχαριστούμε πολύ");
 		} catch (IOException e) {
 			e.printStackTrace();

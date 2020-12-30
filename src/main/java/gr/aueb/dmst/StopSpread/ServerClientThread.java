@@ -160,7 +160,7 @@ class ServerClientThread extends Thread {
 					outStream.flush();
 				} else if (count == 2) {
 					// positive
-
+					//TODO show the nearest hospitals
 					int user_id = inStream.readInt();
 
 					db.findConnections(user_id);
@@ -320,8 +320,8 @@ class ServerClientThread extends Thread {
 			System.err.println("Client -" + clientNo + " exit!! ");
 		} finally {
 			System.out.println("Connection reset waiting for new Client");
+			db.shutdownConnection();
 		}//end of try-catch
-		db.shutdownConnection();
 
 	}//end of run()
 

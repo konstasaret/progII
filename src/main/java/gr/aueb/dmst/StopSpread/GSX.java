@@ -32,7 +32,7 @@ public class GSX {
 					while (true) {
 						menu.greekStatsMenu2();
 						option = inp.rangeInt(1, 11);
-						
+
 						String url = decideURL(choice, option);
 						if(!url.equals("exit"))
 							showSite(url);
@@ -50,17 +50,18 @@ public class GSX {
 			contloop = false;
 		} while (contloop);
 	}
-	
+
 	public String decideURL(int choice, int NomosOption) {
 		String url = "";
-		
+
 		if(choice == 1)
 			url = "https://covid19.gov.gr/covid19-live-analytics/";
 		else if(choice == 3)
+			//TODO den einai kai poly episimo ayto to site
 			url = "https://betmasters.gr/koronoios/50170-statistika-stin-ellada-prognostika/";
 		else if(choice == 2) {
 			switch (NomosOption) { // beginning of switch
-			case 1: 
+			case 1:
 				url = "https://covid19greece.com/geografiko-diamerisma/attiki";
 				break;
 			case 2:
