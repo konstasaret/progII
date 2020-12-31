@@ -2,6 +2,7 @@ package gr.aueb.dmst.StopSpread;
 
 /** This class contains the answers of each frequent question. */
 public class Answers {
+	/** This method contains an introduction of Covid-19. */
 	public void eisagwgi() {
 		System.out.println("Σύμφωνα με τα διαρκώς ανανεωμένα επιδημιολογικά δεδομένα της");
 		System.out.println("ιστοσελίδας του Πανεπιστημίου Johns Hopkins, ");
@@ -10,7 +11,6 @@ public class Answers {
 		System.out.println(" Νότιος Κορέα με 3.150 κρούσματα και 17 θανάτους και μετά η Ιταλία");
 		System.out.println(" με 889 κρούσματα και 21 θανάτους. Στο Ιράν έχουν σημειωθεί 43 θάνατοι");
 		System.out.println(" χωρίς όμως να έχουμε ακριβή στοιχεία για τον αριθμό των κρουσμάτων.");
-
 		System.out.println("Σχετικά με το νέο κορωνοϊό έχουν ήδη δημοσιευθεί εκατοντάδες άρθρα ");
 		System.out.println(" σε επιστημονικά ιατρικά περιοδικά και σε ιστοσελίδες έγκυρων ");
 		System.out.println("Οργανισμών (πχ. Παγκόσμιος Οργανισμός Υγείας), Πανεπιστημιακών Ιδρυμάτων");
@@ -18,6 +18,7 @@ public class Answers {
 		System.out.println("παρατίθενται απαντήσεις σε συχνές ερωτήσεις.");
 	}
 
+	/** This method prints the answer to the first frequent question. */
 	public void answer1() {
 		System.out.println("Ναι, ο ιός μεταδίδεται από άνθρωπο σε άνθρωπο πιθανότατα με τα σταγονίδια");
 		System.out.println("σιέλου και βλέννης κατά το βήχα, το φτάρνισμα, τη χειραψία και την");
@@ -26,41 +27,40 @@ public class Answers {
 		System.out.println("σταγονίδια τα οποία «ταξιδεύουν» λιγότερο από δύο μέτρα.");
 	}
 
+	/** This method prints the answer to the second frequent question. */
 	public void answer2() {
 		System.out.println("Ως περίοδος επώασης ορίζεται ο χρόνος που μεσολαβεί μεταξύ");
 		System.out.println("της επαφής του ατόμου με την πηγή του ιού και της εμφάνισης");
 		System.out.println("των πρώτων συμπτωμάτων. Στις περισσότερες περιπτώσεις τα συμπτώματα");
 		System.out.println("εμφανίζονται μέσα στις πρώτες 5 ημέρες, ωστόσο η περίοδος επώασης");
 		System.out.println(" ποικίλλει από 1 έως 14 ημέρες. Υπάρχουν και αναφορές για μεγαλύτερη ");
-		System.out.println("περίοδο επώασης αλλά αυτές αποτελούν μάλλον εξαιρέσεις του " + "γενικού κανόνα.");
+		System.out.println("περίοδο επώασης αλλά αυτές αποτελούν μάλλον εξαιρέσεις του γενικού κανόνα.");
 	}
 
+	/** This method prints the answer to the third frequent question. */
 	public void answer3() {
-		System.out.println("Πρόσφατη μελέτη από την Κίνα, που δημοσιεύθηκε στις 28 Φεβρουαρίου" + " 2020 από το");
-		System.out.println(" New England Journal of Medicine και περιλάμβανε 1099 " + "ασθενείς που νοσηλεύθηκαν");
+		System.out.println("Πρόσφατη μελέτη από την Κίνα, που δημοσιεύθηκε στις 28 Φεβρουαρίου 2020 από το");
+		System.out.println(" New England Journal of Medicine και περιλάμβανε 1099 ασθενείς που νοσηλεύθηκαν");
 		System.out.println("σε 552 Νοσοκομεία της Κίνας, ανέφερε τα παρακάτω στοιχεία: ");
-
 		System.out.println("-Η διάμεση ηλικία των ασθενών ήταν 47 έτη, 58% ήταν άνδρες");
-
 		System.out.println("-Πυρετός (σε 90% των ασθενών), ξηρός βήχας (σε 68% των ασθενών), δύσπνοια");
 		System.out.println("(σε μικρότερο ποσοστό) είναι τα συνηθέστερα και σε ορισμένες");
 		System.out.println("περιπτώσεις παρατηρήθηκε ναυτία, έμετος, διάρροια (περίπου 5%).");
 		System.out.println("-Παθολογικά ακτινολογικά ευρήματα διαπιστώθηκαν σε 86% των ασθενών");
 		System.out.println("που υπεβλήθησαν σε αξονική τομογραφία θώρακα. ");
-
 		System.out.println("-Χαμηλός αριθμός λεμφοκυττάρων διαπιστώθηκε σε 83% των ασθενών.");
-
 		System.out.println("-Μηχανική υποστήριξη της αναπνοής απαιτήθηκε για το 6% των ασθενών.");
-
 		System.out.println("-Θάνατος διαπιστώθηκε στο 1,4% των ασθενών.");
 	}
 
+	/** This method prints the answer to the fourth frequent question. */
 	public void answer4() {
 		System.out.println(
-				"Ναι, μπορούν οι ασυμπτωματικοί φορείς να μεταδίδουν τον ιό. " + "Ωστόσο, δεν έχει εξακριβωθεί");
+				"Ναι, μπορούν οι ασυμπτωματικοί φορείς να μεταδίδουν" + " τον ιό. Ωστόσο, δεν έχει εξακριβωθεί");
 		System.out.println("πόσο εύκολα γίνεται αυτό και πόσο συχνά συμβαίνει.");
 	}
 
+	/** This method prints the answer to the fifth frequent question. */
 	public void answer5() {
 		System.out.println("Δεν υπάρχουν ενδείξεις ότι ο κορωνοϊός μπορεί να μεταδοθεί");
 		System.out.println("από μαλακές επιφάνειες όπως");
@@ -74,6 +74,7 @@ public class Answers {
 		System.out.println("επιφάνειες δεν ξεπερνά τις μερικές ώρες.");
 	}
 
+	/** This method prints the answer to the sixth frequent question. */
 	public void answer6() {
 		System.out.println("Παρόλο που πρόσφατα αναφέρθηκε μία περίπτωση ανίχνευσης ");
 		System.out.println("του νέου κορωνοϊού σε κατοικίδιο, δεν έχει αναφερθεί και ");
@@ -81,6 +82,7 @@ public class Answers {
 		System.out.println("γάτες θα μπορούν να μεταδίδουν τον ιό στον άνθρωπο και αντίστροφα.");
 	}
 
+	/** This method prints the answer to the seventh frequent question. */
 	public void answer7() {
 		System.out.println("Δε συστήνεται η χρήση μάσκας από το γενικό πληθυσμό για προληπτικούς ");
 		System.out.println("λόγους. Η μάσκα συστήνεται για τους ασθενείς με κλινική");
@@ -92,10 +94,12 @@ public class Answers {
 		System.out.println("οδηγία από τον προσωπικό τους ιατρό.");
 	}
 
+	/** This method prints the answer to the eighth frequent question. */
 	public void answer8() {
 		System.out.println("Ναι, όπως και με τον ιό της γρίπης δεν τίθεται θέμα μετάδοσης του ιού.");
 	}
 
+	/** This method prints the answer to the nineth frequent question. */
 	public void answer9() {
 		System.out.println("Δεν υπάρχουν σαφή δεδομένα σχετικά με τη μετάδοση του ιού ");
 		System.out.println("μέσω της τροφής. Ο Covid-19 όπως και άλλοι κορωνοϊοί");
@@ -105,8 +109,9 @@ public class Answers {
 		System.out.println("σαφέστατα τις πιθανότητες.");
 	}
 
+	/** This method prints the answer to the tenth frequent question. */
 	public void answer10() {
-		System.out.println("Οι ταξιδιωτικές οδηγίες υφίστανται διαρκώς τροποποιήσεις με βάση " + "τα διαρκώς");
+		System.out.println("Οι ταξιδιωτικές οδηγίες υφίστανται διαρκώς τροποποιήσεις με βάση τα διαρκώς");
 		System.out.println("ανανεωμένα δεδομένα. Η χρήση της μάσκας ακολουθεί τους ίδιους γενικούς");
 		System.out.println("κανόνες που αναφέρθηκαν προηγουμένως. Εάν κάποιος έχει συμπτώματα");
 		System.out.println("από το αναπνευστικό και πυρετό, καλό είναι να αναβάλει το αεροπορικό");
@@ -115,6 +120,7 @@ public class Answers {
 		System.out.println("ταξίδια πρέπει να αποφεύγονται από τους ανοσοκατεσταλμένους ασθενείς.");
 	}
 
+	/** This method prints the answer to the 11th frequent question. */
 	public void answer11() {
 		System.out.println("Το σημαντικότερο είναι η επιμελής προσωπική υγιεινή");
 		System.out.println("και το σχολαστικό πλύσιμο των χεριών με βάση τις οδηγίες του ΕΟΔΥ.");
@@ -124,6 +130,7 @@ public class Answers {
 		System.out.println("και παρακολούθηση.");
 	}
 
+	/** This method prints the answer to the 12th frequent question. */
 	public void answer12() {
 		System.out.println("Η διάγνωση γίνεται με βάση την κλινική συμπτωματολογία και το ειδικό");
 		System.out.println("τεστ που πραγματοποιείται σε εξειδικευμένα εργαστήρια όπως στο");
@@ -136,6 +143,7 @@ public class Answers {
 		System.out.println("αποτελεσματικά στον έγκαιρο εντοπισμό και απομόνωση των κρουσμάτων.");
 	}
 
+	/** This method prints the answer to the 13th frequent question. */
 	public void answer13() {
 		System.out.println("Με βάση δεδομένα που έχουμε έως σήμερα, η θνητότητα υπολογίζεται");
 		System.out.println("στο 1%. Ωστόσο το ποσοστό μπορεί να είναι χαμηλότερο δεδομένου");
@@ -147,6 +155,7 @@ public class Answers {
 		System.out.println("γύρω στο 0,1%.");
 	}
 
+	/** This method prints the answer to the 14th frequent question. */
 	public void answer14() {
 		System.out.println("Εάν έχετε ταξιδέψει σε περιοχή με συρροή κρουσμάτων ή έχετε");
 		System.out.println("έρθει σε επαφή με κρούσμα και έχετε συμπτώματα όπως πυρετό,");
@@ -157,6 +166,7 @@ public class Answers {
 		System.out.println("απευθείας στα επείγοντα ιατρεία εφημερεύοντος νοσοκομείου.");
 	}
 
+	/** This method prints the answer to the 15th frequent question. */
 	public void answer15() {
 		System.out.println("Προς το παρόν τα στοιχεία δείχνουν ότι σχεδόν όλοι");
 		System.out.println("οι ασθενείς θα αναρρώσουν. Η περίοδος ανάρρωσης");
@@ -170,6 +180,7 @@ public class Answers {
 		System.out.println("η ικανότητα μετάδοσης σε αυτή την περίπτωση.");
 	}
 
+	/** This method prints the answer to the 16th frequent question. */
 	public void answer16() {
 		System.out.println("Η απάντηση είναι πως πιθανώς θα βοηθήσουν στον");
 		System.out.println("περιορισμό αλλά δεν αποτελεί ικανή συνθήκη για");
