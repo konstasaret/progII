@@ -1,6 +1,13 @@
 package gr.aueb.dmst.StopSpread;
 
+/**
+ * This class shows to user the answer which he wants to read.
+ */
 public class Fanswers {
+	/**
+	 * The main method of the class which checks the user's input and prints the
+	 * suitable answer.
+	 */
 	public void freqQuest() {
 
 		// int choice = 100;
