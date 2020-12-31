@@ -2,21 +2,6 @@ package gr.aueb.dmst.StopSpread;
 
 /** This class contains the answers of each frequent question. */
 public class Answers {
-	public void eisagwgi() {
-		System.out.println("Σύμφωνα με τα διαρκώς ανανεωμένα επιδημιολογικά δεδομένα της");
-		System.out.println("ιστοσελίδας του Πανεπιστημίου Johns Hopkins, ");
-		System.out.println("το μεσημέρι της 29ης Φεβρουαρίου 2020 είχαν επιβεβαιωθεί 85.406 κρούσματα");
-		System.out.println(" και 2.933 θάνατοι σε 61 χώρες παγκοσμίως. Μετά την Κίνα ακολουθεί η");
-		System.out.println(" Νότιος Κορέα με 3.150 κρούσματα και 17 θανάτους και μετά η Ιταλία");
-		System.out.println(" με 889 κρούσματα και 21 θανάτους. Στο Ιράν έχουν σημειωθεί 43 θάνατοι");
-		System.out.println(" χωρίς όμως να έχουμε ακριβή στοιχεία για τον αριθμό των κρουσμάτων.");
-
-		System.out.println("Σχετικά με το νέο κορωνοϊό έχουν ήδη δημοσιευθεί εκατοντάδες άρθρα ");
-		System.out.println(" σε επιστημονικά ιατρικά περιοδικά και σε ιστοσελίδες έγκυρων ");
-		System.out.println("Οργανισμών (πχ. Παγκόσμιος Οργανισμός Υγείας), Πανεπιστημιακών Ιδρυμάτων");
-		System.out.println(" και Ερευνητικών Ινστιτούτων.Με βάση αυτές τις πηγές, ");
-		System.out.println("παρατίθενται απαντήσεις σε συχνές ερωτήσεις.");
-	}
 
 	public void answer1() {
 		System.out.println("Ναι, ο ιός μεταδίδεται από άνθρωπο σε άνθρωπο πιθανότατα με τα σταγονίδια");
@@ -24,6 +9,7 @@ public class Answers {
 		System.out.println("από κοινού κατανάλωση φαγητού ή ποτού.");
 		System.out.println("Πρόσφατα δεδομένα αναφέρουν ότι ο ιός μεταδίδεται με μεγάλα");
 		System.out.println("σταγονίδια τα οποία «ταξιδεύουν» λιγότερο από δύο μέτρα.");
+		System.out.println();
 	}
 
 	public void answer2() {
@@ -33,6 +19,7 @@ public class Answers {
 		System.out.println("εμφανίζονται μέσα στις πρώτες 5 ημέρες, ωστόσο η περίοδος επώασης");
 		System.out.println(" ποικίλλει από 1 έως 14 ημέρες. Υπάρχουν και αναφορές για μεγαλύτερη ");
 		System.out.println("περίοδο επώασης αλλά αυτές αποτελούν μάλλον εξαιρέσεις του " + "γενικού κανόνα.");
+		System.out.println();
 	}
 
 	public void answer3() {
@@ -53,12 +40,14 @@ public class Answers {
 		System.out.println("-Μηχανική υποστήριξη της αναπνοής απαιτήθηκε για το 6% των ασθενών.");
 
 		System.out.println("-Θάνατος διαπιστώθηκε στο 1,4% των ασθενών.");
+		System.out.println();
 	}
 
 	public void answer4() {
 		System.out.println(
 				"Ναι, μπορούν οι ασυμπτωματικοί φορείς να μεταδίδουν τον ιό. " + "Ωστόσο, δεν έχει εξακριβωθεί");
 		System.out.println("πόσο εύκολα γίνεται αυτό και πόσο συχνά συμβαίνει.");
+		System.out.println();
 	}
 
 	public void answer5() {
@@ -72,6 +61,7 @@ public class Answers {
 		System.out.println("τρίψει τα μάτια του. Σύμφωνα με τον Παγκόσμιο");
 		System.out.println("Οργανισμό Υγείας η επιβίωση των ιϊκών σωματιδίων στις σκληρές");
 		System.out.println("επιφάνειες δεν ξεπερνά τις μερικές ώρες.");
+		System.out.println();
 	}
 
 	public void answer6() {
@@ -79,6 +69,7 @@ public class Answers {
 		System.out.println("του νέου κορωνοϊού σε κατοικίδιο, δεν έχει αναφερθεί και ");
 		System.out.println("δεν αναμένεται ότιτα κατοικίδια ζώα όπως οι σκύλοι και οι");
 		System.out.println("γάτες θα μπορούν να μεταδίδουν τον ιό στον άνθρωπο και αντίστροφα.");
+		System.out.println();
 	}
 
 	public void answer7() {
@@ -90,10 +81,12 @@ public class Answers {
 		System.out.println(" δομές. Οι ίδιοι κανόνες ισχύουν και για τους ανοσοκατεσταλμένους");
 		System.out.println(" ασθενείς, εκτός αν έχουν λάβει διαφορετική");
 		System.out.println("οδηγία από τον προσωπικό τους ιατρό.");
+		System.out.println();
 	}
 
 	public void answer8() {
 		System.out.println("Ναι, όπως και με τον ιό της γρίπης δεν τίθεται θέμα μετάδοσης του ιού.");
+		System.out.println();
 	}
 
 	public void answer9() {
@@ -103,6 +96,7 @@ public class Answers {
 		System.out.println("ότι αυτός ο τρόπος μετάδοσης, εάν επαληθευτεί, μάλλον θα");
 		System.out.println(" αποτελεί εξαίρεση. Το καλό μαγείρεμα μειώνει");
 		System.out.println("σαφέστατα τις πιθανότητες.");
+		System.out.println();
 	}
 
 	public void answer10() {
@@ -113,6 +107,7 @@ public class Answers {
 		System.out.println("ταξίδι. Επιπλέον, εάν δεν είναι απαραίτητο καλό θα ήταν να αναβάλει");
 		System.out.println("κανείς ταξίδια προς χώρες με μεγάλη συρροή κρουσμάτων. Τα αεροπορικά");
 		System.out.println("ταξίδια πρέπει να αποφεύγονται από τους ανοσοκατεσταλμένους ασθενείς.");
+		System.out.println();
 	}
 
 	public void answer11() {
@@ -122,6 +117,7 @@ public class Answers {
 		System.out.println("μου ιατρό ή τον ΕΟΔΥ και ακολουθώ πιστά τις οδηγίες");
 		System.out.println("που μπορεί να περιλαμβάνουν απομόνωση κατ’ οίκον για 14 ημέρες:");
 		System.out.println("και παρακολούθηση.");
+		System.out.println();
 	}
 
 	public void answer12() {
@@ -134,6 +130,7 @@ public class Answers {
 		System.out.println("τεστ με γρήγορα αποτελέσματα που θα γινόταν ακόμα και κατ’οίκον");
 		System.out.println("(κατά αναλογία με το τεστ εγκυμοσύνης) θα βοηθούσε ");
 		System.out.println("αποτελεσματικά στον έγκαιρο εντοπισμό και απομόνωση των κρουσμάτων.");
+		System.out.println();
 	}
 
 	public void answer13() {
@@ -145,6 +142,7 @@ public class Answers {
 		System.out.println("πολύ καλύτερη. Ως εκ τούτου προβλέπεται ότι η θνητότητα από τον");
 		System.out.println("ιό αυτό μπορεί να είναι όσο και αυτής του ιού της γρίπης δηλαδή");
 		System.out.println("γύρω στο 0,1%.");
+		System.out.println();
 	}
 
 	public void answer14() {
@@ -155,6 +153,7 @@ public class Answers {
 		System.out.println("αξιολογήσουν την κατάσταση και τον κίνδυνο και σας");
 		System.out.println("καθοδηγήσουν αναλόγως. Δεν ενδείκνυται να μεταβείτε");
 		System.out.println("απευθείας στα επείγοντα ιατρεία εφημερεύοντος νοσοκομείου.");
+		System.out.println();
 	}
 
 	public void answer15() {
@@ -168,6 +167,7 @@ public class Answers {
 		System.out.println("κορωνοϊό παρέμεινε θετικό αρκετές μέρες μετά την");
 		System.out.println("ύφεση των συμπτωμάτων, ωστόσο δεν έχει εξακριβωθεί");
 		System.out.println("η ικανότητα μετάδοσης σε αυτή την περίπτωση.");
+		System.out.println();
 	}
 
 	public void answer16() {
@@ -185,5 +185,6 @@ public class Answers {
 		System.out.println("Επιπλέον, ως νέο στέλεχος δεν υπάρχει ο αντίστοιχος");
 		System.out.println("βαθμός ανοσίας στην κοινότητα όπως με άλλους κορωνοϊούς");
 		System.out.println("και τη γρίπη.");
+		System.out.println();
 	}
 }

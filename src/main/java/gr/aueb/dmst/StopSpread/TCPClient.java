@@ -95,17 +95,22 @@ public class TCPClient {
 					Stories st = new Stories();
 					st.stories();
 				} else if (option == 7) {
+					// frequent questions
+					Fanswers f = new Fanswers();
+					f.freqQuest();
+				} else if (option == 8) {
 					// evaluation
 					InsertingEvaluation eval = new InsertingEvaluation();
 					eval.printMenuEval();
-				} else if (option == 8) {
+				} else if (option == 9) {
 					// delete user
 					prof.deleteUser(user_id);
 					break;
-				} else if (option == 9) {
+				}else if (option == 10) {
 					// sing out
 					break;
-				} // end of if
+				}// end of if
+
 
 			} // end of while
 
