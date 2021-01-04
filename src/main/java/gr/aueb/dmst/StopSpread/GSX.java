@@ -98,6 +98,16 @@ public class GSX {
         return url;
     }
 
+    public void globGSX () {
+
+        showSite("https://www.google.com/search?q=global+covid+stats&oq=global+covid+st&aqs=chrome.0.0i457j69i57j0l6.7655j0j7&sourceid=chrome&ie=UTF-8");
+    }
+    public void nearHospital () {
+
+        showSite("https://www.google.com/maps/search/hospital/@37.9507291,23.7270767,12.5z");
+    }
+
+
     /**
      * method that opens the websites.
      *

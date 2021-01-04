@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class MainEvaluation { // beginning of class
 	/** Declaration of the variable stores user's choice. */
-	public static void mainEval() {
+/*	public static void mainEval() {
 		int userchoice = 0;
 		boolean flag3 = true;
 		// calling of MenouEvaluation
@@ -44,24 +44,24 @@ public class MainEvaluation { // beginning of class
 				 * it shows which critic dominates-bad, metria, kali, poli kali app or
 				 * combinations of them
 				 */
-				objectMax.printDomination();
+/*				objectMax.printDomination();
 				break;
 			case 2:
 				/*
 				 * the user choosing this alternative can evaluate our app from 1(0ne) to
 				 * 4(four) 1 = very bad , 2 = bad ,3 = metria , 4 = good, 5 = very good
 				 */
-				insertEvaluation.insertEvaluation();
+/*				insertEvaluation.insertEvaluation();
 				break;
 			case 3:
 				/*
 				 * the user choosing this alternative can write their critics about our app
 				 */
-				objectReason.reasonOfEvaluation();
+/*				objectReason.reasonOfEvaluation();
 				break;
 			case 4:
 				flag3 = false;
 			} // end of switch
 		} // end of loop
-	} // end of main
+	} // end of main*/
 } // end of class MainEvaluation

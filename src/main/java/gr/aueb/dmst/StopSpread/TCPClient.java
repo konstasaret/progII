@@ -73,7 +73,7 @@ public class TCPClient {
             while (true) { // endless loop that breaks when user sign out or delete account
 
                 menu.firstMenu();
-                int option = inp.rangeInt(1, 9);
+                int option = inp.rangeInt(1, 10);
 
                 if (option == 1) {
                     // New location
@@ -81,6 +81,8 @@ public class TCPClient {
                 } else if (option == 2) {
                     // positive
                     prof.infected(user_id);
+                    GSX near = new GSX();
+                    near.nearHospital();
                 } else if (option == 3) {
                     // see locations
                     prof.seeLocations(user_id);
@@ -90,7 +92,8 @@ public class TCPClient {
                     g.gsxToTCP();
                 } else if (option == 5) {
                     // global stats
-                    // TODO enter the stats
+                    GSX gg = new GSX();
+                    gg.globGSX();
                 } else if (option == 6) {
                     // stories
                     Stories st = new Stories();

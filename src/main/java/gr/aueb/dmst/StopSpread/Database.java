@@ -117,6 +117,22 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
+	}
+
+	public static void main(String[] args) {
+		Database ds = new Database();
+		ds.createEvaluationComents();
+	}
+	public void createEvaluationComents() {
+		try {
+			stmt = conn.createStatement();// create a Statement
+			stmt.execute("CREATE TABLE EVALUATIONCOMS ("
+					+ "COMS VARCHAR(200)" //TODO nullpointer error what is the problem
+					+")");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
 	}// end of method
 
 
@@ -146,6 +162,7 @@ public class Database {
 			// stmt.execute("DROP TABLE USERS");
 			//stmt.execute("DROP TABLE STORIES");
 			stmt.execute("DROP TABLE EVALUATION");
+			stmt.execute("DROP TABLE EVALUATIONCOMS");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -204,6 +221,18 @@ public class Database {
 			stmt.execute("INSERT INTO USERS" + " VALUES (" + id + ",'" + User_name + "','" + Password + "', FALSE)");
 
 			results.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+	}// end of method
+
+	public void insterIntoEvalComments(String comment) {
+		try {
+			stmt = conn.createStatement();// create a Statement
+
+			stmt.execute("INSERT INTO EVALUATIONCOMS" + " VALUES (" + comment + ")" );
+
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

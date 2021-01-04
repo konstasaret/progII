@@ -163,8 +163,9 @@ public class InsertingEvaluation {
 	}
 
 
-	/** Users write their evaluation about our app. */
-	public void reasonOfEvaluation() {
+	// Users write their evaluation about our app.
+	public void reasonOfEvaluation() throws IOException {
+		DataOutputStream outStream = cl.getOutStream();
 		Inputs inp = new Inputs();
 		System.out.println("Επιθυμείτε να προσθέσετε σχόλια για την εφαρμογή StopSpread;");
 		// interaction with the user
@@ -174,7 +175,8 @@ public class InsertingEvaluation {
 		if (check == 1) {
 			System.out.print("Μπορείτε να πληκτρολογήσετε το σχόλιο σας: ");
 			String sxolia = inp.stringScanner();
-			list.add(sxolia);
+			outStream.writeUTF(sxolia);
+			outStream.flush();
 			System.out.print("Σας Ευχαριστούμε, η κριτική σας μόλις καταχωρήθηκε!");
 		} else {
 			System.out.println("Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή μας!");

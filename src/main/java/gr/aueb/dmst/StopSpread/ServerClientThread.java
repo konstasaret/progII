@@ -156,7 +156,6 @@ class ServerClientThread extends Thread {
                     
                 } else if (count == 2) {
                     // positive
-                    //TODO show the nearest hospitals
                     int user_id = inStream.readInt();
                     db.findConnections(user_id);
                     serverMessage = "Ευχαριστούμε για την ενημέρωση\n" 
@@ -292,6 +291,9 @@ class ServerClientThread extends Thread {
                         int choice = inStream.readInt();
                         db.insertIntoEvaluationTable(choice);
                     } else if (option == 3) {
+
+                        String sxolioXristi = inStream.readUTF();
+                        db.insterIntoEvalComments(sxolioXristi);
 
                     }
                 } // end of if
