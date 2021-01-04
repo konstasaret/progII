@@ -98,7 +98,6 @@ public class GSX {
         return url;
     }
 
-    // small change to see if it's working
     /**
      * method that opens the websites.
      *
