@@ -61,6 +61,7 @@ public class InsertingEvaluation {
 					clientMessage = "eval03";
 					outStream.writeUTF(clientMessage);
 					outStream.flush();
+					reasonOfEvaluation();
 
 				} else if (option == 4) {
 					// for option identification

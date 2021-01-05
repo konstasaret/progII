@@ -119,15 +119,12 @@ public class Database {
 		} // end of try-catch
 	}
 
-	public static void main(String[] args) {
-		Database ds = new Database();
-		ds.createEvaluationComents();
-	}
+
 	public void createEvaluationComents() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute("CREATE TABLE EVALUATIONCOMS ("
-					+ "COMS VARCHAR(200)" //TODO nullpointer error what is the problem
+					+ "COMS VARCHAR(200)"
 					+")");
 			stmt.close();
 		} catch (SQLException e) {
@@ -161,8 +158,8 @@ public class Database {
 			// stmt.execute("DROP TABLE LOCATIONS ");
 			// stmt.execute("DROP TABLE USERS");
 			//stmt.execute("DROP TABLE STORIES");
-			stmt.execute("DROP TABLE EVALUATION");
-			stmt.execute("DROP TABLE EVALUATIONCOMS");
+			//stmt.execute("DROP TABLE EVALUATION");
+			//stmt.execute("DROP TABLE EVALUATIONCOMS");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
