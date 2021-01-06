@@ -15,7 +15,7 @@ import org.junit.Test;
 public class TestInputs {
 	Inputs obj;
 
-	@Before
+/*	@Before
 	public void setUp() {
 		System.out.println("Starting testing of Inputs.java");
 		obj = new Inputs();
@@ -40,5 +40,7 @@ public class TestInputs {
 		//x < lower < upper ft
 		//upper < x < lower ff
 	}
+
+ */
 
 }

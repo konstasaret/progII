@@ -131,6 +131,17 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
+	public void createCountToVoteOnce() {
+		try {
+			stmt = conn.createStatement();// create a Statement
+			stmt.execute("CREATE TABLE COUNTTOVOTE ("
+					+ "ID_VOTED INT"
+					+")");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+	}// end of method
 
 
 	/** Creates Table of users Stories with columns :
@@ -236,6 +247,19 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
+
+	public void insterIntoIdsWhoVoted(int ids) {
+		try {
+			stmt = conn.createStatement();// create a Statement
+
+			stmt.execute("INSERT INTO COUNTTOVOTE" + " VALUES (" + ids + ")" );
+
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+	}// end of method
+
 	/**
 	 * Inserts rows into locations table
 	 *
@@ -281,6 +305,7 @@ public class Database {
 				stmt.execute("UPDATE EVALUATION "
 						+"SET VERY_GOOD = VERY_GOOD + 1");
 			}
+
 
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -542,6 +567,24 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return user_name;
+	}// end of method
+
+	public int findUserIdForVote(int user_id) {
+
+		int userid = -1;// Initialize userid
+		try {
+			stmt = conn.createStatement();// create a Statement
+			ResultSet results;// A table of data representing a database result
+			results = stmt.executeQuery("SELECT ID_VOTED FROM COUNTTOVOTE WHERE USER_ID=" + user_id);
+			results.next();
+			userid = results.getInt(1);
+
+			results.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+		return userid;
 	}// end of method
 
 	/**

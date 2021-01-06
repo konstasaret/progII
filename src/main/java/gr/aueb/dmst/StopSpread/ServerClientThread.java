@@ -288,8 +288,15 @@ class ServerClientThread extends Thread {
                         outStream.writeInt(Ev[4]);
                         outStream.flush();
                     } else if (option == 2) {
-                        int choice = inStream.readInt();
-                        db.insertIntoEvaluationTable(choice);
+                        int idToVote = inStream.readInt();
+                        int x = db.findUserIdForVote(idToVote);
+                        outStream.writeInt(x);
+                        outStream.flush();
+                        if (x == -1) {
+                            db.insterIntoIdsWhoVoted(idToVote);
+                            int choice = inStream.readInt();
+                            db.insertIntoEvaluationTable(choice);
+                        }
                     } else if (option == 3) {
 
                         String sxolioXristi = inStream.readUTF();

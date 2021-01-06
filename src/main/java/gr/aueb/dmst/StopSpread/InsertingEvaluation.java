@@ -79,29 +79,39 @@ public class InsertingEvaluation {
 
 	/** users enter their evaluation. */
 	public void insertEvaluation() { // beginning of insertEvaluation method
-		//TODO o kathenas na mpori na psifisei mia fora
 		Menus mn = new Menus();
 		Inputs inp = new Inputs();
+		Profile pr = new Profile();
 
 		try {
 
 			// server-client messages
 			DataOutputStream outStream = cl.getOutStream();
+			DataInputStream inStream = cl.getInStream();
 
-
-
-			int choice;
-
-			// calling the menu of class Menus via the Object mn
-			mn.insertMenu();
-			choice = inp.rangeInt(1, 5);
-			// each variable of mark1,..3,2..,5 counts how many vote have each
-			// choice(1,2,3,4,5)
-
-			outStream.writeInt(choice);
+			int idUser = pr.authenticate();
+			outStream.writeInt(idUser);
 			outStream.flush();
+			int x = inStream.readInt();
+			if (x == -1) {
+				int choice;
 
-			System.out.println("Καταγράψαμε την απάντησή σας \nΣας ευχαριστούμε πολύ");
+				// calling the menu of class Menus via the Object mn
+				mn.insertMenu();
+				choice = inp.rangeInt(1, 5);
+				// each variable of mark1,..3,2..,5 counts how many vote have each
+				// choice(1,2,3,4,5)
+
+				outStream.writeInt(choice);
+				outStream.flush();
+				System.out.println("Καταγράψαμε την απάντησή σας \nΣας ευχαριστούμε πολύ");
+
+			}else {
+				System.out.println("Έχετε ήδη ψηφίσει");
+			}
+
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
