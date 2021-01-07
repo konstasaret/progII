@@ -145,7 +145,7 @@ class ServerClientThread extends Thread {
                     String date = inStream.readUTF();
                     int user_id = inStream.readInt();
 
-                    db.insertIntoLocationsTable(city, address, arrival_time, 
+                    db.insertIntoLocationsTable(city, address, arrival_time,
                         departure_time, date, user_id);
 
                     serverMessage = "Η τοποθεσία σας καταγράφηκε :" + "\n	Πόλη : " + city + "\n	Διεύθυνση : "
@@ -153,12 +153,12 @@ class ServerClientThread extends Thread {
                         + ":00" + "\n	Ημερομηνία : " + date;
                     outStream.writeUTF(serverMessage);
                     outStream.flush();
-                    
+
                 } else if (count == 2) {
                     // positive
                     int user_id = inStream.readInt();
                     db.findConnections(user_id);
-                    serverMessage = "Ευχαριστούμε για την ενημέρωση\n" 
+                    serverMessage = "Ευχαριστούμε για την ενημέρωση\n"
                         + "Θα ειδοποιήσουμε τις πιθανές επαφές σας\n Πηγαίνετε σε κάποιο νοσοκομείο";
                     outStream.writeUTF(serverMessage);
                     outStream.flush();
@@ -187,13 +187,13 @@ class ServerClientThread extends Thread {
                     // see locations
                     int user_id = inStream.readInt();// get user id from client
                     ResultSet results = db.userLocationsResult(user_id); // get data
-                    
+
                     try {
                         // An object that can be used to get information about the types and properties
                         // of the columns in a ResultSet object
                         ResultSetMetaData rsmd = results.getMetaData();
 
-                        int numberCols = rsmd.getColumnCount() - 1; //get number of columns 
+                        int numberCols = rsmd.getColumnCount() - 1; //get number of columns
                                                                     //-1 to exclude user_id
                         outStream.writeInt(numberCols);// sent to client
                         outStream.flush();
@@ -263,7 +263,7 @@ class ServerClientThread extends Thread {
                 } else if (count == 6) {
                     clientMessage = inStream.readUTF();
                     int option = 0;
-                    
+
                     if (clientMessage.equals("eval01")) {
                         option = 1;
                     } else if (clientMessage.equals("eval02")) {
@@ -289,10 +289,11 @@ class ServerClientThread extends Thread {
                         outStream.flush();
                     } else if (option == 2) {
                         int idToVote = inStream.readInt();
-                        int x = db.findUserIdForVote(idToVote);
-                        outStream.writeInt(x);
+
+                        int idVoted = db.findUserIdForVote(idToVote);
+                        outStream.writeInt(idVoted);
                         outStream.flush();
-                        if (x == -1) {
+                        if (idVoted == -1) {//user has not voted again
                             db.insterIntoIdsWhoVoted(idToVote);
                             int choice = inStream.readInt();
                             db.insertIntoEvaluationTable(choice);
@@ -300,7 +301,7 @@ class ServerClientThread extends Thread {
                     } else if (option == 3) {
 
                         String sxolioXristi = inStream.readUTF();
-                        db.insterIntoEvalComments(sxolioXristi);
+                        db.instertEvalComments(sxolioXristi);
 
                     }
                 } // end of if
@@ -316,7 +317,7 @@ class ServerClientThread extends Thread {
             System.out.println("Connection reset waiting for new Client");
             db.shutdownConnection();
         } //end of try-catch
-        
+
     }//end of run()
 
 }//end of class

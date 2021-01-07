@@ -105,7 +105,7 @@ public class TCPClient {
                 } else if (option == 8) {
                     // evaluation
                     InsertingEvaluation eval = new InsertingEvaluation();
-                    eval.printMenuEval();
+                    eval.printMenuEval(user_id);
                 } else if (option == 9) {
                     // delete user
                     prof.deleteUser(user_id);

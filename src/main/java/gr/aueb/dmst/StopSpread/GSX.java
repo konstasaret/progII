@@ -104,9 +104,8 @@ public class GSX {
     }
     public void nearHospital () {
 
-        showSite("https://www.google.com/maps/search/hospital/@37.9507291,23.7270767,12.5z");
+        showSite("https://www.google.com/maps/search/hospital");
     }
-
 
     /**
      * method that opens the websites.

@@ -195,7 +195,7 @@ public class Profile {
 			System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
 			city = inp.stringScanner();
 		}
-
+		//TODO make him enter the number
 		System.out.println("Εισάγετε την διεύθυνση :");
 		String address = inp.stringScanner();
 		while (!address.equals(address.toUpperCase())) {
@@ -376,7 +376,7 @@ public class Profile {
 
 			// output format
 			System.out.println(
-					"\n----------------------------------------------------------------------------------");
+					"----------------------------------------------------------------------------------");
 
 			for (int i = 1; i <= numCols; i++) {
 				// print Column Names
