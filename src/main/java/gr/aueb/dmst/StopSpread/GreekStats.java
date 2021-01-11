@@ -9,13 +9,13 @@ import java.util.logging.Logger;
  * (Attiki,Ipiros,Thesalsaloniki, Thraki,Kriti,Makedonia,Nisia Ioniou, Nisia
  * Aigeou,Sterea Ellada,Peloponnisos)
  */
-public class GSX {
+public class GreekStats {
 
     /**
      * This method prints the appropriate menu, reads an integer from user which is
      * his/her choice and opens the suitable web site each time.
      */
-    public void gsxToTCP() {
+    public void greekStats() {
         Inputs inp = new Inputs();
         boolean contloop = true;
         Menus menu = new Menus();
@@ -51,13 +51,18 @@ public class GSX {
         } while (contloop);
     }
 
+    /**
+     * Selects the desired URL
+     * @param choice
+     * @param NomosOption
+     * @return the URL
+     */
     public String decideURL(int choice, int NomosOption) {
         String url = "";
 
         if (choice == 1)
             url = "https://covid19.gov.gr/covid19-live-analytics/";
         else if (choice == 3)
-            // TODO den einai kai poly episimo ayto to site
             url = "https://betmasters.gr/koronoios/50170-statistika-stin-ellada-prognostika/";
         else if (choice == 2) {
             switch (NomosOption) { // beginning of switch
@@ -96,15 +101,6 @@ public class GSX {
             }
         }
         return url;
-    }
-
-    public void globGSX () {
-
-        showSite("https://www.google.com/search?q=global+covid+stats&oq=global+covid+st&aqs=chrome.0.0i457j69i57j0l6.7655j0j7&sourceid=chrome&ie=UTF-8");
-    }
-    public void nearHospital () {
-
-        showSite("https://www.google.com/maps/search/hospital");
     }
 
     /**

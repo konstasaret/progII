@@ -8,12 +8,13 @@ import java.util.logging.Logger;
  * This class contains and prints general information about Covid-19 according
  * to World Health Organization
  */
-public class GlobalStatsNew {
+public class GlobalStats {
+
 	/**
 	 * The main method of the class which takes an integer from 1 to 11 and opens
 	 * each time the proper web page
 	 */
-	public static void globalStats() {
+	public void globalStats() {
 		Inputs inp = new Inputs();
 		boolean contloop = true;
 		Menus menu = new Menus();
@@ -96,6 +97,7 @@ public class GlobalStatsNew {
 	/**
 	 * This method takes an argument of type String and succeeds the redirect to the
 	 * web sites
+	 * @param url
 	 */
 	public static void opt(String url) {
 		try {

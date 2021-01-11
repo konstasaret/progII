@@ -8,6 +8,16 @@ import java.util.Scanner;
  * Scanner, and checking if this number is within lower and upper boundary.
  */
 public class Inputs {
+
+	Scanner in;
+
+	/**
+	 * Constructor initializes Scanner
+	 */
+	public Inputs() {
+		in = new Scanner(System.in);
+	}
+
 	/**
 	 * Handles user input errors and returns an integer in the range of
 	 * lower_boundary and upper_boundary including the limits
@@ -17,12 +27,10 @@ public class Inputs {
 	 * @return An Integer as : lower_boundary <= Integer <= upper_boundary
 	 */
 	public int rangeInt(int lower_boundary, int upper_boundary) {
-		Scanner in = new Scanner(System.in);// Create a scanner
 		int inp = -1;// Initialize input
 		try {
 			inp = in.nextInt();// Get an Integer
-			in.nextLine();// Consume new line character
-
+			in.nextLine(); // Consume the next line character
 			// number out of the desired range
 			if (inp < lower_boundary || inp > upper_boundary) {
 				throw new InputMismatchException();
@@ -30,6 +38,7 @@ public class Inputs {
 
 		} catch (InputMismatchException e) {
 			System.err.println("Παρακαλώ εισάγετε αριθμό απο το " + lower_boundary + " μεχρι το " + upper_boundary);
+			in.nextLine(); // Consume the next line character
 			inp = rangeInt(lower_boundary, upper_boundary);
 		}
 		return inp;
@@ -37,7 +46,6 @@ public class Inputs {
 
 	/** @return user String input */
 	public String stringScanner() {
-		Scanner in = new Scanner(System.in);// Create new scanner
 		return in.nextLine();// Get a String
 	}
 
