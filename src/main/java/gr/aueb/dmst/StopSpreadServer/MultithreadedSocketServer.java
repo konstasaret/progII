@@ -1,4 +1,4 @@
-package gr.aueb.dmst.StopSpread;
+package gr.aueb.dmst.StopSpreadServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;

@@ -1,4 +1,4 @@
-package gr.aueb.dmst.StopSpread;
+package gr.aueb.dmst.StopSpreadServer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+
+import gr.aueb.dmst.StopSpread.Database;
 
 class ServerClientThread extends Thread {
 
