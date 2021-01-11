@@ -1,9 +1,5 @@
 package gr.aueb.dmst.StopSpread;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * This class shows the statistics and graphs per area.
  * (Attiki,Ipiros,Thesalsaloniki, Thraki,Kriti,Makedonia,Nisia Ioniou, Nisia
@@ -27,7 +23,7 @@ public class GreekStats {
             while (choice != 4) { // beginning of loop
                 if (choice == 1) {
                     String url = decideURL(choice, 0);
-                    showSite(url);
+                    Url.openUrl(url);
                 } else if (choice == 2) {
                     while (true) {
                         menu.greekStatsMenu2();
@@ -35,13 +31,13 @@ public class GreekStats {
 
                         String url = decideURL(choice, option);
                         if (!url.equals("exit"))
-                            showSite(url);
+                            Url.openUrl(url);
                         else
                             break;
                     } // end of loop
                 } else if (choice == 3) {
                     String url = decideURL(choice, 0);
-                    showSite(url);
+                    Url.openUrl(url);
                 }
 
                 menu.greekStatsMenu();
@@ -103,16 +99,4 @@ public class GreekStats {
         return url;
     }
 
-    /**
-     * method that opens the websites.
-     *
-     * @param url : the url to show
-     */
-    public static void showSite(String url) {
-        try {
-            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-        } catch (IOException ex) {
-            Logger.getLogger(Url.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

@@ -1,9 +1,5 @@
 package gr.aueb.dmst.StopSpread;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * This class contains and prints general information about Covid-19 according
  * to World Health Organization
@@ -33,52 +29,52 @@ public class GlobalStats {
 				 */
 				switch (option) {
 				case 1:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 2:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-how-is-it-transmitted");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-how-is-it-transmitted");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 3:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 4:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-risks-and-safety-for-older-people");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-risks-and-safety-for-older-people");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 5:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-adolescents-and-youth");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-adolescents-and-youth");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 6:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/when-and-how-to-use-masks");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/when-and-how-to-use-masks");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 7:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/q-a-children-and-masks-related-to-covid-19");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/q-a-children-and-masks-related-to-covid-19");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 8:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-health-and-safety-in-the-workplace");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19-health-and-safety-in-the-workplace");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 9:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/global-research-on-novel-coronavirus-2019-ncov");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/global-research-on-novel-coronavirus-2019-ncov");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
 				case 10:
-					opt("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/covid-19-vaccines");
+					Url.openUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/covid-19-vaccines");
 					menu.globalStatsMenu();
 					option = inp.rangeInt(1, 11);
 					break;
@@ -89,21 +85,7 @@ public class GlobalStats {
 				contloop = false;
 			}
 		} while (contloop);
-		/*
-		 * Breaks the loop
-		 */
+
 	}
 
-	/**
-	 * This method takes an argument of type String and succeeds the redirect to the
-	 * web sites
-	 * @param url
-	 */
-	public static void opt(String url) {
-		try {
-			java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-		} catch (IOException ex) {
-			Logger.getLogger(Url.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
 }

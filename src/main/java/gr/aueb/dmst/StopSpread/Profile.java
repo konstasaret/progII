@@ -3,8 +3,6 @@ package gr.aueb.dmst.StopSpread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author AirlineDog
@@ -303,17 +301,12 @@ public class Profile {
 			serverMessage = inStream.readUTF();
 			System.out.println(serverMessage);
 
+			//Show nearest hospitals
 			String url = "https://www.google.com/maps/search/hospital";
-
-			//Show the nearest hospitals
-			try {
-				java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-			} catch (IOException ex) {
-				Logger.getLogger(Url.class.getName()).log(Level.SEVERE, null, ex);
-			}
+			Url.openUrl(url);
 
 		} catch (IOException e) {
-			System.out.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");
+			System.err.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");
 			e.printStackTrace();
 		}
 	}
