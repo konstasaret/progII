@@ -29,7 +29,7 @@ public class Database {
 	/** Initiates connection with the database */
 	public void createConnection() {
 		try {
-			Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			// Get a connection
 			conn = DriverManager.getConnection(dbURL);
 			// System.out.println("Database connection created");
@@ -123,14 +123,15 @@ public class Database {
 	public void createEvaluationComents() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE EVALUATIONCOMS ("
-					+ "COMS VARCHAR(200)"
+			stmt.execute("CREATE TABLE EVALUATIONCOMMS ("
+					+ "COMMS VARCHAR(255)"
 					+")");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
+
 	public void createCountToVoteOnce() {
 		try {
 			stmt = conn.createStatement();// create a Statement
@@ -170,7 +171,7 @@ public class Database {
 			// stmt.execute("DROP TABLE USERS");
 			//stmt.execute("DROP TABLE STORIES");
 			//stmt.execute("DROP TABLE EVALUATION");
-			//stmt.execute("DROP TABLE EVALUATIONCOMS");
+			//stmt.execute("DROP TABLE EVALUATIONCOMMS");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,12 +236,11 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-	public void insterIntoEvalComments(String comment) {
+	public void instertEvalComments(String comment) {
 		try {
 			stmt = conn.createStatement();// create a Statement
-
-			stmt.execute("INSERT INTO EVALUATIONCOMS" + " VALUES (" + comment + ")" );
-
+			stmt.execute("INSERT INTO EVALUATIONCOMMS"
+						+ " VALUES ('" + comment + "')" );
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -575,10 +575,10 @@ public class Database {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet results;// A table of data representing a database result
-			results = stmt.executeQuery("SELECT ID_VOTED FROM COUNTTOVOTE WHERE USER_ID=" + user_id);
-			results.next();
-			userid = results.getInt(1);
-
+			results = stmt.executeQuery("SELECT ID_VOTED FROM COUNTTOVOTE WHERE ID_VOTED =" + user_id);
+			if(results.next()) {
+				userid = results.getInt(1);
+			}
 			results.close();
 			stmt.close();
 		} catch (SQLException e) {
