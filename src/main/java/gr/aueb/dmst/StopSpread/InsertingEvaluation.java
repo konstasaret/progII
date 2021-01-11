@@ -85,28 +85,28 @@ public class InsertingEvaluation {
 		Menus mn = new Menus();
 		Inputs inp = new Inputs();
 
-			// server-client messages
-			DataOutputStream outStream = cl.getOutStream();
-			DataInputStream inStream = cl.getInStream();
+		// server-client messages
+		DataOutputStream outStream = cl.getOutStream();
+		DataInputStream inStream = cl.getInStream();
 
-			// pass user_id
-			outStream.writeInt(user_id);
+		// pass user_id
+		outStream.writeInt(user_id);
+		outStream.flush();
+
+		int idVoted = inStream.readInt();
+		if (idVoted == -1) {// user has not voted again
+			int choice;
+
+			mn.insertMenu();
+			choice = inp.rangeInt(1, 5);
+
+			outStream.writeInt(choice);
 			outStream.flush();
+			System.out.println("Καταγράψαμε την απάντησή σας \nΣας ευχαριστούμε πολύ");
 
-			int idVoted = inStream.readInt();
-			if (idVoted == -1) {// user has not voted again
-				int choice;
-
-				mn.insertMenu();
-				choice = inp.rangeInt(1, 5);
-
-				outStream.writeInt(choice);
-				outStream.flush();
-				System.out.println("Καταγράψαμε την απάντησή σας \nΣας ευχαριστούμε πολύ");
-
-			} else {
-				System.out.println("Έχετε ήδη ψηφίσει");
-			}
+		} else {
+			System.out.println("Έχετε ήδη ψηφίσει");
+		}
 
 
 	}
@@ -119,45 +119,45 @@ public class InsertingEvaluation {
 	public void printEvaluation() throws IOException {
 		DataInputStream inStream = cl.getInStream();
 
-			int very_bad = inStream.readInt();
-			int bad = inStream.readInt();
-			int metria = inStream.readInt();
-			int good = inStream.readInt();
-			int very_good = inStream.readInt();
+		int very_bad = inStream.readInt();
+		int bad = inStream.readInt();
+		int metria = inStream.readInt();
+		int good = inStream.readInt();
+		int very_good = inStream.readInt();
 
-			System.out.printf("%d : άτομα ψήφισαν πολύ κακή εφαρμογή\n", very_bad);
-			System.out.printf("%d : άτομα ψήφισαν κακή εφαρμογή\n", bad);
-			System.out.printf("%d : άτομα ψήφισαν μέτρια εφαρμογή\n", metria);
-			System.out.printf("%d : άτομα ψήφισαν καλή εφαρμογή\n", good);
-			System.out.printf("%d : άτομα ψήφισαν πολύ καλή εφαρμογή\n", very_good);
-			int totalusers = very_bad + bad + metria + good + very_good;
-			System.out.printf("%d : συνολικά ψήφισαν\n", totalusers);
+		System.out.printf("%d : άτομα ψήφισαν πολύ κακή εφαρμογή\n", very_bad);
+		System.out.printf("%d : άτομα ψήφισαν κακή εφαρμογή\n", bad);
+		System.out.printf("%d : άτομα ψήφισαν μέτρια εφαρμογή\n", metria);
+		System.out.printf("%d : άτομα ψήφισαν καλή εφαρμογή\n", good);
+		System.out.printf("%d : άτομα ψήφισαν πολύ καλή εφαρμογή\n", very_good);
+		int totalusers = very_bad + bad + metria + good + very_good;
+		System.out.printf("%d : συνολικά ψήφισαν\n", totalusers);
 
-			System.out.printf("%-20s : ", "Πολύ κακή εφαρμογή ");
-			for (int stars = 0; stars < (double) very_bad / totalusers * 100; stars++) { // beginning of loop
-				System.out.print("*"); // prints stars
-			} // end of loop0
-			System.out.println();
-			System.out.printf("%-20s : ", "Kακή εφαρμογή ");
-			for (int stars = 0; stars < (double) bad / totalusers * 100; stars++) { // beginning of loop
-				System.out.print("*"); // prints stars
-			} // end of loop1
-			System.out.println();
-			System.out.printf("%-20s : ", "Μέτρια εφαρμογή ");
-			for (int stars = 0; stars < (double) metria / totalusers * 100; stars++) { // beginning of loop
-				System.out.print("*"); // prints stars
-			} // end of loop2
-			System.out.println();
-			System.out.printf("%-20s : ", "Καλή εφαρμογή ");
-			for (int stars = 0; stars < (double) good / totalusers * 100; stars++) { // beggining of loop
-				System.out.print("*"); // prints stars
-			} // end of loop3
-			System.out.println();
-			System.out.printf("%-20s : ", "Πολύ καλή εφαρμογή ");
-			for (int stars = 0; stars < (double) very_good / totalusers * 100; stars++) { // beginning of loop
-				System.out.print("*"); // prints stars
-			} // end of loop4
-			System.out.println();
+		System.out.printf("%-20s : ", "Πολύ κακή εφαρμογή ");
+		for (int stars = 0; stars < (double) very_bad / totalusers * 100; stars++) { // beginning of loop
+			System.out.print("*"); // prints stars
+		} // end of loop0
+		System.out.println();
+		System.out.printf("%-20s : ", "Kακή εφαρμογή ");
+		for (int stars = 0; stars < (double) bad / totalusers * 100; stars++) { // beginning of loop
+			System.out.print("*"); // prints stars
+		} // end of loop1
+		System.out.println();
+		System.out.printf("%-20s : ", "Μέτρια εφαρμογή ");
+		for (int stars = 0; stars < (double) metria / totalusers * 100; stars++) { // beginning of loop
+			System.out.print("*"); // prints stars
+		} // end of loop2
+		System.out.println();
+		System.out.printf("%-20s : ", "Καλή εφαρμογή ");
+		for (int stars = 0; stars < (double) good / totalusers * 100; stars++) { // beggining of loop
+			System.out.print("*"); // prints stars
+		} // end of loop3
+		System.out.println();
+		System.out.printf("%-20s : ", "Πολύ καλή εφαρμογή ");
+		for (int stars = 0; stars < (double) very_good / totalusers * 100; stars++) { // beginning of loop
+			System.out.print("*"); // prints stars
+		} // end of loop4
+		System.out.println();
 
 	}
 
