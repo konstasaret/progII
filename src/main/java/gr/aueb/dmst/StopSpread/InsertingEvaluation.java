@@ -174,10 +174,18 @@ public class InsertingEvaluation {
 		System.out.println("Προσθέστε τα σχόλιά σας για την εφαρμογή StopSpread;");
 
 		String sxolia = inp.stringScanner();
+		System.out.println("Είστε σίγουροι οτι θέλετε να δώσετε αυτο το σχόλιο : "+ sxolia + "\n 1.Ναι \n 2.Όχι");
+		int ans = inp.rangeInt(1,2);
+		if (ans == 1 ) {
+			System.out.println("Το σχόλιο στέλνεται αυτή την στιγμή");
+		} else {
+			System.out.println("Δώστε μας καινούργιο σχόλιο");
+			String newSxolio = inp.stringScanner();
+			sxolia = newSxolio;
+		}
 		outStream.writeUTF(sxolia);
 		outStream.flush();
 		System.out.println("Σας Ευχαριστούμε, η κριτική σας μόλις καταχωρήθηκε!");
 
 	}
-//TODO let users see previous evaluation comments
 }
