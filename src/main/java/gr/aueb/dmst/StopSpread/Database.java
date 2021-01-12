@@ -67,7 +67,7 @@ public class Database {
 	/**
 	 * Creates Table of users with columns
 	 * <P>
-	 * USER_ID, USER_NAME, PASSWORD, POSSIBLY_INFECTED
+	 * USER_ID INT, USER_NAME VARCHAR(255), PASSWORD VARCHAR(30), POSSIBLY_INFECTED BOOLEAN
 	 */
 	public void createUsersTable() {
 		try {
@@ -83,7 +83,7 @@ public class Database {
 	/**
 	 * Creates Table of user's Locations with columns :
 	 * <P>
-	 * CITY, ADDRESS, ARRIVAL_TIME, DEPARTURE_TIME, USER_ID
+	 * CITY VARCHAR(255), ADDRESS VARCHAR(255), ARRIVAL_TIME INT, DEPARTURE_TIME INT, USER_ID INT
 	 */
 	public void createLocationsTable() {
 		try {
@@ -99,7 +99,7 @@ public class Database {
 
 	/** Creates Table of user's Evaluation with columns :
 	 * <P>
-	 * VERY_BAD, BAD, METRIA , GOOD, VERY_GOOD
+	 * VERY_BAD INT, BAD INT, METRIA INT, GOOD INT, VERY_GOOD INT
 	 */
 	public void createEvaluationTable() {
 		try {
@@ -119,7 +119,10 @@ public class Database {
 		} // end of try-catch
 	}
 
-
+	/**Creates table EVALUATIONCOMMS with columns :
+	 * <P>
+	 * COMMS VARCHAR(255)
+	 */
 	public void createEvaluationComents() {
 		try {
 			stmt = conn.createStatement();// create a Statement
@@ -132,6 +135,11 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
+
+	/**Creates table COUNTTOVOTE with columns :
+	 * <P>
+	 * ID_VOTED INT
+	 */
 	public void createCountToVoteOnce() {
 		try {
 			stmt = conn.createStatement();// create a Statement
@@ -147,7 +155,7 @@ public class Database {
 
 	/** Creates Table of users Stories with columns :
 	 * <P>
-	 * STORY_ID, STORY_TITLE, STORY
+	 * STORY_ID INT, STORY_TITLE VARCHAR(255), STORY LONG VARCHAR
 	 */
 	public void createStoriesTable() {
 		try {
@@ -163,12 +171,12 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-	/** Deletes the users and locations tables */
+	/** Deletes tables */
 	public void deleteTables() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			// stmt.execute("DROP TABLE LOCATIONS ");
-			// stmt.execute("DROP TABLE USERS");
+			//stmt.execute("DROP TABLE LOCATIONS ");
+			//stmt.execute("DROP TABLE USERS");
 			//stmt.execute("DROP TABLE STORIES");
 			//stmt.execute("DROP TABLE EVALUATION");
 			//stmt.execute("DROP TABLE EVALUATIONCOMMS");
@@ -235,7 +243,10 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
-
+	/**
+	 * Inserts into table EVALUATIONCOMMS
+	 * @param comment : the evaluetion comment
+	 */
 	public void instertEvalComments(String comment) {
 		try {
 			stmt = conn.createStatement();// create a Statement
@@ -247,7 +258,10 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-
+	/**
+	 * Inserts into table COUNTTOVOTE
+	 * @param ids :the user id
+	 */
 	public void insterIntoIdsWhoVoted(int ids) {
 		try {
 			stmt = conn.createStatement();// create a Statement
@@ -569,6 +583,13 @@ public class Database {
 		return user_name;
 	}// end of method
 
+	/**
+	 * Find out if user has voted again
+	 * @param user_id
+	 * @return -1 if user can vote
+	 * 		   <P>
+	 * 		   the user's id if he has voted again
+	 */
 	public int findUserIdForVote(int user_id) {
 
 		int userid = -1;// Initialize userid

@@ -81,19 +81,17 @@ public class TCPClient {
                 } else if (option == 2) {
                     // positive
                     prof.infected(user_id);
-                    GSX near = new GSX();
-                    near.nearHospital();
                 } else if (option == 3) {
                     // see locations
                     prof.seeLocations(user_id);
                 } else if (option == 4) {
                     // greek stats
-                    GSX g = new GSX();
-                    g.gsxToTCP();
+                	GreekStats greek = new GreekStats();
+                    greek.greekStats();
                 } else if (option == 5) {
                     // global stats
-                    GSX gg = new GSX();
-                    gg.globGSX();
+                	GlobalStats global = new GlobalStats();
+            		global.globalStats();
                 } else if (option == 6) {
                     // stories
                     Stories st = new Stories();

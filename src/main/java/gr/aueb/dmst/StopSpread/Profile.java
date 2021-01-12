@@ -300,8 +300,13 @@ public class Profile {
 
 			serverMessage = inStream.readUTF();
 			System.out.println(serverMessage);
+
+			//Show nearest hospitals
+			String url = "https://www.google.com/maps/search/hospital";
+			Url.openUrl(url);
+
 		} catch (IOException e) {
-			System.out.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");
+			System.err.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");
 			e.printStackTrace();
 		}
 	}
