@@ -26,6 +26,7 @@ public class Stories {
 		DataInputStream inStream = cl.getInStream();
 		String clientMessage;
 
+		// TODO : delete random stories from database and enter new ones
 		while (true) {
 			try {
 				// for option identification
@@ -93,4 +94,5 @@ public class Stories {
 
 		}//end of while
 	}//end of method
+
 }//end of class

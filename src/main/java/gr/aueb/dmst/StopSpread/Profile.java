@@ -186,6 +186,7 @@ public class Profile {
 	public void newLocation(int user_id) {
 		Inputs inp = new Inputs();
 
+		// TODO : make him enter greek letters
 		System.out.println(
 				"Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε με κεφαλάια γράμματα και χωρίς τόνους:");
 
@@ -195,8 +196,9 @@ public class Profile {
 			System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
 			city = inp.stringScanner();
 		}
+
 		//TODO make him enter the number
-		System.out.println("Εισάγετε την διεύθυνση :");
+		System.out.println("Εισάγετε την διεύθυνση και αριθμό:");
 		String address = inp.stringScanner();
 		while (!address.equals(address.toUpperCase())) {
 			System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
@@ -218,7 +220,8 @@ public class Profile {
 		System.out.println("Εισάγετε την ημερομηνία της επίσεψής σας (ΕΕΕΕ-ΜΜ-ΗΗ) :");
 		String date = inp.stringScanner();
 
-		//regex found on Internet
+		// TODO : Check if it is in the future
+		// regex does not find leap years all February go up to 29
 		while (!date.matches(
 				"^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$")) {
 			System.err.println("Παρακαλώ εισάγεται την ημερομηνία στην εξής μορφή (ΕΕΕΕ-ΜΜ-ΗΗ) :");
@@ -268,6 +271,8 @@ public class Profile {
 			serverMessage = inStream.readUTF();
 			System.out.println(serverMessage);
 
+			// TODO : make sure that he wants this location to be passed
+
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατα την προσθήκη νέας τοποθεσίας");
 			e.printStackTrace();
@@ -301,6 +306,7 @@ public class Profile {
 			serverMessage = inStream.readUTF();
 			System.out.println(serverMessage);
 
+			// TODO : this should be on the connected users not the already infected one
 			//Show nearest hospitals
 			String url = "https://www.google.com/maps/search/hospital";
 			Url.openUrl(url);

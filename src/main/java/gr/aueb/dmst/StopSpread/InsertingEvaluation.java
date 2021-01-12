@@ -179,6 +179,7 @@ public class InsertingEvaluation {
 		if (ans == 1 ) {
 			System.out.println("Το σχόλιο στέλνεται αυτή την στιγμή");
 		} else {
+			// TODO : i think we should just abort it
 			System.out.println("Δώστε μας καινούργιο σχόλιο");
 			String newSxolio = inp.stringScanner();
 			sxolia = newSxolio;
@@ -188,4 +189,6 @@ public class InsertingEvaluation {
 		System.out.println("Σας Ευχαριστούμε, η κριτική σας μόλις καταχωρήθηκε!");
 
 	}
+
+	// TODO : will we show the above comments to other users?
 }
