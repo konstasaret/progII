@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import gr.aueb.dmst.StopSpread.Database;
-
 class ServerClientThread extends Thread {
 
 	private Socket socket;
@@ -24,7 +22,6 @@ class ServerClientThread extends Thread {
 	public void run() {
 
 		Database db = new Database();
-		db.createConnection();// connection with database
 
 		try {
 
