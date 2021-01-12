@@ -1,4 +1,4 @@
-package gr.aueb.dmst.StopSpread;
+package gr.aueb.dmst.StopSpreadServer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,15 +25,28 @@ public class Database {
 	 * results it produces
 	 */
 	private static Statement stmt = null;
+	
+	/**
+	 * Constructor that initiates connection
+	 */
+	public Database() {
+		createConnection();
+	}
 
 	/** Initiates connection with the database */
 	public void createConnection() {
 		try {
-			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
 			// Get a connection
 			conn = DriverManager.getConnection(dbURL);
 			// System.out.println("Database connection created");
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
