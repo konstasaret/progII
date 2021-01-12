@@ -10,18 +10,22 @@ import java.sql.SQLException;
 
 class ServerClientThread extends Thread {
 
+	/**Socket that server accepts*/
 	private Socket socket;
+	/**Clinet number since server started*/
 	private int clientNo;
+	/**Database object that contains the Connection*/
+	private Database db;
 
-	public ServerClientThread(Socket inSocket, int counter) {
-		socket = inSocket;
-		clientNo = counter;
+	public ServerClientThread(Socket inSocket, int counter, Database db) {
+		this.socket = inSocket;
+		this.clientNo = counter;
+		this.db = db;
 	}
 
 	@Override
 	public void run() {
 
-		Database db = new Database();
 
 		try {
 
@@ -321,7 +325,6 @@ class ServerClientThread extends Thread {
 			System.err.println("Client -" + clientNo + " exit!! ");
 		} finally {
 			System.out.println("Connection reset waiting for new Client");
-			db.shutdownConnection();
 		} // end of try-catch
 
 	}// end of run()
