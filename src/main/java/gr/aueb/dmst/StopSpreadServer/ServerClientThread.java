@@ -48,16 +48,16 @@ class ServerClientThread extends Thread {
 				} else if (clientMessage.equals("login")) {
 					// log in
 					count = -1;
-				} else if (clientMessage.equals("a epilogi")) {
+				} else if (clientMessage.equals("newLocation")) {
 					// new location
 					count = 1;
-				} else if (clientMessage.equals("b epilogi")) {
+				} else if (clientMessage.equals("infected")) {
 					// positive
 					count = 2;
-				} else if (clientMessage.equals("c epilogi")) {
+				} else if (clientMessage.equals("deleteUser")) {
 					// delete user
 					count = 3;
-				} else if (clientMessage.equals("d epilogi")) {
+				} else if (clientMessage.equals("seeLocations")) {
 					// see locations
 					count = 4;
 				} else if (clientMessage.equals("story")) {
@@ -66,6 +66,9 @@ class ServerClientThread extends Thread {
 				} else if (clientMessage.equals("eval")) {
 					// evaluation
 					count = 6;
+				} else if (clientMessage.equals("deleteLocation")) {
+					// delete location
+					count = 7;
 				} // end of if
 
 
@@ -165,7 +168,7 @@ class ServerClientThread extends Thread {
 					outStream.flush();
 
 				} else if (count == 2) {
-					// positive
+					// infected
 					int user_id = inStream.readInt();
 					db.findConnections(user_id);
 					serverMessage = "Ευχαριστούμε για την ενημέρωση\n"
@@ -313,7 +316,27 @@ class ServerClientThread extends Thread {
 						String sxolioXristi = inStream.readUTF();
 						db.instertEvalComments(sxolioXristi);
 
+					} // end of if
+
+				} else if (count == 7) {
+					//delete location
+
+					String City = inStream.readUTF(); // Get City
+					String Address = inStream.readUTF(); // Get Address
+					int arrival_time = inStream.readInt(); // Get arrival_time
+					int departure_time = inStream.readInt(); // Get departure_time
+					String date = inStream.readUTF(); // Get date
+					int user_id = inStream.readInt(); // Get user_id
+
+					if (db.deleteLocationsRow(City, Address,
+							arrival_time, departure_time, date, user_id)) {
+						outStream.writeUTF("exists");
+						outStream.flush();
+					}else {
+						outStream.writeUTF("notExists");
+						outStream.flush();
 					}
+
 				} // end of if
 			} // end of while
 

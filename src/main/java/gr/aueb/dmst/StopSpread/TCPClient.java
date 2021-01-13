@@ -102,17 +102,20 @@ public class TCPClient {
                     Fanswers f = new Fanswers();
                     f.freqQuest();
                 } else if (option == 8) {
-                    // evaluation
+                    // delete location
+                	prof.deleteLocation(user_id);
+                } else if (option == 9) {
+                	// evaluation
                     InsertingEvaluation eval = new InsertingEvaluation();
                     eval.printMenuEval(user_id);
-                } else if (option == 9) {
-                    // delete user
+                } else if (option == 10) {
+                	// delete user
                     prof.deleteUser(user_id);
                     break;
-                } else if (option == 10) {
-                    // sing out
+                } else if (option == 11) {
+                	// sing out
                     break;
-                } // end of if
+                }// end of if
 
             } // end of while
 

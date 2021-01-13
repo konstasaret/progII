@@ -197,7 +197,7 @@ public class Profile {
 			city = inp.stringScanner();
 		}
 
-		//TODO make him enter the number
+		// TODO make him enter the number
 		System.out.println("Εισάγετε την διεύθυνση και αριθμό:");
 		String address = inp.stringScanner();
 		while (!address.equals(address.toUpperCase())) {
@@ -236,7 +236,7 @@ public class Profile {
 			String serverMessage;
 
 			// for option identification
-			clientMessage = "a epilogi";
+			clientMessage = "newLocation";
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
 
@@ -295,7 +295,7 @@ public class Profile {
 			String serverMessage;
 
 			// for option identification
-			clientMessage = "b epilogi";
+			clientMessage = "infected";
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
 
@@ -307,12 +307,157 @@ public class Profile {
 			System.out.println(serverMessage);
 
 			// TODO : this should be on the connected users not the already infected one
-			//Show nearest hospitals
+			// Show nearest hospitals
 			String url = "https://www.google.com/maps/search/hospital";
 			Url.openUrl(url);
 
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Prints user locations based in user id
+	 *
+	 * @param user_id
+	 */
+	public void seeLocations(int user_id) {
+
+		try {
+			// server-client messages
+			DataOutputStream outStream = cl.getOutStream();
+			DataInputStream inStream = cl.getInStream();
+			String clientMessage;
+
+			// for option identification
+			clientMessage = "seeLocations";
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+
+			outStream.writeInt(user_id);// send id to server
+			outStream.flush();
+
+			int numCols = inStream.readInt();// get number of columns
+
+			// output format
+			System.out.println("----------------------------------------------------------------------------------");
+
+			for (int i = 1; i <= numCols; i++) {
+				// print Column Names
+				System.out.printf("%-18s", inStream.readUTF());
+			} // end of for
+
+			System.out.println("\n----------------------------------------------------------------------------------");
+
+			// print rows
+			while (!inStream.readUTF().equals("ok")) {
+				String City = inStream.readUTF();
+				String Address = inStream.readUTF();
+				int arrival_time = inStream.readInt();
+				int departure_time = inStream.readInt();
+				String date = inStream.readUTF();
+
+				System.out.printf("%-18s%-18s%-18s%-18s%-18s%n", City, Address, arrival_time, departure_time, date);
+			}
+		} catch (IOException e) {
+			System.err.println("Προβλημα κατά την εμφάνιση τοποθεσιών");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Deletes a user's location from database
+	 *
+	 * @param user_id
+	 */
+	public void deleteLocation(int user_id) {
+
+		System.out.println("Οι τοποθεσίες σας είναι :");
+		// let user see his locations again
+		Profile prof = new Profile();
+		prof.seeLocations(user_id);
+
+		Inputs inp = new Inputs(); // Scanner
+		String[] split_location; // Array to store location components
+
+		System.out.println("Παρακαλω αντιγράψτε την τοποθεσία που επιθυμείτε να διαγράψετε.");
+		// read the location he wants to delete
+		String read_location = inp.stringScanner();
+
+		// get components of the location separated with any number of spaces
+		split_location = read_location.split("\\s+");
+
+		while (!(split_location.length == 5)) {
+			System.out.println("Ούπς! Μάλλον έγινε λάθος κατά την επικόλληση \nΔοκιμάστε ξανα :");
+
+			// read the location he wants to delete again
+			read_location = inp.stringScanner();
+
+			// get components of the location separated with any number of spaces
+			split_location = read_location.split("\\s+");
+		}
+
+		// make sure he wants to delete this location
+		System.out.println("Είναι αυτή η τοποθεσία που θέλετε να διαγράψετε; (ΝΑΙ/ΟΧΙ)");
+		System.out.printf("%-18s%-18s%-18s%-18s%-18s%n", split_location[0], split_location[1], split_location[2],
+				split_location[3], split_location[4]);
+
+		String yesORno = inp.stringScanner();
+		while (!(yesORno.equals("ΝΑΙ") || yesORno.equals("ΟΧΙ"))) {
+			System.out.println("Παρακαλώ πληκτρολογίστε 'ΝΑΙ' ή 'ΟΧΙ'");
+			yesORno = inp.stringScanner();
+		}
+
+		if (yesORno.equals("ΟΧΙ")) {
+			System.out.println("Δοκιμάστε ξανά :");
+			deleteLocation(user_id);
+			return;
+		}
+
+		// try to convert into int
+		// NumberFormatException means that the data are not correct
+		try {
+			Integer.valueOf(split_location[2]);
+			Integer.valueOf(split_location[3]);
+		} catch (NumberFormatException e) {
+			System.err.println("Τα στοιχεία της τοποθεσίας δεν ήταν σωστά");
+			return;
+		}
+
+		try {
+			// server-client messages
+			DataOutputStream outStream = cl.getOutStream();
+			DataInputStream inStream = cl.getInStream();
+			String clientMessage;
+
+			// for option identification
+			clientMessage = "deleteLocation";
+			outStream.writeUTF(clientMessage);
+			outStream.flush();
+
+			outStream.writeUTF(split_location[0]); // pass City
+			outStream.flush();
+			outStream.writeUTF(split_location[1]); // pass Address
+			outStream.flush();
+			outStream.writeInt(Integer.valueOf(split_location[2])); // pass arrival_time
+			outStream.flush();
+			outStream.writeInt(Integer.valueOf(split_location[3])); // pass departure_time
+			outStream.flush();
+			outStream.writeUTF(split_location[4]); // pass date
+			outStream.flush();
+			outStream.writeInt(user_id); // pass user_id
+			outStream.flush();
+
+			if (inStream.readUTF().equals("exists")) {
+				System.out.println("Η τοποθεσία σας διαγράφηκε με επιτυχία");
+			} else {
+				System.out.println("Η τοποθεσία σας δεν βρέθηκε \nΔοκιμάστε ξανά");
+			}
+
+		} catch (IOException e) {
+			System.err.println("Προβλημα κατα την διαγραφή τοποθεσίας");
 			e.printStackTrace();
 		}
 	}
@@ -333,7 +478,7 @@ public class Profile {
 			String serverMessage;
 
 			// for option identification
-			clientMessage = "c epilogi";
+			clientMessage = "deleteUser";
 			outStream.writeUTF(clientMessage);
 			outStream.flush();
 
@@ -360,58 +505,6 @@ public class Profile {
 			System.err.println("Προβλημα κατα την διαγραφή χρήστη");
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Prints user locations based in user id
-	 *
-	 * @param user_id
-	 */
-	public void seeLocations(int user_id) {
-
-		try {
-			// server-client messages
-			DataOutputStream outStream = cl.getOutStream();
-			DataInputStream inStream = cl.getInStream();
-			String clientMessage;
-
-			// for option identification
-			clientMessage = "d epilogi";
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
-
-			outStream.writeInt(user_id);//send id to server
-			outStream.flush();
-
-			int numCols = inStream.readInt();// get number of columns
-
-			// output format
-			System.out.println(
-					"----------------------------------------------------------------------------------");
-
-			for (int i = 1; i <= numCols; i++) {
-				// print Column Names
-				System.out.printf("%-18s", inStream.readUTF());
-			} // end of for
-
-			System.out.println(
-					"\n----------------------------------------------------------------------------------");
-
-			// print rows
-			while (!inStream.readUTF().equals("ok")) {
-				String City = inStream.readUTF();
-				String Address = inStream.readUTF();
-				int arrival_time = inStream.readInt();
-				int departure_time = inStream.readInt();
-				String date = inStream.readUTF();
-
-				System.out.printf("%-18s%-18s%-18s%-18s%-18s%n", City, Address, arrival_time, departure_time, date);
-			}
-		} catch (IOException e) {
-			System.err.println("Προβλημα κατά την εμφάνιση τοποθεσιών");
-			e.printStackTrace();
-		}
-
 	}
 
 }

@@ -25,7 +25,7 @@ public class Database {
 	 * results it produces
 	 */
 	private static Statement stmt = null;
-	
+
 	/**
 	 * Constructor that initiates connection
 	 */
@@ -80,7 +80,8 @@ public class Database {
 	/**
 	 * Creates Table of users with columns
 	 * <P>
-	 * USER_ID INT, USER_NAME VARCHAR(255), PASSWORD VARCHAR(30), POSSIBLY_INFECTED BOOLEAN
+	 * USER_ID INT, USER_NAME VARCHAR(255), PASSWORD VARCHAR(30), POSSIBLY_INFECTED
+	 * BOOLEAN
 	 */
 	public void createUsersTable() {
 		try {
@@ -96,7 +97,8 @@ public class Database {
 	/**
 	 * Creates Table of user's Locations with columns :
 	 * <P>
-	 * CITY VARCHAR(255), ADDRESS VARCHAR(255), ARRIVAL_TIME INT, DEPARTURE_TIME INT, USER_ID INT
+	 * CITY VARCHAR(255), ADDRESS VARCHAR(255), ARRIVAL_TIME INT, DEPARTURE_TIME
+	 * INT, USER_ID INT
 	 */
 	public void createLocationsTable() {
 		try {
@@ -110,63 +112,55 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-	/** Creates Table of user's Evaluation with columns :
+	/**
+	 * Creates Table of user's Evaluation with columns :
 	 * <P>
 	 * VERY_BAD INT, BAD INT, METRIA INT, GOOD INT, VERY_GOOD INT
 	 */
 	public void createEvaluationTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE EVALUATION ("
-					+ "VERY_BAD INT,"
-					+ "BAD INT,"
-					+ "METRIA INT,"
-					+ "GOOD INT,"
-					+ "VERY_GOOD INT"
-					+")");
-			stmt.execute("INSERT INTO EVALUATION "
-					+ "VALUES (0,0,0,0,0)");
+			stmt.execute("CREATE TABLE EVALUATION (" + "VERY_BAD INT," + "BAD INT," + "METRIA INT," + "GOOD INT,"
+					+ "VERY_GOOD INT" + ")");
+			stmt.execute("INSERT INTO EVALUATION " + "VALUES (0,0,0,0,0)");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
 	}
 
-	/**Creates table EVALUATIONCOMMS with columns :
+	/**
+	 * Creates table EVALUATIONCOMMS with columns :
 	 * <P>
 	 * COMMS VARCHAR(255)
 	 */
 	public void createEvaluationComents() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE EVALUATIONCOMMS ("
-					+ "COMMS VARCHAR(255)"
-					+")");
+			stmt.execute("CREATE TABLE EVALUATIONCOMMS (" + "COMMS VARCHAR(255)" + ")");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
 
-
-	/**Creates table COUNTTOVOTE with columns :
+	/**
+	 * Creates table COUNTTOVOTE with columns :
 	 * <P>
 	 * ID_VOTED INT
 	 */
 	public void createCountToVoteOnce() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE COUNTTOVOTE ("
-					+ "ID_VOTED INT"
-					+")");
+			stmt.execute("CREATE TABLE COUNTTOVOTE (" + "ID_VOTED INT" + ")");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
 
-
-	/** Creates Table of users Stories with columns :
+	/**
+	 * Creates Table of users Stories with columns :
 	 * <P>
 	 * STORY_ID INT, STORY_TITLE VARCHAR(255), STORY LONG VARCHAR
 	 */
@@ -174,10 +168,7 @@ public class Database {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute(
-					"CREATE TABLE STORIES("
-						+ "STORY_ID INT, "
-						+ "STORY_TITLE VARCHAR(255),"
-						+ "STORY LONG VARCHAR)");
+					"CREATE TABLE STORIES(" + "STORY_ID INT, " + "STORY_TITLE VARCHAR(255)," + "STORY LONG VARCHAR)");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -188,11 +179,11 @@ public class Database {
 	public void deleteTables() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			//stmt.execute("DROP TABLE LOCATIONS ");
-			//stmt.execute("DROP TABLE USERS");
-			//stmt.execute("DROP TABLE STORIES");
-			//stmt.execute("DROP TABLE EVALUATION");
-			//stmt.execute("DROP TABLE EVALUATIONCOMMS");
+			// stmt.execute("DROP TABLE LOCATIONS ");
+			// stmt.execute("DROP TABLE USERS");
+			// stmt.execute("DROP TABLE STORIES");
+			// stmt.execute("DROP TABLE EVALUATION");
+			// stmt.execute("DROP TABLE EVALUATIONCOMMS");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -216,18 +207,41 @@ public class Database {
 	}// end of method
 
 	/**
-	 * Deletes row from LOCATIONS based on user_id
+	 * Deletes row from LOCATIONS
 	 *
+	 * @param City
+	 * @param Address
+	 * @param arrival_time
+	 * @param departure_time
+	 * @param date
 	 * @param user_id
+	 *
+	 * @return true if row exists
+	 *         <P>
+	 *         false if row does not exist
 	 */
-	public void deleteLocationsRow(int user_id) {
+	public boolean deleteLocationsRow(String City, String Address, int arrival_time, int departure_time, String date,
+			int user_id) {
+		boolean flag = true; // identify if row exists
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("DELETE FROM LOCATIONS WHERE USER_ID=" + user_id);
+			ResultSet result = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID = " + user_id + " AND DAY = '"
+					+ date + "' AND CITY = '" + City + "' AND ADDRESS = '" + Address + "' AND ARRIVAL_TIME = "
+					+ arrival_time + " AND DEPARTURE_TIME = " + departure_time);
+			if (result.next()) {
+				stmt.executeUpdate("DELETE FROM LOCATIONS WHERE USER_ID = " + user_id + " AND DAY = '" + date
+						+ "' AND CITY = '" + City + "' AND ADDRESS = '" + Address + "' AND ARRIVAL_TIME = "
+						+ arrival_time + " AND DEPARTURE_TIME = " + departure_time);
+			} else {
+				flag = false; // row does not exist
+			}
+			result.close();
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
+
+		return flag;
 	}// end of method
 
 	/**
@@ -256,15 +270,16 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 	}// end of method
+
 	/**
 	 * Inserts into table EVALUATIONCOMMS
+	 *
 	 * @param comment : the evaluetion comment
 	 */
 	public void instertEvalComments(String comment) {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("INSERT INTO EVALUATIONCOMMS"
-						+ " VALUES ('" + comment + "')" );
+			stmt.execute("INSERT INTO EVALUATIONCOMMS" + " VALUES ('" + comment + "')");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -273,13 +288,14 @@ public class Database {
 
 	/**
 	 * Inserts into table COUNTTOVOTE
+	 *
 	 * @param ids :the user id
 	 */
 	public void insterIntoIdsWhoVoted(int ids) {
 		try {
 			stmt = conn.createStatement();// create a Statement
 
-			stmt.execute("INSERT INTO COUNTTOVOTE" + " VALUES (" + ids + ")" );
+			stmt.execute("INSERT INTO COUNTTOVOTE" + " VALUES (" + ids + ")");
 
 			stmt.close();
 		} catch (SQLException e) {
@@ -311,37 +327,33 @@ public class Database {
 
 	/**
 	 * Inserts rows into EvaluationTable
+	 *
 	 * @param choice
 	 */
 	public void insertIntoEvaluationTable(int choice) {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			if(choice == 1) {
-				stmt.execute("UPDATE EVALUATION "
-						+"SET VERY_BAD = VERY_BAD + 1");
-			} else if(choice == 2) {
-				stmt.execute("UPDATE EVALUATION "
-						+"SET BAD = BAD + 1");
-			} else if(choice ==3) {
-				stmt.execute("UPDATE EVALUATION "
-						+"SET METRIA = METRIA + 1");
-			} else if(choice ==4) {
-				stmt.execute("UPDATE EVALUATION "
-						+"SET GOOD = GOOD + 1");
-			} else if(choice == 5) {
-				stmt.execute("UPDATE EVALUATION "
-						+"SET VERY_GOOD = VERY_GOOD + 1");
+			if (choice == 1) {
+				stmt.execute("UPDATE EVALUATION " + "SET VERY_BAD = VERY_BAD + 1");
+			} else if (choice == 2) {
+				stmt.execute("UPDATE EVALUATION " + "SET BAD = BAD + 1");
+			} else if (choice == 3) {
+				stmt.execute("UPDATE EVALUATION " + "SET METRIA = METRIA + 1");
+			} else if (choice == 4) {
+				stmt.execute("UPDATE EVALUATION " + "SET GOOD = GOOD + 1");
+			} else if (choice == 5) {
+				stmt.execute("UPDATE EVALUATION " + "SET VERY_GOOD = VERY_GOOD + 1");
 			}
 
-
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		} //ending of catch
+		} // ending of catch
 
 	}
 
 	/**
 	 * Inserts rows into Stories table
+	 *
 	 * @param storyTitle
 	 * @param storyBody
 	 *
@@ -598,10 +610,11 @@ public class Database {
 
 	/**
 	 * Find out if user has voted again
+	 *
 	 * @param user_id
 	 * @return -1 if user can vote
-	 * 		   <P>
-	 * 		   the user's id if he has voted again
+	 *         <P>
+	 *         the user's id if he has voted again
 	 */
 	public int findUserIdForVote(int user_id) {
 
@@ -610,7 +623,7 @@ public class Database {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet results;// A table of data representing a database result
 			results = stmt.executeQuery("SELECT ID_VOTED FROM COUNTTOVOTE WHERE ID_VOTED =" + user_id);
-			if(results.next()) {
+			if (results.next()) {
 				userid = results.getInt(1);
 			}
 			results.close();
@@ -732,7 +745,8 @@ public class Database {
 	}// end of method
 
 	/**
-	 * @return ResultSet from a random Story*/
+	 * @return ResultSet from a random Story
+	 */
 	public ResultSet getRandomStory() {
 		ResultSet result = null;// A table of data representing a database result
 		Random rand = new Random();
@@ -769,11 +783,11 @@ public class Database {
 			result = stmt.executeQuery("SELECT * FROM EVALUATION");
 
 			result.next();
-				X[0] = result.getInt(1);
-				X[1] = result.getInt(2);
-				X[2] = result.getInt(3);
-				X[3] = result.getInt(4);
-				X[4] = result.getInt(5);
+			X[0] = result.getInt(1);
+			X[1] = result.getInt(2);
+			X[2] = result.getInt(3);
+			X[3] = result.getInt(4);
+			X[4] = result.getInt(5);
 
 			result.close();
 			stmt.close();

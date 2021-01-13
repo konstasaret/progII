@@ -25,9 +25,10 @@ public class Menus {
 		System.out.println("5. Δες στατιστικά για όλο τον Κόσμο");
 		System.out.println("6. Δες περιστατικά του ιού");
 		System.out.println("7. Συχνές Ερωτήσεις σχετικά με τον CONVID-19");
-		System.out.println("8. Αξιολογηση της εφαρμογής");
-		System.out.println("9. Διαγραφή Χρήστη και δεδομένων");
-		System.out.println("10. Αποσύνδεση");
+		System.out.println("8. Διέγραψε μια τοποθεσία σου");
+		System.out.println("9. Αξιολογηση της εφαρμογής");
+		System.out.println("10. Διαγραφή Χρήστη και δεδομένων");
+		System.out.println("11. Αποσύνδεση");
 	} // end of firstMenu
 
 	/**
