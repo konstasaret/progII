@@ -161,11 +161,6 @@ class ServerClientThread extends Thread {
 
 					db.insertIntoLocationsTable(city, address, arrival_time, departure_time, date, user_id);
 
-					serverMessage = "Η τοποθεσία σας καταγράφηκε :" + "\n	Πόλη : " + city + "\n	Διεύθυνση : "
-							+ address + "\n	Άφιξη : " + arrival_time + ":00" + "\n	Αναχώριση : " + departure_time
-							+ ":00" + "\n	Ημερομηνία : " + date;
-					outStream.writeUTF(serverMessage);
-					outStream.flush();
 
 				} else if (count == 2) {
 					// infected

@@ -232,54 +232,64 @@ public class Profile {
 			date = inp.stringScanner();
 		}
 
-		try {
-			// server-client messages
-			DataOutputStream outStream = cl.getOutStream();
-			DataInputStream inStream = cl.getInStream();
-			String clientMessage;
-			String serverMessage;
+		System.out.println("Είναι αυτή η σωστή τοποθεσία σας : (ΝΑΙ/ΟΧΙ)" + "\n	Πόλη : " + city + "\n	Διεύθυνση : "
+				+ address + "\n	Άφιξη : " + arr_time + ":00" + "\n	Αναχώριση : " + dep_time + ":00"
+				+ "\n	Ημερομηνία : " + date);
 
-			// for option identification
-			clientMessage = "newLocation";
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
+		String yesORno = inp.stringScanner();
+		while (!(yesORno.equals("ΝΑΙ") || yesORno.equals("ΟΧΙ"))) {
+			System.out.println("Παρακαλώ πληκτρολογίστε 'ΝΑΙ' ή 'ΟΧΙ'");
+			yesORno = inp.stringScanner();
+		}
 
-			// pass city to server
-			clientMessage = city;
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
+		if (yesORno.equals("ΝΑΙ")) {
+			try {
+				// server-client messages
+				DataOutputStream outStream = cl.getOutStream();
+				String clientMessage;
 
-			// pass address to server
-			clientMessage = address;
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
+				// for option identification
+				clientMessage = "newLocation";
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
 
-			// pass arr_time to server
-			outStream.writeInt(arr_time);
-			outStream.flush();
+				// pass city to server
+				clientMessage = city;
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
 
-			// pass dep_time to server
-			outStream.writeInt(dep_time);
-			outStream.flush();
+				// pass address to server
+				clientMessage = address;
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
 
-			// pass date to server
-			clientMessage = date;
-			outStream.writeUTF(clientMessage);
-			outStream.flush();
+				// pass arr_time to server
+				outStream.writeInt(arr_time);
+				outStream.flush();
 
-			// pass user_id to server
-			outStream.writeInt(user_id);
-			outStream.flush();
+				// pass dep_time to server
+				outStream.writeInt(dep_time);
+				outStream.flush();
 
-			// message from server
-			serverMessage = inStream.readUTF();
-			System.out.println(serverMessage);
+				// pass date to server
+				clientMessage = date;
+				outStream.writeUTF(clientMessage);
+				outStream.flush();
 
-			// TODO : make sure that he wants this location to be passed
+				// pass user_id to server
+				outStream.writeInt(user_id);
+				outStream.flush();
 
-		} catch (IOException e) {
-			System.err.println("Πρόβλημα κατα την προσθήκη νέας τοποθεσίας");
-			e.printStackTrace();
+			} catch (IOException e) {
+				System.err.println("Πρόβλημα κατα την προσθήκη νέας τοποθεσίας");
+				e.printStackTrace();
+				return;
+			}
+
+			System.out.println("Η τοποθεσία σας καταγράφηκε");
+		} else {
+			System.out.println("Δοκιμάστε ξανά");
+
 		}
 	}
 
