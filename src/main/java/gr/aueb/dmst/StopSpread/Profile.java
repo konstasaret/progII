@@ -187,22 +187,20 @@ public class Profile {
 	public void newLocation(int user_id) {
 		Inputs inp = new Inputs();
 
-		// TODO : make him enter greek letters
 		System.out.println(
 				"Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που επισκευθήκατε με κεφαλάια γράμματα και χωρίς τόνους:");
 
 		System.out.println("Εισάγετε την πόλη :");
 		String city = inp.stringScanner();
-		while (!city.equals(city.toUpperCase())) {
-			System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
+		while (!city.matches("^[Α-Ω]*$")) {
+			System.err.println("Παρακαλώ εισάγετε την πόλη με κεφαλάια ελληνικά γράμματα");
 			city = inp.stringScanner();
 		}
 
-		// TODO make him enter the number
 		System.out.println("Εισάγετε την διεύθυνση και αριθμό:");
 		String address = inp.stringScanner();
-		while (!address.equals(address.toUpperCase())) {
-			System.err.println("Παρακαλώ εισάγετε τα στοιχεία σας με κεφαλάια γράμματα");
+		while (!address.matches("^[Α-Ω|\\s|\\.]*\\s[0-9]*$")) {
+			System.err.println("Παρακαλώ εισάγετε διεύθυνση και αριθμό με κεφαλάια ελληνικά γράμματα");
 			address = inp.stringScanner();
 		}
 
@@ -225,8 +223,7 @@ public class Profile {
 		String currentDate = String.valueOf(new Date(System.currentTimeMillis()));
 
 		// regex does not find leap years all February go up to 29
-		while (!date.matches(
-				"^[0-9]{4}-(" // Year
+		while (!date.matches("^[0-9]{4}-(" // Year
 				+ "((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))" // 31 days months
 				+ "|(02-(0[1-9]|[1-2][0-9]))|" // February
 				+ "((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$") // 30 days months
