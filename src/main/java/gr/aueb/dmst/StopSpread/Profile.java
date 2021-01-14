@@ -3,6 +3,7 @@ package gr.aueb.dmst.StopSpread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 
 /**
  * @author AirlineDog
@@ -220,11 +221,17 @@ public class Profile {
 		System.out.println("Εισάγετε την ημερομηνία της επίσεψής σας (ΕΕΕΕ-ΜΜ-ΗΗ) :");
 		String date = inp.stringScanner();
 
-		// TODO : Check if it is in the future
+		// The current date
+		String currentDate = String.valueOf(new Date(System.currentTimeMillis()));
+
 		// regex does not find leap years all February go up to 29
 		while (!date.matches(
-				"^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$")) {
-			System.err.println("Παρακαλώ εισάγεται την ημερομηνία στην εξής μορφή (ΕΕΕΕ-ΜΜ-ΗΗ) :");
+				"^[0-9]{4}-(" // Year
+				+ "((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))" // 31 days months
+				+ "|(02-(0[1-9]|[1-2][0-9]))|" // February
+				+ "((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$") // 30 days months
+				|| date.compareTo(currentDate) > 0) { // date is in future
+			System.err.println("Παρακαλώ εισάγεται μια έγκυρη ημερομηνία στην εξής μορφή (ΕΕΕΕ-ΜΜ-ΗΗ) :");
 			date = inp.stringScanner();
 		}
 
