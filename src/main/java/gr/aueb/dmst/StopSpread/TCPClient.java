@@ -75,7 +75,6 @@ public class TCPClient {
                 menu.firstMenu();
                 int option = inp.rangeInt(1, 10);
 
-                // TODO : delete a location
                 if (option == 1) {
                     // New location
                     prof.newLocation(user_id);
