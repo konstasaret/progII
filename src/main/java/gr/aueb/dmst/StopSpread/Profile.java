@@ -355,14 +355,14 @@ public class Profile {
 			int numCols = inStream.readInt();// get number of columns
 
 			// output format
-			System.out.println("----------------------------------------------------------------------------------");
+			System.out.println("--------------------------------------------------------------------------------------------------------------");
 
 			for (int i = 1; i <= numCols; i++) {
 				// print Column Names
-				System.out.printf("%-18s", inStream.readUTF());
+				System.out.printf("%-25s", inStream.readUTF());
 			} // end of for
 
-			System.out.println("\n----------------------------------------------------------------------------------");
+			System.out.println("\n--------------------------------------------------------------------------------------------------------------");
 
 			// print rows
 			while (!inStream.readUTF().equals("ok")) {
@@ -372,7 +372,7 @@ public class Profile {
 				int departure_time = inStream.readInt();
 				String date = inStream.readUTF();
 
-				System.out.printf("%-18s%-18s%-18s%-18s%-18s%n", City, Address, arrival_time, departure_time, date);
+				System.out.printf("%-25s%-25s%-25s%-25s%-25s%n", City, Address, arrival_time, departure_time, date);
 			}
 		} catch (IOException e) {
 			System.err.println("Προβλημα κατά την εμφάνιση τοποθεσιών");
@@ -401,7 +401,7 @@ public class Profile {
 		String read_location = inp.stringScanner();
 
 		// get components of the location separated with any number of spaces
-		split_location = read_location.split("\\s+");
+		split_location = read_location.split("\\s\\s+");
 
 		while (!(split_location.length == 5)) {
 			System.out.println("Ούπς! Μάλλον έγινε λάθος κατά την επικόλληση \nΔοκιμάστε ξανα :");
@@ -410,7 +410,7 @@ public class Profile {
 			read_location = inp.stringScanner();
 
 			// get components of the location separated with any number of spaces
-			split_location = read_location.split("\\s+");
+			split_location = read_location.split("\\s\\s+");
 		}
 
 		// make sure he wants to delete this location
