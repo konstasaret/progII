@@ -2,16 +2,17 @@ package gr.aueb.dmst.StopSpread;
 
 /**
  * This class shows the statistics and graphs per area.
- * (Attiki,Ipiros,Thesalsaloniki, Thraki,Kriti,Makedonia,Nisia Ioniou, Nisia
- * Aigeou,Sterea Ellada,Peloponnisos)
+ * (Attiki,Ipiros,Thesalsaloniki, Thraki,Kriti,Makedonia,Nisia Ioniou, Nisia.
+ * Aigeou,Sterea Ellada,Peloponnisos).
  */
-public class GreekStats {
+public class GreekStats { //beginning of GreekStats
 
     /**
-     * This method prints the appropriate menu, reads an integer from user which is
+     * This method prints the appropriate menu, reads an integer from user which is.
      * his/her choice and opens the suitable web site each time.
      */
-    public void greekStats() {
+    public void greekStats() { 
+    	//beginning of method greekStats
         Inputs inp = new Inputs();
         boolean contloop = true;
         Menus menu = new Menus();
@@ -45,15 +46,16 @@ public class GreekStats {
             }
             contloop = false;
         } while (contloop);
-    }
+    } //ending of method greekStats
 
     /**
-     * Selects the desired URL
-     * @param choice
-     * @param NomosOption
-     * @return the URL
+     * Selects the desired URL.
+     * @param choice.
+     * @param NomosOption.
+     * @return the URL.
      */
     public String decideURL(int choice, int NomosOption) {
+    	//beggining of method decideURL
         String url = "";
 
         if (choice == 1)
@@ -97,6 +99,6 @@ public class GreekStats {
             }
         }
         return url;
-    }
+    } //ending of method decideURL
 
-}
+} //ending of class  GreekStats 
