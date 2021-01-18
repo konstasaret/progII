@@ -121,19 +121,19 @@ public class Profile {
 						|| pass.length() < 8 // at least 8 chars
 						|| !pass.matches(".*\\d.*")) { // at least one number
 					System.err.println(
-							"Ο κωδικός θα πρέπει να αποτελείται απο τουλάχιστον"
-							+ "8 χαρακτήρες και να περιέχει απο τουλάχιστον"
+							"Ο κωδικός θα πρέπει να αποτελείται απο τουλάχιστον "
+							+ "8 χαρακτήρες και να περιέχει απο τουλάχιστον "
 							+ "έναν αριθμό, ένα κεφαλαίο και ένα πεζό γράμμα");
 					System.out.println("Παρακαλώ εισάγετε διαφορετικό κωδικό");
 					pass = inp.stringScanner();
 				}
 
 				// double check password
-				System.out.println("Παρακαλώ επιβεβαιώστε τον"
+				System.out.println("Παρακαλώ επιβεβαιώστε τον "
 						+ "Κωδικό Χρήστη σας:");
 				pass2 = inp.stringScanner();
 				if (!pass.equals(pass2)) {
-					System.out.println("Οι Κωδικοί Χρήστη σας"
+					System.out.println("Οι Κωδικοί Χρήστη σας "
 							+ "δεν ταιριάζουν.\nΔοκιμάστε Ξανά."); 
 														// FIX THE DATA BASE
 														// TO WORK WHEN YOU
@@ -201,13 +201,13 @@ public class Profile {
 		Inputs inp = new Inputs();
 
 		System.out.println(
-				"Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που"
+				"Παρακαλούμε εισάγετε τα στοιχεία της τοποθεσίας που "
 				+ "επισκευθήκατε με κεφαλάια γράμματα και χωρίς τόνους:");
 
 		System.out.println("Εισάγετε την πόλη :");
 		String city = inp.stringScanner();
 		while (!city.matches("^[Α-Ω]*$")) {
-			System.err.println("Παρακαλώ εισάγετε την πόλη με κεφαλάια"
+			System.err.println("Παρακαλώ εισάγετε την πόλη με κεφαλάια "
 					+ "ελληνικά γράμματα");
 			city = inp.stringScanner();
 		}
@@ -215,7 +215,7 @@ public class Profile {
 		System.out.println("Εισάγετε την διεύθυνση και αριθμό:");
 		String address = inp.stringScanner();
 		while (!address.matches("^[Α-Ω|\\s|\\.]*\\s[0-9]*$")) {
-			System.err.println("Παρακαλώ εισάγετε διεύθυνση και αριθμό με"
+			System.err.println("Παρακαλώ εισάγετε διεύθυνση και αριθμό με "
 					+ "κεφαλάια ελληνικά γράμματα");
 			address = inp.stringScanner();
 		}
@@ -226,11 +226,11 @@ public class Profile {
 		int arr_time = inp.rangeInt(0, 23);
 
 		System.out.println(
-				"Εισάγετε την ώρα αναχώρησης, σε εικοσιτετράωρη βάση,"
+				"Εισάγετε την ώρα αναχώρησης, σε εικοσιτετράωρη βάση, "
 				+ "στρογγυλοποιημένη στον επόμενο ακέραιο :");
 		int dep_time = inp.rangeInt(1, 24);
 		while (dep_time <= arr_time) {
-			System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη"
+			System.err.println("Παρακαλούμε εισάγετε ώρα μεγαλύτερη "
 					+ "απο την ώρα άφιξης :");
 			dep_time = inp.rangeInt(1, 24);
 		}
@@ -254,7 +254,7 @@ public class Profile {
 		}
 
 		System.out.println("Είναι αυτή η σωστή τοποθεσία σας : (ΝΑΙ/ΟΧΙ)" + "\n	Πόλη : " + city + "\n	Διεύθυνση : "
-				+ address + "\n	Άφιξη : " + arr_time + ":00" + "\n	Αναχώριση : " + dep_time + ":00"
+				+ address + "\n	Άφιξη : " + arr_time + ":00" + "\n	Αναχώριση : " + dep_time + ":00 "
 				+ "\n	Ημερομηνία : " + date);
 
 		String yesORno = inp.stringScanner();
@@ -323,7 +323,7 @@ public class Profile {
 	 * @param user_id
 	 */
 	public void infected(int user_id) {
-
+		//beginning of method infected
 		try {
 			// server-client messages
 			DataOutputStream outStream = cl.getOutStream();
@@ -352,8 +352,8 @@ public class Profile {
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");
 			e.printStackTrace();
-		}
-	}
+		} //ending of catch
+	} //ending of method infected
 
 	/**
 	 * Prints user locations based in user id.
@@ -361,7 +361,7 @@ public class Profile {
 	 * @param user_id.
 	 */
 	public void seeLocations(int user_id) {
-
+		
 		try {
 			// server-client messages
 			DataOutputStream outStream = cl.getOutStream();
@@ -420,7 +420,7 @@ public class Profile {
 		Inputs inp = new Inputs(); // Scanner
 		String[] split_location; // Array to store location components
 
-		System.out.println("Παρακαλω αντιγράψτε την τοποθεσία που"
+		System.out.println("Παρακαλω αντιγράψτε την τοποθεσία που "
 				+ "επιθυμείτε να διαγράψετε.");
 		// read the location he wants to delete
 		String read_location = inp.stringScanner();
@@ -429,7 +429,7 @@ public class Profile {
 		split_location = read_location.split("\\s\\s+");
 
 		while (!(split_location.length == 5)) {
-			System.out.println("Ούπς! Μάλλον έγινε λάθος κατά"
+			System.out.println("Ούπς! Μάλλον έγινε λάθος κατά "
 					+ "την επικόλληση \nΔοκιμάστε ξανα :");
 
 			// read the location he wants to delete again
@@ -441,7 +441,7 @@ public class Profile {
 		}
 
 		// make sure he wants to delete this location
-		System.out.println("Είναι αυτή η τοποθεσία που"
+		System.out.println("Είναι αυτή η τοποθεσία που "
 				+ "θέλετε να διαγράψετε; (ΝΑΙ/ΟΧΙ)");
 		System.out.printf("%-18s%-18s%-18s%-18s%-18s%n", split_location[0], split_location[1], split_location[2],
 				split_location[3], split_location[4]);
@@ -499,7 +499,7 @@ public class Profile {
 			if (inStream.readUTF().equals("exists")) {
 				System.out.println("Η τοποθεσία σας διαγράφηκε με επιτυχία");
 			} else {
-				System.out.println("Η τοποθεσία σας δεν"
+				System.out.println("Η τοποθεσία σας δεν "
 						+ " βρέθηκε \nΔοκιμάστε ξανά");
 			}
 
@@ -535,7 +535,7 @@ public class Profile {
 
 			// double check user's credentials
 			System.out.println("Παρακαλώ εισάγεται ξανά τον κωδικό σας :");
-			do { //beggining of loop
+			do { //beginning of loop
 				String given_pass = inp.stringScanner();
 
 				clientMessage = given_pass;
@@ -548,7 +548,7 @@ public class Profile {
 
 			System.out.println("Επιτυχία διαγραφής στοιχείων");
 
-		} catch (IOException e) { //ending of try and begginig of catch block
+		} catch (IOException e) { //ending of try and beginning of catch block
 			System.err.println("Προβλημα κατα την διαγραφή χρήστη");
 			e.printStackTrace();
 		} //ending of catch block

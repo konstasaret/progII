@@ -19,7 +19,7 @@ public class GlobalStats { //beginning of class GlobalStats
 		 * user puts an invalid option.
 		 */
 		do {
-			System.out.println("Παγκόσμια στατιστικά σύμφωνα"
+			System.out.println("Παγκόσμια στατιστικά σύμφωνα "
 					+ "με τον Παγκόσμιο Οργανισμό Υγείας.");
 			menu.globalStatsMenu();
 			int option = inp.rangeInt(1, 11);
