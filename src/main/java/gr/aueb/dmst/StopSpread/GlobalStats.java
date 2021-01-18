@@ -1,31 +1,33 @@
 package gr.aueb.dmst.StopSpread;
 
 /**
- * This class contains and prints general information about Covid-19 according
- * to World Health Organization
+ * This class contains and prints general information about Covid-19 according.
+ * to World Health Organization.
  */
-public class GlobalStats {
+public class GlobalStats { //beginning of class GlobalStats
 
 	/**
 	 * The main method of the class which takes an integer from 1 to 11 and opens
 	 * each time the proper web page
 	 */
-	public void globalStats() {
+	public void globalStats() { //beginning of method globalStats
 		Inputs inp = new Inputs();
 		boolean contloop = true;
 		Menus menu = new Menus();
 		/*
-		 * Menu is printed till the user chooses option 11 and prints a message if the
-		 * user puts an invalid option
+		 * Menu is printed till the user chooses option 11 and prints a message if the.
+		 * user puts an invalid option.
 		 */
 		do {
-			System.out.println("Παγκόσμια στατιστικά σύμφωνα με τον Παγκόσμιο Οργανισμό Υγείας.");
+			System.out.println("Παγκόσμια στατιστικά σύμφωνα"
+					+ "με τον Παγκόσμιο Οργανισμό Υγείας.");
 			menu.globalStatsMenu();
 			int option = inp.rangeInt(1, 11);
 			boolean ok = true;
 			while (ok) {
 				/*
-				 * Variable ok checks if choice is 11 and exits the global info in this case
+				 * Variable ok checks if choice is 11 and exits. 
+				 * the global info in this case
 				 */
 				switch (option) {
 				case 1:
@@ -86,6 +88,6 @@ public class GlobalStats {
 			}
 		} while (contloop);
 
-	}
+	} //ending of method globalStats
 
-}
+} //ending of class GlobalStats
