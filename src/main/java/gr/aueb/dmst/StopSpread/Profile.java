@@ -12,12 +12,13 @@ import java.sql.Date;
  *and is done the connection with our application.
  *
  * Connection with data base so as to
- * store the user's data like user_name,password. 
+ * store the user's data like user_name,password.
  * location,date and so on.
  * These data like location  can be deleted.
  */
 public class Profile {
 
+	/** Object used to get the DataInputStream and DataOutputStream*/
 	private TCPClient cl = new TCPClient();
 
 	/**
@@ -26,6 +27,7 @@ public class Profile {
 	 * @return user_id for later use in the program.
 	 */
 	public int authenticate() {
+
 		Inputs inp = new Inputs();
 
 		int user_id = 0;
@@ -134,10 +136,7 @@ public class Profile {
 				pass2 = inp.stringScanner();
 				if (!pass.equals(pass2)) {
 					System.out.println("Οι Κωδικοί Χρήστη σας "
-							+ "δεν ταιριάζουν.\nΔοκιμάστε Ξανά."); 
-														// FIX THE DATA BASE
-														// TO WORK WHEN YOU
-														// TEST IT
+							+ "δεν ταιριάζουν.\nΔοκιμάστε Ξανά.");
 				}
 			} while (!pass.equals(pass2));
 
@@ -156,11 +155,11 @@ public class Profile {
 	}
 
 	/**
-	 * Called every time a user is logged in the app. 
+	 * Called every time a user is logged in the app.
 	 * Warns him if someone infected.
 	 * has been in the same locations as him the past 14 days.
 	 *
-	 * @param user_id.
+	 * @param user_id
 	 */
 	public void checkConnections(int user_id) {
 
@@ -195,7 +194,7 @@ public class Profile {
 	/**
 	 * Inserts new user location in the database.
 	 *
-	 * @param user_id.
+	 * @param user_id
 	 */
 	public void newLocation(int user_id) {
 		Inputs inp = new Inputs();
@@ -206,7 +205,7 @@ public class Profile {
 
 		System.out.println("Εισάγετε την πόλη :");
 		String city = inp.stringScanner();
-		while (!city.matches("^[Α-Ω]*$")) {
+		while (!city.matches("^\\p{InGreek}\\p{javaUpperCase}+$")) {
 			System.err.println("Παρακαλώ εισάγετε την πόλη με κεφαλάια "
 					+ "ελληνικά γράμματα");
 			city = inp.stringScanner();
@@ -214,7 +213,7 @@ public class Profile {
 
 		System.out.println("Εισάγετε την διεύθυνση και αριθμό:");
 		String address = inp.stringScanner();
-		while (!address.matches("^[Α-Ω|\\s|\\.]*\\s[0-9]*$")) {
+		while (!address.matches("^[\\p{InGreek}\\p{javaUpperCase}\\s\\.]*\\s[0-9]*$")) {
 			System.err.println("Παρακαλώ εισάγετε διεύθυνση και αριθμό με "
 					+ "κεφαλάια ελληνικά γράμματα");
 			address = inp.stringScanner();
@@ -258,13 +257,13 @@ public class Profile {
 				+ "\n	Ημερομηνία : " + date);
 
 		String yesORno = inp.stringScanner();
-		while (!(yesORno.equals("ΝΑΙ") || yesORno.equals("ΟΧΙ"))) {
+		while (!(yesORno.equals("ΝΑΙ") || yesORno.equals("ΟΧΙ"))) { // ΝΑΙ and ΟΧΙ are in Greek characters
 			System.out.println("Παρακαλώ πληκτρολογίστε 'ΝΑΙ' ή 'ΟΧΙ'");
 			yesORno = inp.stringScanner();
 		}
 
 		if (yesORno.equals("ΝΑΙ")) {
-			try { 
+			try {
 				// server-client messages
 				DataOutputStream outStream = cl.getOutStream();
 				String clientMessage;
@@ -316,7 +315,7 @@ public class Profile {
 	}
 
 	/**
-	 * Called when user is infected Warns other users. 
+	 * Called when user is infected Warns other users.
 	 * that have been in the same.
 	 * location the past 14 days.
 	 *
@@ -343,7 +342,7 @@ public class Profile {
 			serverMessage = inStream.readUTF();
 			System.out.println(serverMessage);
 
-			// TODO : this should be on the connected 
+			// TODO : this should be on the connected
 			//users not the already infected one
 			// Show nearest hospitals
 			String url = "https://www.google.com/maps/search/hospital";
@@ -358,10 +357,10 @@ public class Profile {
 	/**
 	 * Prints user locations based in user id.
 	 *
-	 * @param user_id.
+	 * @param user_id
 	 */
 	public void seeLocations(int user_id) {
-		
+
 		try {
 			// server-client messages
 			DataOutputStream outStream = cl.getOutStream();
@@ -379,14 +378,18 @@ public class Profile {
 			int numCols = inStream.readInt();// get number of columns
 
 			// output format
-			System.out.println("--------------------------------------------------------------------------------------------------------------");
+			System.out.println("------------------------------"
+					+ "--------------------------------------"
+					+ "------------------------------------------");
 
 			for (int i = 1; i <= numCols; i++) {
 				// print Column Names
 				System.out.printf("%-25s", inStream.readUTF());
 			} // end of for
 
-			System.out.println("\n--------------------------------------------------------------------------------------------------------------");
+			System.out.println("\n--------------------------"
+					+ "------------------------------------------"
+					+ "------------------------------------------");
 
 			// print rows
 			while (!inStream.readUTF().equals("ok")) {
@@ -408,7 +411,7 @@ public class Profile {
 	/**
 	 * Deletes a user's location from database.
 	 *
-	 * @param user_id.
+	 * @param user_id
 	 */
 	public void deleteLocation(int user_id) {
 
@@ -435,7 +438,7 @@ public class Profile {
 			// read the location he wants to delete again
 			read_location = inp.stringScanner();
 
-			// get components of the location separated 
+			// get components of the location separated
 			//with any number of spaces
 			split_location = read_location.split("\\s\\s+");
 		}
@@ -484,16 +487,16 @@ public class Profile {
 			outStream.writeUTF(split_location[1]); // pass Address
 			outStream.flush();
 			// pass arrival_time
-			outStream.writeInt(Integer.valueOf(split_location[2])); 
+			outStream.writeInt(Integer.valueOf(split_location[2]));
 			outStream.flush();
 			// pass departure_time
-			outStream.writeInt(Integer.valueOf(split_location[3])); 
+			outStream.writeInt(Integer.valueOf(split_location[3]));
 			outStream.flush();
 			// pass date
-			outStream.writeUTF(split_location[4]); 
+			outStream.writeUTF(split_location[4]);
 			outStream.flush();
 			// pass user_id
-			outStream.writeInt(user_id); 
+			outStream.writeInt(user_id);
 			outStream.flush();
 
 			if (inStream.readUTF().equals("exists")) {
@@ -512,7 +515,7 @@ public class Profile {
 	/**
 	 * Double checks user's credentials and deletes users data.
 	 *
-	 * @param user_id.
+	 * @param user_id
 	 */
 	public void deleteUser(int user_id) {
 		Inputs inp = new Inputs();
