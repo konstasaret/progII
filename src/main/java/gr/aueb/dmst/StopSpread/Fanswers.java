@@ -1,13 +1,18 @@
 package gr.aueb.dmst.StopSpread;
 
 /**
- * This class shows to user the answer which he wants to read.
+ * This class shows to user the answer he wants to read.
  */
 public class Fanswers {
 
 	/**
-	 * The main method of the class which checks the user's input and prints the
-	 * suitable answer.
+	 * The main method of the class checks the user's input
+	 * and prints the suitable answer.
+	 * 
+	 * @param menouQ connects this class with the Menus Class
+	 * @param ans is the user's answer
+	 * @param inp handles user's invalid inputs
+	 * @param flag stops showing user's options if he chooses 0
 	 */
 	public void freqQuest() {
 
@@ -17,13 +22,13 @@ public class Fanswers {
 
 		boolean flag = true;
 
-		while (flag) { // beginning of loop
+		while (flag) {
 
 			menouQ.menu88();
 
 			int choice = inp.rangeInt(0, 16);
 
-			switch (choice) {// beginning of switch
+			switch (choice) {
 			case 0:
 				flag = false;
 				break;
