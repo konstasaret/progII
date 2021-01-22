@@ -2,17 +2,16 @@ package gr.aueb.dmst.StopSpread;
 
 /**
  * This class shows the statistics and graphs per area.
- * (Attiki,Ipiros,Thesalsaloniki, Thraki,Kriti,Makedonia,Nisia Ioniou, Nisia.
- * Aigeou,Sterea Ellada,Peloponnisos).
+ * (Attiki, Ipiros, Thesalsaloniki, Thraki, Kriti, Makedonia, Nisia Ioniou,
+ *  Nisia Aigeou, Sterea Ellada, Peloponnisos)
  */
-public class GreekStats { // beginning of GreekStats
+public class GreekStats {
 
 	/**
 	 * This method prints the appropriate menu, reads an integer from user which is.
 	 * his/her choice and opens the suitable web site each time.
 	 */
 	public void greekStats() {
-		// beginning of method greekStats
 		Inputs inp = new Inputs();
 		boolean contloop = true;
 		Menus menu = new Menus();
@@ -21,7 +20,7 @@ public class GreekStats { // beginning of GreekStats
 			menu.greekStatsMenu();
 			int choice = inp.rangeInt(1, 4);
 			int option;
-			while (choice != 4) { // beginning of loop
+			while (choice != 4) {
 				if (choice == 1) {
 					String url = decideURL(choice, 0);
 					Url.openUrl(url);
@@ -35,7 +34,7 @@ public class GreekStats { // beginning of GreekStats
 							Url.openUrl(url);
 						else
 							break;
-					} // end of loop
+					} //end of loop
 				} else if (choice == 3) {
 					String url = decideURL(choice, 0);
 					Url.openUrl(url);
@@ -46,14 +45,14 @@ public class GreekStats { // beginning of GreekStats
 			}
 			contloop = false;
 		} while (contloop);
-	} // ending of method greekStats
+	} // end of method greekStats
 
 	/**
 	 * Selects the desired URL.
 	 * 
 	 * @param choice      is the user's choice
 	 * @param NomosOption is the district choice
-	 * @return the URL.
+	 * @return the URL
 	 */
 	public String decideURL(int choice, int NomosOption) {
 		String url = "";
@@ -96,9 +95,9 @@ public class GreekStats { // beginning of GreekStats
 				break;
 			case 11:
 				url = "exit";
-			}
-		}
+			} //end of switch
+		} //end of if
 		return url;
-	} // ending of method decideURL
+	} // end of method decideURL
 
-} // ending of class GreekStats
+} // end of Class GreekStats
