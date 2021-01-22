@@ -89,8 +89,11 @@ public class Database {
 	private void createUsersTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE USERS(" + "USER_ID INT NOT NULL," + "USER_NAME VARCHAR(255),"
-					+ "PASSWORD VARCHAR(30)," + "POSSIBLY_INFECTED BOOLEAN," + "PRIMARY KEY (USER_ID) )");
+			stmt.execute("CREATE TABLE USERS("
+											+ "USER_ID INT NOT NULL," + "USER_NAME VARCHAR(255),"
+											+ "PASSWORD VARCHAR(30),"
+											+ "POSSIBLY_INFECTED BOOLEAN,"
+											+ "PRIMARY KEY (USER_ID) )");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,9 +112,14 @@ public class Database {
 	private void createLocationsTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE LOCATIONS(" + "CITY VARCHAR(255)," + "ADDRESS VARCHAR(255),"
-					+ "ARRIVAL_TIME INT," + "DEPARTURE_TIME INT," + "DAY DATE," + "USER_ID INT,"
-					+ "FOREIGN KEY (USER_ID) REFERENCES USERS ON DELETE CASCADE)");
+			stmt.execute("CREATE TABLE LOCATIONS("
+												+ "CITY VARCHAR(255),"
+												+ "ADDRESS VARCHAR(255),"
+												+ "ARRIVAL_TIME INT,"
+												+ "DEPARTURE_TIME INT,"
+												+ "DAY DATE,"
+												+ "USER_ID INT,"
+												+ "FOREIGN KEY (USER_ID) REFERENCES USERS ON DELETE CASCADE)");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -129,14 +137,19 @@ public class Database {
 	private void createEvaluationTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE EVALUATION (" + "VERY_BAD INT," + "BAD INT," + "METRIA INT," + "GOOD INT,"
-					+ "VERY_GOOD INT" + ")");
-			stmt.execute("INSERT INTO EVALUATION " + "VALUES (0,0,0,0,0)");
+			stmt.execute("CREATE TABLE EVALUATION ("
+												+ "VERY_BAD INT,"
+												+ "BAD INT,"
+												+ "METRIA INT,"
+												+ "GOOD INT,"
+												+ "VERY_GOOD INT" + ")");
+			stmt.execute("INSERT INTO EVALUATION "
+							+ "VALUES (0,0,0,0,0)");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}
+	} // end of method
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -149,7 +162,8 @@ public class Database {
 	private void createEvaluationComents() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE EVALUATIONCOMMS (" + "COMMS VARCHAR(255)" + ")");
+			stmt.execute("CREATE TABLE EVALUATIONCOMMS ("
+														+ "COMMS VARCHAR(255) )");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -167,7 +181,8 @@ public class Database {
 	private void createCountToVoteOnce() {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("CREATE TABLE COUNTTOVOTE (" + "ID_VOTED INT" + ")");
+			stmt.execute("CREATE TABLE COUNTTOVOTE ("
+												+ "ID_VOTED INT )");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -186,7 +201,10 @@ public class Database {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute(
-					"CREATE TABLE STORIES(" + "STORY_ID INT, " + "STORY_TITLE VARCHAR(255)," + "STORY LONG VARCHAR)");
+					"CREATE TABLE STORIES("
+										+ "STORY_ID INT, "
+										+ "STORY_TITLE VARCHAR(255),"
+										+ "STORY LONG VARCHAR)");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -248,13 +266,21 @@ public class Database {
 		boolean flag = true; // identify if row exists
 		try {
 			stmt = conn.createStatement();// create a Statement
-			ResultSet result = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID = " + user_id + " AND DAY = '"
-					+ date + "' AND CITY = '" + City + "' AND ADDRESS = '" + Address + "' AND ARRIVAL_TIME = "
-					+ arrival_time + " AND DEPARTURE_TIME = " + departure_time);
+			ResultSet result = stmt.executeQuery("SELECT * "
+					+ "FROM LOCATIONS "
+					+ "WHERE USER_ID = " + user_id
+								+ " AND DAY = '" + date
+								+ "' AND CITY = '" + City
+								+ "' AND ADDRESS = '" + Address
+								+ "' AND ARRIVAL_TIME = " + arrival_time
+								+ " AND DEPARTURE_TIME = " + departure_time);
 			if (result.next()) {
-				stmt.executeUpdate("DELETE FROM LOCATIONS WHERE USER_ID = " + user_id + " AND DAY = '" + date
-						+ "' AND CITY = '" + City + "' AND ADDRESS = '" + Address + "' AND ARRIVAL_TIME = "
-						+ arrival_time + " AND DEPARTURE_TIME = " + departure_time);
+				stmt.executeUpdate("DELETE FROM LOCATIONS WHERE USER_ID = " + user_id
+														+ " AND DAY = '" + date
+														+ "' AND CITY = '" + City
+														+ "' AND ADDRESS = '" + Address
+														+ "' AND ARRIVAL_TIME = " + arrival_time
+														+ " AND DEPARTURE_TIME = " + departure_time);
 			} else {
 				flag = false; // row does not exist
 			}
@@ -285,7 +311,8 @@ public class Database {
 			results.next();// set the cursor to the next data
 			int id = results.getInt(1) + 1; // get the data and add 1 to be the user id
 
-			stmt.execute("INSERT INTO USERS" + " VALUES (" + id + ",'" + User_name + "','" + Password + "', FALSE)");
+			stmt.execute("INSERT INTO USERS"
+			+ " VALUES (" + id + ",'" + User_name + "','" + Password + "', FALSE)");
 
 			results.close();
 			stmt.close();
@@ -302,7 +329,8 @@ public class Database {
 	public void instertEvalComments(String comment) {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("INSERT INTO EVALUATIONCOMMS" + " VALUES ('" + comment + "')");
+			stmt.execute("INSERT INTO EVALUATIONCOMMS"
+			+ " VALUES ('" + comment + "')");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -318,7 +346,8 @@ public class Database {
 		try {
 			stmt = conn.createStatement();// create a Statement
 
-			stmt.execute("INSERT INTO COUNTTOVOTE" + " VALUES (" + ids + ")");
+			stmt.execute("INSERT INTO COUNTTOVOTE"
+			+ " VALUES (" + ids + ")");
 
 			stmt.close();
 		} catch (SQLException e) {
@@ -340,7 +369,8 @@ public class Database {
 			int user_id) {
 		try {
 			stmt = conn.createStatement(); // create a Statement
-			stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','" + Address + "'," + arrival_time + ","
+			stmt.execute("INSERT INTO LOCATIONS"
+			+ " VALUES ('" + City + "','" + Address + "'," + arrival_time + ","
 					+ departure_time + ",'" + date + "'," + user_id + ")");
 			stmt.close();
 		} catch (SQLException e) {
@@ -391,7 +421,8 @@ public class Database {
 			results.next();// set the cursor to the next data
 			int id = results.getInt(1) + 1; // get the data and add 1 to be the user id
 
-			stmt.execute("INSERT INTO STORIES" + " VALUES (" + id + ",'" + storyTitle + "','" + storyBody + "')");
+			stmt.execute("INSERT INTO STORIES"
+			+ " VALUES (" + id + ",'" + storyTitle + "','" + storyBody + "')");
 
 			stmt.close();
 		} catch (SQLException e) {
@@ -688,7 +719,10 @@ public class Database {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet results;// A table of data representing a database result
 			results = stmt.executeQuery(
-					"SELECT * " + "FROM LOCATIONS " + "WHERE USER_ID=" + user_id + " AND DAY>'" + infectionDate + "'");
+					"SELECT * "
+					+ "FROM LOCATIONS "
+					+ "WHERE USER_ID=" + user_id
+					+ " AND DAY>'" + infectionDate + "'");
 
 			// data storage
 			ArrayList<String> City = new ArrayList<String>();
@@ -723,11 +757,13 @@ public class Database {
 
 			} // end of for
 
-			Statement stmt2 = conn.createStatement();// can't update table in the same Statement
+			Statement stmt2 = conn.createStatement(); // can't update table in the same Statement
 
 			while (results.next()) {
 				stmt2.execute(
-						"UPDATE USERS " + "SET POSSIBLY_INFECTED = TRUE " + "WHERE USER_ID = " + results.getInt(1));
+						"UPDATE USERS "
+						+ "SET POSSIBLY_INFECTED = TRUE "
+						+ "WHERE USER_ID = " + results.getInt(1));
 			} // end of while
 
 			results.close();
@@ -753,7 +789,9 @@ public class Database {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet result;// A table of data representing a database result
-			result = stmt.executeQuery("SELECT POSSIBLY_INFECTED " + "FROM USERS " + "WHERE USER_ID = " + user_id);
+			result = stmt.executeQuery("SELECT POSSIBLY_INFECTED "
+														+ "FROM USERS "
+														+ "WHERE USER_ID = " + user_id);
 			result.next();// set the cursor to the next data
 			check = result.getBoolean(1);// get the data from table
 			stmt.close();
@@ -772,7 +810,9 @@ public class Database {
 	public void restoreInfected(int user_id) {
 		try {
 			stmt = conn.createStatement();// create a Statement
-			stmt.execute("UPDATE USERS " + "SET POSSIBLY_INFECTED = FALSE " + "WHERE USER_ID = " + user_id);
+			stmt.execute("UPDATE USERS "
+							+ "SET POSSIBLY_INFECTED = FALSE "
+							+ "WHERE USER_ID = " + user_id);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -802,7 +842,9 @@ public class Database {
 
 		try {
 			stmt = conn.createStatement();// create a Statement
-			result = stmt.executeQuery("SELECT * " + "FROM STORIES " + "WHERE STORY_ID = " + randomID);
+			result = stmt.executeQuery("SELECT * "
+										+ "FROM STORIES "
+										+ "WHERE STORY_ID = " + randomID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
