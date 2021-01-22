@@ -7,16 +7,16 @@ public class Menus {
 	/**
 	 * App's log in menu
 	 */
-	public void logInMenu() { // beginning of logInMenu
+	public void logInMenu() {
 		System.out.println("Καλώς ήλθατε στο StopSpread!");
 		System.out.println("1. Σύνδεση.");
 		System.out.println("2. Δημιουργία Νέου Χρήστη.");
-	} // ending of logInMenu
+	} // end of method logInMenu
 
 	/**
 	 * App's functions menu
 	 */
-	public void firstMenu() { // beginning of firstMenu
+	public void firstMenu() {
 		System.out.println("Καλώς ήλθατε!");
 		System.out.println("1. Προσθήκη νέας τοποθεσίας.");
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
@@ -29,23 +29,23 @@ public class Menus {
 		System.out.println("9. Αξιολογηση της εφαρμογής");
 		System.out.println("10. Διαγραφή Χρήστη και δεδομένων");
 		System.out.println("11. Αποσύνδεση");
-	} // end of firstMenu
+	} // end of method firstMenu
 
 	/**
 	 * Prints the first menu of class with Greek statistics.
 	 */
-	public void greekStatsMenu() { // beginning of GreekStatsMenu
+	public void greekStatsMenu() {
 		System.out.println("1. Ημερήσια επισκόπηση.");
 		System.out.println("2. Στατιστικά στοιχεία ανά γεωγραφικό διαμέρισμα.");
 		System.out.println("3. Κρούσματα ανά ημέρα από την αρχή της πανδημίας.");
 		System.out.println("4. Έξοδος.");
 		System.out.println("Εισάγετε τον αριθμό που αντιστοιχεί στην επιθυμητή επιλογή.");
-	} // end of GreekStatsMenu
+	} // end of method GreekStatsMenu
 
 	/**
-	 * Prints the second menu which contains information about each geo area.
+	 * Prints the second menu which contains information about each geographical area.
 	 */
-	public void greekStatsMenu2() { // beginning of GreekStatsMenu
+	public void greekStatsMenu2() {
 		System.out.println("1.Γεωγραφικό Διαμέρισμα Αττική");
 		System.out.println("2.Γεωγραφικό Διαμέρισμα Ήπειρος");
 		System.out.println("3.Γεωγραφικό Διαμέρισμα Θεσσαλία");
@@ -57,12 +57,12 @@ public class Menus {
 		System.out.println("9.Γεωγραφικό Διαμέρισμα Πελοπόννησος");
 		System.out.println("10.Γεωγραφικό Διαμέρισμα Στερεά Ελλάδα");
 		System.out.println("11. Έξοδος");
-	} // end of GreekStatsMenu
+	} // end of method GreekStatsMenu
 
 	/**
 	 * Prints the user's option about global statistics.
 	 */
-	public void globalStatsMenu() { // beginning of GlobalStatsMenu
+	public void globalStatsMenu() {
 		System.out.println("1. Γενικά για τον Covid-19.");
 		System.out.println("2. Μετάδοση.");
 		System.out.println("3. Συμβουλές για το κοινό.");
@@ -76,11 +76,11 @@ public class Menus {
 		System.out.println("10. Σχετικά με το εμβόλιο.");
 		System.out.println("11. Έξοδος.");
 		System.out.println("Παρακαλώ εισάγετε τον αριθμό που αντιστοιχεί στην" + " επιθυμητή επιλογή!");
-	} // end of GlobalStatsMenu
+	} // end of method GlobalStatsMenu
 
 	/**
-	 * This method will be used for evaluating of our app. It prints the choices of
-	 * Evaluation menu
+	 * This method will be used for evaluating of our application.
+	 * It prints the choices of Evaluation menu. 
 	 */
 	public void printMenu() { // beginning of printMenu
 		System.out.println("***********Μενού Αξιολόγησης***********");
@@ -89,22 +89,22 @@ public class Menus {
 		System.out.println("3.Εισαγωγή σχολίου σχετικά με την εφαρμογή");
 		System.out.println("4.Σχόλια άλλων χρηστών");
 		System.out.println("5.Έξοδος από το Μενού Αξιολόγησης");
-	} // end of printMenu
+	} // end of method printMenu
 
 	/**
-	 * This method prints the user's options about what class Stories can implement.
+	 * This method prints the user's options about what Class Stories can implement.
 	 */
-	public void storiesMenu() { // beginning of storiesMenu
+	public void storiesMenu() {
 		System.out.println("Μενού επιλογών:");
 		System.out.println("1. Ανάγνωση ιστορίας.");
 		System.out.println("2. Αποστολή της δικής μου ιστορίας!");
 		System.out.println("3. Έξοδος");
-	} // end of storiesMenu
+	} // end method of storiesMenu
 
 	/**
-	 * This method prints the user's options about the evaluation of our app.
+	 * This method prints the user's options about the evaluation of our application.
 	 */
-	public void insertMenu() { // beginning of insertMenu
+	public void insertMenu() {
 		System.out.println("Παρακαλώ εισάγετε τη βαθμολογία σας:");
 		System.out.println("Κλίμακα βαθμολογίας: ");
 		System.out.println("1 = Πολύ Κακή Εφαρμογή");
@@ -113,10 +113,13 @@ public class Menus {
 		System.out.println("4 = Καλή εφαρμογή");
 		System.out.println("5 = Πολύ Καλή εφαρμογή");
 		System.out.println("Η βαθμολογία μου είναι:");
-	} // end of insertMenu
+	} // end of method insertMenu
 
-	/** This menu prints user's options about frequent Covid - questions. */
-	public void menu88() { // beginning of menu88
+	/** 
+	 * This menu prints user's options about frequent Covid-19 questions.
+	 */
+	
+	public void menu88() {
 		System.out.println("********* ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ ΣΧΕΤΙΚΑ ΜΕ ΤΟΝ COVID-19 *********");
 		System.out.println("Ερώτηση 1 : Μεταδίδεται ο Covid-19 από άνθρωπο σε άνθρωπο;");
 		System.out.println("Ερώτηση 2 : Ποια είναι η περίοδος επώασης;");
@@ -140,6 +143,6 @@ public class Menus {
 		System.out.println("Εισάγετε τον αριθμό της ερώτησης που επιθυμείτε να διαβάσετε (από 0 έως και 16).");
 		System.out.println("Για έξοδο πληκτρολογείστε 0");
 		System.out.println("Παρακαλώ εισάγετε την επιλογή σας :");
-	} // end of menu88
+	} // end of method menu88
 
-}
+} //end of Class Menus
