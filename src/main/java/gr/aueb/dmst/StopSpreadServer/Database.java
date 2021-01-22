@@ -797,4 +797,44 @@ public class Database {
 		return X;
 	}
 
+	/**
+	 * Finds and returns a random user's comment
+	 *
+	 * @return a random comment
+	 */
+	public String findRandomComment() {
+		String comment = " ";
+
+		ResultSet result = null;// A table of data representing a database result
+		Random rand = new Random();
+
+		int maxID = 0;
+
+		try {
+			stmt = conn.createStatement();// create a Statement
+			result = stmt.executeQuery("SELECT COUNT(*) " + "FROM EVALUATIONCOMMS");
+			result.next();
+			maxID = result.getInt(1);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+
+		int randomID = rand.nextInt(maxID) + 1;
+
+		try {
+			stmt = conn.createStatement();// create a Statement
+			result = stmt.executeQuery("SELECT * " + "FROM EVALUATIONCOMMS ");
+
+			for (int i = 0; i < randomID; i++) {
+				result.next();
+			}
+			comment = result.getString(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end of try-catch
+
+		return comment;
+	} // end of method
+
 }// end of class

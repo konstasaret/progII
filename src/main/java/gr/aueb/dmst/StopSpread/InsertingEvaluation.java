@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
- * Class InsertingEvaluation asks from the user. 
+ * Class InsertingEvaluation asks from the user.
  * to evaluate the application and user can.
  * see the existing evaluation
  * both arithmetic and diagram(rabdogramma(*)).
@@ -42,7 +42,7 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 			} // end of try-catch
 
 			mn.printMenu();
-			int option = inp.rangeInt(1, 4);
+			int option = inp.rangeInt(1, 5);
 			try {
 				if (option == 1) {
 					// for option identification
@@ -59,11 +59,13 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 					outStream.flush();
 
 					insertEvaluation(user_id);
+
 				} else if (option == 3) {
 					// for option identification
 					clientMessage = "eval03";
 					outStream.writeUTF(clientMessage);
 					outStream.flush();
+
 					reasonOfEvaluation();
 
 				} else if (option == 4) {
@@ -72,7 +74,16 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 					outStream.writeUTF(clientMessage);
 					outStream.flush();
 
+					showComments();
+
+				} else if (option == 5) {
+					// for option identification
+					clientMessage = "eval05";
+					outStream.writeUTF(clientMessage);
+					outStream.flush();
+
 					break;
+
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -85,7 +96,7 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 	 * to determine if has voted again.
 	 * @throws IOException.
 	 */
-	public void insertEvaluation(int user_id) throws IOException { 
+	public void insertEvaluation(int user_id) throws IOException {
 		// beginning of insertEvaluation method
 		Menus mn = new Menus();
 		Inputs inp = new Inputs();
@@ -141,31 +152,31 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 		System.out.printf("%d : συνολικά ψήφισαν\n", totalusers);
 
 		System.out.printf("%-20s : ", "Πολύ κακή εφαρμογή ");
-		for (int stars = 0; stars < (double) very_bad / totalusers * 100; stars++) { 
+		for (int stars = 0; stars < (double) very_bad / totalusers * 100; stars++) {
 			// beginning of loop
 			System.out.print("*"); // prints stars
 		} // end of loop0
 		System.out.println();
 		System.out.printf("%-20s : ", "Kακή εφαρμογή ");
-		for (int stars = 0; stars < (double) bad / totalusers * 100; stars++) { 
+		for (int stars = 0; stars < (double) bad / totalusers * 100; stars++) {
 			// beginning of loop
 			System.out.print("*"); // prints stars
 		} // end of loop1
 		System.out.println();
 		System.out.printf("%-20s : ", "Μέτρια εφαρμογή ");
-		for (int stars = 0; stars < (double) metria / totalusers * 100; stars++) { 
+		for (int stars = 0; stars < (double) metria / totalusers * 100; stars++) {
 			// beginning of loop
 			System.out.print("*"); // prints stars
 		} // end of loop2
 		System.out.println();
 		System.out.printf("%-20s : ", "Καλή εφαρμογή ");
-		for (int stars = 0; stars < (double) good / totalusers * 100; stars++) { 
+		for (int stars = 0; stars < (double) good / totalusers * 100; stars++) {
 			// beginning of loop
 			System.out.print("*"); // prints stars
 		} // end of loop3
 		System.out.println();
 		System.out.printf("%-20s : ", "Πολύ καλή εφαρμογή ");
-		for (int stars = 0; stars < (double) very_good / totalusers * 100; stars++) { 
+		for (int stars = 0; stars < (double) very_good / totalusers * 100; stars++) {
 			// beginning of loop
 			System.out.print("*"); // prints stars
 		} // end of loop4
@@ -175,10 +186,10 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 
 	/**
 	 * Users write their evaluation about our app.
-	 * @throws IOException.
+	 *
+	 * @throws IOException if an I/O error occurs
 	 */
-	public void reasonOfEvaluation() throws IOException { 
-		//beginning of method reasonOfEvaluation
+	public void reasonOfEvaluation() throws IOException {
 
 		DataOutputStream outStream = cl.getOutStream();
 
@@ -194,17 +205,32 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 		if (ans == 1 ) {
 			System.out.println("Το σχόλιο στέλνεται αυτή την στιγμή");
 		} else {
-			// TODO : i think we should just abort it
-			System.out.println("Δώστε μας καινούργιο σχόλιο");
-			String newSxolio = inp.stringScanner();
-			sxolia = newSxolio;
+			System.out.println("Δοκιμάστε ξανά.");
+			return;
 		}
 		outStream.writeUTF(sxolia);
 		outStream.flush();
 		System.out.println("Σας Ευχαριστούμε, η κριτική σας "
 				+ "μόλις καταχωρήθηκε!");
 
-	} //ending of method reasonOfEvaluation 
+	} //ending of method reasonOfEvaluation
 
-	// TODO : will we show the above comments to other users?
+	/**
+	 * Show other user's comments of the app.
+	 *
+	 * @throws IOException if an I/O error occurs
+	 */
+	public void showComments() throws IOException {
+
+		// server-client messages
+		DataInputStream inStream = cl.getInStream();
+
+		String comment = inStream.readUTF(); // A random comment from server
+
+		System.out.println("Ενας χρήστης έγραψε :");
+		System.out.println();
+		System.out.println(comment);
+
+	} // end of method
+
 } //ending of class InsertingEvaluation

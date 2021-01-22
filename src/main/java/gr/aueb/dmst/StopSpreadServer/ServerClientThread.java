@@ -279,6 +279,8 @@ class ServerClientThread extends Thread {
 					} else if (clientMessage.equals("eval03")) {
 						option = 3;
 					} else if (clientMessage.equals("eval04")) {
+						option = 4;
+					} else if (clientMessage.equals("eval05")) {
 						// will do nothing
 					} // end of if
 
@@ -310,6 +312,12 @@ class ServerClientThread extends Thread {
 
 						String sxolioXristi = inStream.readUTF();
 						db.instertEvalComments(sxolioXristi);
+
+					} else if (option == 4) {
+
+						String comment = db.findRandomComment();
+						outStream.writeUTF(comment);
+						outStream.flush();
 
 					} // end of if
 
