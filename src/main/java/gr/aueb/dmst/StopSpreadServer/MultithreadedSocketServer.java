@@ -20,7 +20,7 @@ public class MultithreadedSocketServer {
 		Database db = null;
 
 		try {
-			// initialize server socket
+			// initializes server socket
 			@SuppressWarnings("resource")
 			ServerSocket server = new ServerSocket(8888);
 
@@ -29,17 +29,17 @@ public class MultithreadedSocketServer {
 
 			System.out.println("Server Started ....");
 
-			// create the Connection for all clients
+			// creates the Connection for all clients
 			db = new Database();
 
 			while (true) {
 				counter++;
-				Socket serverClient = server.accept(); // server accept the client connection request
+				Socket serverClient = server.accept(); // server accepts the client connection request
 				System.out.println(">> " + "Client No:" + counter + " started!");
 
-				// send the request to a separate thread
+				// sends the request to a separate thread
 				ServerClientThread sct = new ServerClientThread(serverClient, counter, db);
-				// start the thread
+				// starts the thread
 				sct.start();
 			} // end of while
 		} catch (IOException e) {
@@ -48,6 +48,6 @@ public class MultithreadedSocketServer {
 			db.shutdownConnection();
 		}// end of try-catch
 
-	} // end of main
+	} // end of method main
 
-} // end of class
+} // end of Class MultithreadedSocketServer

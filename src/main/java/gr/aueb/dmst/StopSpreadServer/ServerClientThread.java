@@ -12,7 +12,7 @@ class ServerClientThread extends Thread {
 
 	/**Socket that server accepts*/
 	private Socket socket;
-	/**Clinet number since server started*/
+	/**Client number since server started*/
 	private int clientNo;
 	/**Database object that contains the Connection*/
 	private Database db;
@@ -29,12 +29,12 @@ class ServerClientThread extends Thread {
 
 		try {
 
-			// initialize input and output streams
+			// initializes input and output streams
 			DataInputStream inStream = new DataInputStream(socket.getInputStream());
 			DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
 
 			String clientMessage, serverMessage;
-			int count = -5;// initialize count
+			int count = -5;// initializes count
 
 			// option identification
 			while (count != 0) {
@@ -55,10 +55,10 @@ class ServerClientThread extends Thread {
 					// positive
 					count = 2;
 				} else if (clientMessage.equals("deleteUser")) {
-					// delete user
+					// deletes user
 					count = 3;
 				} else if (clientMessage.equals("seeLocations")) {
-					// see locations
+					// shows locations
 					count = 4;
 				} else if (clientMessage.equals("story")) {
 					// stories
@@ -67,7 +67,7 @@ class ServerClientThread extends Thread {
 					// evaluation
 					count = 6;
 				} else if (clientMessage.equals("deleteLocation")) {
-					// delete location
+					// deletes location
 					count = 7;
 				} // end of if
 
@@ -76,27 +76,27 @@ class ServerClientThread extends Thread {
 				// Options
 				if (count == -3) {
 					// connections check
-					int user_id = inStream.readInt();// get user id
+					int user_id = inStream.readInt(); // gets user's id
 					boolean infected = db.checkInfected(user_id);
 
-					outStream.writeBoolean(infected);// pass infected
+					outStream.writeBoolean(infected); // passes infected
 					outStream.flush();
 
 					if (infected == true) {
-						db.restoreInfected(user_id);// restore table
+						db.restoreInfected(user_id); // restores table
 					}
 				} else if (count == -2) {
 					// new user
-					String userName = inStream.readUTF(); // user name from client
+					String userName = inStream.readUTF(); // user's name from client
 
-					// check for duplicate user name
+					// checks for duplicate users name
 					while (db.usernameCheck(userName)) {
 						serverMessage = "Το Όνομα Χρήστη χρησιμοποιείται ήδη. "
 								+ "\nΠαρακαλώ διαλέξτε διαφορετικό Όνομα Χρήστη: ";
 						outStream.writeUTF(serverMessage);
 						outStream.flush();
 
-						userName = inStream.readUTF();// new user name
+						userName = inStream.readUTF(); // new user's name
 					}
 
 					// check done
@@ -112,9 +112,9 @@ class ServerClientThread extends Thread {
 
 				} else if (count == -1) {
 					// log in
-					String userName = inStream.readUTF(); // user name from client
+					String userName = inStream.readUTF(); // user's name from client
 
-					// user name exists check
+					// user's name exists check
 					int user_id = db.findUsersId(userName);
 					while (user_id == -1) {
 						serverMessage = "Αποτυχία Σύνδεσης.\nΤο Όνομα Χρήστη δεν υπάρχει."
@@ -130,8 +130,8 @@ class ServerClientThread extends Thread {
 					outStream.writeUTF(serverMessage);
 					outStream.flush();
 
-					String pass = inStream.readUTF();// password from client
-					String existingPass = db.findUsersPass(user_id);// password from database
+					String pass = inStream.readUTF(); // password from client
+					String existingPass = db.findUsersPass(user_id); // password from database
 
 					// password check
 					while (!existingPass.equals(pass)) {
@@ -147,7 +147,7 @@ class ServerClientThread extends Thread {
 					outStream.writeUTF(serverMessage);
 					outStream.flush();
 
-					outStream.writeInt(user_id);// returning user id
+					outStream.writeInt(user_id); // returns user's id
 					outStream.flush();
 
 				} else if (count == 1) {
@@ -173,8 +173,8 @@ class ServerClientThread extends Thread {
 
 				} else if (count == 3) {
 					// delete user
-					int user_id = inStream.readInt(); // get user id from client
-					String given_pass = inStream.readUTF(); // get user input password from client
+					int user_id = inStream.readInt(); // gets user's id from client
+					String given_pass = inStream.readUTF(); // gets user's input password from client
 					String exist_pass = db.findUsersPass(user_id); // user's password
 
 					// password check
@@ -193,26 +193,26 @@ class ServerClientThread extends Thread {
 
 				} else if (count == 4) {
 					// see locations
-					int user_id = inStream.readInt();// get user id from client
-					ResultSet results = db.userLocationsResult(user_id); // get data
+					int user_id = inStream.readInt();// gets user's id from client
+					ResultSet results = db.userLocationsResult(user_id); // gets data
 
 					try {
 						// An object that can be used to get information about the types and properties
 						// of the columns in a ResultSet object
 						ResultSetMetaData rsmd = results.getMetaData();
 
-						int numberCols = rsmd.getColumnCount() - 1; // get number of columns
+						int numberCols = rsmd.getColumnCount() - 1; // gets number of columns
 																	// -1 to exclude user_id
-						outStream.writeInt(numberCols);// sent to client
+						outStream.writeInt(numberCols); // sends to client
 						outStream.flush();
 
-						// sent column names
+						// sends column names
 						for (int i = 1; i <= numberCols; i++) {
 							outStream.writeUTF(rsmd.getColumnLabel(i));
 						} // end of for
 
 						while (results.next()) {
-							outStream.writeUTF("more"); // check message
+							outStream.writeUTF("more"); // checks message
 							outStream.flush();
 
 							outStream.writeUTF(results.getString(1)); // city
@@ -226,7 +226,7 @@ class ServerClientThread extends Thread {
 							outStream.writeUTF(results.getString(5)); // date
 							outStream.flush();
 						}
-						outStream.writeUTF("ok");// check message
+						outStream.writeUTF("ok");// checks message
 						outStream.flush();
 						results.close();
 
@@ -303,7 +303,7 @@ class ServerClientThread extends Thread {
 						int idVoted = db.findUserIdForVote(idToVote);
 						outStream.writeInt(idVoted);
 						outStream.flush();
-						if (idVoted == -1) {// user has not voted again
+						if (idVoted == -1) { // user has not voted again
 							db.insterIntoIdsWhoVoted(idToVote);
 							int choice = inStream.readInt();
 							db.insertIntoEvaluationTable(choice);
@@ -353,6 +353,6 @@ class ServerClientThread extends Thread {
 			System.out.println("Connection reset waiting for new Client");
 		} // end of try-catch
 
-	}// end of run()
+	} // end of method run
 
-}// end of class
+} // end of Class ServerClientThread
