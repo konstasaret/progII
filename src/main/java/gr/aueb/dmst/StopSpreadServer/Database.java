@@ -78,12 +78,15 @@ public class Database {
 	}// end of method
 
 	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
 	 * Creates Table of users with columns
 	 * <P>
 	 * USER_ID INT, USER_NAME VARCHAR(255), PASSWORD VARCHAR(30), POSSIBLY_INFECTED
 	 * BOOLEAN
 	 */
-	public void createUsersTable() {
+	@SuppressWarnings("unused")
+	private void createUsersTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute("CREATE TABLE USERS(" + "USER_ID INT NOT NULL," + "USER_NAME VARCHAR(255),"
@@ -95,12 +98,15 @@ public class Database {
 	}// end of method
 
 	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
 	 * Creates Table of user's Locations with columns :
 	 * <P>
 	 * CITY VARCHAR(255), ADDRESS VARCHAR(255), ARRIVAL_TIME INT, DEPARTURE_TIME
 	 * INT, USER_ID INT
 	 */
-	public void createLocationsTable() {
+	@SuppressWarnings("unused")
+	private void createLocationsTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute("CREATE TABLE LOCATIONS(" + "CITY VARCHAR(255)," + "ADDRESS VARCHAR(255),"
@@ -113,11 +119,14 @@ public class Database {
 	}// end of method
 
 	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
 	 * Creates Table of user's Evaluation with columns :
 	 * <P>
 	 * VERY_BAD INT, BAD INT, METRIA INT, GOOD INT, VERY_GOOD INT
 	 */
-	public void createEvaluationTable() {
+	@SuppressWarnings("unused")
+	private void createEvaluationTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute("CREATE TABLE EVALUATION (" + "VERY_BAD INT," + "BAD INT," + "METRIA INT," + "GOOD INT,"
@@ -130,11 +139,14 @@ public class Database {
 	}
 
 	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
 	 * Creates table EVALUATIONCOMMS with columns :
 	 * <P>
 	 * COMMS VARCHAR(255)
 	 */
-	public void createEvaluationComents() {
+	@SuppressWarnings("unused")
+	private void createEvaluationComents() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute("CREATE TABLE EVALUATIONCOMMS (" + "COMMS VARCHAR(255)" + ")");
@@ -145,11 +157,14 @@ public class Database {
 	}// end of method
 
 	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
 	 * Creates table COUNTTOVOTE with columns :
 	 * <P>
 	 * ID_VOTED INT
 	 */
-	public void createCountToVoteOnce() {
+	@SuppressWarnings("unused")
+	private void createCountToVoteOnce() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute("CREATE TABLE COUNTTOVOTE (" + "ID_VOTED INT" + ")");
@@ -160,11 +175,14 @@ public class Database {
 	}// end of method
 
 	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
 	 * Creates Table of users Stories with columns :
 	 * <P>
 	 * STORY_ID INT, STORY_TITLE VARCHAR(255), STORY LONG VARCHAR
 	 */
-	public void createStoriesTable() {
+	@SuppressWarnings("unused")
+	private void createStoriesTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			stmt.execute(
@@ -175,8 +193,13 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-	/** Deletes tables */
-	public void deleteTables() {
+	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
+	 * Deletes tables
+	 */
+	@SuppressWarnings("unused")
+	private void deleteTables() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			// stmt.execute("DROP TABLE LOCATIONS ");
@@ -194,7 +217,7 @@ public class Database {
 	 * Deletes row from USERS based on user_id and consequently LOCATIONS rows with
 	 * the same foreign key are deleted
 	 *
-	 * @param user_id
+	 * @param user_id : the user's id
 	 */
 	public void deleteUsersRow(int user_id) {
 		try {
@@ -209,12 +232,12 @@ public class Database {
 	/**
 	 * Deletes row from LOCATIONS
 	 *
-	 * @param City
-	 * @param Address
-	 * @param arrival_time
-	 * @param departure_time
-	 * @param date
-	 * @param user_id
+	 * @param City : The city
+	 * @param Address : The address
+	 * @param arrival_time : The arrival time
+	 * @param departure_time : The departure time
+	 * @param date : The date
+	 * @param user_id : The user's id
 	 *
 	 * @return true if row exists
 	 *         <P>
@@ -249,8 +272,8 @@ public class Database {
 	 * <P>
 	 * POSSIBLY_INFECTED column gets pre-set as FALSE
 	 *
-	 * @param User_name
-	 * @param Password
+	 * @param User_name : The user's Name
+	 * @param Password : The user's password
 	 */
 	public void insertIntoUserTable(String User_name, String Password) {
 		try {
@@ -274,7 +297,7 @@ public class Database {
 	/**
 	 * Inserts into table EVALUATIONCOMMS
 	 *
-	 * @param comment : the evaluetion comment
+	 * @param comment : the evaluation comment
 	 */
 	public void instertEvalComments(String comment) {
 		try {
@@ -306,17 +329,17 @@ public class Database {
 	/**
 	 * Inserts rows into locations table
 	 *
-	 * @param City
-	 * @param Address
-	 * @param arrival_time
-	 * @param departure_time
-	 * @param date
-	 * @param user_id
+	 * @param City : The city
+	 * @param Address : The address
+	 * @param arrival_time : The arrival time
+	 * @param departure_time : The departure time
+	 * @param date : The date
+	 * @param user_id : The user's id
 	 */
 	public void insertIntoLocationsTable(String City, String Address, int arrival_time, int departure_time, String date,
 			int user_id) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("INSERT INTO LOCATIONS" + " VALUES ('" + City + "','" + Address + "'," + arrival_time + ","
 					+ departure_time + ",'" + date + "'," + user_id + ")");
 			stmt.close();
@@ -328,7 +351,7 @@ public class Database {
 	/**
 	 * Inserts rows into EvaluationTable
 	 *
-	 * @param choice
+	 * @param choice : The user's evaluation
 	 */
 	public void insertIntoEvaluationTable(int choice) {
 		try {
@@ -354,13 +377,13 @@ public class Database {
 	/**
 	 * Inserts rows into Stories table
 	 *
-	 * @param storyTitle
-	 * @param storyBody
+	 * @param storyTitle : The story's Title
+	 * @param storyBody : The Story's Body
 	 *
 	 */
 	public void insertIntoStoriesTable(String storyTitle, String storyBody) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 
 			// find the next available user id
 			ResultSet results; // A table of data representing a database result
@@ -376,8 +399,13 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-	/** Prints the users table */
-	public void printUsersTable() {
+	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
+	 * Prints the users table
+	 */
+	@SuppressWarnings("unused")
+	private void printUsersTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet results;// A table of data representing a database result
@@ -408,8 +436,12 @@ public class Database {
 		} // end of try-catch
 	}// end of method
 
-	/** Prints the locations table */
-	public void printLocationsTable() {
+	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
+	 * Prints the locations table */
+	@SuppressWarnings("unused")
+	private void printLocationsTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet results;// A table of data representing a database result
@@ -447,9 +479,12 @@ public class Database {
 	}// end of method
 
 	/**
+	 * FOR DATABASE ADMINISTRATOR USE ONLY
+	 *
 	 * Prints the locations table
 	 */
-	public void printStoriesTable() {
+	@SuppressWarnings("unused")
+	private void printStoriesTable() {
 		try {
 			stmt = conn.createStatement();// create a Statement
 			ResultSet results;// A table of data representing a database result
@@ -486,7 +521,7 @@ public class Database {
 	/**
 	 * Passes data for server usage
 	 *
-	 * @param id
+	 * @param id : the user's id
 	 * @return ResultSet for user_id matching rows
 	 */
 	public ResultSet userLocationsResult(int id) {
@@ -503,7 +538,7 @@ public class Database {
 	/**
 	 * Checks if the given user name exists
 	 *
-	 * @param user_name
+	 * @param user_name : The user name to check
 	 * @return true if user name exists
 	 *         <P>
 	 *         false if not
@@ -531,7 +566,7 @@ public class Database {
 	/**
 	 * Searching for user_id based on user_name
 	 *
-	 * @param name
+	 * @param name : The name to find it's id
 	 * @return users id
 	 *         <P>
 	 *         or -1 if the user_name does not exist in the database
@@ -560,7 +595,7 @@ public class Database {
 	/**
 	 * Searching for user's password based on user_id
 	 *
-	 * @param user_id
+	 * @param user_id : The user's id
 	 * @return user's password
 	 *         <P>
 	 *         or -1 in String format if password not found
@@ -585,7 +620,7 @@ public class Database {
 	/**
 	 * Searching for user's name based on user_id
 	 *
-	 * @param user_id
+	 * @param user_id : The user's id
 	 * @return user's name
 	 *         <P>
 	 *         or -1 in String format if password not found
@@ -611,7 +646,7 @@ public class Database {
 	/**
 	 * Find out if user has voted again
 	 *
-	 * @param user_id
+	 * @param user_id : The user's id
 	 * @return -1 if user can vote
 	 *         <P>
 	 *         the user's id if he has voted again
@@ -639,7 +674,7 @@ public class Database {
 	 * all other users who where in the same location at the same time and updates
 	 * USERS table column POSSIBLY_INFECTED
 	 *
-	 * @param user_id
+	 * @param user_id : The user's id
 	 */
 	public void findConnections(int user_id) {
 		try {
@@ -706,7 +741,7 @@ public class Database {
 	/**
 	 * Checks if user has been connected with another infected user
 	 *
-	 * @param user_id
+	 * @param user_id : The user's id
 	 * @return true if user is possibly infected
 	 *         <P>
 	 *         false if no connections with infected users
@@ -732,7 +767,7 @@ public class Database {
 	 * Restores column POSSIBLY_INFECTED to false when user logs in and see the
 	 * infected message
 	 *
-	 * @param user_id
+	 * @param user_id : The user's id
 	 */
 	public void restoreInfected(int user_id) {
 		try {
@@ -745,6 +780,8 @@ public class Database {
 	}// end of method
 
 	/**
+	 * Returns a random story
+	 *
 	 * @return ResultSet from a random Story
 	 */
 	public ResultSet getRandomStory() {
@@ -773,6 +810,8 @@ public class Database {
 	}
 
 	/**
+	 * Returns evaluation
+	 *
 	 * @return Number of votes for every choice
 	 */
 	public int[] getEvaluations() {
