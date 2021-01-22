@@ -8,11 +8,6 @@ public class Fanswers {
 	/**
 	 * The main method of the class checks the user's input
 	 * and prints the suitable answer.
-	 * 
-	 * @param menouQ connects this class with the Menus Class
-	 * @param ans is the user's answer
-	 * @param inp handles user's invalid inputs
-	 * @param flag stops showing user's options if he chooses 0
 	 */
 	public void freqQuest() {
 
@@ -82,5 +77,5 @@ public class Fanswers {
 				break;
 			}// end of switch
 		} // end of loop
-	}
-}
+	} //end of method freqQuest
+} //end of Class Fanswers

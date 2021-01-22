@@ -1,21 +1,21 @@
 package gr.aueb.dmst.StopSpread;
 
 /**
- * This class contains and prints general information about Covid-19 according.
+ * This class contains and prints general information about Covid-19 according
  * to World Health Organization.
  */
-public class GlobalStats { //beginning of class GlobalStats
+public class GlobalStats {
 
 	/**
 	 * The main method of the class which takes an integer from 1 to 11 and opens
-	 * each time the proper web page
+	 * each time the appropriate web page.
 	 */
-	public void globalStats() { //beginning of method globalStats
+	public void globalStats() {
 		Inputs inp = new Inputs();
 		boolean contloop = true;
 		Menus menu = new Menus();
 		/*
-		 * Menu is printed till the user chooses option 11 and prints a message if the.
+		 * Menu is printed till the user chooses option 11 and prints a message if the
 		 * user puts an invalid option.
 		 */
 		do {
@@ -26,7 +26,7 @@ public class GlobalStats { //beginning of class GlobalStats
 			boolean ok = true;
 			while (ok) {
 				/*
-				 * Variable ok checks if choice is 11 and exits. 
+				 * Variable ok checks if choice is 11 and exits 
 				 * the global info in this case
 				 */
 				switch (option) {
@@ -83,11 +83,10 @@ public class GlobalStats { //beginning of class GlobalStats
 				case 11:
 					ok = false;
 					break;
-				}
+				} //end of switch
 				contloop = false;
 			}
 		} while (contloop);
 
-	} //ending of method globalStats
-
-} //ending of class GlobalStats
+	} //end of method globalStats
+} //end of Class GlobalStats
