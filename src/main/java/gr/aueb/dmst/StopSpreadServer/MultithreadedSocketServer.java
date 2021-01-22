@@ -6,14 +6,13 @@ import java.net.Socket;
 
 /**
  * Starting server Class.
- *
  */
 public class MultithreadedSocketServer {
 
 	/**
 	 * Starts the Server
 	 *
-	 * @param args
+	 * @param args no use
 	 */
 	public static void main(String[] args) {
 
@@ -22,6 +21,7 @@ public class MultithreadedSocketServer {
 
 		try {
 			// initialize server socket
+			@SuppressWarnings("resource")
 			ServerSocket server = new ServerSocket(8888);
 
 			// number of threads
@@ -41,12 +41,13 @@ public class MultithreadedSocketServer {
 				ServerClientThread sct = new ServerClientThread(serverClient, counter, db);
 				// start the thread
 				sct.start();
-			}
+			} // end of while
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			db.shutdownConnection();
-		}
+		}// end of try-catch
 
-	}
-}
+	} // end of main
+
+} // end of class
