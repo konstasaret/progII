@@ -159,11 +159,11 @@ public class Profile {
 	 * Warns him if someone infected.
 	 * has been in the same locations as him the past 14 days.
 	 *
-	 * @param user_id
+	 * @param user_id : The user's id
 	 */
 	public void checkConnections(int user_id) {
 
-		try {//beggining of try
+		try {
 			// server-client messages
 			DataOutputStream outStream = cl.getOutStream();
 			DataInputStream inStream = cl.getInStream();
@@ -185,6 +185,11 @@ public class Profile {
 				System.out.println("Εχετε έρθει σε επαφή με κρούσμα \n" + "Πηγένετε στο πλησιέστερο νοσοκομείο");
 				System.out.println("***********************************");
 			}
+
+			// Show nearest hospitals
+			String url = "https://www.google.com/maps/search/hospital";
+			Url.openUrl(url);
+
 		} catch (IOException e) {
 			System.out.println("Πρόβλημα κατά τον έλεγχο των επαφών");
 			e.printStackTrace();
@@ -341,12 +346,6 @@ public class Profile {
 
 			serverMessage = inStream.readUTF();
 			System.out.println(serverMessage);
-
-			// TODO : this should be on the connected
-			//users not the already infected one
-			// Show nearest hospitals
-			String url = "https://www.google.com/maps/search/hospital";
-			Url.openUrl(url);
 
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατα την επιλογή κόλλησα κορονοϊό");

@@ -43,7 +43,7 @@ public class TCPClient {
         Profile prof = new Profile();
         Menus menu = new Menus();
         Inputs inp = new Inputs();
-
+// TODO : clear random comments from database and add some sample
         try {
 
             // Initialize socket
