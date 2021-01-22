@@ -14,7 +14,7 @@ public class Inputs {
 	 * Constructor initializes Scanner
 	 */
 	public Inputs() {
-		in = new Scanner(System.in, "CP737"); // Windows code page 737 Greek encoding
+		in = new Scanner(System.in); // Initialize Scanner
 	}
 
 	/**
