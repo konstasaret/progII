@@ -14,8 +14,8 @@ public class Stories {
 	private TCPClient cl = new TCPClient();
 
 	/**
-	 * The main method of the class Prints user's menu User reads or/and creates his
-	 * own story Exits when user types "3"
+	 * The main method of the class prints user's menu and he reads or/and creates
+	 * his own story. Exits when user types "3"
 	 */
 	public void stories() {
 		Menus menu = new Menus();
@@ -35,7 +35,7 @@ public class Stories {
 				outStream.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}//end of try-catch
+			} // end of try-catch
 
 			menu.storiesMenu();
 			int ch = inp.rangeInt(1, 3);
@@ -55,7 +55,7 @@ public class Stories {
 					System.out.println(body);
 				} catch (IOException e) {
 					e.printStackTrace();
-				}//end of try-catch
+				} // end of try-catch
 			} else if (ch == 2) {
 				try {
 
@@ -78,7 +78,7 @@ public class Stories {
 					outStream.flush();
 				} catch (IOException e) {
 					e.printStackTrace();
-				}//end of try-catch
+				} // end of try-catch
 
 			} else if (ch == 3) {
 				try {
@@ -88,11 +88,11 @@ public class Stories {
 					outStream.flush();
 				} catch (IOException e) {
 					e.printStackTrace();
-				}//end of try-catch
+				} // end of try-catch
 				break;
-			}//end of if
+			} // end of if
 
-		}//end of while
-	}//end of method
+		} // end of while
+	} // end of method stories
 
-}//end of class
+} // end of class
