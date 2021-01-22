@@ -26,9 +26,9 @@ public class Inputs {
 	 * @return An Integer as : lower_boundary <= Integer <= upper_boundary
 	 */
 	public int rangeInt(int lower_boundary, int upper_boundary) {
-		int inp = -1;// Initialize input
+		int inp = -1; // Initialize input
 		try {
-			inp = in.nextInt();// Get an Integer
+			inp = in.nextInt(); // Get an Integer
 
 			// number out of the desired range
 			if (inp < lower_boundary || inp > upper_boundary) {
@@ -48,6 +48,6 @@ public class Inputs {
 	/** @return user String input */
 	public String stringScanner() {
 		return in.nextLine();// Get a String
-	} // end of stringScanner()
+	} // end of method stringScanner
 
-} // end of class
+} // end of Class Inputs

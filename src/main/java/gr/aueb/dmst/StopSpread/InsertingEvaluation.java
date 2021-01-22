@@ -5,19 +5,18 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
- * Class InsertingEvaluation asks from the user.
- * to evaluate the application and user can.
- * see the existing evaluation
- * both arithmetic and diagram(rabdogramma(*)).
+ * Class InsertingEvaluation asks from the user
+ * to evaluate the application and user can
+ * see the existing evaluation both
+ * arithmetically and through a diagram(rabdogramma(*)).
  */
 
 public class InsertingEvaluation {
 
 	private TCPClient cl = new TCPClient();
 
-
 	/**
-	 * Initiates Evaluation of the app.
+	 * Initiates Evaluation of the application.
 	 * @param user_id : The user's id
 	 *
 	 */
@@ -88,16 +87,15 @@ public class InsertingEvaluation {
 			} catch (IOException e) {
 				e.printStackTrace();
 			} // end of try-catch
-		} // ending loop
-	} //ending of method printMenuEval
+		} // end loop
+	} //end of method printMenuEval
 
-	/** users enter their evaluation.
-	 * @param user_id : the user id from authentication.
-	 * to determine if has voted again.
-	 * @throws IOException if an
+	/** Users enter their evaluation.
+	 * @param user_id : the user id from authentication
+	 * to determine if he has voted again.
+	 * @throws IOException if an I/O error occurs
 	 */
 	public void insertEvaluation(int user_id) throws IOException {
-		// beginning of insertEvaluation method
 		Menus mn = new Menus();
 		Inputs inp = new Inputs();
 
@@ -119,15 +117,14 @@ public class InsertingEvaluation {
 
 			outStream.writeInt(choice);
 			outStream.flush();
-			System.out.println("Καταγράψαμε την"
-					+ "απάντησή σας \nΣας ευχαριστούμε πολύ");
+			System.out.println("Καταγράψαμε την απάντησή σας "
+					+ "\nΣας ευχαριστούμε πολύ");
 
 		} else {
 			System.out.println("Έχετε ήδη ψηφίσει");
 		}
 
-
-	} //ending of insertEvaluation method
+	} //end of method insertEvaluation
 
 	/**
 	 * Prints the existing evaluation.
@@ -153,46 +150,44 @@ public class InsertingEvaluation {
 
 		System.out.printf("%-20s : ", "Πολύ κακή εφαρμογή ");
 		for (int stars = 0; stars < (double) very_bad / totalusers * 100; stars++) {
-			// beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop0
+			System.out.print("*");
+		} // end of first loop
 		System.out.println();
+		
 		System.out.printf("%-20s : ", "Kακή εφαρμογή ");
 		for (int stars = 0; stars < (double) bad / totalusers * 100; stars++) {
-			// beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop1
+			System.out.print("*");
+		} // end of second loop
 		System.out.println();
+		
 		System.out.printf("%-20s : ", "Μέτρια εφαρμογή ");
 		for (int stars = 0; stars < (double) metria / totalusers * 100; stars++) {
-			// beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop2
+			System.out.print("*");
+		} // end of third loop
 		System.out.println();
+		
 		System.out.printf("%-20s : ", "Καλή εφαρμογή ");
 		for (int stars = 0; stars < (double) good / totalusers * 100; stars++) {
-			// beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop3
+			System.out.print("*");
+		} // end of forth loop
 		System.out.println();
+		
 		System.out.printf("%-20s : ", "Πολύ καλή εφαρμογή ");
 		for (int stars = 0; stars < (double) very_good / totalusers * 100; stars++) {
-			// beginning of loop
-			System.out.print("*"); // prints stars
-		} // end of loop4
+			System.out.print("*");
+		} // end of fifth loop
 		System.out.println();
 
-	}
+	} //end of method printEvaluation
 
 	/**
-	 * Users write their evaluation about our app.
-	 *
+	 * Users write their evaluation about our application.
+	 * 
 	 * @throws IOException if an I/O error occurs
 	 */
 	public void reasonOfEvaluation() throws IOException {
 
 		DataOutputStream outStream = cl.getOutStream();
-
 		Inputs inp = new Inputs();
 
 		System.out.println("Προσθέστε τα σχόλιά σας για την "
@@ -210,13 +205,13 @@ public class InsertingEvaluation {
 		}
 		outStream.writeUTF(sxolia);
 		outStream.flush();
-		System.out.println("Σας Ευχαριστούμε, η κριτική σας "
+		System.out.println("Σας ευχαριστούμε, η κριτική σας "
 				+ "μόλις καταχωρήθηκε!");
 
-	} //ending of method reasonOfEvaluation
+	} //end of method reasonOfEvaluation
 
 	/**
-	 * Show other user's comments of the app.
+	 * Shows other users' comments of the application.
 	 *
 	 * @throws IOException if an I/O error occurs
 	 */
@@ -231,6 +226,6 @@ public class InsertingEvaluation {
 		System.out.println();
 		System.out.println(comment);
 
-	} // end of method
+	} // end of method showComments
 
-} //ending of class InsertingEvaluation
+} //ending of Class InsertingEvaluation
