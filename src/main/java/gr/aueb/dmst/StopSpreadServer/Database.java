@@ -49,12 +49,12 @@ public class Database {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	}// end of method createConnection
 
 	/** Terminates connection with the database */
 	public void shutdownConnection() {
 		try {
-			// the shutdown=true attribute shuts down Derby
+			// the shutdown = true attribute shuts down Derby
 			DriverManager.getConnection("jdbc:derby:;shutdown=true");
 
 			if (stmt != null) {
@@ -75,7 +75,7 @@ public class Database {
 			}
 			// System.out.println("database shutdown");
 		} // end of try-catch
-	}// end of method
+	} // end of method shutdownConnection
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -88,7 +88,7 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void createUsersTable() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("CREATE TABLE USERS("
 											+ "USER_ID INT NOT NULL," + "USER_NAME VARCHAR(255),"
 											+ "PASSWORD VARCHAR(30),"
@@ -98,7 +98,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	}// end of method createUsersTable
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -111,7 +111,7 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void createLocationsTable() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("CREATE TABLE LOCATIONS("
 												+ "CITY VARCHAR(255),"
 												+ "ADDRESS VARCHAR(255),"
@@ -124,7 +124,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method createLocationsTable
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -136,7 +136,7 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void createEvaluationTable() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("CREATE TABLE EVALUATION ("
 												+ "VERY_BAD INT,"
 												+ "BAD INT,"
@@ -149,7 +149,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	} // end of method
+	} // end of method createEvaluationTable
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -161,14 +161,14 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void createEvaluationComents() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("CREATE TABLE EVALUATIONCOMMS ("
 														+ "COMMS VARCHAR(255) )");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method createEvaluationComents
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -180,14 +180,14 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void createCountToVoteOnce() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("CREATE TABLE COUNTTOVOTE ("
 												+ "ID_VOTED INT )");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method createCountToVoteOnce
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -199,7 +199,7 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void createStoriesTable() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute(
 					"CREATE TABLE STORIES("
 										+ "STORY_ID INT, "
@@ -209,7 +209,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method createStoriesTable
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -219,7 +219,7 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void deleteTables() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			// stmt.execute("DROP TABLE LOCATIONS ");
 			// stmt.execute("DROP TABLE USERS");
 			// stmt.execute("DROP TABLE STORIES");
@@ -229,7 +229,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method deleteTables
 
 	/**
 	 * Deletes row from USERS based on user_id and consequently LOCATIONS rows with
@@ -239,13 +239,13 @@ public class Database {
 	 */
 	public void deleteUsersRow(int user_id) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("DELETE FROM USERS WHERE USER_ID=" + user_id);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method deleteUsersRow
 
 	/**
 	 * Deletes row from LOCATIONS
@@ -265,7 +265,7 @@ public class Database {
 			int user_id) {
 		boolean flag = true; // identify if row exists
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			ResultSet result = stmt.executeQuery("SELECT * "
 					+ "FROM LOCATIONS "
 					+ "WHERE USER_ID = " + user_id
@@ -291,7 +291,7 @@ public class Database {
 		} // end of try-catch
 
 		return flag;
-	}// end of method
+	} // end of method deleteLocationsRow
 
 	/**
 	 * Inserts rows into users table
@@ -303,12 +303,12 @@ public class Database {
 	 */
 	public void insertIntoUserTable(String User_name, String Password) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 
 			// find the next available user id
 			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT MAX(USER_ID) FROM USERS");
-			results.next();// set the cursor to the next data
+			results.next(); // set the cursor to the next data
 			int id = results.getInt(1) + 1; // get the data and add 1 to be the user id
 
 			stmt.execute("INSERT INTO USERS"
@@ -319,7 +319,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method insertIntoUserTable
 
 	/**
 	 * Inserts into table EVALUATIONCOMMS
@@ -328,23 +328,23 @@ public class Database {
 	 */
 	public void instertEvalComments(String comment) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("INSERT INTO EVALUATIONCOMMS"
 			+ " VALUES ('" + comment + "')");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method instertEvalComments
 
 	/**
 	 * Inserts into table COUNTTOVOTE
 	 *
 	 * @param ids :the user id
 	 */
-	public void insterIntoIdsWhoVoted(int ids) {
+	public void insertIntoLocationsTable(int ids) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 
 			stmt.execute("INSERT INTO COUNTTOVOTE"
 			+ " VALUES (" + ids + ")");
@@ -353,7 +353,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method insertIntoLocationsTable
 
 	/**
 	 * Inserts rows into locations table
@@ -376,7 +376,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method insertIntoLocationsTable
 
 	/**
 	 * Inserts rows into EvaluationTable
@@ -385,7 +385,7 @@ public class Database {
 	 */
 	public void insertIntoEvaluationTable(int choice) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			if (choice == 1) {
 				stmt.execute("UPDATE EVALUATION " + "SET VERY_BAD = VERY_BAD + 1");
 			} else if (choice == 2) {
@@ -400,9 +400,9 @@ public class Database {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} // ending of catch
+		} // end of catch
 
-	}
+	} // end of method insertIntoEvaluationTable
 
 	/**
 	 * Inserts rows into Stories table
@@ -418,7 +418,7 @@ public class Database {
 			// find the next available user id
 			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT MAX(STORY_ID) FROM STORIES");
-			results.next();// set the cursor to the next data
+			results.next(); // set the cursor to the next data
 			int id = results.getInt(1) + 1; // get the data and add 1 to be the user id
 
 			stmt.execute("INSERT INTO STORIES"
@@ -428,7 +428,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	}// end of method insertIntoStoriesTable
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -438,12 +438,12 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void printUsersTable() {
 		try {
-			stmt = conn.createStatement();// create a Statement
-			ResultSet results;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT * FROM USERS");
 			ResultSetMetaData rsmd = results.getMetaData(); // An object that can be used to get information about the
 															// types and properties of the columns in a ResultSet object
-			int numberCols = rsmd.getColumnCount();// get number of columns
+			int numberCols = rsmd.getColumnCount(); // get number of columns
 
 			// output format
 			System.out.println("\n-----------------------------------------------------------------------");
@@ -465,7 +465,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method printUsersTable
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -474,12 +474,12 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void printLocationsTable() {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			ResultSet results;// A table of data representing a database result
 			results = stmt.executeQuery("SELECT * FROM LOCATIONS");
 			ResultSetMetaData rsmd = results.getMetaData(); // An object that can be used to get information about the
 															// types and properties of the columns in a ResultSet object
-			int numberCols = rsmd.getColumnCount();// get number of columns
+			int numberCols = rsmd.getColumnCount(); // get number of columns
 
 			// output format
 			System.out.println(
@@ -507,7 +507,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method printLocationsTable
 
 	/**
 	 * FOR DATABASE ADMINISTRATOR USE ONLY
@@ -517,12 +517,12 @@ public class Database {
 	@SuppressWarnings("unused")
 	private void printStoriesTable() {
 		try {
-			stmt = conn.createStatement();// create a Statement
-			ResultSet results;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT * FROM STORIES");
 			ResultSetMetaData rsmd = results.getMetaData(); // An object that can be used to get information about the
 															// types and properties of the columns in a ResultSet object
-			int numberCols = rsmd.getColumnCount();// get number of columns
+			int numberCols = rsmd.getColumnCount(); // get number of columns
 
 			// output format
 			System.out.println(
@@ -547,7 +547,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method printStoriesTable
 
 	/**
 	 * Passes data for server usage
@@ -556,15 +556,15 @@ public class Database {
 	 * @return ResultSet for user_id matching rows
 	 */
 	public ResultSet userLocationsResult(int id) {
-		ResultSet results = null;// A table of data representing a database result
+		ResultSet results = null; // A table of data representing a database result
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			results = stmt.executeQuery("SELECT * FROM LOCATIONS WHERE USER_ID=" + id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
 		return results;
-	}// end of method
+	} // end of method userLocationsResult
 
 	/**
 	 * Checks if the given user name exists
@@ -576,8 +576,8 @@ public class Database {
 	 */
 	public boolean usernameCheck(String user_name) {
 		try {
-			stmt = conn.createStatement();// create a Statement
-			ResultSet results;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT USER_NAME FROM USERS");
 
 			while (results.next()) {
@@ -592,7 +592,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return false;
-	}// end of method
+	} // end of method usernameCheck
 
 	/**
 	 * Searching for user_id based on user_name
@@ -605,7 +605,7 @@ public class Database {
 	public int findUsersId(String name) {
 		int id = -1; // initialize id
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT USER_ID, USER_NAME FROM USERS");
 			while (results.next()) {
@@ -621,7 +621,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return id;
-	}// end of method
+	} // end of method findUsersId
 
 	/**
 	 * Searching for user's password based on user_id
@@ -632,10 +632,10 @@ public class Database {
 	 *         or -1 in String format if password not found
 	 */
 	public String findUsersPass(int user_id) {
-		String pass = "-1";// initialize password
+		String pass = "-1"; // initialize password
 		try {
-			stmt = conn.createStatement();// create a Statement
-			ResultSet results;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT PASSWORD FROM USERS WHERE USER_ID=" + user_id);
 			results.next();
 			pass = results.getString(1);
@@ -646,7 +646,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return pass;
-	}// end of method
+	} // end of method findUsersPass
 
 	/**
 	 * Searching for user's name based on user_id
@@ -658,10 +658,10 @@ public class Database {
 	 */
 	public String findUserName(int user_id) {
 
-		String user_name = "-1";// Initialize user_name
+		String user_name = "-1"; // Initialize user_name
 		try {
-			stmt = conn.createStatement();// create a Statement
-			ResultSet results;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT USER_NAME FROM USERS WHERE USER_ID=" + user_id);
 			results.next();
 			user_name = results.getString(1);
@@ -672,7 +672,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return user_name;
-	}// end of method
+	} // end of method findUserName
 
 	/**
 	 * Find out if user has voted again
@@ -684,10 +684,10 @@ public class Database {
 	 */
 	public int findUserIdForVote(int user_id) {
 
-		int userid = -1;// Initialize userid
+		int userid = -1; // Initialize userid
 		try {
-			stmt = conn.createStatement();// create a Statement
-			ResultSet results;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery("SELECT ID_VOTED FROM COUNTTOVOTE WHERE ID_VOTED =" + user_id);
 			if (results.next()) {
 				userid = results.getInt(1);
@@ -698,7 +698,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return userid;
-	}// end of method
+	} // end of method findUserIdForVote
 
 	/**
 	 * Gets user's ID and finds all his locations in the past 14 days, then finds
@@ -716,8 +716,8 @@ public class Database {
 			String infectionDate = formatter.format(currentDate);
 
 			// user's 14 day locations
-			stmt = conn.createStatement();// create a Statement
-			ResultSet results;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet results; // A table of data representing a database result
 			results = stmt.executeQuery(
 					"SELECT * "
 					+ "FROM LOCATIONS "
@@ -744,8 +744,8 @@ public class Database {
 			for (int x = 0; x < City.size(); x++) {
 
 				results = stmt.executeQuery("SELECT DISTINCT USER_ID " // Getting unique user's ID
-						+ "FROM LOCATIONS " + "WHERE CITY='" + City.get(x) + "' "// Same City
-						+ "AND ADDRESS='" + Address.get(x) + "' "// Same address
+						+ "FROM LOCATIONS " + "WHERE CITY='" + City.get(x) + "' " // Same City
+						+ "AND ADDRESS='" + Address.get(x) + "' " // Same address
 						+ "AND DAY='" + date.get(x) + "' " // Same date
 						// Same time
 						+ "AND (((ARRIVAL_TIME<=" + departure_time.get(x) + " AND ARRIVAL_TIME>=" + arrival_time.get(x)
@@ -772,7 +772,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 
-	}// end of method
+	} // end of method findConnections
 
 	/**
 	 * Checks if user has been connected with another infected user
@@ -787,19 +787,19 @@ public class Database {
 		boolean check = false; // initialize check
 
 		try {
-			stmt = conn.createStatement();// create a Statement
-			ResultSet result;// A table of data representing a database result
+			stmt = conn.createStatement(); // create a Statement
+			ResultSet result; // A table of data representing a database result
 			result = stmt.executeQuery("SELECT POSSIBLY_INFECTED "
 														+ "FROM USERS "
 														+ "WHERE USER_ID = " + user_id);
-			result.next();// set the cursor to the next data
+			result.next(); // set the cursor to the next data
 			check = result.getBoolean(1);// get the data from table
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
 		return check;
-	}// end of method
+	} // end of method checkInfected
 
 	/**
 	 * Restores column POSSIBLY_INFECTED to false when user logs in and see the
@@ -809,7 +809,7 @@ public class Database {
 	 */
 	public void restoreInfected(int user_id) {
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			stmt.execute("UPDATE USERS "
 							+ "SET POSSIBLY_INFECTED = FALSE "
 							+ "WHERE USER_ID = " + user_id);
@@ -817,7 +817,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end of try-catch
-	}// end of method
+	} // end of method restoreInfected
 
 	/**
 	 * Returns a random story
@@ -825,11 +825,11 @@ public class Database {
 	 * @return ResultSet from a random Story
 	 */
 	public ResultSet getRandomStory() {
-		ResultSet result = null;// A table of data representing a database result
+		ResultSet result = null; // A table of data representing a database result
 		Random rand = new Random();
 		int maxID = 0;
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			result = stmt.executeQuery("SELECT MAX(STORY_ID) " + "FROM STORIES ");
 			result.next();
 			maxID = result.getInt(1);
@@ -841,7 +841,7 @@ public class Database {
 		int randomID = rand.nextInt(maxID) + 1;
 
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			result = stmt.executeQuery("SELECT * "
 										+ "FROM STORIES "
 										+ "WHERE STORY_ID = " + randomID);
@@ -849,7 +849,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return result;
-	}
+	} // end of method getRandomStory
 
 	/**
 	 * Returns evaluation
@@ -859,7 +859,7 @@ public class Database {
 	public int[] getEvaluations() {
 		int[] X = new int[5];
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			ResultSet result;
 			result = stmt.executeQuery("SELECT * FROM EVALUATION");
 
@@ -876,7 +876,7 @@ public class Database {
 			e.printStackTrace();
 		} // end of try-catch
 		return X;
-	}
+	} // end of method getEvaluations
 
 	/**
 	 * Finds and returns a random user's comment
@@ -886,13 +886,13 @@ public class Database {
 	public String findRandomComment() {
 		String comment = " ";
 
-		ResultSet result = null;// A table of data representing a database result
+		ResultSet result = null; // A table of data representing a database result
 		Random rand = new Random();
 
 		int maxID = 0;
 
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			result = stmt.executeQuery("SELECT COUNT(*) " + "FROM EVALUATIONCOMMS");
 			result.next();
 			maxID = result.getInt(1);
@@ -916,6 +916,6 @@ public class Database {
 		} // end of try-catch
 
 		return comment;
-	} // end of method
+	} // end of method findRandomComment
 
-}// end of class
+}// end of Class Database

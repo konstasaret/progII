@@ -18,5 +18,5 @@ public class Url {
 		} catch (IOException e) {
 			Logger.getLogger(Url.class.getName()).log(Level.SEVERE, null, e);
 		}
-	}
-}
+	} // end of method openUrl
+} // end of Class Url
