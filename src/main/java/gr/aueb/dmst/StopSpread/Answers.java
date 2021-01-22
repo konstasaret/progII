@@ -1,6 +1,6 @@
 package gr.aueb.dmst.StopSpread;
 
-/** This class contains the answers of each frequent question. */
+/** This class contains the answers for each frequent question. */
 public class Answers {
 
 	/** This method prints the answer to the first frequent question. */
