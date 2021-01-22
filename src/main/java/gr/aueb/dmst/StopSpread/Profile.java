@@ -184,11 +184,11 @@ public class Profile {
 				System.out.println("***********************************");
 				System.out.println("Εχετε έρθει σε επαφή με κρούσμα \n" + "Πηγένετε στο πλησιέστερο νοσοκομείο");
 				System.out.println("***********************************");
-			}
 
-			// Show nearest hospitals
-			String url = "https://www.google.com/maps/search/hospital";
-			Url.openUrl(url);
+				// Show nearest hospitals
+				String url = "https://www.google.com/maps/search/hospital";
+				Url.openUrl(url);
+			}
 
 		} catch (IOException e) {
 			System.out.println("Πρόβλημα κατά τον έλεγχο των επαφών");
