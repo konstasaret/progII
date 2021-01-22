@@ -11,18 +11,18 @@ import java.io.IOException;
  * both arithmetic and diagram(rabdogramma(*)).
  */
 
-public class InsertingEvaluation { //beginning of class InsertingEvaluation
+public class InsertingEvaluation {
 
 	private TCPClient cl = new TCPClient();
 
 
 	/**
 	 * Initiates Evaluation of the app.
-	 * @param user_id.
+	 * @param user_id : The user's id
 	 *
 	 */
 	public void printMenuEval(int user_id) {
-		//beginning of method printMenuEval
+
 		Menus mn = new Menus();
 		Inputs inp = new Inputs();
 
@@ -94,7 +94,7 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 	/** users enter their evaluation.
 	 * @param user_id : the user id from authentication.
 	 * to determine if has voted again.
-	 * @throws IOException.
+	 * @throws IOException if an
 	 */
 	public void insertEvaluation(int user_id) throws IOException {
 		// beginning of insertEvaluation method
@@ -132,7 +132,7 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 	/**
 	 * Prints the existing evaluation.
 	 *
-	 * @throws IOException
+	 * @throws IOException if an I/O error occurs
 	 */
 	public void printEvaluation() throws IOException {
 		DataInputStream inStream = cl.getInStream();
@@ -200,7 +200,7 @@ public class InsertingEvaluation { //beginning of class InsertingEvaluation
 
 		String sxolia = inp.stringScanner();
 		System.out.println("Είστε σίγουροι οτι θέλετε να δώσετε "
-				+ "αυτο το σχόλιο : "+ sxolia + "\n 1.Ναι \n 2.Όχι");
+				+ "αυτο το σχόλιο :\n "+ sxolia + "\n 1.Ναι \n 2.Όχι");
 		int ans = inp.rangeInt(1,2);
 		if (ans == 1 ) {
 			System.out.println("Το σχόλιο στέλνεται αυτή την στιγμή");
