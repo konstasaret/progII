@@ -126,7 +126,7 @@ class ServerClientThread extends Thread {
 						user_id = db.findUsersId(userName);
 					}
 					// check done
-					serverMessage = "Αποδεκτό Ονομα Χρήστη";
+					serverMessage = "Αποδεκτό Όνομα Χρήστη";
 					outStream.writeUTF(serverMessage);
 					outStream.flush();
 
