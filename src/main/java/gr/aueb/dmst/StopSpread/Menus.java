@@ -24,7 +24,7 @@ public class Menus {
 		System.out.println("4. Δες στατιστικά για την Ελλάδα");
 		System.out.println("5. Δες στατιστικά για όλο τον Κόσμο");
 		System.out.println("6. Δες περιστατικά του ιού");
-		System.out.println("7. Συχνές Ερωτήσεις σχετικά με τον CONVID-19");
+		System.out.println("7. Συχνές Ερωτήσεις σχετικά με την COVID-19");
 		System.out.println("8. Διέγραψε μια τοποθεσία σου");
 		System.out.println("9. Αξιολογηση της εφαρμογής");
 		System.out.println("10. Διαγραφή Χρήστη και δεδομένων");
@@ -80,7 +80,7 @@ public class Menus {
 
 	/**
 	 * This method will be used for evaluating of our application.
-	 * It prints the choices of Evaluation menu. 
+	 * It prints the choices of Evaluation menu.
 	 */
 	public void printMenu() { // beginning of printMenu
 		System.out.println("***********Μενού Αξιολόγησης***********");
@@ -115,13 +115,13 @@ public class Menus {
 		System.out.println("Η βαθμολογία μου είναι:");
 	} // end of method insertMenu
 
-	/** 
+	/**
 	 * This menu prints user's options about frequent Covid-19 questions.
 	 */
-	
+
 	public void menu88() {
-		System.out.println("********* ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ ΣΧΕΤΙΚΑ ΜΕ ΤΟΝ COVID-19 *********");
-		System.out.println("Ερώτηση 1 : Μεταδίδεται ο Covid-19 από άνθρωπο σε άνθρωπο;");
+		System.out.println("********* ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ ΣΧΕΤΙΚΑ ΜΕ ΤΗΝ COVID-19 *********");
+		System.out.println("Ερώτηση 1 : Μεταδίδεται η Covid-19 από άνθρωπο σε άνθρωπο;");
 		System.out.println("Ερώτηση 2 : Ποια είναι η περίοδος επώασης;");
 		System.out.println("Ερώτηση 3 : Ποια είναι τα συμπτώματα, τα εργαστηριακά ευρήματα"
 				+ " και η πρόγνωση της λοίμωξης από τον ιό;");
