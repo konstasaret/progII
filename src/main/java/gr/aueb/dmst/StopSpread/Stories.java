@@ -34,7 +34,8 @@ public class Stories {
 				outStream.writeUTF(clientMessage);
 				outStream.flush();
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+						+ "Παρακαλούμε δοκιμάστε αργότερα.");
 			} // end of try-catch
 
 			menu.storiesMenu();
@@ -54,7 +55,8 @@ public class Stories {
 					System.out.println();
 					System.out.println(body);
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+							+ "Παρακαλούμε δοκιμάστε αργότερα.");
 				} // end of try-catch
 			} else if (ch == 2) {
 				try {
@@ -77,7 +79,8 @@ public class Stories {
 					outStream.writeUTF(storyBody);
 					outStream.flush();
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+							+ "Παρακαλούμε δοκιμάστε αργότερα.");
 				} // end of try-catch
 
 			} else if (ch == 3) {
@@ -87,7 +90,8 @@ public class Stories {
 					outStream.writeUTF(clientMessage);
 					outStream.flush();
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+							+ "Παρακαλούμε δοκιμάστε αργότερα.");
 				} // end of try-catch
 				break;
 			} // end of if

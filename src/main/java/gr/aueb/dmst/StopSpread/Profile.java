@@ -72,7 +72,8 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Αποτυχία κατά τη σύνδεση");
-			e.printStackTrace();
+			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 
 		return user_id;
@@ -143,7 +144,8 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Αποτυχία δημιουργίας νέου χρήστη");
-			e.printStackTrace();
+			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 	}
 
@@ -184,7 +186,8 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.out.println("Πρόβλημα κατά τον έλεγχο των επαφών");
-			e.printStackTrace();
+			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		} // end of catch
 	}// end of method checkConnections
 
@@ -291,7 +294,8 @@ public class Profile {
 
 			} catch (IOException e) {
 				System.err.println("Πρόβλημα κατα την προσθήκη νέας τοποθεσίας");
-				e.printStackTrace();
+				System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+						+ "Παρακαλούμε δοκιμάστε αργότερα.");
 				return;
 			} // end of catch
 
@@ -331,7 +335,8 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατά την επιλογή κόλλησα κορονοϊό");
-			e.printStackTrace();
+			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		} // end of catch
 	} // end of method infected
 
@@ -382,7 +387,8 @@ public class Profile {
 			}
 		} catch (IOException e) {
 			System.err.println("Προβλημα κατά την εμφάνιση τοποθεσιών");
-			e.printStackTrace();
+			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 
 	} // end of method seeLocations
@@ -473,11 +479,11 @@ public class Profile {
 			// passes departure_time
 			outStream.writeInt(Integer.valueOf(split_location[3]));
 			outStream.flush();
-			
+
 			// passes date
 			outStream.writeUTF(split_location[4]);
 			outStream.flush();
-			
+
 			// passes user_id
 			outStream.writeInt(user_id);
 			outStream.flush();
@@ -490,7 +496,8 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατά τη διαγραφή τοποθεσίας");
-			e.printStackTrace();
+			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 	} // end of method deleteLocation
 
@@ -535,7 +542,8 @@ public class Profile {
 
 		} catch (IOException e) { // end of try and beginning of catch block
 			System.err.println("Πρόβλημα κατά τη διαγραφή χρήστη");
-			e.printStackTrace();
+			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		} // end of catch block
 	} // end of method deleteUser
 

@@ -37,7 +37,8 @@ public class InsertingEvaluation {
 				outStream.writeUTF(clientMessage);
 				outStream.flush();
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+						+ "Παρακαλούμε δοκιμάστε αργότερα.");
 			} // end of try-catch
 
 			mn.printMenu();
@@ -85,8 +86,9 @@ public class InsertingEvaluation {
 
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
-			} // end of try-catch
+				System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+						+ "Παρακαλούμε δοκιμάστε αργότερα.");
+				} // end of try-catch
 		} // end loop
 	} //end of method printMenuEval
 
@@ -153,25 +155,25 @@ public class InsertingEvaluation {
 			System.out.print("*");
 		} // end of first loop
 		System.out.println();
-		
+
 		System.out.printf("%-20s : ", "Kακή εφαρμογή ");
 		for (int stars = 0; stars < (double) bad / totalusers * 100; stars++) {
 			System.out.print("*");
 		} // end of second loop
 		System.out.println();
-		
+
 		System.out.printf("%-20s : ", "Μέτρια εφαρμογή ");
 		for (int stars = 0; stars < (double) metria / totalusers * 100; stars++) {
 			System.out.print("*");
 		} // end of third loop
 		System.out.println();
-		
+
 		System.out.printf("%-20s : ", "Καλή εφαρμογή ");
 		for (int stars = 0; stars < (double) good / totalusers * 100; stars++) {
 			System.out.print("*");
 		} // end of forth loop
 		System.out.println();
-		
+
 		System.out.printf("%-20s : ", "Πολύ καλή εφαρμογή ");
 		for (int stars = 0; stars < (double) very_good / totalusers * 100; stars++) {
 			System.out.print("*");
@@ -182,7 +184,7 @@ public class InsertingEvaluation {
 
 	/**
 	 * Users write their evaluation about our application.
-	 * 
+	 *
 	 * @throws IOException if an I/O error occurs
 	 */
 	public void reasonOfEvaluation() throws IOException {
