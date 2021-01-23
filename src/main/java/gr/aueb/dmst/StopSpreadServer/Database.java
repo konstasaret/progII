@@ -342,7 +342,7 @@ public class Database {
 	 *
 	 * @param ids :the user id
 	 */
-	public void insertIntoLocationsTable(int ids) {
+	public void insterIntoIdsWhoVoted(int ids) {
 		try {
 			stmt = conn.createStatement(); // create a Statement
 
