@@ -82,7 +82,7 @@ public class Menus {
 	 * This method will be used for evaluating of our application.
 	 * It prints the choices of Evaluation menu.
 	 */
-	public void printMenu() { // beginning of printMenu
+	public void printMenu() {
 		System.out.println("***********Μενού Αξιολόγησης***********");
 		System.out.println("1.Ήδη Υπάρχουσα Αξιολόγηση - Γραφική Αναπαράσταση των Δεδομένων");
 		System.out.println("2.Εισαγωγή Αξιολόγησης");

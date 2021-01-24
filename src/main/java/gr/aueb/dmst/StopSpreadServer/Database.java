@@ -751,9 +751,7 @@ public class Database {
 						+ "AND (((ARRIVAL_TIME<=" + departure_time.get(x) + " AND ARRIVAL_TIME>=" + arrival_time.get(x)
 						+ ") OR (" + "DEPARTURE_TIME<=" + departure_time.get(x) + "AND DEPARTURE_TIME>="
 						+ arrival_time.get(x) + "))" + " OR " + "(ARRIVAL_TIME<" + arrival_time.get(x)
-						+ "AND DEPARTURE_TIME>" + departure_time.get(x) + ")) " + "AND USER_ID!=" + user_id);// Exclude
-																												// same
-																												// user
+						+ "AND DEPARTURE_TIME>" + departure_time.get(x) + ")) " + "AND USER_ID!=" + user_id);// Exclude same user
 
 			} // end of for
 
@@ -904,7 +902,7 @@ public class Database {
 		int randomID = rand.nextInt(maxID) + 1;
 
 		try {
-			stmt = conn.createStatement();// create a Statement
+			stmt = conn.createStatement(); // create a Statement
 			result = stmt.executeQuery("SELECT * " + "FROM EVALUATIONCOMMS ");
 
 			for (int i = 0; i < randomID; i++) {

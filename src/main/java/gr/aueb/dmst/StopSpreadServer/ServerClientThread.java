@@ -193,7 +193,7 @@ class ServerClientThread extends Thread {
 
 				} else if (count == 4) {
 					// see locations
-					int user_id = inStream.readInt();// gets user's id from client
+					int user_id = inStream.readInt(); // gets user's id from client
 					ResultSet results = db.userLocationsResult(user_id); // gets data
 
 					try {
@@ -201,8 +201,7 @@ class ServerClientThread extends Thread {
 						// of the columns in a ResultSet object
 						ResultSetMetaData rsmd = results.getMetaData();
 
-						int numberCols = rsmd.getColumnCount() - 1; // gets number of columns
-																	// -1 to exclude user_id
+						int numberCols = rsmd.getColumnCount() - 1; // gets number of columns -1 to exclude user_id
 						outStream.writeInt(numberCols); // sends to client
 						outStream.flush();
 

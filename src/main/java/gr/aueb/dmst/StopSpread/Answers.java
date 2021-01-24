@@ -92,7 +92,7 @@ public class Answers {
 		System.out.println();
 	}
 
-	/** This method prints the answer to the nineth frequent question. */
+	/** This method prints the answer to the ninth frequent question. */
 	public void answer9() {
 		System.out.println("Δεν υπάρχουν σαφή δεδομένα σχετικά με τη μετάδοση του ιού ");
 		System.out.println("μέσω της τροφής. Ο Covid-19 όπως και άλλοι κορωνοϊοί");
