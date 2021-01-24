@@ -22,11 +22,11 @@ public class Menus {
 		System.out.println("2. Διαγνώσθηκα Θετικός.");
 		System.out.println("3. Δες τις τοποθεσίες σου");
 		System.out.println("4. Δες στατιστικά για την Ελλάδα");
-		System.out.println("5. Δες στατιστικά για όλο τον Κόσμο");
+		System.out.println("5. Δες στατιστικά για όλο τον κόσμο");
 		System.out.println("6. Δες περιστατικά του ιού");
 		System.out.println("7. Συχνές Ερωτήσεις σχετικά με την COVID-19");
-		System.out.println("8. Διέγραψε μια τοποθεσία σου");
-		System.out.println("9. Αξιολογηση της εφαρμογής");
+		System.out.println("8. Διάγραψε μια τοποθεσία σου");
+		System.out.println("9. Αξιολόγηση της εφαρμογής");
 		System.out.println("10. Διαγραφή Χρήστη και δεδομένων");
 		System.out.println("11. Αποσύνδεση");
 	} // end of method firstMenu
@@ -63,18 +63,18 @@ public class Menus {
 	 * Prints the user's option about global statistics.
 	 */
 	public void globalStatsMenu() {
-		System.out.println("1. Γενικά για τον Covid-19.");
-		System.out.println("2. Μετάδοση.");
-		System.out.println("3. Συμβουλές για το κοινό.");
-		System.out.println("4. Κίνδυνοι και ασφάλεια των ηλικιωμένων.");
-		System.out.println("5. Νέοι και έφηβοι.");
+		System.out.println("1. Γενικά για τον Covid-19");
+		System.out.println("2. Μετάδοση");
+		System.out.println("3. Συμβουλές για το κοινό");
+		System.out.println("4. Κίνδυνοι και ασφάλεια των ηλικιωμένων");
+		System.out.println("5. Νέοι και έφηβοι");
 		System.out.println("Χρήση μάσκας:");
-		System.out.println("6. Γενικά.");
-		System.out.println("7. Χρήση μάσκας και παιδιά.");
-		System.out.println("8. Υγεία και ασφάλεια στον εργασιακό χώρο.");
-		System.out.println("9. Έρευνα και ανάπτυξη.");
-		System.out.println("10. Σχετικά με το εμβόλιο.");
-		System.out.println("11. Έξοδος.");
+		System.out.println("6. Γενικά");
+		System.out.println("7. Χρήση μάσκας και παιδιά");
+		System.out.println("8. Υγεία και ασφάλεια στον εργασιακό χώρο");
+		System.out.println("9. Έρευνα και ανάπτυξη");
+		System.out.println("10. Σχετικά με το εμβόλιο");
+		System.out.println("11. Έξοδος");
 		System.out.println("Παρακαλώ εισάγετε τον αριθμό που αντιστοιχεί στην" + " επιθυμητή επιλογή!");
 	} // end of method GlobalStatsMenu
 
@@ -96,8 +96,8 @@ public class Menus {
 	 */
 	public void storiesMenu() {
 		System.out.println("Μενού επιλογών:");
-		System.out.println("1. Ανάγνωση ιστορίας.");
-		System.out.println("2. Αποστολή της δικής μου ιστορίας!");
+		System.out.println("1. Ανάγνωση ιστορίας");
+		System.out.println("2. Αποστολή της δικής μου ιστορίας");
 		System.out.println("3. Έξοδος");
 	} // end method of storiesMenu
 
@@ -137,12 +137,12 @@ public class Menus {
 		System.out.println("Ερώτηση 13 : Πόσο θανατηφόρος είναι ο ιός;");
 		System.out.println("Ερώτηση 14 : Τι πρέπει να κάνω εάν νομίζω ότι έχω λοίμωξη από τον νέο κορωνοϊό;");
 		System.out.println("Ερώτηση 15 : Μπορεί κάποιος που έχει αναρρώσει να συνεχίσει "
-				+ "να είναι φορέας και να μεταδίδει τον ιό;;");
+				+ "να είναι φορέας και να μεταδίδει τον ιό;");
 		System.out.println(
-				"Ερώτηση 16 : Η έλευση της άνοιξης και του καλοκαιριού θα βοηθήσουν στην εξάλειψη του ιού;;");
+				"Ερώτηση 16 : Η έλευση της άνοιξης και του καλοκαιριού θα βοηθήσουν στην εξάλειψη του ιού;");
 		System.out.println("Εισάγετε τον αριθμό της ερώτησης που επιθυμείτε να διαβάσετε (από 0 έως και 16).");
-		System.out.println("Για έξοδο πληκτρολογείστε 0");
-		System.out.println("Παρακαλώ εισάγετε την επιλογή σας :");
+		System.out.println("Για έξοδο πληκτρολογήστε 0");
+		System.out.println("Παρακαλώ εισάγετε την επιλογή σας:");
 	} // end of method menu88
 
 } //end of Class Menus
