@@ -72,7 +72,7 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Αποτυχία κατά τη σύνδεση");
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 
@@ -119,7 +119,7 @@ public class Profile {
 						|| pass.equals(pass.toUpperCase()) // one lower case
 						|| pass.length() < 8 // at least 8 chars
 						|| !pass.matches(".*\\d.*")) { // at least one number
-					System.err.println("Ο κωδικός θα πρέπει να αποτελείται απο τουλάχιστον "
+					System.err.println("Ο κωδικός θα πρέπει να αποτελείται από τουλάχιστον "
 							+ "8 χαρακτήρες και να περιέχει τουλάχιστον "
 							+ "έναν αριθμό, ένα κεφαλαίο και ένα πεζό γράμμα.");
 					System.out.println("Παρακαλώ εισάγετε διαφορετικό κωδικό");
@@ -144,7 +144,7 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Αποτυχία δημιουργίας νέου χρήστη");
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 	}
@@ -176,7 +176,7 @@ public class Profile {
 
 			if (infected == true) {
 				System.out.println("***********************************");
-				System.out.println("Εχετε έρθει σε επαφή με κρούσμα \n" + "Πηγαίνετε στο πλησιέστερο νοσοκομείο");
+				System.out.println("Έχετε έρθει σε επαφή με κρούσμα. \nΠηγαίνετε στο πλησιέστερο νοσοκομείο");
 				System.out.println("***********************************");
 
 				// Show nearest hospitals
@@ -186,7 +186,7 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.out.println("Πρόβλημα κατά τον έλεγχο των επαφών");
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		} // end of catch
 	}// end of method checkConnections
@@ -244,13 +244,13 @@ public class Profile {
 			date = inp.stringScanner();
 		}
 
-		System.out.println("Είναι αυτή η σωστή τοποθεσία σας: (ΝΑΙ/ΟΧΙ)" + "\n	Πόλη: " + city + "\n	Διεύθυνση: "
+		System.out.println("Είναι αυτή η σωστή τοποθεσία σας; (ΝΑΙ/ΟΧΙ)" + "\n	Πόλη: " + city + "\n	Διεύθυνση: "
 				+ address + "\n	Άφιξη: " + arr_time + ":00" + "\n	Αναχώριση: " + dep_time + ":00 "
 				+ "\n	Ημερομηνία: " + date);
 
 		String yesORno = inp.stringScanner();
 		while (!(yesORno.equals("ΝΑΙ") || yesORno.equals("ΟΧΙ"))) { // ΝΑΙ and ΟΧΙ are in Greek characters
-			System.out.println("Παρακαλώ πληκτρολογίστε 'ΝΑΙ' ή 'ΟΧΙ'");
+			System.out.println("Παρακαλώ πληκτρολογήστε 'ΝΑΙ' ή 'ΟΧΙ'");
 			yesORno = inp.stringScanner();
 		}
 
@@ -293,8 +293,8 @@ public class Profile {
 				outStream.flush();
 
 			} catch (IOException e) {
-				System.err.println("Πρόβλημα κατα την προσθήκη νέας τοποθεσίας");
-				System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+				System.err.println("Πρόβλημα κατά την προσθήκη νέας τοποθεσίας");
+				System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 						+ "Παρακαλούμε δοκιμάστε αργότερα.");
 				return;
 			} // end of catch
@@ -335,7 +335,7 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατά την επιλογή κόλλησα κορονοϊό");
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		} // end of catch
 	} // end of method infected
@@ -386,8 +386,8 @@ public class Profile {
 				System.out.printf("%-25s%-25s%-25s%-25s%-25s%n", City, Address, arrival_time, departure_time, date);
 			}
 		} catch (IOException e) {
-			System.err.println("Προβλημα κατά την εμφάνιση τοποθεσιών");
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Πρόβλημα κατά την εμφάνιση τοποθεσιών");
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 
@@ -433,7 +433,7 @@ public class Profile {
 
 		String yesORno = inp.stringScanner();
 		while (!(yesORno.equals("ΝΑΙ") || yesORno.equals("ΟΧΙ"))) {
-			System.out.println("Παρακαλώ πληκτρολογείστε 'ΝΑΙ' ή 'ΟΧΙ'");
+			System.out.println("Παρακαλώ πληκτρολογήστε 'ΝΑΙ' ή 'ΟΧΙ'");
 			yesORno = inp.stringScanner();
 		}
 
@@ -496,7 +496,7 @@ public class Profile {
 
 		} catch (IOException e) {
 			System.err.println("Πρόβλημα κατά τη διαγραφή τοποθεσίας");
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 	} // end of method deleteLocation
@@ -542,7 +542,7 @@ public class Profile {
 
 		} catch (IOException e) { // end of try and beginning of catch block
 			System.err.println("Πρόβλημα κατά τη διαγραφή χρήστη");
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		} // end of catch block
 	} // end of method deleteUser

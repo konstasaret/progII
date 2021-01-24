@@ -124,7 +124,7 @@ public class TCPClient {
 			outStream.close();
 			socket.close();
 		} catch (IOException e) {
-			System.err.println("Η συνδεση με τον διακομιστή απέτυχε.\n"
+			System.err.println("Η σύνδεση με το διακομιστή απέτυχε.\n"
 					+ "Παρακαλούμε δοκιμάστε αργότερα.");
 		}
 	} // end of method main
